@@ -46,6 +46,9 @@
 	<!-- macOS Safari Pinned Tab and Touch Bar -->
 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
 
+	<!-- OpenSearch -->
+	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
+
 	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");</script>
 
 	<script type="text/javascript" src="js/styleswitch.js"></script>
@@ -82,8 +85,8 @@
 				</div>
 
 				<div id="filtertools" class="input-group input-group--bottom flex no-shrink">
-					<button class="col-10 sort btn btn-default btn-xs" data-sort="sortName">Name <span class="caret_wrp"></span></button>
-					<button class="sort btn btn-default btn-xs ve-grow" data-sort="source">Source <span class="caret_wrp"></span></button>
+					<button class="col-10 sort btn btn-default btn-xs" data-sort="sortName">Name</button>
+					<button class="sort btn btn-default btn-xs ve-grow" data-sort="source">Source</button>
 				</div>
 
 				<div class="list list--stats tablesdata"></div>
@@ -92,7 +95,7 @@
 			<div id="contentwrapper" class="view-col" style="flex: 6;">
 				<div id="sublistcontainer" class="sublist sublist--resizable">
 					<div id="sublistsort" class="btn-group sublist__wrp-cols">
-						<button class="col-12 sort btn btn-default btn-xs" data-sort="sortName">Name <span class="caret_wrp"></span></button>
+						<button class="col-12 sort btn btn-default btn-xs" data-sort="sortName">Name</button>
 					</div>
 					<div class="list subtablesdata">
 						<!-- populate with JS -->

@@ -136,6 +136,7 @@ PropOrder._MONSTER = [
 	"sizeNote",
 	"type",
 	"alignment",
+	"alignmentPrefix",
 
 	"ac",
 	"hp",
@@ -239,6 +240,7 @@ PropOrder._SPELL = [
 	"damageResist",
 	"damageImmune",
 	"damageVulnerable",
+	"conditionImmune",
 
 	"damageInflict",
 	"conditionInflict",
@@ -292,6 +294,8 @@ PropOrder._BOOK = [
 
 	"id",
 	"source",
+
+	"group",
 
 	"coverUrl",
 	"published",
@@ -853,6 +857,7 @@ PropOrder._ITEM = [
 	"bonusSavingThrow",
 	"bonusAbilityCheck",
 	"bonusProficiencyBonus",
+	"modifySpeed",
 
 	"recharge",
 	"charges",
@@ -1049,6 +1054,7 @@ PropOrder._RACE = [
 	"ability",
 
 	"heightAndWeight",
+	"age",
 
 	"darkvision",
 	"feats",

@@ -21,7 +21,7 @@ class ListPage {
 	 * @param [opts.tableViewOptions] Table view options.
 	 * @param [opts.hasAudio] True if the entities have pronunciation audio.
 	 * @param [opts.isPreviewable] True if the entities can be previewed in-line as part of the list.
-	 * @param [opts.fnGetPinListData] Function which returns ListUtil data for the current pin/unpin.
+	 * @param [opts.fnGetCustomHashId] Function which returns ListUtil customHashId for the current pin/unpin.
 	 * @param [opts.bindPopoutButtonOptions]
 	 */
 	constructor (opts) {
@@ -40,7 +40,7 @@ class ListPage {
 		this._tableViewOptions = opts.tableViewOptions;
 		this._hasAudio = opts.hasAudio;
 		this._isPreviewable = opts.isPreviewable;
-		this._fnGetPinListData = opts.fnGetPinListData;
+		this._fnGetCustomHashId = opts.fnGetCustomHashId;
 		this._bindPopoutButtonOptions = opts.bindPopoutButtonOptions;
 
 		this._renderer = Renderer.get();
@@ -84,7 +84,7 @@ class ListPage {
 
 		this._listSub = ListUtil.initSublist({
 			listClass: this._sublistClass,
-			getSublistRow: this.getSublistItem.bind(this),
+			pGetSublistRow: this.getSublistItem.bind(this),
 			...this._sublistOptions,
 		});
 		ListUtil.initGenericPinnable();
@@ -127,7 +127,7 @@ class ListPage {
 		this._listSub.init();
 
 		Hist.init(true);
-		ExcludeUtil.checkShowAllExcluded(this._dataList, this._$pgContent);
+		ListPage._checkShowAllExcluded(this._dataList, this._$pgContent);
 		window.dispatchEvent(new Event("toolsLoaded"));
 	}
 
@@ -165,7 +165,7 @@ class ListPage {
 			itemList: this._dataList,
 			primaryLists: [this._list],
 		});
-		ListUtil.bindPinButton({fnGetData: this._fnGetPinListData});
+		ListUtil.bindPinButton({fnGetCustomHashId: this._fnGetCustomHashId});
 		const $btnPop = ListUtil.getOrTabRightButton(`btn-popout`, `new-window`);
 		Renderer.hover.bindPopoutButton($btnPop, this._dataList, this._bindPopoutButtonOptions);
 		UrlUtil.bindLinkExportButton(this._filterBox);
@@ -279,6 +279,14 @@ class ListPage {
 
 	_getSearchCache_handleString (ptrOut, str) {
 		ptrOut._ += `${Renderer.stripTags(str).toLowerCase()} -- `;
+	}
+
+	static _checkShowAllExcluded (list, $pagecontent) {
+		if (!ExcludeUtil.isAllContentExcluded(list)) return;
+
+		$pagecontent.html(`<tr><th class="border" colspan="6"></th></tr>
+			<tr><td colspan="6">${ExcludeUtil.getAllContentBlacklistedHtml()}</td></tr>
+			<tr><th class="border" colspan="6"></th></tr>`);
 	}
 
 	getListItem () { throw new Error(`Unimplemented!`); }

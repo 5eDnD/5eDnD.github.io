@@ -1,9 +1,5 @@
 "use strict";
 
-function filterTypeSort (a, b) {
-	return SortUtil.ascSortLower(Parser.trapHazTypeToFull(a.item), Parser.trapHazTypeToFull(b.item));
-}
-
 class TrapsHazardsPage extends ListPage {
 	constructor () {
 		const pageFilter = new PageFilterTrapsHazards();
@@ -63,7 +59,7 @@ class TrapsHazardsPage extends ListPage {
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
-	getSublistItem (it, pinId) {
+	getSublistItem (it, ix) {
 		const hash = UrlUtil.autoEncodeHash(it);
 		const trapType = Parser.trapHazTypeToFull(it.trapHazType);
 
@@ -77,7 +73,7 @@ class TrapsHazardsPage extends ListPage {
 			.click(evt => ListUtil.sublist.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
-			pinId,
+			ix,
 			$ele,
 			it.name,
 			{

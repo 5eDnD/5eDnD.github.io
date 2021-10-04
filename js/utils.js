@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.135.0"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.138.0"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -42,6 +42,7 @@ VeCt = {
 	STORAGE_ROLLER_MACRO: "ROLLER_MACRO_STORAGE",
 	STORAGE_ENCOUNTER: "ENCOUNTER_STORAGE",
 	STORAGE_POINTBUY: "POINTBUY_STORAGE",
+	STORAGE_GLOBAL_COMPONENT_STATE: "GLOBAL_COMPONENT_STATE",
 
 	DUR_INLINE_NOTIFY: 500,
 
@@ -530,7 +531,7 @@ JqueryUtil = {
 		 * @return JQuery
 		 */
 		window.$$ = function (parts, ...args) {
-			if (parts instanceof jQuery) {
+			if (parts instanceof jQuery || parts instanceof HTMLElement) {
 				return (...passed) => {
 					const parts2 = [...passed[0]];
 					const args2 = passed.slice(1);
@@ -635,7 +636,9 @@ JqueryUtil = {
 		};
 	},
 
-	showCopiedEffect ($ele, text = "Copied!", bubble) {
+	showCopiedEffect (eleOr$Ele, text = "Copied!", bubble) {
+		const $ele = eleOr$Ele instanceof $ ? eleOr$Ele : $(eleOr$Ele);
+
 		const top = $(window).scrollTop();
 		const pos = $ele.offset();
 
@@ -706,14 +709,22 @@ JqueryUtil = {
 			JqueryUtil._ACTIVE_TOAST.splice(JqueryUtil._ACTIVE_TOAST.indexOf($toast), 1);
 		};
 
-		const $btnToastDismiss = $(`<button class="btn toast__btn-close"><span class="glyphicon glyphicon-remove"></span></button>`)
-			.click(() => doCleanup($toast));
+		const $btnToastDismiss = $(`<button class="btn toast__btn-close"><span class="glyphicon glyphicon-remove"></span></button>`);
 
 		const $toast = $$`
 		<div class="toast toast--type-${options.type}">
 			<div class="toast__wrp-content">${options.content}</div>
 			<div class="toast__wrp-control">${$btnToastDismiss}</div>
-		</div>`.prependTo($(`body`)).data("pos", 0);
+		</div>`
+			.prependTo(document.body)
+			.data("pos", 0)
+			.mousedown(evt => {
+				evt.preventDefault();
+			})
+			.click(evt => {
+				evt.preventDefault();
+				doCleanup($toast);
+			});
 
 		setTimeout(() => $toast.addClass(`toast--animate`), 5);
 		setTimeout(() => doCleanup($toast), 5000);
@@ -746,12 +757,15 @@ ElementUtil = {
 		html,
 		text,
 		ele,
+		children,
+		outer,
+
 		name,
 		title,
 		val,
-		children,
-		outer,
 		href,
+		type,
+		attrs,
 	}) {
 		ele = ele || (outer ? (new DOMParser()).parseFromString(outer, "text/html").body.childNodes[0] : document.createElement(tag));
 
@@ -769,7 +783,9 @@ ElementUtil = {
 		if (title != null) ele.setAttribute("title", title);
 		if (href != null) ele.setAttribute("href", href);
 		if (val != null) ele.setAttribute("value", val);
-		if (children) for (let i = 0, len = children.length; i < len; ++i) ele.append(children[i]);
+		if (type != null) ele.setAttribute("type", type);
+		if (attrs != null) { for (const k in attrs) { ele.setAttribute(k, attrs[k]); } }
+		if (children) for (let i = 0, len = children.length; i < len; ++i) if (children[i] != null) ele.append(children[i]);
 
 		ele.appends = ele.appends || ElementUtil._appends.bind(ele);
 		ele.appendTo = ele.appendTo || ElementUtil._appendTo.bind(ele);
@@ -785,6 +801,7 @@ ElementUtil = {
 		ele.attr = ele.attr || ElementUtil._attr.bind(ele);
 		ele.val = ele.val || ElementUtil._val.bind(ele);
 		ele.html = ele.html || ElementUtil._html.bind(ele);
+		ele.tooltip = ele.tooltip || ElementUtil._tooltip.bind(ele);
 		ele.onClick = ele.onClick || ElementUtil._onClick.bind(ele);
 		ele.onContextmenu = ele.onContextmenu || ElementUtil._onContextmenu.bind(ele);
 		ele.onChange = ele.onChange || ElementUtil._onChange.bind(ele);
@@ -857,6 +874,10 @@ ElementUtil = {
 	_html (html) {
 		this.innerHTML = html;
 		return this;
+	},
+
+	_tooltip (title) {
+		return this.attr("title", title);
 	},
 
 	_onClick (fn) { return ElementUtil._onX(this, "click", fn); },
@@ -1033,6 +1054,32 @@ MiscUtil = {
 			if (object == null) return object;
 		}
 		return delete object[path.last()];
+	},
+
+	merge (obj1, obj2) {
+		obj2 = MiscUtil.copy(obj2);
+
+		Object.entries(obj2)
+			.forEach(([k, v]) => {
+				if (obj1[k] == null) {
+					obj1[k] = v;
+					return;
+				}
+
+				if (
+					typeof obj1[k] === "object"
+					&& typeof v === "object"
+					&& !(obj1[k] instanceof Array)
+					&& !(v instanceof Array)
+				) {
+					MiscUtil.merge(obj1[k], v);
+					return;
+				}
+
+				obj1[k] = v;
+			});
+
+		return obj1;
 	},
 
 	mix: (superclass) => new MiscUtil._MixinBuilder(superclass),
@@ -2057,7 +2104,9 @@ UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES] = (it) => UrlUtil.encodeForHash([i
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_REWARDS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VARIANTRULES] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ADVENTURE] = (it) => UrlUtil.encodeForHash(it.id);
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ADVENTURES] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ADVENTURE];
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BOOK] = (it) => UrlUtil.encodeForHash(it.id);
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BOOKS] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BOOK];
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_DEITIES] = (it) => UrlUtil.encodeForHash([it.name, it.pantheon, it.source]);
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CULTS_BOONS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OBJECTS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
@@ -2191,7 +2240,7 @@ if (!IS_DEPLOYED && !IS_VTT && typeof window !== "undefined") {
 		if (EventUtil.noModifierKeys(e) && typeof d20 === "undefined") {
 			if (e.key === "#") {
 				const spl = window.location.href.split("/");
-				window.prompt("Copy to clipboard: Ctrl+C, Enter", `https://noads.5e.tools/${spl[spl.length - 1]}`);
+				window.prompt("Copy to clipboard: Ctrl+C, Enter", `https://5etools-mirror-1.github.io/${spl[spl.length - 1]}`);
 			}
 		}
 	});
@@ -2335,23 +2384,57 @@ SortUtil = {
 	},
 
 	initBtnSortHandlers ($wrpBtnsSort, list) {
-		function addCaret ($btnSort, direction) {
-			$wrpBtnsSort.find(".caret").removeClass("caret");
-			$btnSort.find(".caret_wrp").addClass("caret").toggleClass("caret--reverse", direction === "asc");
-		}
-
-		const $btnSort = $wrpBtnsSort.find(`.sort[data-sort="${list.sortBy}"]`);
-		addCaret($btnSort, list.sortDir);
+		let $dispCaretInitial = null;
+		const $dispCarets = [];
 
 		$wrpBtnsSort.find(".sort").each((i, e) => {
 			const $btnSort = $(e);
+			const $dispCaret = SortUtil._initBtnSortHandlers_getAddCaret($btnSort);
+
+			$dispCarets.push($dispCaret);
+
+			if ($btnSort.data("sort") === list.sortBy) $dispCaretInitial = $dispCaret;
+
 			$btnSort.click(evt => {
 				evt.stopPropagation();
 				const direction = list.sortDir === "asc" ? "desc" : "asc";
-				addCaret($btnSort, direction);
+				SortUtil._initBtnSortHandlers_showCaret({$dispCarets, $dispCaret, direction});
 				list.sort($btnSort.data("sort"), direction);
 			});
 		});
+
+		$dispCaretInitial = $dispCaretInitial || $dispCarets[0]; // Fall back on displaying the first caret
+
+		SortUtil._initBtnSortHandlers_showCaret({$dispCaret: $dispCaretInitial, $dispCarets, direction: list.sortDir});
+	},
+
+	_initBtnSortHandlers_getAddCaret ($btnSort) {
+		const $existing = $btnSort.find(`.lst__caret`);
+		if ($existing.length) return $existing;
+		return $(`<span class="lst__caret"></span>`).appendTo($btnSort);
+	},
+
+	_initBtnSortHandlers_showCaret (
+		{
+			$dispCaret,
+			$dispCarets,
+			direction,
+		},
+	) {
+		$dispCarets.forEach($it => $it.removeClass("lst__caret--active"));
+		$dispCaret.addClass("lst__caret--active").toggleClass("lst__caret--reverse", direction === "asc");
+	},
+
+	ascSortAdventure (a, b) {
+		return SortUtil.ascSortDateString(b.published, a.published)
+			|| SortUtil.ascSortLower(a.storyline, b.storyline)
+			|| SortUtil.ascSort(a.level?.start ?? 20, b.level?.start ?? 20)
+			|| SortUtil.ascSortLower(a.name, b.name);
+	},
+
+	ascSortBook (a, b) {
+		return SortUtil.ascSortDateString(b.published, a.published)
+			|| SortUtil.ascSortLower(a.name, b.name);
 	},
 };
 
@@ -2548,33 +2631,48 @@ DataUtil = {
 				const reader = new FileReader();
 				let readIndex = 0;
 				const out = [];
+				const errs = [];
 				reader.onload = async () => {
 					const name = input.files[readIndex - 1].name;
-
 					const text = reader.result;
-					const json = JSON.parse(text);
 
-					const isSkipFile = expectedFileType != null && json.fileType && json.fileType !== expectedFileType && !(await InputUiUtil.pGetUserBoolean({
-						textYes: "Yes",
-						textNo: "Cancel",
-						title: "File Type Mismatch",
-						htmlDescription: `The file "${name}" has the type "${json.fileType}" when the expected file type was "${expectedFileType}".<br>Are you sure you want to upload this file?`,
-					}));
+					try {
+						const json = JSON.parse(text);
 
-					if (!isSkipFile) {
-						delete json.fileType;
-						delete json[propVersion];
+						const isSkipFile = expectedFileType != null && json.fileType && json.fileType !== expectedFileType && !(await InputUiUtil.pGetUserBoolean({
+							textYes: "Yes",
+							textNo: "Cancel",
+							title: "File Type Mismatch",
+							htmlDescription: `The file "${name}" has the type "${json.fileType}" when the expected file type was "${expectedFileType}".<br>Are you sure you want to upload this file?`,
+						}));
 
-						out.push(json);
+						if (!isSkipFile) {
+							delete json.fileType;
+							delete json[propVersion];
+
+							out.push(json);
+						}
+					} catch (e) {
+						errs.push({filename: name, message: e.message});
 					}
 
 					if (input.files[readIndex]) reader.readAsText(input.files[readIndex++]);
-					else resolve(out);
+					else resolve({jsons: out, errors: errs});
 				};
 
 				reader.readAsText(input.files[readIndex++]);
 			}).appendTo(document.body);
 			$iptAdd.click();
+		});
+	},
+
+	doHandleFileLoadErrorsGeneric (errors) {
+		if (!errors) return;
+		errors.forEach(err => {
+			JqueryUtil.doToast({
+				content: `Could not load file "${err.filename}": <code>${err.message}</code>. ${VeCt.STR_SEE_CONSOLE}`,
+				type: "danger",
+			});
 		});
 	},
 
@@ -2847,16 +2945,22 @@ DataUtil = {
 				const re = getRegexFromReplaceModInfo(modInfo.replace, modInfo.flags);
 				const handlers = {string: doReplaceStringHandler.bind(null, re, modInfo.with)};
 
-				// Handle any pure strings, e.g. `"legendaryHeader"`
-				copyTo[prop] = copyTo[prop].map(it => {
-					if (typeof it !== "string") return it;
-					return DataUtil.generic._walker_replaceTxt.walk(it, handlers);
-				});
+				const props = modInfo.props || [null, "entries", "headerEntries", "footerEntries"];
+				if (!props.length) return;
+
+				if (props.includes(null)) {
+					// Handle any pure strings, e.g. `"legendaryHeader"`
+					copyTo[prop] = copyTo[prop].map(it => {
+						if (typeof it !== "string") return it;
+						return DataUtil.generic._walker_replaceTxt.walk(it, handlers);
+					});
+				}
 
 				copyTo[prop].forEach(it => {
-					if (it.entries) it.entries = DataUtil.generic._walker_replaceTxt.walk(it.entries, handlers);
-					if (it.headerEntries) it.headerEntries = DataUtil.generic._walker_replaceTxt.walk(it.headerEntries, handlers);
-					if (it.footerEntries) it.footerEntries = DataUtil.generic._walker_replaceTxt.walk(it.footerEntries, handlers);
+					props.forEach(prop => {
+						if (prop == null) return;
+						if (it[prop]) it[prop] = DataUtil.generic._walker_replaceTxt.walk(it[prop], handlers);
+					});
 				});
 			}
 
@@ -4447,9 +4551,11 @@ BrewUtil = {
 
 		const $btnLoadFromFile = $(`<button class="btn btn-default btn-sm mr-2">Upload File</button>`)
 			.click(async () => {
-				const files = await DataUtil.pUserUpload({isMultiple: true});
-				if (!files) return;
-				for (const json of files) {
+				const {jsons, errors} = await DataUtil.pUserUpload({isMultiple: true});
+
+				DataUtil.doHandleFileLoadErrorsGeneric(errors);
+
+				for (const json of jsons) {
 					await DataUtil.pDoMetaMerge(CryptUtil.uid(), json);
 
 					await BrewUtil.pDoHandleBrewJson(json, page, BrewUtil._pRenderBrewScreen_pRefreshBrewList.bind(this, $brewList));
@@ -4570,7 +4676,7 @@ BrewUtil = {
 
 		$$($modalInner)`
 		<div class="mt-1"><i>A list of homebrew available in the public repository. Click a name to load the homebrew, or view the source directly.<br>
-		Contributions are welcome; see the <a href="https://github.com/TheGiddyLimit/homebrew/blob/master/README.md" target="_blank" rel="noopener noreferrer">README</a>, or stop by our <a href="https://discord.gg/nGvRCDs" target="_blank" rel="noopener noreferrer">Discord</a>.</i></div>
+		Contributions are welcome; see the <a href="https://github.com/TheGiddyLimit/homebrew/blob/master/README.md" target="_blank" rel="noopener noreferrer">README</a>, or stop by our <a href="https://discord.gg/5etools" target="_blank" rel="noopener noreferrer">Discord</a>.</i></div>
 		<hr class="hr-1">
 		<div class="flex-h-right mb-1">${$btnToggleDisplayNonPageBrews}${$btnAll}</div>
 		${$iptSearch}
@@ -4948,6 +5054,7 @@ BrewUtil = {
 			$wrpList,
 			isUseJquery: true,
 			isFuzzy: true,
+			sortByInitial: "source",
 		});
 
 		const $lst = $$`
@@ -6014,143 +6121,258 @@ CollectionUtil = {
 		for (let i = 0; i < length; i++) if (!CollectionUtil.deepEquals(a[i], b[i])) return false;
 		return true;
 	},
+
+	// region Find first <X>
+	dfs (obj, prop) {
+		if (obj instanceof Array) {
+			for (const child of obj) {
+				const n = CollectionUtil.dfs(child, prop);
+				if (n) return n;
+			}
+			return;
+		}
+
+		if (obj instanceof Object) {
+			if (obj[prop]) return obj[prop];
+
+			for (const child of Object.values(obj)) {
+				const n = CollectionUtil.dfs(child, prop);
+				if (n) return n;
+			}
+		}
+	},
+
+	bfs (obj, prop) {
+		if (obj instanceof Array) {
+			for (const child of obj) {
+				if (!(child instanceof Array) && child instanceof Object && child[prop]) return child[prop];
+			}
+
+			for (const child of obj) {
+				const n = CollectionUtil.bfs(child, prop);
+				if (n) return n;
+			}
+
+			return;
+		}
+
+		if (obj instanceof Object) {
+			if (obj[prop]) return obj[prop];
+
+			return CollectionUtil.bfs(Object.values(obj));
+		}
+	},
+	// endregion
 };
 
-Array.prototype.last = Array.prototype.last || function (arg) {
-	if (arg !== undefined) this[this.length - 1] = arg;
-	else return this[this.length - 1];
-};
+Array.prototype.uppercaseFirst || Object.defineProperty(Array.prototype, "last", {
+	enumerable: false,
+	value: function (arg) {
+		if (arg !== undefined) this[this.length - 1] = arg;
+		else return this[this.length - 1];
+	},
+});
 
-Array.prototype.filterIndex = Array.prototype.filterIndex || function (fnCheck) {
-	const out = [];
-	this.forEach((it, i) => {
-		if (fnCheck(it)) out.push(i);
-	});
-	return out;
-};
+Array.prototype.uppercaseFirst || Object.defineProperty(Array.prototype, "filterIndex", {
+	enumerable: false,
+	value: function (fnCheck) {
+		const out = [];
+		this.forEach((it, i) => {
+			if (fnCheck(it)) out.push(i);
+		});
+		return out;
+	},
+});
 
-Array.prototype.equals = Array.prototype.equals || function (array2) {
-	const array1 = this;
-	if (!array1 && !array2) return true;
-	else if ((!array1 && array2) || (array1 && !array2)) return false;
+Array.prototype.uppercaseFirst || Object.defineProperty(Array.prototype, "equals", {
+	enumerable: false,
+	value: function (array2) {
+		const array1 = this;
+		if (!array1 && !array2) return true;
+		else if ((!array1 && array2) || (array1 && !array2)) return false;
 
-	let temp = [];
-	if ((!array1[0]) || (!array2[0])) return false;
-	if (array1.length !== array2.length) return false;
-	let key;
-	// Put all the elements from array1 into a "tagged" array
-	for (let i = 0; i < array1.length; i++) {
-		key = `${(typeof array1[i])}~${array1[i]}`; // Use "typeof" so a number 1 isn't equal to a string "1".
-		if (temp[key]) temp[key]++;
-		else temp[key] = 1;
-	}
-	// Go through array2 - if same tag missing in "tagged" array, not equal
-	for (let i = 0; i < array2.length; i++) {
-		key = `${(typeof array2[i])}~${array2[i]}`;
-		if (temp[key]) {
-			if (temp[key] === 0) return false;
-			else temp[key]--;
-		} else return false;
-	}
-	return true;
-};
+		let temp = [];
+		if ((!array1[0]) || (!array2[0])) return false;
+		if (array1.length !== array2.length) return false;
+		let key;
+		// Put all the elements from array1 into a "tagged" array
+		for (let i = 0; i < array1.length; i++) {
+			key = `${(typeof array1[i])}~${array1[i]}`; // Use "typeof" so a number 1 isn't equal to a string "1".
+			if (temp[key]) temp[key]++;
+			else temp[key] = 1;
+		}
+		// Go through array2 - if same tag missing in "tagged" array, not equal
+		for (let i = 0; i < array2.length; i++) {
+			key = `${(typeof array2[i])}~${array2[i]}`;
+			if (temp[key]) {
+				if (temp[key] === 0) return false;
+				else temp[key]--;
+			} else return false;
+		}
+		return true;
+	},
+});
 
 // Alternate name due to clash with Foundry VTT
-Array.prototype.segregate = Array.prototype.segregate || function (fnIsValid) {
-	return this.reduce(([pass, fail], elem) => fnIsValid(elem) ? [[...pass, elem], fail] : [pass, [...fail, elem]], [[], []]);
-};
-Array.prototype.partition = Array.prototype.partition || Array.prototype.segregate;
+Array.prototype.segregate || Object.defineProperty(Array.prototype, "segregate", {
+	enumerable: false,
+	value: function (fnIsValid) {
+		return this.reduce(([pass, fail], elem) => fnIsValid(elem) ? [[...pass, elem], fail] : [pass, [...fail, elem]], [[], []]);
+	},
+});
 
-Array.prototype.getNext = Array.prototype.getNext || function (curVal) {
-	let ix = this.indexOf(curVal);
-	if (!~ix) throw new Error("Value was not in array!");
-	if (++ix >= this.length) ix = 0;
-	return this[ix];
-};
+Array.prototype.partition || Object.defineProperty(Array.prototype, "partition", {
+	enumerable: false,
+	value: Array.prototype.segregate,
+});
 
-Array.prototype.shuffle = Array.prototype.shuffle || function () {
-	for (let i = 0; i < 10000; ++i) this.sort(() => Math.random() - 0.5);
-	return this;
-};
+Array.prototype.getNext || Object.defineProperty(Array.prototype, "getNext", {
+	enumerable: false,
+	value: function (curVal) {
+		let ix = this.indexOf(curVal);
+		if (!~ix) throw new Error("Value was not in array!");
+		if (++ix >= this.length) ix = 0;
+		return this[ix];
+	},
+});
+
+Array.prototype.shuffle || Object.defineProperty(Array.prototype, "shuffle", {
+	enumerable: false,
+	value: function () {
+		for (let i = 0; i < 10000; ++i) this.sort(() => Math.random() - 0.5);
+		return this;
+	},
+});
 
 /** Map each array item to a k:v pair, then flatten them into one object. */
-Array.prototype.mergeMap = Array.prototype.mergeMap || function (fnMap) {
-	return this.map((...args) => fnMap(...args)).reduce((a, b) => Object.assign(a, b), {});
-};
+Array.prototype.mergeMap || Object.defineProperty(Array.prototype, "mergeMap", {
+	enumerable: false,
+	value: function (fnMap) {
+		return this.map((...args) => fnMap(...args)).reduce((a, b) => Object.assign(a, b), {});
+	},
+});
 
-Array.prototype.first = Array.prototype.first || function (fnMapFind) {
-	for (let i = 0, len = this.length; i < len; ++i) {
-		const result = fnMapFind(this[i], i, this);
-		if (result) return result;
-	}
-};
+Array.prototype.first || Object.defineProperty(Array.prototype, "first", {
+	enumerable: false,
+	value: function (fnMapFind) {
+		for (let i = 0, len = this.length; i < len; ++i) {
+			const result = fnMapFind(this[i], i, this);
+			if (result) return result;
+		}
+	},
+});
 
 /** Map each item via an async function, awaiting for each to complete before starting the next. */
-Array.prototype.pSerialAwaitMap = Array.prototype.pSerialAwaitMap || async function (fnMap) {
-	const out = [];
-	for (let i = 0, len = this.length; i < len; ++i) out.push(await fnMap(this[i], i, this));
-	return out;
-};
+Array.prototype.pSerialAwaitMap || Object.defineProperty(Array.prototype, "pSerialAwaitMap", {
+	enumerable: false,
+	value: async function (fnMap) {
+		const out = [];
+		for (let i = 0, len = this.length; i < len; ++i) out.push(await fnMap(this[i], i, this));
+		return out;
+	},
+});
 
-Array.prototype.unique = Array.prototype.unique || function (fnGetProp) {
-	const seen = new Set();
-	return this.filter((...args) => {
-		const val = fnGetProp ? fnGetProp(...args) : args[0];
-		if (seen.has(val)) return false;
-		seen.add(val);
-		return true;
-	});
-};
+Array.prototype.pSerialAwaitFind || Object.defineProperty(Array.prototype, "pSerialAwaitFind", {
+	enumerable: false,
+	value: async function (fnFind) {
+		for (let i = 0, len = this.length; i < len; ++i) if (await fnFind(this[i], i, this)) return this[i];
+	},
+});
 
-Array.prototype.zip = Array.prototype.zip || function (otherArray) {
-	const out = [];
-	const len = Math.max(this.length, otherArray.length);
-	for (let i = 0; i < len; ++i) {
-		out.push([this[i], otherArray[i]]);
-	}
-	return out;
-};
+Array.prototype.pSerialAwaitSome || Object.defineProperty(Array.prototype, "pSerialAwaitSome", {
+	enumerable: false,
+	value: async function (fnSome) {
+		for (let i = 0, len = this.length; i < len; ++i) if (await fnSome(this[i], i, this)) return true;
+		return false;
+	},
+});
 
-Array.prototype.nextWrap = Array.prototype.nextWrap || function (item) {
-	const ix = this.indexOf(item);
-	if (~ix) {
-		if (ix + 1 < this.length) return this[ix + 1];
-		else return this[0];
-	} else return this.last();
-};
+Array.prototype.unique || Object.defineProperty(Array.prototype, "unique", {
+	enumerable: false,
+	value: function (fnGetProp) {
+		const seen = new Set();
+		return this.filter((...args) => {
+			const val = fnGetProp ? fnGetProp(...args) : args[0];
+			if (seen.has(val)) return false;
+			seen.add(val);
+			return true;
+		});
+	},
+});
 
-Array.prototype.prevWrap = Array.prototype.prevWrap || function (item) {
-	const ix = this.indexOf(item);
-	if (~ix) {
-		if (ix - 1 >= 0) return this[ix - 1];
-		else return this.last();
-	} else return this[0];
-};
+Array.prototype.zip || Object.defineProperty(Array.prototype, "zip", {
+	enumerable: false,
+	value: function (otherArray) {
+		const out = [];
+		const len = Math.max(this.length, otherArray.length);
+		for (let i = 0; i < len; ++i) {
+			out.push([this[i], otherArray[i]]);
+		}
+		return out;
+	},
+});
 
-Array.prototype.findLast = Array.prototype.findLast || function (fn) {
-	for (let i = this.length - 1; i >= 0; --i) if (fn(this[i])) return this[i];
-};
+Array.prototype.nextWrap || Object.defineProperty(Array.prototype, "nextWrap", {
+	enumerable: false,
+	value: function (item) {
+		const ix = this.indexOf(item);
+		if (~ix) {
+			if (ix + 1 < this.length) return this[ix + 1];
+			else return this[0];
+		} else return this.last();
+	},
+});
 
-Array.prototype.findLastIndex = Array.prototype.findLastIndex || function (fn) {
-	for (let i = this.length - 1; i >= 0; --i) if (fn(this[i])) return i;
-	return -1;
-};
+Array.prototype.prevWrap || Object.defineProperty(Array.prototype, "prevWrap", {
+	enumerable: false,
+	value: function (item) {
+		const ix = this.indexOf(item);
+		if (~ix) {
+			if (ix - 1 >= 0) return this[ix - 1];
+			else return this.last();
+		} else return this[0];
+	},
+});
 
-Array.prototype.sum = Array.prototype.sum || function () {
-	let tmp = 0;
-	const len = this.length;
-	for (let i = 0; i < len; ++i) tmp += this[i];
-	return tmp;
-};
+Array.prototype.findLast || Object.defineProperty(Array.prototype, "findLast", {
+	enumerable: false,
+	value: function (fn) {
+		for (let i = this.length - 1; i >= 0; --i) if (fn(this[i])) return this[i];
+	},
+});
 
-Array.prototype.mean = Array.prototype.mean || function () {
-	return this.sum() / this.length;
-};
+Array.prototype.findLastIndex || Object.defineProperty(Array.prototype, "findLastIndex", {
+	enumerable: false,
+	value: function (fn) {
+		for (let i = this.length - 1; i >= 0; --i) if (fn(this[i])) return i;
+		return -1;
+	},
+});
 
-Array.prototype.meanAbsoluteDeviation = Array.prototype.meanAbsoluteDeviation || function () {
-	const mean = this.mean();
-	return (this.map(num => Math.abs(num - mean)) || []).mean();
-};
+Array.prototype.sum || Object.defineProperty(Array.prototype, "sum", {
+	enumerable: false,
+	value: function () {
+		let tmp = 0;
+		const len = this.length;
+		for (let i = 0; i < len; ++i) tmp += this[i];
+		return tmp;
+	},
+});
+
+Array.prototype.mean || Object.defineProperty(Array.prototype, "mean", {
+	enumerable: false,
+	value: function () {
+		return this.sum() / this.length;
+	},
+});
+
+Array.prototype.meanAbsoluteDeviation || Object.defineProperty(Array.prototype, "meanAbsoluteDeviation", {
+	enumerable: false,
+	value: function () {
+		const mean = this.mean();
+		return (this.map(num => Math.abs(num - mean)) || []).mean();
+	},
+});
 
 // OVERLAY VIEW ========================================================================================================
 /**
@@ -6382,15 +6604,8 @@ ExcludeUtil = {
 		return out;
 	},
 
-	checkShowAllExcluded (list, $pagecontent) {
-		if ((!list.length && ExcludeUtil._excludeCount) || (list.length > 0 && list.length === ExcludeUtil._excludeCount)) {
-			$pagecontent.html(`
-				<tr><th class="border" colspan="6"></th></tr>
-				<tr><td colspan="6" class="initial-message">(Content <a href="blacklist.html">blacklisted</a>)</td></tr>
-				<tr><th class="border" colspan="6"></th></tr>
-			`);
-		}
-	},
+	isAllContentExcluded (list) { return (!list.length && ExcludeUtil._excludeCount) || (list.length > 0 && list.length === ExcludeUtil._excludeCount); },
+	getAllContentBlacklistedHtml () { return `<div class="initial-message">(All content <a href="blacklist.html">blacklisted</a>)</div>`; },
 
 	addExclude (displayName, hash, category, source) {
 		if (!ExcludeUtil._excludes.find(row => row.source === source && row.category === category && row.hash === hash)) {

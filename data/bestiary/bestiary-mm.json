@@ -411,6 +411,7 @@
 				"D"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -734,6 +735,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -930,6 +932,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -990,7 +993,12 @@
 				"E"
 			],
 			"ac": [
-				19
+				{
+					"ac": 19,
+					"from": [
+						"natural armor"
+					]
+				}
 			],
 			"hp": {
 				"average": 225,
@@ -1118,6 +1126,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -1316,6 +1325,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -1539,8 +1549,10 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"C",
@@ -1737,6 +1749,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -1948,8 +1961,10 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"C",
@@ -2142,6 +2157,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -2334,6 +2350,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -2542,8 +2559,10 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"C",
@@ -2743,6 +2762,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -2818,6 +2838,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -3180,6 +3203,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -3362,6 +3386,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -3562,8 +3587,10 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"C",
@@ -3773,8 +3800,10 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"C",
@@ -3975,8 +4004,10 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"C",
@@ -4178,8 +4209,10 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"C",
@@ -4369,6 +4402,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -4555,6 +4589,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -4755,8 +4790,10 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"C",
@@ -4944,6 +4981,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Frightful Presence",
 				"Multiattack"
 			],
@@ -5275,6 +5313,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -6346,6 +6387,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -6447,6 +6491,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "H",
@@ -6716,6 +6763,9 @@
 				},
 				{
 					"source": "CoS"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -6782,6 +6832,11 @@
 			"source": "MM",
 			"page": 318,
 			"srd": true,
+			"otherSources": [
+				{
+					"source": "WBtW"
+				}
+			],
 			"size": "T",
 			"type": "beast",
 			"alignment": [
@@ -7357,6 +7412,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -7963,6 +8021,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -8300,6 +8361,7 @@
 				"D"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack",
 				"Swallow"
 			],
@@ -9114,6 +9176,9 @@
 				"B",
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR"
 			],
@@ -9284,6 +9349,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -9350,6 +9418,9 @@
 			},
 			"traitTags": [
 				"Keen Senses"
+			],
+			"actionTags": [
+				"Teleport"
 			],
 			"languageTags": [
 				"CS",
@@ -9546,6 +9617,9 @@
 				"B",
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR"
 			],
@@ -9717,6 +9791,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -10332,6 +10409,9 @@
 				"B",
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR"
 			],
@@ -10456,6 +10536,9 @@
 				"B",
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR"
 			],
@@ -10496,6 +10579,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -10623,6 +10709,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -10978,6 +11067,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -11539,6 +11631,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -11728,6 +11823,9 @@
 				},
 				{
 					"source": "MOT"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -12241,6 +12339,7 @@
 				"D"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -12914,6 +13013,9 @@
 				},
 				{
 					"source": "MOT"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -13046,6 +13148,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -13298,6 +13403,9 @@
 				"B",
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR"
 			],
@@ -13475,6 +13583,9 @@
 			],
 			"senseTags": [
 				"U"
+			],
+			"actionTags": [
+				"Shapechanger"
 			],
 			"languageTags": [
 				"TP",
@@ -13725,6 +13836,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -14174,6 +14288,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "H",
@@ -14479,6 +14596,9 @@
 				},
 				{
 					"source": "WDMM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -15875,7 +15995,8 @@
 				"SD"
 			],
 			"actionTags": [
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"TP",
@@ -16009,6 +16130,9 @@
 				},
 				{
 					"source": "ERLW"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -16631,6 +16755,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -16674,6 +16799,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -17364,6 +17492,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -17828,6 +17959,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -17967,6 +18101,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -18472,6 +18609,9 @@
 			],
 			"senseTags": [
 				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
 			],
 			"languageTags": [
 				"AU",
@@ -19472,6 +19612,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -19854,6 +19997,9 @@
 			"senseTags": [
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR",
 				"S"
@@ -20002,6 +20148,9 @@
 			"senseTags": [
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR",
 				"S"
@@ -20147,6 +20296,9 @@
 			"senseTags": [
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR",
 				"S"
@@ -20288,6 +20440,9 @@
 			"senseTags": [
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR",
 				"S"
@@ -20314,6 +20469,9 @@
 			"otherSources": [
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -20433,6 +20591,9 @@
 			"senseTags": [
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR",
 				"S"
@@ -20462,6 +20623,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -20586,6 +20750,9 @@
 			],
 			"senseTags": [
 				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
 			],
 			"languageTags": [
 				"DR",
@@ -20729,6 +20896,9 @@
 			"senseTags": [
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR",
 				"S"
@@ -20786,6 +20956,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -21220,6 +21393,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -21922,6 +22098,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "H",
@@ -22031,6 +22210,9 @@
 				},
 				{
 					"source": "CoS"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -22245,6 +22427,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -22647,6 +22832,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -23134,6 +23322,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -23682,6 +23873,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "H",
@@ -23983,6 +24177,9 @@
 			"otherSources": [
 				{
 					"source": "GoS"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -24288,6 +24485,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -24397,6 +24597,9 @@
 				},
 				{
 					"source": "CoS"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -24916,6 +25119,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -25016,6 +25222,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -25578,6 +25787,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -25959,6 +26171,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -27391,6 +27606,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -27509,6 +27727,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -27639,6 +27860,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -27862,6 +28086,9 @@
 				"B",
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR"
 			],
@@ -27896,6 +28123,9 @@
 				},
 				{
 					"source": "BGDIA"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -27975,6 +28205,9 @@
 			},
 			"senseTags": [
 				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
 			],
 			"damageTags": [
 				"B",
@@ -28297,6 +28530,9 @@
 				},
 				{
 					"source": "WDMM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -28492,6 +28728,11 @@
 			"source": "MM",
 			"page": 95,
 			"srd": true,
+			"otherSources": [
+				{
+					"source": "WBtW"
+				}
+			],
 			"size": "M",
 			"type": "dragon",
 			"alignment": [
@@ -28580,6 +28821,9 @@
 				"B",
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR"
 			],
@@ -28620,6 +28864,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -30362,6 +30609,7 @@
 				"D"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -30517,6 +30765,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -30710,6 +30961,9 @@
 			"senseTags": [
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"CS",
 				"I"
@@ -30898,6 +31152,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -31315,6 +31572,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -32708,6 +32968,9 @@
 			"senseTags": [
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"AQ",
 				"AU"
@@ -32926,6 +33189,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -33240,6 +33506,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -33511,6 +33780,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -34016,6 +34286,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -35147,6 +35420,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -36396,7 +36672,8 @@
 				"Hold Breath"
 			],
 			"actionTags": [
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"DR"
@@ -36487,6 +36764,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -36764,6 +37044,9 @@
 			"senseTags": [
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"IG",
 				"T"
@@ -36799,6 +37082,9 @@
 				},
 				{
 					"source": "BGDIA"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -36996,6 +37282,9 @@
 				},
 				{
 					"source": "IMR"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -37855,6 +38144,9 @@
 				},
 				{
 					"source": "GoS"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -37962,6 +38254,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -38307,6 +38602,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -39199,6 +39497,9 @@
 				},
 				{
 					"source": "GoS"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -39294,6 +39595,9 @@
 			],
 			"senseTags": [
 				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
 			],
 			"languageTags": [
 				"AQ",
@@ -40536,10 +40840,10 @@
 			"wis": 14,
 			"cha": 16,
 			"skill": {
-				"deception": "+7",
-				"insight": "+6",
-				"perception": "+6",
-				"stealth": "+6"
+				"deception": "+6",
+				"insight": "+5",
+				"perception": "+5",
+				"stealth": "+5"
 			},
 			"senses": [
 				"darkvision 120 ft."
@@ -40719,6 +41023,9 @@
 			],
 			"senseTags": [
 				"SD"
+			],
+			"actionTags": [
+				"Shapechanger"
 			],
 			"languageTags": [
 				"AB",
@@ -40916,6 +41223,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -41486,6 +41796,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -41854,6 +42167,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -41982,7 +42298,8 @@
 				"D"
 			],
 			"actionTags": [
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"C",
@@ -42330,6 +42647,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -42871,6 +43191,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -43076,6 +43399,9 @@
 				},
 				{
 					"source": "MOT"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -43289,6 +43615,9 @@
 				},
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -43849,6 +44178,9 @@
 				},
 				{
 					"source": "EGW"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -44551,6 +44883,9 @@
 			"otherSources": [
 				{
 					"source": "SKT"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -44954,6 +45289,9 @@
 				},
 				{
 					"source": "ERLW"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -45621,6 +45959,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -46132,6 +46473,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -46285,6 +46629,9 @@
 			"senseTags": [
 				"B",
 				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
 			],
 			"languageTags": [
 				"DR"
@@ -47019,6 +47366,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "G",
@@ -47296,6 +47646,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -48214,6 +48567,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -48609,6 +48965,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -49023,6 +49382,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -49339,6 +49701,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -49780,6 +50145,9 @@
 				"B",
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR"
 			],
@@ -49850,6 +50218,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -50154,6 +50525,9 @@
 			],
 			"senseTags": [
 				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
 			],
 			"languageTags": [
 				"AU",
@@ -51185,6 +51559,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -51337,6 +51714,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -51557,6 +51937,9 @@
 			],
 			"senseTags": [
 				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
 			],
 			"languageTags": [
 				"AQ",
@@ -52403,6 +52786,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -52959,6 +53345,9 @@
 				},
 				{
 					"source": "LR"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -53444,6 +53833,9 @@
 				},
 				{
 					"source": "GoS"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -54209,6 +54601,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "H",
@@ -54982,6 +55377,9 @@
 				},
 				{
 					"source": "RMBRE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "S",
@@ -55523,6 +55921,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "L",
@@ -57179,6 +57580,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",
@@ -57775,6 +58179,9 @@
 			"otherSources": [
 				{
 					"source": "IDRotF"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -58776,6 +59183,9 @@
 				"B",
 				"D"
 			],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"languageTags": [
 				"DR"
 			],
@@ -59006,6 +59416,9 @@
 				},
 				{
 					"source": "CM"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "T",
@@ -59367,6 +59780,9 @@
 			"traitTags": [
 				"Keen Senses",
 				"Pack Tactics"
+			],
+			"actionTags": [
+				"Breath Weapon"
 			],
 			"languageTags": [
 				"C",
@@ -60507,6 +60923,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -60642,6 +61059,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -60781,6 +61199,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -60940,6 +61359,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -61079,6 +61499,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -61226,6 +61647,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -61381,6 +61803,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -61513,6 +61936,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -61654,6 +62078,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -61884,6 +62309,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -62027,6 +62453,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -63037,6 +63464,9 @@
 				},
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "WBtW"
 				}
 			],
 			"size": "M",

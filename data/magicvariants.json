@@ -1643,6 +1643,11 @@
 				"page": 181,
 				"tier": "minor",
 				"rarity": "uncommon",
+				"modifySpeed": {
+					"equal": {
+						"swim": "walk"
+					}
+				},
 				"entries": [
 					"While wearing this armor, you have a swimming speed equal to your walking speed. In addition, whenever you start your turn underwater with 0 hit points, the armor causes you to rise 60 feet toward the surface. The armor is decorated with fish and shell motifs."
 				],
@@ -1769,6 +1774,39 @@
 				"rarity": "rare",
 				"entries": [
 					"This suit of armor is reinforced with a magically enhanced metal alloy called mizzium, which is made in Izzet foundries. While you're wearing the armor, any critical hit against you becomes a normal hit. In addition, when you are subjected to a magical effect that allows you to make a Strength or Constitution saving throw to take only half damage, you instead take no damage if you succeed on the saving throw."
+				]
+			}
+		},
+		{
+			"name": "Molten Bronze Skin",
+			"type": "GV",
+			"requires": [
+				{
+					"name": "Half Plate Armor",
+					"source": "PHB"
+				},
+				{
+					"name": "Plate Armor",
+					"source": "PHB"
+				},
+				{
+					"name": "Breastplate",
+					"source": "PHB"
+				}
+			],
+			"inherits": {
+				"namePrefix": "Molten Bronze Skin ",
+				"source": "MOT",
+				"page": 197,
+				"resist": [
+					"fire"
+				],
+				"rarity": "rare",
+				"reqAttune": true,
+				"stealth": false,
+				"entries": [
+					"This magical armor appears as a jug of molten bronze. When you attune to it, the bronze adheres and contours to your skin. The armor can be worn under normal clothes, but it doesn't impede bodily functions. Once you put it on, it can't be removed unless you choose to do so.",
+					"While wearing the armor, you have resistance to fire damage. The armor also doesn't impose disadvantage on Dexterity ({@skill Stealth}) checks."
 				]
 			}
 		},

@@ -292,8 +292,8 @@ function Renderer () {
 	 * @param textStack A reference to an array, which will hold all our strings as we recurse
 	 * @param meta Meta state.
 	 * @param meta.depth The current recursion depth. Optional; default 0, or -1 for type "section" entries.
-	 * @param options Render options.
-	 * @param options.prefix String to prefix rendered lines with.
+	 * @param [options] Render options.
+	 * @param [options.prefix] String to prefix rendered lines with.
 	 */
 	this.recursiveRender = function (entry, textStack, meta, options) {
 		if (entry instanceof Array) {
@@ -517,8 +517,21 @@ function Renderer () {
 		return out.join(" ");
 	};
 
-	this._renderImage_getUrl = function (entry) { return Renderer.utils.getMediaUrl(entry, "href", "img"); };
-	this._renderImage_getUrlThumbnail = function (entry) { return Renderer.utils.getMediaUrl(entry, "hrefThumbnail", "img"); };
+	this._renderImage_getUrl = function (entry) {
+		let url = Renderer.utils.getMediaUrl(entry, "href", "img");
+		for (const plugin of this._getPlugins(`image_urlPostProcess`)) {
+			url = plugin(entry, url) || plugin(entry, url);
+		}
+		return url;
+	};
+
+	this._renderImage_getUrlThumbnail = function (entry) {
+		let url = Renderer.utils.getMediaUrl(entry, "hrefThumbnail", "img");
+		for (const plugin of this._getPlugins(`image_urlThumbnailPostProcess`)) {
+			url = plugin(entry, url) || plugin(entry, url);
+		}
+		return url;
+	};
 
 	this._renderList_getListCssClasses = function (entry, textStack, meta, options) {
 		const out = [`rd__list`];
@@ -2400,10 +2413,17 @@ Renderer.utils = {
 	isDisplayPage (page) { return page != null && ((!isNaN(page) && page > 0) || isNaN(page)); },
 
 	getExcludedTr (it, dataProp, page) {
+		const excludedHtml = Renderer.utils.getExcludedHtml(it, dataProp, page);
+		if (!excludedHtml) return "";
+		return `<tr><td colspan="6" class="pt-3">${excludedHtml}</td></tr>`;
+	},
+
+	getExcludedHtml (it, dataProp, page) {
 		if (!ExcludeUtil.isInitialised) return "";
+		if (page && !UrlUtil.URL_TO_HASH_BUILDER[page]) return "";
 		const hash = page ? UrlUtil.URL_TO_HASH_BUILDER[page](it) : UrlUtil.autoEncodeHash(it);
 		const isExcluded = ExcludeUtil.isExcluded(hash, dataProp, it.source);
-		return isExcluded ? `<tr><td colspan="6" class="pt-3 text-center text-danger"><b><i>Warning: This content has been <a href="blacklist.html">blacklisted</a>.</i></b></td></tr>` : "";
+		return isExcluded ? `<div class="text-center text-danger"><b><i>Warning: This content has been <a href="blacklist.html">blacklisted</a>.</i></b></div>` : "";
 	},
 
 	getSourceAndPageTrHtml (it) {
@@ -3608,35 +3628,50 @@ Renderer.spell = {
 			.filter(it => {
 				if (!ExcludeUtil.isInitialised) return true;
 
-				if (prop === "fromClassList" || prop === "fromClassListVariant") {
-					const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](it);
-					if (ExcludeUtil.isExcluded(hash, "class", it.source)) return false;
+				switch (prop) {
+					case "fromClassList":
+					case "fromClassListVariant": {
+						const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES](it);
+						if (ExcludeUtil.isExcluded(hash, "class", it.source, {isNoCount: true})) return false;
 
-					if (prop !== "fromClassListVariant") return true;
-					if (it.definedInSource) return !ExcludeUtil.isExcluded("*", "classFeature", it.definedInSource);
+						if (prop !== "fromClassListVariant") return true;
+						if (it.definedInSource) return !ExcludeUtil.isExcluded("*", "classFeature", it.definedInSource, {isNoCount: true});
 
-					return true;
-				} else if (prop === "fromSubclass") {
-					const hash = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-						name: it.subclass.name,
-						source: it.subclass.source,
-						className: it.class.name,
-						classSource: it.class.source,
-					});
-					return !ExcludeUtil.isExcluded(hash, "subclass", it.subclass.source);
+						return true;
+					}
+					case "fromSubclass":
+					case "fromSubclassVariant": {
+						const hash = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
+							name: it.subclass.name,
+							source: it.subclass.source,
+							className: it.class.name,
+							classSource: it.class.source,
+						});
+
+						if (prop !== "fromSubclassVariant") return !ExcludeUtil.isExcluded(hash, "subclass", it.subclass.source, {isNoCount: true});
+						if (it.class.definedInSource) return !Renderer.spell.isExcludedSubclassVariantSource({classDefinedInSource: it.class.definedInSource});
+
+						return true;
+					}
+					default: throw new Error(`Unhandled prop "${prop}"`);
 				}
 			});
 	},
 
-	getCombinedRaces (sp) {
+	isExcludedSubclassVariantSource ({classDefinedInSource, subclassDefinedInSource}) {
+		return (classDefinedInSource != null && ExcludeUtil.isExcluded("*", "classFeature", classDefinedInSource, {isNoCount: true}))
+			|| (subclassDefinedInSource != null && ExcludeUtil.isExcluded("*", "subclassFeature", subclassDefinedInSource, {isNoCount: true}));
+	},
+
+	getCombinedRaces (sp, {prop = "races", propTmp = "_tmpRaces"} = {}) {
 		return [
-			...(sp.races || []),
-			...(sp._tmpRaces || []),
+			...(sp[prop] || []),
+			...(sp[propTmp] || []),
 		]
 			.filter(it => {
 				if (!ExcludeUtil.isInitialised) return true;
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES](it);
-				return !ExcludeUtil.isExcluded(hash, "race", it.source);
+				return !ExcludeUtil.isExcluded(hash, "race", it.source, {isNoCount: true});
 			});
 	},
 
@@ -3648,188 +3683,247 @@ Renderer.spell = {
 			.filter(it => {
 				if (!ExcludeUtil.isInitialised) return true;
 				const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS](it);
-				return !ExcludeUtil.isExcluded(hash, "background", it.source);
+				return !ExcludeUtil.isExcluded(hash, "background", it.source, {isNoCount: true});
 			});
 	},
 
+	_initClasses_getSpellMeta ({spell, className, classSource}) {
+		classSource = classSource || SRC_PHB;
+
+		const isClassSpell = spell.classes && spell.classes.fromClassList && spell.classes.fromClassList.some(c => c.name === className && c.source === classSource);
+		const variantClassSpells = (spell?.classes?.fromClassListVariant || []).filter(c => c.name === className && c.source === classSource);
+		return {isClassSpell, variantClassSpells};
+	},
+
+	// TODO(Future)
+	//   - Pre-generate this information, and load it as a JSON file?
+	//   - Allow the user to filter for e.g. "variant subclass" spells, "variant race" spells?
+	//     - Should have "Include Class Variants" and "Include Subclass Variants" toggle buttons for subclass filter
+	//     - Should have "Include Class Variants" and "Include Race Variants" toggle buttons for race filter
 	initClasses (spell) {
 		if (spell._tmpClasses || spell._tmpRaces) return;
 		spell._tmpClasses = {};
 		spell._tmpRaces = [];
 
-		// add eldritch knight and arcane trickster
-		if (spell.classes && spell.classes.fromClassList && spell.classes.fromClassList.some(c => c.name === Renderer.spell.STR_WIZARD && c.source === SRC_PHB)) {
-			Renderer.spell._CACHE_HASHES[Renderer.spell.STR_ELD_KNIGHT] = Renderer.spell._CACHE_HASHES[Renderer.spell.STR_ELD_KNIGHT] || UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-				className: Renderer.spell.STR_FIGHTER,
-				classSource: SRC_PHB,
-				name: Renderer.spell.STR_ELD_KNIGHT,
-				source: SRC_PHB,
-			});
-			const isExcludedEk = ExcludeUtil.isExcluded(Renderer.spell._CACHE_HASHES[Renderer.spell.STR_ELD_KNIGHT], "subclass", SRC_PHB, {isNoCount: true});
+		const {isClassSpell: isWizardSpell, variantClassSpells: variantWizardSpells} = Renderer.spell._initClasses_getSpellMeta({spell, className: Renderer.spell.STR_WIZARD});
+		const {isClassSpell: isClericSpell, variantClassSpells: variantClericSpells} = Renderer.spell._initClasses_getSpellMeta({spell, className: Renderer.spell.STR_CLERIC});
+		const {isClassSpell: isDruidSpell, variantClassSpells: variantDruidSpells} = Renderer.spell._initClasses_getSpellMeta({spell, className: Renderer.spell.STR_DRUID});
+		const {isClassSpell: isWarlockSpell, variantClassSpells: variantWarlockSpells} = Renderer.spell._initClasses_getSpellMeta({spell, className: Renderer.spell.STR_WARLOCK});
+		const {isClassSpell: isSorcererSpell, variantClassSpells: variantSorcererSpells} = Renderer.spell._initClasses_getSpellMeta({spell, className: Renderer.spell.STR_SORCERER});
 
-			Renderer.spell._CACHE_HASHES[Renderer.spell.STR_ARC_TCKER] = Renderer.spell._CACHE_HASHES[Renderer.spell.STR_ARC_TCKER] || UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-				className: Renderer.spell.STR_ROGUE,
-				classSource: SRC_PHB,
-				name: Renderer.spell.STR_ARC_TCKER,
-				source: SRC_PHB,
-			});
-			const isExcludedArc = ExcludeUtil.isExcluded(Renderer.spell._CACHE_HASHES[Renderer.spell.STR_ARC_TCKER], "subclass", SRC_PHB, {isNoCount: true});
+		const hashFighterEldritchKnight = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({className: Renderer.spell.STR_FIGHTER, classSource: SRC_PHB, name: Renderer.spell.STR_ELD_KNIGHT, source: SRC_PHB});
+		const hashRogueArcaneTrickster = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({className: Renderer.spell.STR_ROGUE, classSource: SRC_PHB, name: Renderer.spell.STR_ARC_TCKER, source: SRC_PHB});
+		const hashSorcererDivineSoul = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({className: Renderer.spell.STR_SORCERER, classSource: SRC_PHB, name: Renderer.spell.STR_DIV_SOUL, source: SRC_XGE});
+		const hashSorcererFavoredSoulUaV2 = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({className: Renderer.spell.STR_SORCERER, classSource: SRC_PHB, name: Renderer.spell.STR_FAV_SOUL_V2, source: SRC_UAS});
+		const hashSorcererFavoredSoulUaV3 = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({className: Renderer.spell.STR_SORCERER, classSource: SRC_PHB, name: Renderer.spell.STR_FAV_SOUL_V3, source: SRC_UARSC});
+		const hashClericArcana = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({className: Renderer.spell.STR_CLERIC, classSource: SRC_PHB, name: "Arcana", source: SRC_SCAG});
+		const hashClericNature = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({className: Renderer.spell.STR_CLERIC, classSource: SRC_PHB, name: "Nature", source: SRC_PHB})
+		const hashClericDeath = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({className: Renderer.spell.STR_CLERIC, classSource: SRC_PHB, name: "Death", source: SRC_DMG})
+		const hashSorcererAberrantMind = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({className: Renderer.spell.STR_SORCERER, classSource: SRC_PHB, name: Renderer.spell.STR_ABERRANT_MIND, source: SRC_TCE});
+		const hashSorcererClockworkSoul = UrlUtil.URL_TO_HASH_BUILDER["subclass"]({className: Renderer.spell.STR_SORCERER, classSource: SRC_PHB, name: Renderer.spell.STR_CLOCKWORK_SOUL, source: SRC_TCE})
+
+		const hashElfHigh = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES]({name: "Elf (High)", source: SRC_PHB});
+
+		// add eldritch knight and arcane trickster
+		if (isWizardSpell || variantWizardSpells.length) {
+			const isExcludedEk = ExcludeUtil.isExcluded(hashFighterEldritchKnight, "subclass", SRC_PHB, {isNoCount: true});
+			const isExcludedArc = ExcludeUtil.isExcluded(hashRogueArcaneTrickster, "subclass", SRC_PHB, {isNoCount: true});
 
 			if (!isExcludedEk) {
-				(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
-					class: {name: Renderer.spell.STR_FIGHTER, source: SRC_PHB},
-					subclass: {name: Renderer.spell.STR_ELD_KNIGHT, source: SRC_PHB},
-				});
+				if (isWizardSpell) {
+					Renderer.spell._initClasses_addSubclassSpell({
+						spell,
+						className: Renderer.spell.STR_FIGHTER,
+						subclassName: Renderer.spell.STR_ELD_KNIGHT,
+					});
+				}
+
+				if (variantWizardSpells.length) {
+					Renderer.spell._initClasses_addVariantSubclassSpells({
+						spell,
+						variantClassSpells: variantWizardSpells,
+						className: Renderer.spell.STR_FIGHTER,
+						subclassName: Renderer.spell.STR_ELD_KNIGHT,
+					});
+				}
 			}
 
 			if (!isExcludedArc) {
-				(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
-					class: {name: Renderer.spell.STR_ROGUE, source: SRC_PHB},
-					subclass: {name: Renderer.spell.STR_ARC_TCKER, source: SRC_PHB},
-				});
+				if (isWizardSpell) {
+					Renderer.spell._initClasses_addSubclassSpell({
+						spell,
+						className: Renderer.spell.STR_ROGUE,
+						subclassName: Renderer.spell.STR_ARC_TCKER,
+					});
+				}
+
+				if (variantWizardSpells.length) {
+					Renderer.spell._initClasses_addVariantSubclassSpells({
+						spell,
+						variantClassSpells: variantWizardSpells,
+						className: Renderer.spell.STR_ROGUE,
+						subclassName: Renderer.spell.STR_ELD_KNIGHT,
+					});
+				}
 			}
 
 			if (!isExcludedEk || !isExcludedArc) {
-				if (spell.level > 4) {
-					spell._scrollNote = true;
-				}
+				if (spell.level > 4) spell._scrollNote = true;
 			}
 		}
 
 		// add divine soul, favored soul v2, favored soul v3
-		if (spell.classes && spell.classes.fromClassList && spell.classes.fromClassList.some(c => c.name === Renderer.spell.STR_CLERIC && c.source === SRC_PHB)) {
-			Renderer.spell._CACHE_HASHES[Renderer.spell.STR_DIV_SOUL] = Renderer.spell._CACHE_HASHES[Renderer.spell.STR_DIV_SOUL] || UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-				className: Renderer.spell.STR_CLERIC,
-				classSource: SRC_PHB,
-				name: Renderer.spell.STR_DIV_SOUL,
-				source: SRC_XGE,
-			});
-			const isExcludedDivSoul = ExcludeUtil.isExcluded(Renderer.spell._CACHE_HASHES[Renderer.spell.STR_DIV_SOUL], "subclass", SRC_PHB, {isNoCount: true});
-
-			Renderer.spell._CACHE_HASHES[Renderer.spell.STR_FAV_SOUL_V2] = Renderer.spell._CACHE_HASHES[Renderer.spell.STR_FAV_SOUL_V2] || UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-				className: Renderer.spell.STR_CLERIC,
-				classSource: SRC_PHB,
-				name: Renderer.spell.STR_FAV_SOUL_V2,
-				source: SRC_UAS,
-			});
-			const isExcludedFavSoulv2 = ExcludeUtil.isExcluded(Renderer.spell._CACHE_HASHES[Renderer.spell.STR_FAV_SOUL_V2], "subclass", SRC_PHB, {isNoCount: true});
-
-			Renderer.spell._CACHE_HASHES[Renderer.spell.STR_FAV_SOUL_V3] = Renderer.spell._CACHE_HASHES[Renderer.spell.STR_FAV_SOUL_V3] || UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-				className: Renderer.spell.STR_CLERIC,
-				classSource: SRC_PHB,
-				name: Renderer.spell.STR_FAV_SOUL_V3,
-				source: SRC_UARSC,
-			});
-			const isExcludedFavSoulv3 = ExcludeUtil.isExcluded(Renderer.spell._CACHE_HASHES[Renderer.spell.STR_FAV_SOUL_V3], "subclass", SRC_PHB, {isNoCount: true});
+		if (isClericSpell || variantClericSpells.length) {
+			const isExcludedDivSoul = ExcludeUtil.isExcluded(hashSorcererDivineSoul, "subclass", SRC_PHB, {isNoCount: true});
+			const isExcludedFavSoulv2 = ExcludeUtil.isExcluded(hashSorcererFavoredSoulUaV2, "subclass", SRC_PHB, {isNoCount: true});
+			const isExcludedFavSoulv3 = ExcludeUtil.isExcluded(hashSorcererFavoredSoulUaV3, "subclass", SRC_PHB, {isNoCount: true});
 
 			if (!isExcludedDivSoul) {
-				const isExistingDivSoul = spell.classes.fromSubclass && spell.classes.fromSubclass.some(it => it.class.name === Renderer.spell.STR_SORCERER && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_DIV_SOUL && it.subclass.source === SRC_XGE);
-				if (!isExistingDivSoul) {
-					(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
-						class: {name: Renderer.spell.STR_SORCERER, source: SRC_PHB},
-						subclass: {name: Renderer.spell.STR_DIV_SOUL, source: SRC_XGE},
+				if (isClericSpell) {
+					const isExistingDivSoul = spell.classes.fromSubclass && spell.classes.fromSubclass.some(it => it.class.name === Renderer.spell.STR_SORCERER && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_DIV_SOUL && it.subclass.source === SRC_XGE);
+					if (!isExistingDivSoul) {
+						Renderer.spell._initClasses_addSubclassSpell({
+							spell,
+							className: Renderer.spell.STR_SORCERER,
+							subclassName: Renderer.spell.STR_DIV_SOUL,
+							subclassSource: SRC_XGE,
+						});
+					}
+				}
+
+				if (variantClericSpells.length) {
+					Renderer.spell._initClasses_addVariantSubclassSpells({
+						spell,
+						variantClassSpells: variantClericSpells,
+						className: Renderer.spell.STR_SORCERER,
+						subclassName: Renderer.spell.STR_DIV_SOUL,
+						subclassSource: SRC_XGE,
 					});
 				}
 			}
 
 			if (!isExcludedFavSoulv2) {
-				(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
-					class: {name: Renderer.spell.STR_SORCERER, source: SRC_PHB},
-					subclass: {name: Renderer.spell.STR_FAV_SOUL_V2, source: SRC_UAS},
-				});
+				if (isClericSpell) {
+					Renderer.spell._initClasses_addSubclassSpell({
+						spell,
+						className: Renderer.spell.STR_SORCERER,
+						subclassName: Renderer.spell.STR_FAV_SOUL_V2,
+						subclassSource: SRC_UAS,
+					});
+				}
 			}
 
 			if (!isExcludedFavSoulv3) {
-				(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
-					class: {name: Renderer.spell.STR_SORCERER, source: SRC_PHB},
-					subclass: {name: Renderer.spell.STR_FAV_SOUL_V3, source: SRC_UARSC},
-				});
+				if (isClericSpell) {
+					Renderer.spell._initClasses_addSubclassSpell({
+						spell,
+						className: Renderer.spell.STR_SORCERER,
+						subclassName: Renderer.spell.STR_FAV_SOUL_V3,
+						subclassSource: SRC_UARSC,
+					});
+				}
 			}
 		}
 
 		// Add Arcana Cleric
-		if (spell.classes && spell.classes.fromClassList && spell.classes.fromClassList.find(it => it.name === "Wizard")) {
-			Renderer.spell._CACHE_HASHES["Arcana"] = Renderer.spell._CACHE_HASHES["Arcana"] || UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-				className: Renderer.spell.STR_CLERIC,
-				classSource: SRC_PHB,
-				name: "Arcana",
-				source: SRC_SCAG,
-			});
-			const isExcludedArcana = ExcludeUtil.isExcluded(Renderer.spell._CACHE_HASHES["Arcana"], "subclass", SRC_PHB, {isNoCount: true});
+		if (isWizardSpell || variantWizardSpells.length) {
+			const isExcludedArcana = ExcludeUtil.isExcluded(hashClericArcana, "subclass", SRC_PHB, {isNoCount: true});
 
 			if (spell.level === 0) {
-				Renderer.spell._CACHE_HASHES["Elf (High)"] = Renderer.spell._CACHE_HASHES["Elf (High)"] || UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES]({
-					name: "Elf (High)", source: SRC_PHB,
-				});
-				const isExcludedHighElf = ExcludeUtil.isExcluded(Renderer.spell._CACHE_HASHES["Elf (High)"], "race", SRC_PHB, {isNoCount: true});
+				const isExcludedHighElf = ExcludeUtil.isExcluded(hashElfHigh, "race", SRC_PHB, {isNoCount: true});
 
 				if (!isExcludedHighElf) {
-					// add high elf
-					spell._tmpRaces.push({
-						name: "Elf (High)",
-						source: SRC_PHB,
-						baseName: "Elf",
-						baseSource: SRC_PHB,
-					});
+					if (isWizardSpell) {
+						Renderer.spell._initClasses_addRaceSpell({
+							spell,
+							raceName: "Elf (High)",
+							raceBaseName: "Elf",
+						});
+					}
+
+					if (variantWizardSpells.length) {
+						Renderer.spell._initClasses_addVariantRaceSpells({
+							spell,
+							variantClassSpells: variantWizardSpells,
+							raceName: "Elf (High)",
+							raceBaseName: "Elf",
+						});
+					}
 				}
 
 				if (!isExcludedArcana) {
-					// add arcana cleric
-					(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
-						class: {name: Renderer.spell.STR_CLERIC, source: SRC_PHB},
-						subclass: {name: "Arcana", source: SRC_SCAG},
-					});
+					if (isWizardSpell) {
+						Renderer.spell._initClasses_addSubclassSpell({
+							spell,
+							className: Renderer.spell.STR_CLERIC,
+							subclassName: "Arcana",
+							subclassSource: SRC_SCAG,
+						});
+					}
+
+					if (variantWizardSpells.length) {
+						Renderer.spell._initClasses_addVariantSubclassSpells({
+							spell,
+							variantClassSpells: variantWizardSpells,
+							className: Renderer.spell.STR_CLERIC,
+							subclassName: "Arcana",
+							subclassSource: SRC_SCAG,
+						});
+					}
 				}
 			}
 
 			if (!isExcludedArcana) {
 				// add arcana cleric
 				if (spell.level >= 6) {
-					(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
-						class: {name: Renderer.spell.STR_CLERIC, source: SRC_PHB},
-						subclass: {name: "Arcana", source: SRC_SCAG},
+					Renderer.spell._initClasses_addSubclassSpell({
+						spell,
+						className: Renderer.spell.STR_CLERIC,
+						subclassName: "Arcana",
+						subclassSource: SRC_SCAG,
 					});
 				}
 			}
 		}
 
 		// Add Nature cleric
-		if (spell.classes && spell.classes.fromClassList && spell.classes.fromClassList.find(it => it.name === "Druid")) {
+		if (isDruidSpell || variantDruidSpells.length) {
 			if (spell.level === 0) {
-				Renderer.spell._CACHE_HASHES["Nature"] = Renderer.spell._CACHE_HASHES["Nature"] || UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-					className: Renderer.spell.STR_CLERIC,
-					classSource: SRC_PHB,
-					name: "Nature",
-					source: SRC_PHB,
-				});
-				const isExcludedNature = ExcludeUtil.isExcluded(Renderer.spell._CACHE_HASHES["Nature"], "subclass", SRC_PHB, {isNoCount: true});
+				const isExcludedNature = ExcludeUtil.isExcluded(hashClericNature, "subclass", SRC_PHB, {isNoCount: true});
 
 				if (!isExcludedNature) {
-					// add nature cleric
-					(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
-						class: {name: Renderer.spell.STR_CLERIC, source: SRC_PHB},
-						subclass: {name: "Nature", source: SRC_PHB},
-					});
+					if (isDruidSpell) {
+						Renderer.spell._initClasses_addSubclassSpell({
+							spell,
+							className: Renderer.spell.STR_CLERIC,
+							subclassName: "Nature",
+						});
+					}
+
+					if (variantDruidSpells.length) {
+						Renderer.spell._initClasses_addVariantSubclassSpells({
+							spell,
+							variantClassSpells: variantDruidSpells,
+							className: Renderer.spell.STR_CLERIC,
+							subclassName: "Nature",
+						});
+					}
 				}
 			}
 		}
 
 		// region Add Death Cleric
-		if (spell.level === 0 && spell.school === "N") {
-			Renderer.spell._CACHE_HASHES[Renderer.spell.STR_DEATH] = Renderer.spell._CACHE_HASHES[Renderer.spell.STR_DEATH] || UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-				className: Renderer.spell.STR_CLERIC,
-				classSource: SRC_PHB,
-				name: Renderer.spell.STR_DEATH,
-				source: SRC_DMG,
-			});
-			const isDeathDomain = ExcludeUtil.isExcluded(Renderer.spell._CACHE_HASHES[Renderer.spell.STR_DEATH], "subclass", SRC_DMG, {isNoCount: true});
+		if (spell.level === 0 && spell.school === SKL_ABV_NEC) {
+			const isDeathDomain = ExcludeUtil.isExcluded(hashClericDeath, "subclass", SRC_DMG, {isNoCount: true});
 
 			if (!isDeathDomain) {
 				const isExisting = spell.classes.fromSubclass && spell.classes.fromSubclass.some(it => it.class.name === Renderer.spell.STR_CLERIC && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_DEATH && it.subclass.source === SRC_DMG);
 				if (!isExisting) {
-					(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
-						class: {name: Renderer.spell.STR_CLERIC, source: SRC_PHB},
-						subclass: {name: Renderer.spell.STR_DEATH, source: SRC_DMG},
+					Renderer.spell._initClasses_addSubclassSpell({
+						spell,
+						className: Renderer.spell.STR_CLERIC,
+						subclassName: "Death",
+						subclassSource: SRC_DMG,
 					});
 				}
 			}
@@ -3838,44 +3932,105 @@ Renderer.spell = {
 
 		// region Add Aberrant Mind Sorcerer and Clockwork Soul Sorcerer
 		// Level 0-5, as the feature allows retraining only learned spell levels (and Aberrant Mind has the Mind Sliver cantrip)
-		if (spell.level <= 5 && spell.classes && spell.classes.fromClassList && spell.classes.fromClassList.some(c => (c.name === Renderer.spell.STR_SORCERER || c.name === Renderer.spell.STR_WARLOCK || c.name === Renderer.spell.STR_WIZARD) && c.source === SRC_PHB)) {
-			if (spell.school === "D" || spell.school === "E") {
-				Renderer.spell._CACHE_HASHES[Renderer.spell.STR_ABERRANT_MIND] = Renderer.spell._CACHE_HASHES[Renderer.spell.STR_ABERRANT_MIND] || UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-					className: Renderer.spell.STR_SORCERER,
-					classSource: SRC_PHB,
-					name: Renderer.spell.STR_ABERRANT_MIND,
-					source: SRC_TCE,
-				});
-				const isExcludedAberrantMind = ExcludeUtil.isExcluded(Renderer.spell._CACHE_HASHES[Renderer.spell.STR_ABERRANT_MIND], "subclass", SRC_TCE, {isNoCount: true});
+		if (
+			spell.level <= 5
+			&& (isWizardSpell || isWarlockSpell || isSorcererSpell || variantWizardSpells.length || variantWarlockSpells.length || variantSorcererSpells.length)
+		) {
+			if (spell.school === SKL_ABV_DIV || spell.school === SKL_ABV_ENC) {
+				const isExcludedAberrantMind = ExcludeUtil.isExcluded(hashSorcererAberrantMind, "subclass", SRC_TCE, {isNoCount: true});
 
 				if (!isExcludedAberrantMind) {
 					const isExisting = spell.classes.fromSubclass && spell.classes.fromSubclass.some(it => it.class.name === Renderer.spell.STR_SORCERER && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_ABERRANT_MIND && it.subclass.source === SRC_TCE);
+
 					if (!isExisting) {
-						(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
-							class: {name: Renderer.spell.STR_SORCERER, source: SRC_PHB},
-							subclass: {name: Renderer.spell.STR_ABERRANT_MIND, source: SRC_TCE},
-						});
+						if (isWizardSpell || isWarlockSpell || isSorcererSpell) {
+							Renderer.spell._initClasses_addSubclassSpell({
+								spell,
+								className: Renderer.spell.STR_SORCERER,
+								subclassName: Renderer.spell.STR_ABERRANT_MIND,
+								subclassSource: SRC_TCE,
+							});
+						}
+
+						if (variantWizardSpells.length) {
+							Renderer.spell._initClasses_addVariantSubclassSpells({
+								spell,
+								variantClassSpells: variantWizardSpells,
+								className: Renderer.spell.STR_SORCERER,
+								subclassName: Renderer.spell.STR_ABERRANT_MIND,
+								subclassSource: SRC_TCE,
+							});
+						}
+
+						if (variantWarlockSpells.length) {
+							Renderer.spell._initClasses_addVariantSubclassSpells({
+								spell,
+								variantClassSpells: variantWarlockSpells,
+								className: Renderer.spell.STR_SORCERER,
+								subclassName: Renderer.spell.STR_ABERRANT_MIND,
+								subclassSource: SRC_TCE,
+							});
+						}
+
+						if (variantSorcererSpells.length) {
+							Renderer.spell._initClasses_addVariantSubclassSpells({
+								spell,
+								variantClassSpells: variantSorcererSpells,
+								className: Renderer.spell.STR_SORCERER,
+								subclassName: Renderer.spell.STR_ABERRANT_MIND,
+								subclassSource: SRC_TCE,
+							});
+						}
 					}
 				}
 			}
 
 			// Clockwork Soul doesn't get a cantrip
-			if (spell.level > 0 && (spell.school === "A" || spell.school === "T")) {
-				Renderer.spell._CACHE_HASHES[Renderer.spell.STR_CLOCKWORK_SOUL] = Renderer.spell._CACHE_HASHES[Renderer.spell.STR_CLOCKWORK_SOUL] || UrlUtil.URL_TO_HASH_BUILDER["subclass"]({
-					className: Renderer.spell.STR_SORCERER,
-					classSource: SRC_PHB,
-					name: Renderer.spell.STR_CLOCKWORK_SOUL,
-					source: SRC_TCE,
-				});
-				const isExcludedClockworkSoul = ExcludeUtil.isExcluded(Renderer.spell._CACHE_HASHES[Renderer.spell.STR_CLOCKWORK_SOUL], "subclass", SRC_TCE, {isNoCount: true});
+			if (spell.level > 0 && (spell.school === SKL_ABV_ABJ || spell.school === SKL_ABV_TRA)) {
+				const isExcludedClockworkSoul = ExcludeUtil.isExcluded(hashSorcererClockworkSoul, "subclass", SRC_TCE, {isNoCount: true});
 
 				if (!isExcludedClockworkSoul) {
 					const isExisting = spell.classes.fromSubclass && spell.classes.fromSubclass.some(it => it.class.name === Renderer.spell.STR_SORCERER && it.class.source === SRC_PHB && it.subclass.name === Renderer.spell.STR_CLOCKWORK_SOUL && it.subclass.source === SRC_TCE);
+
 					if (!isExisting) {
-						(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
-							class: {name: Renderer.spell.STR_SORCERER, source: SRC_PHB},
-							subclass: {name: Renderer.spell.STR_CLOCKWORK_SOUL, source: SRC_TCE},
-						});
+						if (isWizardSpell || isWarlockSpell || isSorcererSpell) {
+							Renderer.spell._initClasses_addSubclassSpell({
+								spell,
+								className: Renderer.spell.STR_SORCERER,
+								subclassName: Renderer.spell.STR_CLOCKWORK_SOUL,
+								subclassSource: SRC_TCE,
+							});
+						}
+
+						if (variantWizardSpells.length) {
+							Renderer.spell._initClasses_addVariantSubclassSpells({
+								spell,
+								variantClassSpells: variantWizardSpells,
+								className: Renderer.spell.STR_SORCERER,
+								subclassName: Renderer.spell.STR_CLOCKWORK_SOUL,
+								subclassSource: SRC_TCE,
+							});
+						}
+
+						if (variantWarlockSpells.length) {
+							Renderer.spell._initClasses_addVariantSubclassSpells({
+								spell,
+								variantClassSpells: variantWarlockSpells,
+								className: Renderer.spell.STR_SORCERER,
+								subclassName: Renderer.spell.STR_CLOCKWORK_SOUL,
+								subclassSource: SRC_TCE,
+							});
+						}
+
+						if (variantSorcererSpells.length) {
+							Renderer.spell._initClasses_addVariantSubclassSpells({
+								spell,
+								variantClassSpells: variantSorcererSpells,
+								className: Renderer.spell.STR_SORCERER,
+								subclassName: Renderer.spell.STR_CLOCKWORK_SOUL,
+								subclassSource: SRC_TCE,
+							});
+						}
 					}
 				}
 			}
@@ -3965,6 +4120,7 @@ Renderer.spell = {
 	STR_CLERIC: "Cleric",
 	STR_SORCERER: "Sorcerer",
 	STR_WARLOCK: "Warlock",
+	STR_DRUID: "Druid",
 	STR_ELD_KNIGHT: "Eldritch Knight",
 	STR_ARC_TCKER: "Arcane Trickster",
 	STR_DIV_SOUL: "Divine Soul",
@@ -3973,7 +4129,55 @@ Renderer.spell = {
 	STR_ABERRANT_MIND: "Aberrant Mind",
 	STR_CLOCKWORK_SOUL: "Clockwork Soul",
 	STR_DEATH: "Death",
-	_CACHE_HASHES: {},
+
+	_initClasses_addSubclassSpell ({spell, className, classSource, subclassName, subclassSource}) {
+		classSource = classSource || SRC_PHB;
+		subclassSource = subclassSource || SRC_PHB;
+
+		(spell._tmpClasses.fromSubclass = spell._tmpClasses.fromSubclass || []).push({
+			class: {name: className, source: classSource},
+			subclass: {name: subclassName, source: subclassSource},
+		});
+	},
+
+	_initClasses_addVariantSubclassSpells ({spell, variantClassSpells, className, classSource, subclassName, subclassSource}) {
+		classSource = classSource || SRC_PHB;
+		subclassSource = subclassSource || SRC_PHB;
+
+		(variantClassSpells || []).forEach(it => {
+			(spell._tmpClasses.fromSubclassVariant = spell._tmpClasses.fromSubclassVariant || []).push({
+				class: {name: className, source: classSource, definedInSource: it.definedInSource},
+				subclass: {name: subclassName, source: subclassSource},
+			});
+		});
+	},
+
+	_initClasses_addRaceSpell ({spell, raceName, raceSource, raceBaseName, raceBaseSource}) {
+		raceSource = raceSource || SRC_PHB;
+		raceBaseSource = raceBaseSource || SRC_PHB;
+
+		(spell._tmpRaces = spell._tmpRaces || []).push({
+			name: raceName,
+			source: raceSource,
+			baseName: raceBaseName,
+			baseSource: raceBaseSource,
+		});
+	},
+
+	_initClasses_addVariantRaceSpells ({spell, variantClassSpells, raceName, raceSource, raceBaseName, raceBaseSource}) {
+		raceSource = raceSource || SRC_PHB;
+		raceBaseSource = raceBaseSource || SRC_PHB;
+
+		(variantClassSpells || []).forEach(it => {
+			(spell._tmpRacesVariant = spell._tmpRacesVariant || []).push({
+				name: raceName,
+				source: raceSource,
+				baseName: raceBaseName,
+				baseSource: raceBaseSource,
+				classDefinedInSource: it.definedInSource,
+			});
+		});
+	},
 
 	pGetFluff (sp) {
 		return Renderer.utils.pGetFluff({
@@ -4130,7 +4334,6 @@ Renderer.race = {
 		renderStack.push(`
 			${Renderer.utils.getExcludedTr(race, "race", UrlUtil.PG_RACES)}
 			${Renderer.utils.getNameTr(race, {page: UrlUtil.PG_RACES})}
-			${!race._isBaseRace ? `
 			<tr><td colspan="6">
 				<table class="summary stripe-even-table">
 					<tr>
@@ -4144,7 +4347,7 @@ Renderer.race = {
 						<td class="text-center">${Parser.getSpeedString(race)}</td>
 					</tr>
 				</table>
-			</td></tr>` : ""}
+			</td></tr>
 			<tr class="text"><td colspan="6">
 		`);
 		race._isBaseRace
@@ -4168,7 +4371,8 @@ Renderer.race = {
 			// FIXME(Deprecated) Backwards compatibility for old race data; remove at some point
 			if (r.size && typeof r.size === "string") r.size = [r.size];
 
-			if (r.lineage) {
+			// Ignore `"lineage": true`, as it is only used for filters
+			if (r.lineage && r.lineage !== true) {
 				r = MiscUtil.copy(r);
 
 				if (r.lineage === "VRGR") {
@@ -4553,80 +4757,84 @@ Renderer.object = {
 Renderer.traphazard = {
 	getSubtitle (it) {
 		const type = it.trapHazType || "HAZ";
-		switch (type) {
-			case "GEN":
-				return null;
-			case "SMPL":
-			case "CMPX":
-				return `${Parser.trapHazTypeToFull(type)} (${Parser.tierToFullLevel(it.tier)}, ${Parser.threatToFull(it.threat)} threat)`;
-			default:
-				return Parser.trapHazTypeToFull(type);
-		}
+		if (type === "GEN") return null;
+
+		const parenPart = [
+			it.tier ? Parser.tierToFullLevel(it.tier) : null,
+			Renderer.traphazard.getTrapLevelPart(it),
+			it.threat ? `${it.threat} threat` : null,
+		].filter(Boolean).join(", ");
+
+		return parenPart ? `${Parser.trapHazTypeToFull(type)} (${parenPart})` : Parser.trapHazTypeToFull(type);
 	},
 
-	getSimplePart (renderer, it) {
-		if (it.trapHazType === "SMPL") {
-			return renderer.render({
-				entries: [
-					{
-						type: "entries",
-						name: "Trigger",
-						entries: it.trigger,
-					},
-					{
-						type: "entries",
-						name: "Effect",
-						entries: it.effect,
-					},
-					{
-						type: "entries",
-						name: "Countermeasures",
-						entries: it.countermeasures,
-					},
-				],
-			}, 1);
-		}
-		return "";
+	getTrapLevelPart (it) {
+		return it.level?.min != null && it.level?.max != null
+			? `level ${it.level.min}${it.level.min !== it.level.max ? `\u2013${it.level.max}` : ""}`
+			: null;
 	},
 
-	getComplexPart (renderer, it) {
-		if (it.trapHazType === "CMPX") {
-			return renderer.render({
-				entries: [
-					{
-						type: "entries",
-						name: "Trigger",
-						entries: it.trigger,
-					},
-					{
-						type: "entries",
-						name: "Initiative",
-						entries: [`The trap acts on ${Parser.trapInitToFull(it.initiative)}${it.initiativeNote ? ` (${it.initiativeNote})` : ""}.`],
-					},
-					it.eActive ? {
-						type: "entries",
-						name: "Active Elements",
-						entries: it.eActive,
-					} : null,
-					it.eDynamic ? {
-						type: "entries",
-						name: "Dynamic Elements",
-						entries: it.eDynamic,
-					} : null,
-					it.eConstant ? {
-						type: "entries",
-						name: "Constant Elements",
-						entries: it.eConstant,
-					} : null,
-					{
-						type: "entries",
-						name: "Countermeasures",
-						entries: it.countermeasures,
-					},
-				].filter(it => it),
-			}, 1);
-		}
-		return "";
+	_getTrapEntries (it) {
+		return [
+			// region Shared between simple/complex
+			it.trigger ? {
+				type: "entries",
+				name: "Trigger",
+				entries: it.trigger,
+			} : null,
+			// endregion
+
+			// region Simple traps
+			it.effect ? {
+				type: "entries",
+				name: "Effect",
+				entries: it.effect,
+			} : null,
+			// endregion
+
+			// region Complex traps
+			it.initiative ? {
+				type: "entries",
+				name: "Initiative",
+				entries: Renderer.traphazard.getTrapInitiativeEntries(it),
+			} : null,
+			it.eActive ? {
+				type: "entries",
+				name: "Active Elements",
+				entries: it.eActive,
+			} : null,
+			it.eDynamic ? {
+				type: "entries",
+				name: "Dynamic Elements",
+				entries: it.eDynamic,
+			} : null,
+			it.eConstant ? {
+				type: "entries",
+				name: "Constant Elements",
+				entries: it.eConstant,
+			} : null,
+			// endregion
+
+			// region Shared between simple/complex
+			it.countermeasures ? {
+				type: "entries",
+				name: "Countermeasures",
+				entries: it.countermeasures,
+			} : null,
+			// endregion
+		].filter(Boolean);
+	},
+
+	getTrapInitiativeEntries (it) { return [`The trap acts on ${Parser.trapInitToFull(it.initiative)}${it.initiativeNote ? ` (${it.initiativeNote})` : ""}.`]; },
+
+	getRenderedTrapPart (renderer, it) {
+		const trapEntries = Renderer.traphazard._getTrapEntries(it);
+
+		if (!trapEntries.length) return "";
+
+		return renderer.render({
+			entries: trapEntries,
+		}, 1);
 	},
 
 	getCompactRenderedString (it, opts) {
@@ -4640,14 +4848,9 @@ Renderer.traphazard = {
 			${subtitle ? `<tr class="text"><td colspan="6"><i>${subtitle}</i></td></tr>` : ""}
 			<tr class="text"><td colspan="6">
 			${renderer.render({entries: it.entries}, 2)}
-			${Renderer.traphazard.getSimplePart(renderer, it)}${Renderer.traphazard.getComplexPart(renderer, it)}
+			${Renderer.traphazard.getRenderedTrapPart(renderer, it)}
 			</td></tr>
 		`;
-	},
-
-	_trapTypes: new Set(["MECH", "MAG", "SMPL", "CMPX"]),
-	isTrap (trapHazType) {
-		return Renderer.traphazard._trapTypes.has(trapHazType);
 	},
 };
 
@@ -4988,7 +5191,7 @@ Renderer.monster = {
 		</td></tr>`;
 	},
 
-	getTypeAlignmentPart (mon) { return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${Parser.sizeAbvToFull(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${Parser.monTypeToFullObj(mon.type).asText}${mon.alignment ? `, ${Parser.alignmentListToFull(mon.alignment)}` : ""}`; },
+	getTypeAlignmentPart (mon) { return `${mon.level ? `${Parser.getOrdinalForm(mon.level)}-level ` : ""}${Parser.sizeAbvToFull(mon.size)}${mon.sizeNote ? ` ${mon.sizeNote}` : ""} ${Parser.monTypeToFullObj(mon.type).asText}${mon.alignment ? `, ${mon.alignmentPrefix ? Renderer.get().render(mon.alignmentPrefix) : ""}${Parser.alignmentListToFull(mon.alignment)}` : ""}`; },
 	getSavesPart (mon) { return `${Object.keys(mon.save).sort(SortUtil.ascSortAtts).map(s => Renderer.monster.getSave(Renderer.get(), s, mon.save[s])).join(", ")}` },
 	getSensesPart (mon) { return `${mon.senses ? `${Renderer.monster.getRenderedSenses(mon.senses)}, ` : ""}passive Perception ${mon.passive || "\u2014"}`; },
 
@@ -5138,7 +5341,7 @@ Renderer.monster = {
 			<tr class="text"><td colspan="6">
 			${allTraits.map(it => it.rendered || renderer.render(it, 2)).join("")}
 			</td></tr>` : ""}
-			${Renderer.monster.getCompactRenderedStringSection({action: allActions}, renderer, "Actions", "action", 2)}
+			${Renderer.monster.getCompactRenderedStringSection({...mon, action: allActions}, renderer, "Actions", "action", 2)}
 			${Renderer.monster.getCompactRenderedStringSection(mon, renderer, "Bonus Actions", "bonus", 2)}
 			${Renderer.monster.getCompactRenderedStringSection(mon, renderer, "Reactions", "reaction", 2)}
 			${Renderer.monster.getCompactRenderedStringSection(mon, renderer, "Legendary Actions", "legendary", 2)}
@@ -5297,6 +5500,7 @@ Renderer.monster = {
 		mon._pTypes = mon._pTypes || Parser.monTypeToFullObj(mon.type); // store the parsed type
 		if (!mon._pCr) {
 			if (Parser.crToNumber(mon.cr) === VeCt.CR_CUSTOM) mon._pCr = "Special";
+			else if (Parser.crToNumber(mon.cr) === VeCt.CR_UNKNOWN) mon._pCr = "Unknown";
 			else mon._pCr = mon.cr == null ? "\u2014" : (mon.cr.cr || mon.cr);
 		}
 		if (!mon._fCr) {
@@ -5525,6 +5729,15 @@ Renderer.monster = {
 		};
 	},
 	// endregion
+
+	async pGetModifiedCreature (monRaw, customHashId) {
+		if (!customHashId) return monRaw;
+		const {_scaledCr, _scaledSpellSummonLevel, _scaledClassSummonLevel} = Renderer.monster.getUnpackedCustomHashId(customHashId);
+		if (_scaledCr) return ScaleCreature.scale(monRaw, _scaledCr);
+		if (_scaledSpellSummonLevel) return ScaleSpellSummonedCreature.scale(monRaw, _scaledSpellSummonLevel);
+		if (_scaledClassSummonLevel) return ScaleClassSummonedCreature.scale(monRaw, _scaledClassSummonLevel);
+		throw new Error(`Unhandled custom hash ID "${customHashId}"`);
+	},
 };
 
 Renderer.item = {
@@ -5662,10 +5875,10 @@ Renderer.item = {
 				attunement = "(attunement optional)"
 			} else if (item[prop].toLowerCase().startsWith("by")) {
 				attunementCat = "Requires Attunement By...";
-				attunement = `(requires attunement ${item[prop]})`;
+				attunement = `(requires attunement ${Renderer.get().render(item[prop])})`;
 			} else {
 				attunementCat = "Requires Attunement"; // throw any weird ones in the "Yes" category (e.g. "outdoors at night")
-				attunement = `(requires attunement ${item[prop]})`;
+				attunement = `(requires attunement ${Renderer.get().render(item[prop])})`;
 			}
 		}
 		return [attunement, attunementCat]
@@ -6000,6 +6213,7 @@ Renderer.item = {
 					UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS]({name: it.name, source: it.source}),
 					"variant",
 					it.source,
+					{isNoCount: true},
 				)),
 				variantData.linkedLootTables,
 			]
@@ -7177,6 +7391,37 @@ Renderer.recipe = {
 
 		return cpyR;
 	},
+
+	// region Custom hash ID packing/unpacking
+	getCustomHashId (it) {
+		if (!it._scaleFactor) return null;
+
+		const {
+			name,
+			source,
+			_scaleFactor: scaleFactor,
+		} = it;
+
+		return [
+			name,
+			source,
+			scaleFactor ?? "",
+		].join("__").toLowerCase();
+	},
+
+	getUnpackedCustomHashId (customHashId) {
+		if (!customHashId) return null;
+
+		const [, , scaleFactor] = customHashId.split("__").map(it => it.trim());
+
+		if (!scaleFactor) return null;
+
+		return {
+			_scaleFactor: scaleFactor ? Number(scaleFactor) : null,
+			customHashId,
+		};
+	},
+	// endregion
 };
 
 Renderer.generic = {
@@ -7369,22 +7614,8 @@ Renderer.hover = {
 				}
 			}
 		} else {
-			if (meta.isFluff) {
-				// Try to fetch the fluff directly
-				toRender = await Renderer.hover.pCacheAndGet(`fluff__${page}`, source, hash);
-				// Fall back on fluff attached to the object itself
-				const entity = await Renderer.hover.pCacheAndGet(page, source, hash);
-				const pFnGetFluff = Renderer.hover._pageToFluffFn(page);
-				toRender = await pFnGetFluff(entity);
-
-				// For inline homebrew fluff, populate the name/source
-				if (!toRender.name || !toRender.source) {
-					const toRenderParent = await Renderer.hover.pCacheAndGet(page, source, hash);
-					toRender = MiscUtil.copy(toRender);
-					toRender.name = toRenderParent.name;
-					toRender.source = toRenderParent.source;
-				}
-			} else toRender = await Renderer.hover.pCacheAndGet(page, source, hash);
+			if (meta.isFluff) toRender = await Renderer.hover.pGetHoverableFluff(page, source, hash);
+			else toRender = await Renderer.hover.pCacheAndGet(page, source, hash);
 		}
 
 		meta.isLoading = false;
@@ -7455,6 +7686,27 @@ Renderer.hover = {
 				}
 			}
 		}
+	},
+
+	async pGetHoverableFluff (page, source, hash) {
+		// Try to fetch the fluff directly
+		let toRender = await Renderer.hover.pCacheAndGet(`fluff__${page}`, source, hash);
+		// Fall back on fluff attached to the object itself
+		const entity = await Renderer.hover.pCacheAndGet(page, source, hash);
+		const pFnGetFluff = Renderer.hover._pageToFluffFn(page);
+		toRender = await pFnGetFluff(entity);
+
+		if (!toRender) return toRender;
+
+		// For inline homebrew fluff, populate the name/source
+		if (toRender && (!toRender.name || !toRender.source)) {
+			const toRenderParent = await Renderer.hover.pCacheAndGet(page, source, hash);
+			toRender = MiscUtil.copy(toRender);
+			toRender.name = toRenderParent.name;
+			toRender.source = toRenderParent.source;
+		}
+
+		return toRender;
 	},
 
 	// (Baked into render strings)
@@ -9223,28 +9475,9 @@ Renderer.getNumberedNames = function (entry) {
 	return out;
 };
 
-// region Find first <X>
-Renderer._findDfs = function (it, prop) {
-	if (it instanceof Array) {
-		for (const child of it) {
-			const n = Renderer._findDfs(child, prop);
-			if (n) return n;
-		}
-	} else if (it instanceof Object) {
-		if (it[prop]) return it[prop];
-		else {
-			for (const child of Object.values(it)) {
-				const n = Renderer._findDfs(child, prop);
-				if (n) return n;
-			}
-		}
-	}
-}
-
 // dig down until we find a name, as feature names can be nested
-Renderer.findName = function (entry) { return Renderer._findDfs(entry, "name"); };
-Renderer.findSource = function (entry) { return Renderer._findDfs(entry, "source"); };
-// endregion
+Renderer.findName = function (entry) { return CollectionUtil.dfs(entry, "name"); };
+Renderer.findSource = function (entry) { return CollectionUtil.dfs(entry, "source"); };
 
 Renderer.stripTags = function (str) {
 	if (!str) return str;
@@ -9326,6 +9559,12 @@ Renderer._stripTagLayer = function (str) {
 						throw new Error(`Unhandled tag: ${tag}`);
 					}
 
+					case "@scaledice":
+					case "@scaledamage": {
+						const [baseRoll, progression, addPerProgress, renderMode] = Renderer.splitTagByPipe(text);
+						return addPerProgress;
+					}
+
 					case "@hitYourSpellAttack": return "your spell attack modifier";
 
 					case "@comic":
@@ -9346,8 +9585,6 @@ Renderer._stripTagLayer = function (str) {
 					case "@filter":
 					case "@footnote":
 					case "@link":
-					case "@scaledice":
-					case "@scaledamage":
 					case "@loader":
 					case "@color":
 					case "@highlight":

@@ -10,6 +10,7 @@
 	"DC": "bestiary-dc.json",
 	"DIP": "bestiary-dip.json",
 	"DMG": "bestiary-dmg.json",
+	"DoD": "bestiary-dod.json",
 	"EGW": "bestiary-egw.json",
 	"ERLW": "bestiary-erlw.json",
 	"ESK": "bestiary-esk.json",
@@ -59,6 +60,7 @@
 	"UAArtificerRevisited": "bestiary-ua-ar.json",
 	"UAClassFeatureVariants": "bestiary-ua-cfv.json",
 	"UAClericDruidWizard": "bestiary-ua-cdw.json",
+	"WBtW": "bestiary-wbtw.json",
 	"WDH": "bestiary-wdh.json",
 	"WDMM": "bestiary-wdmm.json"
 }

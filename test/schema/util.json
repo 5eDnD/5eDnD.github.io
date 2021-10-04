@@ -4,7 +4,7 @@
 
 	"title": "Util",
 	"description": "Utility definitions to be used in other schemas.",
-	"version": "1.6.1",
+	"version": "1.8.1",
 
 	"definitions" : {
 		"metaBlock": {
@@ -741,6 +741,64 @@
 			]
 		},
 
+		"_itemModifySpeedEqual": {
+			"type": "string",
+			"enum": ["walk", "burrow", "climb", "fly", "swim"]
+		},
+
+		"itemModifySpeed": {
+			"type": "object",
+			"properties": {
+				"multiply": {
+					"type": "object",
+					"properties": {
+						"walk": {"type": "number"},
+						"burrow": {"type": "number"},
+						"climb":  {"type": "number"},
+						"fly": {"type": "number"},
+						"swim":  {"type": "number"},
+						"*":  {"type": "number"}
+					},
+					"additionalProperties": false
+				},
+				"static": {
+					"type": "object",
+					"properties": {
+						"walk": {"type": "number"},
+						"burrow": {"type": "number"},
+						"climb":  {"type": "number"},
+						"fly": {"type": "number"},
+						"swim":  {"type": "number"},
+						"*":  {"type": "number"}
+					},
+					"additionalProperties": false
+				},
+				"equal": {
+					"type": "object",
+					"properties": {
+							"walk": {"$ref": "#/definitions/_itemModifySpeedEqual"},
+						"burrow": {"$ref": "#/definitions/_itemModifySpeedEqual"},
+						"climb":  {"$ref": "#/definitions/_itemModifySpeedEqual"},
+						"fly": {"$ref": "#/definitions/_itemModifySpeedEqual"},
+						"swim":  {"$ref": "#/definitions/_itemModifySpeedEqual"}
+					},
+					"additionalProperties": false
+				},
+				"bonus": {
+					"type": "object",
+					"properties": {
+						"walk": {"type": "number"},
+						"burrow": {"type": "number"},
+						"climb":  {"type": "number"},
+						"fly": {"type": "number"},
+						"swim":  {"type": "number"},
+						"*":  {"type": "number"}
+					},
+					"additionalProperties": false
+				}
+			},
+			"additionalProperties": false
+		},
 		"prerequisite": {
 			"type": "array",
 			"items": {
@@ -1404,7 +1462,12 @@
 						"mode": {"const": "replaceTxt"},
 						"replace": {"type":  "string"},
 						"with": {"type":  "string"},
-						"flags":  {"type":  "string"}
+						"flags":  {"type":  "string"},
+						"props": {
+							"description": "If unspecified, defaults to `[null, \"entries\", \"headerEntries\", \"footerEntries\"]`. To apply to _any_ string, including those outside of sub-properties (for instance, when trying to replace text in an array of plain strings), include `null` as one of the props (i.e. `\"props\": [null]`)",
+							"type": "array",
+							"items": {"type": ["string", "null"]}
+						}
 					},
 					"required": ["replace", "with"],
 					"additionalProperties": false
@@ -1872,6 +1935,10 @@
 					},
 					"innate": {
 						"description": "Spells which can be innately cast, without expending normal spell resources",
+						"$ref": "#/definitions/_additionalSpellObject"
+					},
+					"known": {
+						"description": "Spells which are always known",
 						"$ref": "#/definitions/_additionalSpellObject"
 					},
 					"prepared": {

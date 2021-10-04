@@ -57,7 +57,10 @@ class StatGenPage {
 						html: `<span class="glyphicon glyphicon-upload"></span>`,
 						title: "Load from File",
 						pFnClick: async () => {
-							const jsons = await DataUtil.pUserUpload({expectedFileType: "statgen"});
+							const {jsons, errors} = await DataUtil.pUserUpload({expectedFileType: "statgen"});
+
+							DataUtil.doHandleFileLoadErrorsGeneric(errors);
+
 							if (!jsons?.length) return;
 							this._statGenUi.setStateFrom(jsons[0]);
 						},
@@ -75,6 +78,17 @@ class StatGenPage {
 							await MiscUtil.pCopyTextToClipboard(encoded);
 							JqueryUtil.showCopiedEffect($btn);
 						},
+					},
+				],
+			}),
+			new TabUiUtil.TabMeta({
+				type: "buttons",
+				buttons: [
+					{
+						html: `<span class="glyphicon glyphicon-refresh"></span>`,
+						title: "Reset All",
+						type: "danger",
+						pFnClick: () => this._statGenUi.doResetAll(),
 					},
 				],
 			}),
