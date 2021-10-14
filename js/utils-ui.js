@@ -966,15 +966,7 @@ class TabUiUtilBase {
 				return renderTabMetas_standard(it, i);
 			}).filter(Boolean);
 
-			if ($parent) {
-				$$`<div class="flex-col w-100 h-100">
-					${$dispTabTitle}
-					<div class="flex w-100 h-100 min-h-0">
-						<div class="flex-col h-100 pt-2">${tabMetasOut.map(it => it.$btnTab)}</div>
-						<div class="flex-col w-100 h-100 min-w-0">${tabMetasOut.map(it => it.$wrpTab).filter(Boolean)}</div>
-					</div>
-				</div>`.appendTo($parent);
-			}
+			if ($parent) obj.__renderTabs_addToParent({$dispTabTitle, $parent, tabMetasOut});
 
 			const hkActiveTab = () => {
 				tabMetasOut.forEach(it => {
@@ -999,6 +991,17 @@ class TabUiUtilBase {
 			};
 
 			return tabMetasOut;
+		};
+
+		obj.__renderTabs_addToParent = function ({$dispTabTitle, $parent, tabMetasOut}) {
+			const hasBorder = tabMetasOut.some(it => it.hasBorder);
+			$$`<div class="flex-col w-100 h-100">
+				${$dispTabTitle}
+				<div class="flex-col w-100 h-100 min-h-0">
+					<div class="flex ${hasBorder ? `ui-tab__wrp-tab-heads--border` : ""}">${tabMetasOut.map(it => it.$btnTab)}</div>
+					<div class="flex w-100 h-100 min-h-0">${tabMetasOut.map(it => it.$wrpTab).filter(Boolean)}</div>
+				</div>
+			</div>`.appendTo($parent);
 		};
 
 		obj._resetTabs = function ({tabGroup = TabUiUtilBase._DEFAULT_TAB_GROUP} = {}) {
@@ -1119,6 +1122,16 @@ class TabUiUtilSide extends TabUiUtilBase {
 
 		obj.__$getWrpTab = function () {
 			return $(`<div class="flex-col w-100 h-100 ui-tab-side__wrp-tab px-3 py-2 overflow-y-auto"></div>`);
+		};
+
+		obj.__renderTabs_addToParent = function ({$dispTabTitle, $parent, tabMetasOut}) {
+			$$`<div class="flex-col w-100 h-100">
+				${$dispTabTitle}
+				<div class="flex w-100 h-100 min-h-0">
+					<div class="flex-col h-100 pt-2">${tabMetasOut.map(it => it.$btnTab)}</div>
+					<div class="flex-col w-100 h-100 min-w-0">${tabMetasOut.map(it => it.$wrpTab).filter(Boolean)}</div>
+				</div>
+			</div>`.appendTo($parent);
 		};
 
 		obj.__renderTypedTabMeta = function ({tabMeta, ixTab}) {
@@ -4456,6 +4469,31 @@ class ComponentUiUtil {
 		opts = opts || {};
 		const slider = new ComponentUiUtil.RangeSlider({comp, ...opts});
 		return slider.$get();
+	}
+
+	static $getSliderNumber (
+		comp,
+		prop,
+		{
+			min,
+			max,
+			step,
+			$ele,
+			asMeta,
+		} = {},
+	) {
+		const $slider = ($ele || $(`<input type="range">`))
+			.change(() => comp._state[prop] = Number($slider.val()));
+
+		if (min != null) $slider.attr("min", min);
+		if (max != null) $slider.attr("max", max);
+		if (step != null) $slider.attr("step", step);
+
+		const hk = () => $slider.val(comp._state[prop]);
+		comp._addHookBase(prop, hk);
+		hk();
+
+		return asMeta ? ({$slider, unhook: () => comp._removeHookBase(prop, hk)}) : $slider;
 	}
 }
 ComponentUiUtil.RangeSlider = class {
