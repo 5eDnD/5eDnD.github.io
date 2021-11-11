@@ -180,7 +180,6 @@ PropOrder._MONSTER = [
 	"familiar",
 	"dragonCastingColor",
 
-	"hasToken",
 	"tokenUrl",
 	"soundClip",
 
@@ -197,6 +196,7 @@ PropOrder._MONSTER = [
 	new PropOrder._ArrayKey("conditionInflictLegendary", {fnSort: SortUtil.ascSortLower}),
 	new PropOrder._ArrayKey("conditionInflictSpell", {fnSort: SortUtil.ascSortLower}),
 
+	"hasToken",
 	"hasFluff",
 	"hasFluffImages",
 ];
@@ -280,6 +280,9 @@ PropOrder._ADVENTURE = [
 
 	"id",
 	"source",
+	"parentSource",
+
+	"group",
 
 	"coverUrl",
 	"published",
@@ -369,6 +372,9 @@ PropOrder._TRAIT = [
 PropOrder._LEGENDARY_GROUP = [
 	"name",
 	"source",
+	"page",
+
+	"additionalSources",
 
 	new PropOrder._ObjectKey("_copy", {
 		order: [
@@ -725,9 +731,9 @@ PropOrder._VEHICLE = [
 	"actionStation",
 	"reaction",
 
-	"hasToken",
 	"tokenUrl",
 
+	"hasToken",
 	"hasFluff",
 	"hasFluffImages",
 ];
@@ -960,8 +966,8 @@ PropOrder._OBJECT = [
 	"entries",
 	"actionEntries",
 
-	"hasToken",
 	"tokenUrl",
+	"hasToken",
 ];
 PropOrder._OPTIONALFEATURE = [
 	"name",
@@ -1009,6 +1015,8 @@ PropOrder._REWARD = [
 	"page",
 
 	"type",
+
+	"rarity",
 
 	"entries",
 ];

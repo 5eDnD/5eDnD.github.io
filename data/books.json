@@ -652,6 +652,20 @@
 			]
 		},
 		{
+			"name": "One Grung Above",
+			"id": "OGA",
+			"source": "OGA",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/OGA.png",
+			"published": "2017-10-11",
+			"author": "Extra Life",
+			"contents": [
+				{
+					"name": "One Grung Above"
+				}
+			]
+		},
+		{
 			"name": "Xanathar's Guide to Everything",
 			"id": "XGE",
 			"source": "XGE",
@@ -2727,7 +2741,7 @@
 			"name": "Domains of Delight",
 			"id": "DoD",
 			"source": "DoD",
-			"group": "supplement",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/DoD.png",
 			"published": "2021-9-21",
 			"contents": [
@@ -2871,6 +2885,195 @@
 						"type": "appendix",
 						"identifier": "A"
 					}
+				}
+			]
+		},
+		{
+			"name": "Minsc and Boo's Journal of Villainy",
+			"id": "MaBJoV",
+			"source": "MaBJoV",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/MaBJoV.png",
+			"published": "2021-10-05",
+			"author": "Wizards RPG Team",
+			"contents": [
+				{
+					"name": "Preface"
+				},
+				{
+					"name": "Heroic Stories",
+					"headers": [
+						"Hometowns",
+						"Group Patrons",
+						"Campaign Villains"
+					]
+				},
+				{
+					"name": "Hometowns",
+					"headers": [
+						"Athkatla",
+						"Baldur's Gate",
+						"Suldanessellar",
+						"Ust Natha"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 1
+					}
+				},
+				{
+					"name": "Group Patrons",
+					"headers": [
+						"Adventurer's Guild",
+						"Candlekeep",
+						"Church of Sune",
+						"Emerald Enclave",
+						"Flaming Fist",
+						"Harpers",
+						"Knights of Bahamut",
+						"Order of Icarus",
+						"Raven Circle",
+						"Shadow Thieves"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 2
+					}
+				},
+				{
+					"name": "Campaign Villains",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 3
+					}
+				},
+				{
+					"name": "Henchmen",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 4
+					}
+				},
+				{
+					"name": "Monsters",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 5
+					}
+				}
+			]
+		},
+		{
+			"name": "Fizban's Treasury of Dragons",
+			"id": "FTD",
+			"source": "FTD",
+			"group": "supplement",
+			"coverUrl": "img/covers/FTD.png",
+			"published": "2021-10-26",
+			"author": "Wizards RPG Team",
+			"contents": [
+				{
+					"name": "Elegy for the First World",
+					"headers": [
+						"A Treasury of Dragons",
+						"The First World"
+					]
+				},
+				{
+					"name": "Character Creation",
+					"headers": [
+						"Draconic Races",
+						"Subclass Options",
+						"Heroes of the Dragon",
+						"Draconic Feats"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 1
+					}
+				},
+				{
+					"name": "Dragon Magic",
+					"headers": [
+						"Spells",
+						"Magic Items",
+						"Hoard Magic Items",
+						"Draconic Gifts"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 2
+					}
+				},
+				{
+					"name": "Dragons in Play",
+					"headers": [
+						"Roleplaying Dragons",
+						"Followers",
+						"Dragon Encounters",
+						"Dragon Adventures",
+						"Dragon Campaigns"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 3
+					}
+				},
+				{
+					"name": "Lairs and Hoards",
+					"headers": [
+						"Dragon Lairs",
+						"Dragon Hoards",
+						"What's in a Hoard?"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 4
+					}
+				},
+				{
+					"name": "Draconomicon",
+					"headers": [
+						"Using the Entries",
+						"Amethyst Dragons",
+						"Black Dragons",
+						"Blue Dragons",
+						"Brass Dragons",
+						"Bronze Dragons",
+						"Copper Dragons",
+						"Crystal Dragons",
+						"Deep Dragons",
+						"Dragon Turtles",
+						"Emerald Dragons",
+						"Faerie Dragons",
+						"Gold Dragons",
+						"Green Dragons",
+						"Moonstone Dragons",
+						"Red Dragons",
+						"Sapphire Dragons",
+						"Shadow Dragons",
+						"Silver Dragons",
+						"Topaz Dragons",
+						"White Dragons"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 5
+					}
+				},
+				{
+					"name": "Bestiary",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 6
+					}
+				},
+				{
+					"name": "Creature Lists",
+					"headers": [
+						"Challenge Ratings",
+						"Creature Types"
+					]
 				}
 			]
 		}
