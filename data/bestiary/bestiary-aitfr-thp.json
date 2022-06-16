@@ -4,7 +4,9 @@
 			"name": "Greater Shadow Horror",
 			"source": "AitFR-THP",
 			"page": 12,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "aberration",
 			"alignment": [
 				"N",
@@ -45,7 +47,7 @@
 				{
 					"name": "Incorporeal Movement",
 					"entries": [
-						"The horror can move through other creatures and objects as if they were difficult terrain. It takes 5 ({@damage 1d10}) force damage if it ends its turn inside an object."
+						"The horror can move through other creatures and objects as if they were {@quickref difficult terrain||3}. It takes 5 ({@damage 1d10}) force damage if it ends its turn inside an object."
 					]
 				},
 				{
@@ -143,6 +145,7 @@
 			"conditionInflict": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -151,7 +154,9 @@
 			"isNamedCreature": true,
 			"source": "AitFR-THP",
 			"page": 13,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -270,6 +275,11 @@
 			"languageTags": [
 				"X"
 			],
+			"damageTagsSpell": [
+				"F",
+				"O",
+				"Y"
+			],
 			"spellcastingTags": [
 				"CW"
 			],
@@ -282,13 +292,16 @@
 				"invisible",
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Usagt",
 			"source": "AitFR-THP",
 			"page": 14,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "aberration",
 				"tags": [
@@ -430,6 +443,7 @@
 			"conditionInflictSpell": [
 				"incapacitated"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		}
 	]

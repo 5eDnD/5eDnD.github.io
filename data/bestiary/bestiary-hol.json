@@ -4,7 +4,9 @@
 			"name": "Apprentice",
 			"source": "HoL",
 			"page": 201,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"ac": [
 				10
@@ -90,6 +92,9 @@
 				"B",
 				"F"
 			],
+			"damageTagsSpell": [
+				"F"
+			],
 			"spellcastingTags": [
 				"CW"
 			],
@@ -99,13 +104,16 @@
 			],
 			"conditionInflictSpell": [
 				"prone"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Disciple",
 			"source": "HoL",
 			"page": 201,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"ac": [
 				{
@@ -184,18 +192,24 @@
 				"B",
 				"R"
 			],
+			"damageTagsSpell": [
+				"R"
+			],
 			"spellcastingTags": [
 				"CC"
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Sneak",
 			"source": "HoL",
 			"page": 201,
-			"size": "S",
+			"size": [
+				"S"
+			],
 			"type": "humanoid",
 			"ac": [
 				{
@@ -257,13 +271,16 @@
 				"MW",
 				"RW",
 				"THW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Squire",
 			"source": "HoL",
 			"page": 201,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"ac": [
 				{
@@ -322,7 +339,8 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		}
 	]
 }

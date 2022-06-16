@@ -62,7 +62,7 @@ class InitiativeTrackerUtil {
 						: `background: ${state.color};`,
 				];
 				if (opts.width) styleStack.push(`width: ${opts.width}px;`);
-				return `<div class="init__cond_bar" style="${styleStack.join(" ")}"/>`
+				return `<div class="init__cond_bar" style="${styleStack.join(" ")}"/>`;
 			};
 
 			const inner = state.turns
@@ -81,7 +81,7 @@ class InitiativeTrackerUtil {
 
 		const $cond = $$`<div class="init__cond relative" ${styleStack.length ? `style="${styleStack.join(" ")}"` : ""}></div>`
 			.data("doTickDown", tickDown)
-			.data("getState", () => JSON.parse(JSON.stringify(state)))
+			.data("getState", () => MiscUtil.copy(state))
 			.on("contextmenu", (e) => e.preventDefault() || tickDown(true))
 			.click(() => tickUp(true));
 
@@ -146,7 +146,7 @@ InitiativeTrackerUtil.CONDITIONS = [
 	},
 ].sort((a, b) => SortUtil.ascSortLower(a.name.replace(/\W+/g, ""), b.name.replace(/\W+/g, "")));
 
-class InitiativeTrackerPlayerUi {
+class InitiativeTrackerPlayerUiV1 {
 	constructor (view, playerName, serverToken) {
 		this._view = view;
 		this._playerName = playerName;
@@ -174,7 +174,84 @@ class InitiativeTrackerPlayerUi {
 	}
 }
 
-class InitiativeTrackerPlayerMessageHandler {
+class InitiativeTrackerPlayerUiV0 {
+	constructor (view, $iptServerToken, $btnGenClientToken, $iptClientToken) {
+		this._view = view;
+		this._$iptServerToken = $iptServerToken;
+		this._$btnGenClientToken = $btnGenClientToken;
+		this._$iptClientToken = $iptClientToken;
+	}
+
+	init () {
+		this._$iptServerToken.keydown(evt => {
+			this._$iptServerToken.removeClass("error-background");
+			if (evt.which === 13) this._$btnGenClientToken.click();
+		});
+
+		this._$btnGenClientToken.click(async () => {
+			this._$iptServerToken.removeClass("error-background");
+			const serverToken = this._$iptServerToken.val();
+
+			if (PeerUtilV0.isValidToken(serverToken)) {
+				try {
+					this._$iptServerToken.attr("disabled", true);
+					this._$btnGenClientToken.attr("disabled", true);
+					const clientData = await PeerUtilV0.pInitialiseClient(
+						serverToken,
+						msg => this._view.handleMessage(msg),
+						function (err) {
+							if (!this.isClosed) {
+								JqueryUtil.doToast({
+									content: `Server error:\n${err ? err.message || err : "(Unknown error)"}`,
+									type: "danger",
+								});
+							}
+						},
+					);
+
+					if (!clientData) {
+						this._$iptServerToken.attr("disabled", false);
+						this._$btnGenClientToken.attr("disabled", false);
+						JqueryUtil.doToast({
+							content: `Failed to create client. Are you sure the token was valid?`,
+							type: "warning",
+						});
+					} else {
+						this._view.clientData = clientData;
+
+						// -- This has no effect; the client doesn't error on sending when there's no connection --
+						// const livenessCheck = setInterval(async () => {
+						// 	try {
+						// 		await clientData.client.sendMessage({})
+						// 	} catch (e) {
+						// 		JqueryUtil.doToast({
+						// 			content: `Could not reach server! You might need to reconnect.`,
+						// 			type: "danger"
+						// 		});
+						// 		clearInterval(livenessCheck);
+						// 	}
+						// }, 5000);
+
+						this._$iptClientToken.val(clientData.textifiedSdp).attr("disabled", false);
+					}
+				} catch (e) {
+					JqueryUtil.doToast({
+						content: `Failed to create client! Are you sure the token was valid? (See the log for more details.)`,
+						type: "danger",
+					});
+					setTimeout(() => { throw e; });
+				}
+			} else this._$iptServerToken.addClass("error-background");
+		});
+
+		this._$iptClientToken.click(async () => {
+			await MiscUtil.pCopyTextToClipboard(this._$iptClientToken.val());
+			JqueryUtil.showCopiedEffect(this._$iptClientToken);
+		});
+	}
+}
+
+class InitiativeTrackerPlayerMessageHandlerV1 {
 	constructor (isCompact) {
 		this._isCompact = isCompact;
 		this._isUiInit = false;
@@ -204,7 +281,7 @@ class InitiativeTrackerPlayerMessageHandler {
 
 		if (data.n) {
 			this._$meta.append(`
-				<div class="${this._isCompact ? "flex-vh-center" : "flex-v-center"}${this._isCompact ? " mb-3" : ""}">
+				<div class="${this._isCompact ? "ve-flex-vh-center" : "ve-flex-v-center"}${this._isCompact ? " mb-3" : ""}">
 					<div class="mr-2">Round: </div>
 					<div class="bold">${data.n}</div>
 				</div>
@@ -240,7 +317,7 @@ class InitiativeTrackerPlayerMessageHandler {
 		const getHpContent = () => {
 			if (rowData.hh != null) {
 				const {text, color} = InitiativeTrackerUtil.getWoundMeta(rowData.hh);
-				return {hpText: text, hpColor: color}
+				return {hpText: text, hpColor: color};
 			} else {
 				const woundLevel = InitiativeTrackerUtil.getWoundLevel(100 * Number(rowData.h) / Number(rowData.g));
 				return {hpText: `${rowData.h == null ? "?" : rowData.h}/${rowData.g == null ? "?" : rowData.g}`, hpColor: InitiativeTrackerUtil.getWoundMeta(woundLevel).color};
@@ -259,11 +336,21 @@ class InitiativeTrackerPlayerMessageHandler {
 				<div class="initp__r_hp">
 					<div class="initp__r_hp_pill" style="background: ${hpColor};">${hpText}</div>
 				</div>
-				${(rowData.k || []).map(statVal => `<div class="initp__r_stat flex-vh-center">
+				${(rowData.k || []).map(statVal => `<div class="initp__r_stat ve-flex-vh-center">
 					${statVal.u ? "?" : statVal.v === true ? `<span class="text-success glyphicon glyphicon-ok"/>` : statVal.v === false ? `<span class="text-danger glyphicon glyphicon-remove"/>` : statVal.v}
 				</div>`).join("")}
 				<div class="initp__r_score${this._isCompact ? " initp__r_score--compact" : ""}">${rowData.i}</div>
 			</div>
 		`;
 	}
+}
+
+class InitiativeTrackerPlayerMessageHandlerV0 extends InitiativeTrackerPlayerMessageHandlerV1 {
+	constructor (...args) {
+		super(...args);
+
+		this._clientData = null;
+	}
+
+	set clientData (clientData) { this._clientData = clientData; }
 }

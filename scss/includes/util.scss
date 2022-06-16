@@ -41,6 +41,10 @@ input[type="radio"]:checked {
 	font-weight: bold !important;
 }
 
+.ve-bolder {
+	font-weight: bolder !important;
+}
+
 .italic {
 	font-style: italic !important;
 }
@@ -81,9 +85,9 @@ i > i {
 }
 
 .text-clip-ellipsis {
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
+	white-space: nowrap !important;
+	text-overflow: ellipsis !important;
+	overflow: hidden !important;
 }
 
 .whitespace-normal {
@@ -152,6 +156,10 @@ i > i {
 // region Scrolling
 .smooth-scroll {
 	transform: translateZ(0) !important;
+}
+
+.scrollbar-stable {
+	scrollbar-gutter: stable;
 }
 
 .overflow-auto {
@@ -281,6 +289,14 @@ i > i {
 	width: initial !important;
 }
 
+.w-20p {
+	width: 20px !important;
+}
+
+.w-24p {
+	width: 24px !important;
+}
+
 .w-30p {
 	width: 30px !important;
 }
@@ -293,16 +309,24 @@ i > i {
 	width: 50px !important;
 }
 
+.w-70p {
+	width: 70px !important;
+}
+
 .w-80p {
 	width: 80px !important;
 }
 
-.w-50p {
-	width: 50px !important;
+.w-90p {
+	width: 90px !important;
 }
 
 .w-100p {
 	width: 100px !important;
+}
+
+.w-140p {
+	width: 140px !important;
 }
 
 .w-200p {
@@ -341,6 +365,10 @@ i > i {
 	max-width: 80% !important;
 }
 
+.max-w-100 {
+	max-width: 100% !important;
+}
+
 .max-w-100p {
 	max-width: 100px !important;
 }
@@ -355,6 +383,10 @@ i > i {
 // endregion
 
 // region Height
+.h-initial {
+	height: initial !important;
+}
+
 .h-50 {
 	height: 50% !important;
 }
@@ -365,6 +397,18 @@ i > i {
 
 .h-100h {
 	height: 100vh !important;
+}
+
+.h-20p {
+	height: 20px !important;
+}
+
+.h-25p {
+	height: 25px !important;
+}
+
+.h-21p {
+	height: 21px !important;
 }
 
 .h-27p {
@@ -386,6 +430,10 @@ i > i {
 
 .max-h-40 {
 	max-height: 40% !important;
+}
+
+.max-h-unset {
+	max-height: unset !important;
 }
 // endregion
 
@@ -416,99 +464,99 @@ i > i {
 	display: inline !important;
 }
 
-.inline-flex {
+.ve-inline-flex {
 	display: inline-flex !important;
 }
 
-.flex {
+.ve-flex {
 	display: flex !important;
 }
 
-.flex-col {
+.ve-flex-col {
 	display: flex !important;
 	flex-direction: column !important;
 }
 
-.flex-v-center {
+.ve-flex-v-center {
 	display: flex !important;
 	align-items: center !important;
 }
 
-.inline-flex-v-center {
+.ve-inline-flex-v-center {
 	display: inline-flex !important;
 	align-items: center !important;
 }
 
-.flex-v-top {
+.ve-flex-v-top {
 	display: flex;
 	align-items: flex-start;
 }
 
-.flex-v-baseline {
+.ve-flex-v-baseline {
 	display: flex !important;
 	align-items: baseline !important;
 }
 
-.flex-v-end {
+.ve-flex-v-end {
 	display: flex !important;
 	align-items: flex-end !important;
 }
 
-.flex-v-stretch {
+.ve-flex-v-stretch {
 	display: flex !important;
 	align-items: stretch !important;
 }
 
-.flex-h-center {
+.ve-flex-h-center {
 	display: flex !important;
 	justify-content: center !important;
 }
 
-.flex-h-right {
+.ve-flex-h-right {
 	display: flex !important;
 	justify-content: flex-end !important;
 }
 
-.flex-vh-center {
+.ve-flex-vh-center {
 	display: flex !important;
 	align-items: center !important;
 	justify-content: center !important;
 }
 
-.flex-vh-center-around {
+.ve-flex-vh-center-around {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 }
 
-.flex-inline-col {
+.ve-flex-inline-col {
 	display: inline-flex !important;
 	flex-direction: column !important;
 }
 
-.flex-inline-v-center {
+.ve-flex-inline-v-center {
 	display: inline-flex !important;
 	align-items: center !important;
 	justify-content: center !important;
 }
 
-.self-flex-start {
+.ve-self-flex-start {
 	align-self: flex-start !important;
 }
 
-.self-flex-center {
+.ve-self-flex-center {
 	align-self: center !important;
 }
 
-.self-flex-end {
+.ve-self-flex-end {
 	align-self: flex-end !important;
 }
 
-.self-flex-stretch {
+.ve-self-flex-stretch {
 	align-self: stretch !important;
 }
 
-.flex-fill {
+.ve-flex-fill {
 	flex-basis: 100%;
 }
 
@@ -524,27 +572,27 @@ i > i {
 	flex-grow: 0 !important;
 }
 
-.flex-1 {
+.ve-flex-1 {
 	flex: 1 !important;
 }
 
-.flex-2 {
+.ve-flex-2 {
 	flex: 2 !important;
 }
 
-.flex-3 {
+.ve-flex-3 {
 	flex: 3 !important;
 }
 
-.flex-4 {
+.ve-flex-4 {
 	flex: 4 !important;
 }
 
-.flex-5 {
+.ve-flex-5 {
 	flex: 5 !important;
 }
 
-.flex-wrap {
+.ve-flex-wrap {
 	display: flex !important;
 	flex-wrap: wrap !important;
 }

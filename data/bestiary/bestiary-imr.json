@@ -17,7 +17,7 @@
 				"HftT": "IMR",
 				"MTF": "IMR",
 				"LLK": "IMR",
-				"BGDIA": "IMR"
+				"SKT": "IMR"
 			}
 		},
 		"internalCopies": [
@@ -30,7 +30,9 @@
 			"isNpc": true,
 			"source": "IMR",
 			"page": 53,
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": "giant",
 			"alignment": [
 				"C",
@@ -136,7 +138,7 @@
 				{
 					"name": "Insanity Gaze",
 					"entries": [
-						"The target suffers the effect of the confusion spell without making a saving throw. The effect lasts until the start of the ettin's next turn. The ettin doesn't need to concentrate on the spell."
+						"The target suffers the effect of the {@spell confusion} spell without making a saving throw. The effect lasts until the start of the ettin's next turn. The ettin doesn't need to concentrate on the spell."
 					]
 				}
 			],
@@ -236,14 +238,17 @@
 			],
 			"damageTags": [
 				"P"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Barbatos",
 			"isNpc": true,
 			"source": "IMR",
 			"page": 52,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -258,7 +263,7 @@
 				{
 					"ac": 15,
 					"from": [
-						"{@item studded leather armor|phb}"
+						"{@item studded leather armor|phb|studded leather}"
 					]
 				}
 			],
@@ -364,6 +369,9 @@
 			"damageTags": [
 				"P"
 			],
+			"damageTagsSpell": [
+				"P"
+			],
 			"spellcastingTags": [
 				"CR"
 			],
@@ -379,7 +387,8 @@
 			],
 			"conditionInflictSpell": [
 				"restrained"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Brain in Iron",
@@ -396,7 +405,9 @@
 					}
 				}
 			},
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": "construct",
 			"alignment": [
 				"L",
@@ -412,7 +423,8 @@
 			],
 			"speed": {
 				"walk": 20
-			}
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Dwarven Worker",
@@ -450,7 +462,8 @@
 			"damageTags": [
 				"B",
 				"P"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Enhanced Medusa",
@@ -494,7 +507,12 @@
 			],
 			"spellcastingTags": [
 				"I"
-			]
+			],
+			"conditionInflict": [
+				"petrified",
+				"restrained"
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Grandfather Oak",
@@ -521,14 +539,17 @@
 						}
 					}
 				}
-			}
+			},
+			"hasToken": true
 		},
 		{
 			"name": "Lynx Creatlach",
 			"isNpc": true,
 			"source": "IMR",
 			"page": 54,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "undead",
 				"tags": [
@@ -567,7 +588,7 @@
 				"cha": "+7"
 			},
 			"senses": [
-				"darkvision 60ft."
+				"darkvision 60 ft."
 			],
 			"passive": 13,
 			"resist": [
@@ -594,7 +615,7 @@
 				{
 					"name": "Special Equipment",
 					"entries": [
-						"Lynx's crystal eye is a magically shrunken crystal ball of true seeing. One of her teeth is a refashioned ring of mind shielding, while another has been magicked to place her under a permanent Nystul's magic aura spell, concealing the magic of these items and hiding her true nature from magic or features that can detect undead."
+						"Lynx's crystal eye is a magically shrunken crystal ball of true seeing. One of her teeth is a refashioned ring of mind shielding, while another has been magicked to place her under a permanent {@spell Nystul's magic aura} spell, concealing the magic of these items and hiding her true nature from magic or features that can detect undead."
 					]
 				},
 				{
@@ -671,6 +692,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -678,7 +700,9 @@
 			"isNpc": true,
 			"source": "IMR",
 			"page": 55,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -844,6 +868,10 @@
 				"S",
 				"Y"
 			],
+			"damageTagsSpell": [
+				"F",
+				"L"
+			],
 			"spellcastingTags": [
 				"CA"
 			],
@@ -857,7 +885,9 @@
 			"name": "Neo-Otyugh",
 			"source": "IMR",
 			"page": 75,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "aberration",
 			"alignment": [
 				"N"
@@ -1006,7 +1036,7 @@
 							{
 								"name": "Earth Walk",
 								"entries": [
-									"Seodra can move across difficult terrain made of earth or stone without expending extra movement."
+									"Seodra can move across {@quickref difficult terrain||3} made of earth or stone without expending extra movement."
 								]
 							},
 							{
@@ -1034,14 +1064,17 @@
 			"languageTags": [
 				"C",
 				"P"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Sir Ursas",
 			"isNpc": true,
 			"source": "IMR",
 			"page": 56,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -1170,6 +1203,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1190,7 +1224,8 @@
 			"conditionImmune": [
 				"exhaustion",
 				"poisoned"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Skeletal Owlbear",
@@ -1210,7 +1245,8 @@
 			"conditionImmune": [
 				"exhaustion",
 				"poisoned"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Skeletal Polar Bear",
@@ -1230,7 +1266,8 @@
 			"conditionImmune": [
 				"exhaustion",
 				"poisoned"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Skeletal Two-Headed Owlbear",
@@ -1250,7 +1287,8 @@
 			"conditionImmune": [
 				"exhaustion",
 				"poisoned"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Stolos",
@@ -1291,7 +1329,8 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Tarnhem",
@@ -1324,14 +1363,17 @@
 				"F",
 				"L",
 				"S"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Thessalar",
 			"isNpc": true,
 			"source": "IMR",
 			"page": 57,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -1490,6 +1532,14 @@
 			"damageTags": [
 				"P"
 			],
+			"damageTagsSpell": [
+				"A",
+				"F",
+				"I",
+				"L",
+				"N",
+				"P"
+			],
 			"spellcastingTags": [
 				"CA"
 			],
@@ -1516,7 +1566,7 @@
 						"items": {
 							"name": "Acidic Spittle",
 							"entries": [
-								"{@atk rw} {@hit 4} to hit, range 30ft., one target. {@h}5 ({@damage 1d6 + 2}) acid damage."
+								"{@atk rw} {@hit 4} to hit, range 30 ft., one target. {@h}5 ({@damage 1d6 + 2}) acid damage."
 							]
 						}
 					}
@@ -1529,13 +1579,16 @@
 			"miscTags": [
 				"MW",
 				"RW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Thessalheart Construct",
 			"source": "IMR",
 			"page": 86,
-			"size": "T",
+			"size": [
+				"T"
+			],
 			"type": "construct",
 			"alignment": [
 				"N"
@@ -1617,7 +1670,9 @@
 			"name": "Thessalkraken",
 			"source": "IMR",
 			"page": 87,
-			"size": "G",
+			"size": [
+				"G"
+			],
 			"type": {
 				"type": "monstrosity",
 				"tags": [
@@ -1696,7 +1751,7 @@
 				{
 					"name": "Freedom of Movement",
 					"entries": [
-						"The thessalkraken ignores difficult terrain, and magical effects can't reduce its speed or cause it to be {@condition restrained}. It can spend 5 feet of movement to escape from nonmagical restraints or being {@condition grappled}."
+						"The thessalkraken ignores {@quickref difficult terrain||3}, and magical effects can't reduce its speed or cause it to be {@condition restrained}. It can spend 5 feet of movement to escape from nonmagical restraints or being {@condition grappled}."
 					]
 				}
 			],
@@ -1794,6 +1849,7 @@
 				"prone",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1820,15 +1876,21 @@
 				"I",
 				"X"
 			],
+			"damageTagsSpell": [
+				"F"
+			],
 			"spellcastingTags": [
 				"I"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Two-Headed Crocodile",
 			"source": "IMR",
 			"page": 89,
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": "beast",
 			"alignment": [
 				"U"
@@ -1910,13 +1972,16 @@
 			"conditionInflict": [
 				"grappled",
 				"restrained"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Two-Headed Owlbear",
 			"source": "IMR",
 			"page": 90,
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"type": "monstrosity",
 			"alignment": [
 				"U"

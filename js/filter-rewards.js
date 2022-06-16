@@ -4,7 +4,6 @@ class PageFilterRewards extends PageFilter {
 	constructor () {
 		super();
 
-		this._sourceFilter = new SourceFilter();
 		this._typeFilter = new Filter({
 			header: "Type",
 			items: [
@@ -47,6 +46,6 @@ class PageFilterRewards extends PageFilter {
 			r.source,
 			r.type,
 			r._fRarity,
-		)
+		);
 	}
 }

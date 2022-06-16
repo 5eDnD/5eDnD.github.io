@@ -17,6 +17,8 @@ async function main () {
 	if (!testsPassed) handleFail();
 	testsPassed = testsPassed && await require("./test-misc");
 	if (!testsPassed) handleFail();
+	testsPassed = testsPassed && await require("./test-multisource.js");
+	if (!testsPassed) handleFail();
 	testsPassed = testsPassed && await require("./test-foundry.js");
 	if (!testsPassed) handleFail();
 	process.exit(0);
@@ -26,5 +28,5 @@ main()
 	.then(() => console.log("Tests complete."))
 	.catch(e => {
 		console.error(e);
-		throw e
+		throw e;
 	});

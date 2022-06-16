@@ -88,7 +88,7 @@ $rgb-inset-border: #656565;
 
 		&title-link {
 			opacity: 0.3;
-			font-size: 14px;
+			font-size: 12px;
 			font-weight: normal;
 
 			&--inset {
@@ -252,6 +252,11 @@ $rgb-inset-border: #656565;
 		}
 
 		// section headers
+		&h {
+			margin: 0;
+			line-height: inherit;
+		}
+
 		// statsBlockSectionHead
 		&h--0 {
 			@include rd__h--large();
@@ -286,6 +291,11 @@ $rgb-inset-border: #656565;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+
+			&-no-name {
+				justify-content: flex-end;
+				float: right;
+			}
 		}
 
 		&h--2-flow-block {
@@ -294,6 +304,14 @@ $rgb-inset-border: #656565;
 			font-weight: bolder;
 			font-size: 1.1em;
 			text-align: center;
+		}
+
+		&h--2-inset > h4,
+		&h--2-flow-block > h4 {
+			font-size: inherit;
+			font-weight: inherit;
+			line-height: $font-line-height;
+			margin: 0;
 		}
 
 		// inline headers
@@ -307,6 +325,17 @@ $rgb-inset-border: #656565;
 		// statsInlineHeadSubVariant
 		&h--4 {
 			font-style: italic;
+		}
+
+		&h-toggle {
+			font-family: Arial, sans-serif;
+			font-size: 12px;
+			opacity: 0.3;
+			font-weight: normal;
+		}
+
+		&ele-toggled-hidden {
+			display: none !important;
 		}
 
 		&b--3 > p,
@@ -399,6 +428,8 @@ $rgb-inset-border: #656565;
 		}
 
 		&table {
+			width: 100%;
+
 			> caption {
 				text-align: left;
 			}
@@ -545,44 +576,6 @@ $rgb-inset-border: #656565;
 td > .rd__b:last-child {
 	margin-bottom: 0;
 }
-
-// region Source colors
-.subclass-feature {
-	.rd__h--0,
-	.rd__h--1,
-	.rd__h--2 {
-		color: $rgb-subclass;
-		border-bottom-color: $rgb-subclass;
-	}
-}
-
-.spicy-sauce {
-	.rd__h--0,
-	.rd__h--1,
-	.rd__h--2 {
-		color: $rgb-subclass-ua;
-		border-bottom-color: $rgb-subclass-ua;
-	}
-}
-
-.spicy-sauce:not(.subclass-feature):not(.subclass-feature--sub) {
-	.rd__h--0,
-	.rd__h--1,
-	.rd__h--2 {
-		color: $rgb-class-ua;
-		border-bottom-color: $rgb-class-ua;
-	}
-}
-
-.refreshing-brew {
-	.rd__h--0,
-	.rd__h--1,
-	.rd__h--2 {
-		color: $rgb-class-brew;
-		border-bottom-color: $rgb-class-brew;
-	}
-}
-// endregion
 
 /* ****************************************************************************************************************** */
 /* Entity-specific styling                                                                                            */

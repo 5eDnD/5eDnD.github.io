@@ -21,7 +21,9 @@
 			"isNpc": true,
 			"source": "LR",
 			"page": 15,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -207,6 +209,9 @@
 				"B",
 				"S"
 			],
+			"damageTagsSpell": [
+				"R"
+			],
 			"spellcastingTags": [
 				"CD"
 			],
@@ -218,7 +223,8 @@
 				"charmed",
 				"paralyzed",
 				"restrained"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Fhenimore",
@@ -311,7 +317,8 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Gar Shatterkeel",
@@ -319,7 +326,9 @@
 			"isNamedCreature": true,
 			"source": "LR",
 			"page": 18,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"alignment": [
 				"N",
@@ -536,6 +545,11 @@
 				"B",
 				"P"
 			],
+			"damageTagsSpell": [
+				"B",
+				"C",
+				"T"
+			],
 			"spellcastingTags": [
 				"CD"
 			],
@@ -555,14 +569,17 @@
 				"paralyzed",
 				"prone",
 				"restrained"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Shoalar Quanderil",
 			"isNpc": true,
 			"source": "LR",
 			"page": 23,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": {
 				"type": "humanoid",
 				"tags": [
@@ -701,6 +718,13 @@
 			"damageTags": [
 				"P"
 			],
+			"damageTagsSpell": [
+				"A",
+				"B",
+				"C",
+				"L",
+				"N"
+			],
 			"spellcastingTags": [
 				"CS",
 				"I"
@@ -709,7 +733,8 @@
 				"MW",
 				"RW",
 				"THW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Whymsee",
@@ -789,13 +814,16 @@
 			],
 			"miscTags": [
 				"AOE"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Young Kraken",
 			"source": "LR",
 			"page": 21,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": {
 				"type": "monstrosity",
 				"tags": [
@@ -939,7 +967,8 @@
 				"grappled",
 				"prone",
 				"restrained"
-			]
+			],
+			"hasToken": true
 		}
 	]
 }

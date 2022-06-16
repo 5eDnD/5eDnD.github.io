@@ -85,7 +85,7 @@ class EncounterBuilder extends ProxyBase {
 	}
 
 	_handleClickSaveToFile () {
-		DataUtil.userDownload(`encounter`, this._getSaveableState(), {fileType: "encounter"})
+		DataUtil.userDownload(`encounter`, this._getSaveableState(), {fileType: "encounter"});
 	}
 
 	async _handleClickLoadFromFile () {
@@ -97,7 +97,7 @@ class EncounterBuilder extends ProxyBase {
 			jsons.l = {
 				items: jsons.items,
 				sources: jsons.sources,
-			}
+			};
 		}
 		await this._pDoLoadState(jsons[0]);
 	}
@@ -200,7 +200,7 @@ class EncounterBuilder extends ProxyBase {
 		// endregion
 
 		$$(this._wrpRandomAndAdjust)`<div class="row">
-			<div class="flex-h-right">
+			<div class="ve-flex-h-right">
 				<div class="btn-group mr-3">
 					${$btnRandom}
 					${$btnRandomMode}
@@ -227,24 +227,24 @@ class EncounterBuilder extends ProxyBase {
 	}
 
 	_renderGroupAndDifficulty () {
-		const $btnSaveToUrl = $(`<button class="btn btn-primary btn-xs mr-2">Save to URL</button>`).click((evt) => this._handleClickSaveToUrl(evt))
-		const $btnSaveToFile = $(`<button class="btn btn-primary btn-xs">Save to File</button>`).click((evt) => this._handleClickSaveToFile(evt))
-		const $btnLoadFromFile = $(`<button class="btn btn-primary btn-xs">Load from File</button>`).click((evt) => this._handleClickLoadFromFile(evt))
-		const $btnCopyAsText = $(`<button class="btn btn-primary btn-xs mr-2">Copy as Text</button>`).click((evt) => this._handleClickCopyAsText(evt))
-		const $btnReset = $(`<button class="btn btn-danger btn-xs" title="SHIFT-click to reset players">Reset</button>`).click((evt) => this._handleClickReset(evt))
+		const $btnSaveToUrl = $(`<button class="btn btn-primary btn-xs mr-2">Save to URL</button>`).click((evt) => this._handleClickSaveToUrl(evt));
+		const $btnSaveToFile = $(`<button class="btn btn-primary btn-xs">Save to File</button>`).click((evt) => this._handleClickSaveToFile(evt));
+		const $btnLoadFromFile = $(`<button class="btn btn-primary btn-xs">Load from File</button>`).click((evt) => this._handleClickLoadFromFile(evt));
+		const $btnCopyAsText = $(`<button class="btn btn-primary btn-xs mr-2">Copy as Text</button>`).click((evt) => this._handleClickCopyAsText(evt));
+		const $btnReset = $(`<button class="btn btn-danger btn-xs" title="SHIFT-click to reset players">Reset</button>`).click((evt) => this._handleClickReset(evt));
 
 		const $btnBackToStatblocks = $(`<button class="btn btn-default btn-xs ecgen__visible">Back to Statblocks</button>`).click((evt) => this._handleClickBackToStatblocks(evt));
 
 		this._$wrpGroupInfoLhs = this._renderGroupAndDifficulty_$getGroupInfoLhs();
 		this._$hrHasCreatures = $(`<hr class="hr-1">`);
-		this._$wrpDifficulty = $$`<div class="flex">
+		this._$wrpDifficulty = $$`<div class="ve-flex">
 			${this._renderGroupAndDifficulty_$getDifficultyLhs()}
 			${this._renderGroupAndDifficulty_$getDifficultyRhs()}
 		</div>`;
 
 		$$(this._wrpGroupAndDifficulty)`
 		<h3 class="mt-1 m-2">Group Info</h3>
-		<div class="flex">
+		<div class="ve-flex">
 			${this._$wrpGroupInfoLhs}
 			${this._renderGroupAndDifficulty_$getGroupInfoRhs()}
 		</div>
@@ -254,9 +254,9 @@ class EncounterBuilder extends ProxyBase {
 
 		<hr class="hr-1">
 
-		<div class="flex-v-center mb-2">
+		<div class="ve-flex-v-center mb-2">
 			${$btnSaveToUrl}
-			<div class="btn-group flex-v-center mr-2">
+			<div class="btn-group ve-flex-v-center mr-2">
 				${$btnSaveToFile}
 				${$btnLoadFromFile}
 			</div>
@@ -264,7 +264,7 @@ class EncounterBuilder extends ProxyBase {
 			${$btnReset}
 		</div>
 
-		<div class="flex">
+		<div class="ve-flex">
 			${$btnBackToStatblocks}
 		</div>`;
 	}
@@ -276,7 +276,7 @@ class EncounterBuilder extends ProxyBase {
 		this._$btnAddPlayers = $(`<button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-plus"></span> Add Another Level</button>`)
 			.click(() => {
 				if (this._isAdvanced) this._addAdvancedPlayerRow(false);
-				else this._addPlayerRow(false)
+				else this._addPlayerRow(false);
 			});
 
 		this._$cbIsAdvanced = $(`<input type="checkbox">`)
@@ -305,7 +305,7 @@ class EncounterBuilder extends ProxyBase {
 				this._updateUiIsAdvanced(this._isAdvanced);
 			});
 
-		this._$wrpAddidionalPlayers = $$`<div class="mb-1 flex">
+		this._$wrpAddidionalPlayers = $$`<div class="mb-1 ve-flex">
 			<div class="ecgen__wrp_add_players_btn_wrp">
 				${this._$btnAddPlayers}
 			</div>
@@ -318,7 +318,7 @@ class EncounterBuilder extends ProxyBase {
 		</div>`).hideVe();
 
 		return $$`<div class="w-70">
-			<div class="flex ecgen__players_head_simple">
+			<div class="ve-flex ecgen__players_head_simple">
 				<div class="w-20">Players:</div>
 				<div class="w-20">Level:</div>
 			</div>
@@ -331,13 +331,13 @@ class EncounterBuilder extends ProxyBase {
 
 			${this._$wrpAddidionalPlayers}
 
-			<label class="flex-v-center">
+			<label class="ve-flex-v-center">
 				<div class="mr-2">Advanced Mode</div>
 				${this._$cbIsAdvanced}
 			</label>
 
 			${this._$wrpAdvancedHelp}
-		</div>`
+		</div>`;
 	}
 
 	_renderGroupAndDifficulty_$getGroupInfoRhs () {
@@ -361,7 +361,7 @@ class EncounterBuilder extends ProxyBase {
 			${this._$dispTtk}
 			<br>
 			${this._$dispBudgetDaily}
-		</div>`
+		</div>`;
 	}
 
 	_renderGroupAndDifficulty_$getDifficultyLhs () {
@@ -375,15 +375,15 @@ class EncounterBuilder extends ProxyBase {
 		this._$dispXpRawTotal = $(`<h4>Total XP: ?</h4>`);
 		this._$dispXpRawPerPlayer = $(`<i>(? per player)</i>`);
 
-		this._$hovXpAdjustedInfo = $(`<span class="glyphicon glyphicon-info-sign"></span>`);
+		this._$hovXpAdjustedInfo = $(`<span class="glyphicon glyphicon-info-sign mr-2"></span>`);
 
-		this._$dispXpAdjustedTotal = $(`<h4 class="inline-block">Adjusted XP: ?</h4>`)
-		this._$dispXpAdjustedPerPlayer = $(`<i>(? per player)</i>`)
+		this._$dispXpAdjustedTotal = $(`<h4 class="ve-flex-v-center">Adjusted XP: ?</h4>`);
+		this._$dispXpAdjustedPerPlayer = $(`<i>(? per player)</i>`);
 
 		return $$`<div class="w-50 text-right">
 			${this._$dispXpRawTotal}
 			<div>${this._$dispXpRawPerPlayer}</div>
-			<div>${this._$hovXpAdjustedInfo} ${this._$dispXpAdjustedTotal}</div>
+			<div class="ve-flex-v-center ve-flex-h-right">${this._$hovXpAdjustedInfo}${this._$dispXpAdjustedTotal}</div>
 			<div>${this._$dispXpAdjustedPerPlayer}</div>
 		</div>`;
 	}
@@ -392,7 +392,7 @@ class EncounterBuilder extends ProxyBase {
 		this._$cbIsAdvanced.prop("checked", this._isAdvanced);
 
 		this._advancedHeaderMetas.forEach(({fnRemove}) => fnRemove());
-		this._advancedFooterMetas.forEach(({fnRemove}) => fnRemove())
+		this._advancedFooterMetas.forEach(({fnRemove}) => fnRemove());
 
 		if (this._isAdvanced) {
 			this._$btnAddPlayers.html(`<span class="glyphicon glyphicon-plus"></span> Add Another Player`);
@@ -742,14 +742,14 @@ class EncounterBuilder extends ProxyBase {
 					.off("mouseover")
 					.off("mousemove")
 					.off("mouseleave")
-					.on("mouseover", function (event) { hoverMeta.mouseOver(event, this) })
-					.on("mousemove", function (event) { hoverMeta.mouseMove(event, this) })
-					.on("mouseleave", function (event) { hoverMeta.mouseLeave(event, this) });
+					.on("mouseover", function (event) { hoverMeta.mouseOver(event, this); })
+					.on("mousemove", function (event) { hoverMeta.mouseMove(event, this); })
+					.on("mouseleave", function (event) { hoverMeta.mouseLeave(event, this); });
 			} else {
 				Renderer.hover.updatePredefinedHover(this._infoHoverId, infoEntry);
 			}
 
-			this._$dispXpAdjustedTotal.text(`Adjusted XP: ${encounter.adjustedXp.toLocaleString()}`);
+			this._$dispXpAdjustedTotal.html(`Adjusted XP <span class="ve-small ve-muted ml-2" title="XP Multiplier">(×${encounter.meta.playerAdjustedXpMult})</span>: ${encounter.adjustedXp.toLocaleString()}`);
 			this._$dispXpAdjustedPerPlayer.text(`(${Math.floor(encounter.adjustedXp / partyMeta.cntPlayers).toLocaleString()} per player)`);
 		} else {
 			this._$hrHasCreatures.hideVe();
@@ -936,7 +936,7 @@ class EncounterBuilder extends ProxyBase {
 	_addAdvancedColumnFooter () {
 		const wrpFooter = e_({
 			tag: "div",
-			clazz: "ecgen__player_advanced_narrow flex-v-baseline flex-h-center no-shrink no-grow mr-1",
+			clazz: "ecgen__player_advanced_narrow ve-flex-v-baseline ve-flex-h-center no-shrink no-grow mr-1",
 			children: [
 				e_({
 					tag: "button",
@@ -965,7 +965,7 @@ class EncounterBuilder extends ProxyBase {
 		};
 		this._advancedFooterMetas.push(meta);
 
-		this._$wrpAddidionalPlayers.append(wrpFooter)
+		this._$wrpAddidionalPlayers.append(wrpFooter);
 	}
 
 	_addAdvancedColumn () {
@@ -1054,7 +1054,7 @@ class EncounterBuilder extends ProxyBase {
 			children: [
 				e_({
 					tag: "div",
-					clazz: `w-100 flex ecgen__player_advanced_flex`,
+					clazz: `w-100 ve-flex ecgen__player_advanced_flex`,
 					children: [
 						iptName,
 						iptLevel,
@@ -1119,7 +1119,7 @@ class EncounterBuilder extends ProxyBase {
 
 		const wrpRow = e_({
 			tag: "div",
-			clazz: `flex-v-center mb-2`,
+			clazz: `ve-flex-v-center mb-2`,
 			children: [
 				e_({
 					tag: "div",
@@ -1139,7 +1139,7 @@ class EncounterBuilder extends ProxyBase {
 
 				isFirst ? null : e_({
 					tag: "div",
-					clazz: `ml-2 flex-v-center`,
+					clazz: `ml-2 ve-flex-v-center`,
 					children: [
 						e_({
 							tag: "button",
@@ -1232,7 +1232,7 @@ class EncounterBuilder extends ProxyBase {
 		</span>`
 			.click(evt => {
 				evt.preventDefault();
-				evt.stopPropagation()
+				evt.stopPropagation();
 			});
 
 		return {
@@ -1347,7 +1347,7 @@ class EncounterBuilder extends ProxyBase {
 			.click(async () => {
 				const inStorage = await EncounterUtil.pGetSavedState();
 				const {$modalInner, doClose} = UiUtil.getShowModal({title: "Saved Encounters"});
-				const $wrpRows = $(`<div class="flex-col w-100 h-100"/>`).appendTo($modalInner);
+				const $wrpRows = $(`<div class="ve-flex-col w-100 h-100"/>`).appendTo($modalInner);
 
 				const encounters = inStorage.savedEncounters;
 				if (Object.keys(encounters).length) {
@@ -1383,17 +1383,17 @@ class EncounterBuilder extends ProxyBase {
 										.filter(it => it !== k)
 										.mergeMap(it => ({[it]: this._state.savedEncounters[it]}));
 									$row.remove();
-									if (!--rendered) $$`<div class="w-100 flex-vh-center italic">No saved encounters</div>`.appendTo($wrpRows);
+									if (!--rendered) $$`<div class="w-100 ve-flex-vh-center italic">No saved encounters</div>`.appendTo($wrpRows);
 									this.pSetSavedEncountersThrottled();
 								});
 
-							const $row = $$`<div class="flex-v-center w-100 mb-2">
+							const $row = $$`<div class="ve-flex-v-center w-100 mb-2">
 								${$iptName}
 								${$btnLoad}
 								${$btnDelete}
 							</div>`.appendTo($wrpRows);
 						});
-				} else $$`<div class="w-100 flex-vh-center italic">No saved encounters</div>`.appendTo($wrpRows)
+				} else $$`<div class="w-100 ve-flex-vh-center italic">No saved encounters</div>`.appendTo($wrpRows);
 			});
 
 		const hookActiveKey = () => {
@@ -1404,9 +1404,9 @@ class EncounterBuilder extends ProxyBase {
 		this._addHook("state", "activeKey", hookActiveKey);
 		hookActiveKey();
 
-		$$`<div class="flex-col" style="align-items: flex-end;">
+		$$`<div class="ve-flex-col" style="align-items: flex-end;">
 			${this._$iptName}
-			<div class="flex-h-right">${this._$btnNew}${this._$btnSave}${this._$btnReload}${this._$btnLoad}</div>
+			<div class="ve-flex-h-right">${this._$btnNew}${this._$btnSave}${this._$btnReload}${this._$btnLoad}</div>
 		</div>`.appendTo($wrpControls);
 	}
 
@@ -1461,7 +1461,7 @@ EncounterBuilder.Cache = class {
 		this._build();
 		return Object.keys(this._cache).map(it => Number(it));
 	}
-}
+};
 
 EncounterBuilder.Adjuster = class {
 	constructor ({partyMeta}) {
@@ -1528,7 +1528,7 @@ EncounterBuilder.Adjuster = class {
 				.map(soln => ({
 					encounter: soln,
 					distance: (() => {
-						const xp = EncounterBuilderUtils.calculateEncounterXp(soln, this._partyMeta.cntPlayers);
+						const xp = EncounterBuilderUtils.calculateEncounterXp(soln, this._partyMeta);
 						if (xp > targetMax) return xp - targetMax;
 						else if (xp < targetMin) return targetMin - xp;
 						else return 0;
@@ -1592,7 +1592,7 @@ EncounterBuilder.Adjuster = class {
 				const ix = RollerUtil.randomise(pickFrom.length) - 1;
 				const picked = pickFrom.splice(ix, 1)[0];
 				picked.count++;
-				if (EncounterBuilderUtils.calculateEncounterXp(currentEncounter, this._partyMeta.cntPlayers).adjustedXp > targetMax) {
+				if (EncounterBuilderUtils.calculateEncounterXp(currentEncounter, this._partyMeta).adjustedXp > targetMax) {
 					picked.count--;
 				}
 			}
@@ -1641,7 +1641,7 @@ EncounterBuilder.Adjuster = class {
 			}
 		}
 	}
-}
+};
 EncounterBuilder.Adjuster._INCOMPLETE_EXHAUSTED = 0;
 EncounterBuilder.Adjuster._INCOMPLETE_FAILED = -1;
 EncounterBuilder.Adjuster._COMPLETE = 1;
@@ -1738,7 +1738,7 @@ EncounterBuilder.Randomizer = class {
 
 	_isValidEncounter ({candidateEncounter, budget}) {
 		const encounterXp = candidateEncounter.getXp({partyMeta: this._partyMeta});
-		return encounterXp.adjustedXp >= (budget * 0.6) && encounterXp.adjustedXp <= (budget * 1.1)
+		return encounterXp.adjustedXp >= (budget * 0.6) && encounterXp.adjustedXp <= (budget * 1.1);
 	}
 
 	_pDoGenerateEncounter_generateClosestEncounter ({budget, rawBudget, lockedEncounterCreatures}) {
@@ -1877,7 +1877,7 @@ EncounterBuilder.Randomizer = class {
 		}
 		return maxSkip - 1;
 	}
-}
+};
 EncounterBuilder.Randomizer._NUM_SAMPLES = 20;
 
 EncounterBuilder.CandidateEncounter = class {
@@ -1907,7 +1907,7 @@ EncounterBuilder.CandidateEncounter = class {
 			}),
 		);
 	}
-}
+};
 
 EncounterBuilder.CandidateEncounterCreature = class {
 	constructor ({xp, creature, count, isLocked = false, customHashId}) {
@@ -1920,7 +1920,7 @@ EncounterBuilder.CandidateEncounterCreature = class {
 		this.customHashId = customHashId;
 		// endregion
 	}
-}
+};
 
 class EncounterPartyMeta {
 	constructor (arr) {
@@ -1929,7 +1929,7 @@ class EncounterPartyMeta {
 		arr.forEach(it => {
 			const existingLvl = this.levelMetas.find(x => x.level === it.level);
 			if (existingLvl) existingLvl.count += it.count;
-			else this.levelMetas.push({count: it.count, level: it.level})
+			else this.levelMetas.push({count: it.count, level: it.level});
 		});
 
 		this.cntPlayers = 0;

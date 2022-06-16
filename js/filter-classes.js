@@ -2,21 +2,15 @@
 
 class PageFilterClassesBase extends PageFilter {
 	constructor () {
-		super({
-			sourceFilterOpts: {
-				displayFnMini: it => Parser.sourceJsonToAbv(it),
-				displayFnTitle: it => Parser.sourceJsonToFull(it),
-				itemSortFnMini: (a, b) => SortUtil.ascSort(Parser.sourceJsonToAbv(a.item), Parser.sourceJsonToAbv(b.item)),
-			},
-		});
+		super();
 
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Reprinted", "Sidekick", "SRD"],
-			deselFn: (it) => { return it === "Reprinted" || it === "Sidekick" },
+			items: ["Reprinted", "Sidekick", "SRD", "Basic Rules"],
+			deselFn: (it) => { return it === "Reprinted" || it === "Sidekick"; },
 			displayFnMini: it => it === "Reprinted" ? "Repr." : it,
 			displayFnTitle: it => it === "Reprinted" ? it : "",
-			isSrdFilter: true,
+			isMiscFilter: true,
 		});
 
 		this._optionsFilter = new OptionsFilter({
@@ -70,6 +64,7 @@ class PageFilterClassesBase extends PageFilter {
 		cls._fMisc = [];
 		if (cls.isReprinted) cls._fMisc.push("Reprinted");
 		if (cls.srd) cls._fMisc.push("SRD");
+		if (cls.basicRules) cls._fMisc.push("Basic Rules");
 		if (cls.isSidekick) cls._fMisc.push("Sidekick");
 
 		cls.subclasses.forEach(sc => {
@@ -78,6 +73,7 @@ class PageFilterClassesBase extends PageFilter {
 
 			sc._fMisc = [];
 			if (sc.srd) sc._fMisc.push("SRD");
+			if (sc.basicRules) sc._fMisc.push("Basic Rules");
 			if (sc.isReprinted) sc._fMisc.push("Reprinted");
 		});
 	}
@@ -104,7 +100,7 @@ class PageFilterClassesBase extends PageFilter {
 			const isScExcluded = (subclassExclusions[sc.source] || {})[sc.name] || false;
 			if (!isScExcluded) {
 				this._sourceFilter.addItem(sc.source);
-				sc.subclassFeatures.forEach(lvlFeatures => lvlFeatures.forEach(feature => this._addEntrySourcesToFilter(feature)))
+				sc.subclassFeatures.forEach(lvlFeatures => lvlFeatures.forEach(feature => this._addEntrySourcesToFilter(feature)));
 			}
 		});
 	}
@@ -138,11 +134,17 @@ class PageFilterClassesBase extends PageFilter {
 				return sc.otherSources?.length && sc.otherSources.some(src => this._filterBox.toDisplay(
 					values,
 					...this.constructor._getIsSubclassDisplayedToDisplayParams(cls, sc, src),
-				))
+				));
 			});
 	}
 
-	static _getIsSubclassDisplayedToDisplayParams (cls, sc, otherSourcesSource) { return [otherSourcesSource || sc.source, sc._fMisc]; }
+	static _getIsSubclassDisplayedToDisplayParams (cls, sc, otherSourcesSource) {
+		return [
+			otherSourcesSource || sc.source,
+			sc._fMisc,
+			null,
+		];
+	}
 
 	isSubclassVisible (f, cls, sc) {
 		if (this.filterBox.toDisplay(
@@ -159,7 +161,11 @@ class PageFilterClassesBase extends PageFilter {
 	}
 
 	static _getIsSubclassVisibleToDisplayParams (cls, sc, otherSourcesSource) {
-		return [otherSourcesSource || sc.source, sc._fMisc, null];
+		return [
+			otherSourcesSource || sc.source,
+			sc._fMisc,
+			null,
+		];
 	}
 
 	/** Return the first active source we find; use this as a fake source for things we want to force-display. */
@@ -173,7 +179,7 @@ class PageFilterClassesBase extends PageFilter {
 		return this._filterBox.toDisplay(
 			values,
 			...this._getToDisplayParams(values, it),
-		)
+		);
 	}
 
 	_getToDisplayParams (values, cls) {
@@ -182,6 +188,7 @@ class PageFilterClassesBase extends PageFilter {
 				? cls._fSourceSubclass
 				: (cls._fSources ?? cls.source),
 			cls._fMisc,
+			null,
 		];
 	}
 }

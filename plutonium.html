@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/main.css">
 
 	<!-- Favicons -->
-	<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.115">
+	<link rel="icon" type="image/svg+xml" href="favicon.svg">
 	<link rel="icon" type="image/png" sizes="256x256" href="favicon-256x256.png">
 	<link rel="icon" type="image/png" sizes="144x144" href="favicon-144x144.png">
 	<link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png">
@@ -49,7 +49,7 @@
 	<!-- OpenSearch -->
 	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
 
-	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");</script>
+	<script type="text/javascript" src="sw-injector.js"></script>
 
 	<script type="text/javascript" src="js/styleswitch.js"></script>
 	<script type="text/javascript" src="js/navigation.js"></script>
@@ -88,7 +88,7 @@
 	<div class="row">
 		<div class="col-12">
 			<p>An overview of the features available in Plutonium can be found below. To those familiar with our now-deprecated Roll20 script &quot;betteR20,&quot; we aim to expand on the feature set it provided, while improving user experience.</p>
-			<p><b>Please note that the GIFs on this page are updated much less frequently than the module itself.</b> For a (more) complete list of Plutonium's features, see <a href="https://wiki.5e.tools/index.php/Feature:_FoundryTool" rel="noopener noreferrer">the wiki</a>.</p>
+			<p><b>Please note that the GIFs on this page are updated much less frequently than the module itself.</b> For a (more) complete list of Plutonium's features, see <a href="https://wiki.tercept.net/en/Plutonium" rel="noopener noreferrer">the wiki</a>.</p>
 
 			<hr>
 
@@ -129,7 +129,9 @@
 			<h3>Art Browser</h3>
 			<p>The <a href="https://dmsguild201.github.io/Roll20_resources/">Art Browser</a> is integrated into the module, allowing tiles, tokens, and scenes to be drag-dropped from the vast collection available. Note that art can be drag-dropped from the Art Browser site itself with the same functionality.</p>
 			<h4>Scene Creation</h4>
-			<a href="img/plutonium/artbrowser.gif" target="_blank"><img class="big-help-gif" src="img/plutonium/artbrowser.gif" loading="lazy"></a>
+			<video class="big-help-gif" controls>
+				<source src="img/plutonium/artbrowser.webm" type="video/webm">
+			</video>
 
 			<hr>
 
@@ -173,6 +175,8 @@
 <script type="text/javascript" src="lib/localforage.js"></script>
 <script type="text/javascript" src="js/omnidexer.js"></script>
 <script type="text/javascript" src="js/omnisearch.js"></script>
+<script type="text/javascript" src="js/filter.js"></script>
+<script type="text/javascript" src="js/utils-brew.js"></script>
 <script type="text/javascript" src="js/render.js"></script>
 <script type="text/javascript" src="js/render-dice.js"></script>
 <script type="text/javascript" src="js/scalecreature.js"></script>
@@ -180,7 +184,10 @@
 <script type="text/javascript" src="lib/jquery.js"></script>
 <script type="text/javascript" src="lib/elasticlunr.js"></script>
 <script>
-	ExcludeUtil.pInitialise(); // don't await, as this is only used for search
+	(async () => {
+		await BrewUtil2.pInit();
+		ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
+	})();
 </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 "use strict";
 
 class PageFilterEquipment extends PageFilter {
-	constructor () {
+	constructor ({filterOpts = null} = {}) {
 		super();
 
 		this._typeFilter = new Filter({
@@ -15,22 +15,40 @@ class PageFilterEquipment extends PageFilter {
 			items: ["Basic", "Generic Variant", "Specific Variant", "Other"],
 			deselFn: (it) => it === "Specific Variant",
 			itemSortFn: null,
+			...(filterOpts?.["Category"] || {}),
 		});
-		this._costFilter = new RangeFilter({header: "Cost", min: 0, max: 100, isAllowGreater: true, suffix: " gp"});
+		this._costFilter = new RangeFilter({
+			header: "Cost",
+			isLabelled: true,
+			isAllowGreater: true,
+			labelSortFn: null,
+			labels: [
+				0,
+				...[...new Array(9)].map((_, i) => i + 1),
+				...[...new Array(9)].map((_, i) => 10 * (i + 1)),
+				...[...new Array(100)].map((_, i) => 100 * (i + 1)),
+			],
+			labelDisplayFn: it => !it ? "None" : Parser.getDisplayCurrency(CurrencyUtil.doSimplifyCoins({cp: it})),
+		});
 		this._weightFilter = new RangeFilter({header: "Weight", min: 0, max: 100, isAllowGreater: true, suffix: " lb."});
 		this._focusFilter = new Filter({header: "Spellcasting Focus", items: [...Parser.ITEM_SPELLCASTING_FOCUS_CLASSES]});
 		this._damageTypeFilter = new Filter({header: "Weapon Damage Type", displayFn: it => Parser.dmgTypeToFull(it).uppercaseFirst(), itemSortFn: (a, b) => SortUtil.ascSortLower(Parser.dmgTypeToFull(a), Parser.dmgTypeToFull(b))});
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Item Group", "SRD", "Has Images", "Has Info"], isSrdFilter: true});
+		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Item Group", "SRD", "Basic Rules", "Has Images", "Has Info"], isMiscFilter: true});
 		this._poisonTypeFilter = new Filter({header: "Poison Type", items: ["ingested", "injury", "inhaled", "contact"], displayFn: StrUtil.toTitleCase});
 	}
 
 	static mutateForFilters (item) {
+		item._fSources = SourceFilter.getCompleteFilterSources(item);
+
 		item._fProperties = item.property ? item.property.map(p => Renderer.item.propertyMap[p].name).filter(n => n) : [];
 
-		item._fMisc = item.srd ? ["SRD"] : [];
+		item._fMisc = [];
 		if (item._isItemGroup) item._fMisc.push("Item Group");
+		if (item.srd) item._fMisc.push("SRD");
+		if (item.basicRules) item._fMisc.push("Basic Rules");
 		if (item.hasFluff) item._fMisc.push("Has Info");
 		if (item.hasFluffImages) item._fMisc.push("Has Images");
+		if (item.miscTags) item._fMisc.push(...item.miscTags.map(Parser.itemMiscTagToFull));
 
 		if (item.focus || item.name === "Thieves' Tools" || item.type === "INS" || item.type === "SCF" || item.type === "AT") {
 			item._fFocus = item.focus ? item.focus === true ? [...Parser.ITEM_SPELLCASTING_FOCUS_CLASSES] : [...item.focus] : [];
@@ -56,17 +74,18 @@ class PageFilterEquipment extends PageFilter {
 			}
 		}
 
-		item._fValue = (item.value || 0) / 100;
+		item._fValue = Math.round(item.value || 0);
 	}
 
 	addToFilters (item, isExcluded) {
 		if (isExcluded) return;
 
-		this._sourceFilter.addItem(item.source);
+		this._sourceFilter.addItem(item._fSources);
 		this._typeFilter.addItem(item._typeListText);
 		this._propertyFilter.addItem(item._fProperties);
 		this._damageTypeFilter.addItem(item.dmgType);
 		this._poisonTypeFilter.addItem(item.poisonTypes);
+		this._miscFilter.addItem(item._fMisc);
 	}
 
 	async _pPopulateBoxOptions (opts) {
@@ -87,7 +106,7 @@ class PageFilterEquipment extends PageFilter {
 	toDisplay (values, it) {
 		return this._filterBox.toDisplay(
 			values,
-			it.source,
+			it._fSources,
 			it._typeListText,
 			it._fProperties,
 			it._category,
@@ -109,7 +128,7 @@ class PageFilterItems extends PageFilterEquipment {
 		else if (o.sortBy === "source") return SortUtil.ascSortLower(a.values.source, b.values.source) || SortUtil.compareListNames(a, b);
 		else if (o.sortBy === "rarity") return SortUtil.ascSortItemRarity(a.values.rarity, b.values.rarity) || SortUtil.compareListNames(a, b);
 		else if (o.sortBy === "attunement") return SortUtil.ascSort(a.values.attunement, b.values.attunement) || SortUtil.compareListNames(a, b);
-		else if (o.sortBy === "count") return SortUtil.ascSort(a.values.count, b.values.count) || SortUtil.compareListNames(a, b);
+		else if (o.sortBy === "count") return SortUtil.ascSort(a.data.count, b.data.count) || SortUtil.compareListNames(a, b);
 		else if (o.sortBy === "weight") return SortUtil.ascSort(a.values.weight, b.values.weight) || SortUtil.compareListNames(a, b);
 		else if (o.sortBy === "cost") return SortUtil.ascSort(a.values.cost, b.values.cost) || SortUtil.compareListNames(a, b);
 		else return 0;
@@ -169,8 +188,8 @@ class PageFilterItems extends PageFilterEquipment {
 	}
 
 	// endregion
-	constructor () {
-		super();
+	constructor (opts) {
+		super(opts);
 
 		this._tierFilter = new Filter({header: "Tier", items: ["none", "minor", "major"], itemSortFn: null, displayFn: StrUtil.toTitleCase});
 		this._attachedSpellsFilter = new Filter({header: "Attached Spells", displayFn: (it) => it.split("|")[0].toTitleCase(), itemSortFn: SortUtil.ascSortLower});
@@ -179,7 +198,7 @@ class PageFilterItems extends PageFilterEquipment {
 			items: ["Magic Item Table A", "Magic Item Table B", "Magic Item Table C", "Magic Item Table D", "Magic Item Table E", "Magic Item Table F", "Magic Item Table G", "Magic Item Table H", "Magic Item Table I"],
 			displayFn: it => {
 				const [name, sourceJson] = it.split("|");
-				return `${name}${sourceJson ? ` (${Parser.sourceJsonToAbv(sourceJson)})` : ""}`
+				return `${name}${sourceJson ? ` (${Parser.sourceJsonToAbv(sourceJson)})` : ""}`;
 			},
 		});
 		this._rarityFilter = new Filter({
@@ -190,8 +209,8 @@ class PageFilterItems extends PageFilterEquipment {
 		});
 		this._attunementFilter = new Filter({header: "Attunement", items: [...PageFilterItems._FILTER_BASE_ITEMS_ATTUNEMENT], itemSortFn: PageFilterItems._sortAttunementFilter});
 		this._bonusFilter = new Filter({header: "Bonus", items: ["Armor Class", "Proficiency Bonus", "Spell Attacks", "Spell Save DC", "Saving Throws", "Weapon Attack and Damage Rolls", "Weapon Attack Rolls", "Weapon Damage Rolls"]});
-		this._rechargeTypeFilter = new Filter({header: "Recharge Type", displayFn: Parser.itemRechargeToFull})
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Ability Score Adjustment", "Charges", "Cursed", "Grants Proficiency", "Has Images", "Has Info", "Item Group", "Magic", "Mundane", "Sentient", "Speed Adjustment", "SRD"], isSrdFilter: true});
+		this._rechargeTypeFilter = new Filter({header: "Recharge Type", displayFn: Parser.itemRechargeToFull});
+		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Ability Score Adjustment", "Charges", "Cursed", "Grants Proficiency", "Has Images", "Has Info", "Item Group", "Magic", "Mundane", "Sentient", "Speed Adjustment", "SRD", "Basic Rules"], isMiscFilter: true});
 		this._baseSourceFilter = new SourceFilter({header: "Base Source", selFn: null});
 		this._baseItemFilter = new Filter({header: "Base Item", displayFn: this.constructor._getBaseItemDisplay.bind(this.constructor)});
 	}
@@ -239,7 +258,7 @@ class PageFilterItems extends PageFilterEquipment {
 		super.addToFilters(item, isExcluded);
 
 		this._sourceFilter.addItem(item.source);
-		this._tierFilter.addItem(item._fTier)
+		this._tierFilter.addItem(item._fTier);
 		this._attachedSpellsFilter.addItem(item.attachedSpells);
 		this._lootTableFilter.addItem(item.lootTables);
 		this._baseItemFilter.addItem(item._fBaseItem);
@@ -277,7 +296,7 @@ class PageFilterItems extends PageFilterEquipment {
 	toDisplay (values, it) {
 		return this._filterBox.toDisplay(
 			values,
-			it.source,
+			it._fSources,
 			it._typeListText,
 			it._fTier,
 			it.rarity,
@@ -308,14 +327,15 @@ class ModalFilterItems extends ModalFilter {
 	 * @param opts.namespace
 	 * @param [opts.isRadio]
 	 * @param [opts.allData]
+	 * @param [opts.pageFilterOpts] Options to be passed to the underlying items page filter.
 	 */
 	constructor (opts) {
 		opts = opts || {};
 		super({
 			...opts,
 			modalTitle: `Item${opts.isRadio ? "" : "s"}`,
-			pageFilter: new PageFilterItems(),
-		})
+			pageFilter: new PageFilterItems(opts?.pageFilterOpts),
+		});
 	}
 
 	_$getColumnHeaders () {
@@ -332,8 +352,8 @@ class ModalFilterItems extends ModalFilter {
 	}
 
 	async _pLoadAllData () {
-		const brew = await BrewUtil.pAddBrewData();
-		const fromData = await Renderer.item.pBuildList({isAddGroups: true, isBlacklistVariants: true});
+		const brew = await BrewUtil2.pGetBrewProcessed();
+		const fromData = await Renderer.item.pBuildList({isAddGroups: true});
 		const fromBrew = await Renderer.item.pGetItemsFromHomebrew(brew);
 		return [...fromData, ...fromBrew];
 	}
@@ -345,22 +365,22 @@ class ModalFilterItems extends ModalFilter {
 		pageFilter.mutateAndAddToFilters(item);
 
 		const eleRow = document.createElement("div");
-		eleRow.className = "px-0 w-100 flex-col no-shrink";
+		eleRow.className = "px-0 w-100 ve-flex-col no-shrink";
 
 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS](item);
 		const source = Parser.sourceJsonToAbv(item.source);
 		const type = item._typeListText.join(", ");
 
-		eleRow.innerHTML = `<div class="w-100 flex-vh-center lst--border no-select lst__wrp-cells">
-			<div class="col-0-5 pl-0 flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>
+		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst--border no-select lst__wrp-cells">
+			<div class="col-0-5 pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>
 
-			<div class="col-0-5 px-1 flex-vh-center">
+			<div class="col-0-5 px-1 ve-flex-vh-center">
 				<div class="ui-list__btn-inline px-2" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
 			</div>
 
 			<div class="col-5 ${this._getNameStyle()}">${item.name}</div>
 			<div class="col-5">${type.uppercaseFirst()}</div>
-			<div class="col-1 text-center ${Parser.sourceJsonToColor(item.source)} pr-0" title="${Parser.sourceJsonToFull(item.source)}" ${BrewUtil.sourceJsonToStyle(item.source)}>${source}</div>
+			<div class="col-1 text-center ${Parser.sourceJsonToColor(item.source)} pr-0" title="${Parser.sourceJsonToFull(item.source)}" ${BrewUtil2.sourceJsonToStyle(item.source)}>${source}</div>
 		</div>`;
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;

@@ -18,10 +18,10 @@ const ListUtil = {
 		if (listOpts.isBindFindHotkey && !ListUtil._isFindHotkeyBound) {
 			helpText.push(`Hotkey: f.`);
 
-			$(document.body).on("keypress", (e) => {
-				if (!EventUtil.noModifierKeys(e) || EventUtil.isInInput(e)) return;
-				if (e.key === "f") {
-					e.preventDefault();
+			$(document.body).on("keypress", (evt) => {
+				if (!EventUtil.noModifierKeys(evt) || EventUtil.isInInput(evt)) return;
+				if (EventUtil.getKeyIgnoreCapsLock(evt) === "f") {
+					evt.preventDefault();
 					$iptSearch.select().focus();
 				}
 			});
@@ -44,12 +44,17 @@ const ListUtil = {
 
 		// region Magnifying glass/clear button
 		const $btnSearchClear = $(`#lst__search-glass`)
-			.click(() => $iptSearch.val("").change().keydown().keyup());
+			.click(() => $iptSearch.val("").change().keydown().keyup().focus());
 		const _handleSearchChange = () => {
 			setTimeout(() => {
-				if ($iptSearch.val().length) $btnSearchClear.removeClass("no-events").addClass("clickable").title("Clear").html(`<span class="glyphicon glyphicon-remove"/>`);
-				else $btnSearchClear.addClass("no-events").removeClass("clickable").title(null).html(`<span class="glyphicon glyphicon-search"/>`);
-			})
+				const hasText = !!$iptSearch.val().length;
+
+				$btnSearchClear
+					.toggleClass("no-events", !hasText)
+					.toggleClass("clickable", hasText)
+					.title(hasText ? "Clear" : null)
+					.html(`<span class="glyphicon ${hasText ? `glyphicon-remove` : `glyphicon-search`}"></span>`);
+			});
 		};
 		const handleSearchChange = MiscUtil.throttle(_handleSearchChange, 50);
 		$iptSearch.on("keydown", handleSearchChange);
@@ -85,15 +90,16 @@ const ListUtil = {
 	},
 
 	_initList_bindWindowHandlers () {
-		$(window).on("keypress", (evt) => {
+		window.addEventListener("keypress", (evt) => {
 			if (!EventUtil.noModifierKeys(evt)) return;
 
 			// K up; J down
-			if (evt.key === "k" || evt.key === "j") {
+			const key = EventUtil.getKeyIgnoreCapsLock(evt);
+			if (key === "k" || key === "j") {
 				// don't switch if the user is typing somewhere else
 				if (EventUtil.isInInput(evt)) return;
-				ListUtil._initList_handleListUpDownPress(evt.key === "k" ? -1 : 1);
-			} else if (ListUtil._isPreviewable && evt.key === "m") {
+				ListUtil._initList_handleListUpDownPress(key === "k" ? -1 : 1);
+			} else if (ListUtil._isPreviewable && key === "m") {
 				if (EventUtil.isInInput(evt)) return;
 				const it = Hist.getSelectedListElementWithLocation();
 				$(it.item.ele.firstElementChild.firstElementChild).click();
@@ -158,11 +164,11 @@ const ListUtil = {
 			} else {
 				ListUtil._primaryLists.forEach(l => l.deselectAll());
 				list.doSelect(listItem);
-				selection = [listItem]
+				selection = [listItem];
 			}
 		} else {
 			list.doSelect(listItem);
-			selection = [listItem]
+			selection = [listItem];
 		}
 
 		const menu = ListUtil.contextMenuPinnableList || ListUtil.contextMenuAddableList;
@@ -221,47 +227,64 @@ const ListUtil = {
 
 	getPrimaryLists () { return this._primaryLists; },
 
-	__mouseMoveId: 1,
-	async _pBindSublistResizeHandlers ($ele) {
+	async _pBindSublistResizeHandlers ($wrpList) {
 		const STORAGE_KEY = "SUBLIST_RESIZE";
-		const BORDER_SIZE = 3;
-		const MOUSE_MOVE_ID = ListUtil.__mouseMoveId++;
-		const $doc = $(document);
+
+		const $handle = $(`<div class="sublist__ele-resize mobile__hidden">...</div>`).appendTo($wrpList);
 
 		let mousePos;
 		function resize (evt) {
-			const dx = evt.clientY - mousePos;
-			mousePos = evt.clientY;
-			$ele.css("height", parseInt($ele.css("height")) + dx);
+			evt.preventDefault();
+			evt.stopPropagation();
+			const dx = EventUtil.getClientY(evt) - mousePos;
+			mousePos = EventUtil.getClientY(evt);
+			$wrpList.css("height", parseInt($wrpList.css("height")) + dx);
 		}
 
-		$ele.on("mousedown", (evt) => {
-			if (evt.which === 1 && evt.target === $ele[0]) {
+		$handle
+			.on("mousedown", (evt) => {
+				if (evt.which !== 1) return;
+
 				evt.preventDefault();
-				if (evt.offsetY > $ele.height() - BORDER_SIZE) {
-					mousePos = evt.clientY;
-					$doc.on(`mousemove.sublist_resize-${MOUSE_MOVE_ID}`, resize);
-				}
-			}
+				mousePos = evt.clientY;
+				document.removeEventListener("mousemove", resize);
+				document.addEventListener("mousemove", resize);
+			});
+
+		document.addEventListener("mouseup", evt => {
+			if (evt.which !== 1) return;
+
+			document.removeEventListener("mousemove", resize);
+			StorageUtil.pSetForPage(STORAGE_KEY, $wrpList.css("height"));
 		});
 
-		$doc.on("mouseup", (evt) => {
-			if (evt.which === 1) {
-				$(document).off(`mousemove.sublist_resize-${MOUSE_MOVE_ID}`);
-				StorageUtil.pSetForPage(STORAGE_KEY, $ele.css("height"));
-			}
-		});
+		// Avoid setting the height on mobile, as we force the sublist to a static size
+		if (JqueryUtil.isMobile()) return;
 
 		const storedHeight = await StorageUtil.pGetForPage(STORAGE_KEY);
-		if (storedHeight) $ele.css("height", storedHeight);
+		if (storedHeight) $wrpList.css("height", storedHeight);
 	},
 
 	getOrTabRightButton: (id, icon) => {
-		let $btn = $(`#${id}`);
-		if (!$btn.length) {
-			$btn = $(`<button class="ui-tab__btn-tab-head btn btn-default" id="${id}"><span class="glyphicon glyphicon-${icon}"></span></button>`).appendTo($(`#tabs-right`));
-		}
-		return $btn;
+		const btnExisting = document.getElementById(id);
+		if (btnExisting) return $(btnExisting);
+
+		const btn = e_({
+			tag: "button",
+			clazz: "ui-tab__btn-tab-head btn btn-default",
+			id,
+			children: [
+				e_({
+					tag: "span",
+					clazz: `glyphicon glyphicon-${icon}`,
+				}),
+			],
+		});
+
+		const wrpBtns = document.getElementById("tabs-right");
+		wrpBtns.appendChild(btn);
+
+		return $(btn);
 	},
 
 	/**
@@ -377,6 +400,18 @@ const ListUtil = {
 				},
 			);
 			contextOptions.push(action);
+		}
+
+		if (opts.other) {
+			if (contextOptions.length) contextOptions.push(null); // Add a spacer after the previous group
+
+			opts.other.forEach(oth => {
+				const action = new ContextUtil.Action(
+					oth.name,
+					oth.pFn,
+				);
+				contextOptions.push(action);
+			});
 		}
 
 		const menu = ContextUtil.getMenu(contextOptions);
@@ -534,7 +569,7 @@ const ListUtil = {
 				await ListUtil._pLoadSavedSublist(store.items);
 			}
 		} catch (e) {
-			setTimeout(() => { throw e });
+			setTimeout(() => { throw e; });
 			await StorageUtil.pRemoveForPage("sublist");
 		}
 	},
@@ -571,7 +606,7 @@ const ListUtil = {
 		try {
 			store = await StorageUtil.pGetForPage("sublist");
 		} catch (e) {
-			setTimeout(() => { throw e });
+			setTimeout(() => { throw e; });
 		}
 		if (store && store.sources) return store.sources;
 	},
@@ -683,7 +718,7 @@ const ListUtil = {
 				"Popout",
 				(evt, userData) => {
 					const {ele, selection} = userData;
-					ListUtil._handleGenericContextMenuClick_pDoMassPopout(evt, ele, selection)
+					ListUtil._handleGenericContextMenuClick_pDoMassPopout(evt, ele, selection);
 				},
 			),
 			new ContextUtil.Action(
@@ -728,10 +763,10 @@ const ListUtil = {
 			const list = ListUtil.getExportableSublist();
 			const len = list.items.length;
 			await StorageUtil.pSet(VeCt.STORAGE_DMSCREEN_TEMP_SUBLIST, {page: UrlUtil.getCurrentPage(), list});
-			JqueryUtil.doToast(`${len} pin${len === 1 ? "" : "s"} will be loaded into the DM Screen on your next visit.`)
+			JqueryUtil.doToast(`${len} pin${len === 1 ? "" : "s"} will be loaded into the DM Screen on your next visit.`);
 		} catch (e) {
 			JqueryUtil.doToast(`Failed! ${VeCt.STR_SEE_CONSOLE}`);
-			setTimeout(() => { throw e; })
+			setTimeout(() => { throw e; });
 		}
 	},
 
@@ -784,6 +819,7 @@ const ListUtil = {
 					isPermanent: true,
 					pageUrl: `${page}#${hash}`,
 					isBookContent: page === UrlUtil.PG_RECIPES,
+					sourceData: toRender,
 				},
 			);
 		}
@@ -856,7 +892,7 @@ const ListUtil = {
 	},
 
 	bindShowTableButton (id, title, dataList, colTransforms, filter, sorter) {
-		$(`#${id}`).click("click", () => ListUtil.showTable(title, dataList, colTransforms, filter, sorter));
+		$(`#${id}`).click("click", () => UtilsTableview.show({title, dataList, colTransforms, filter, sorter}));
 	},
 
 	basicFilterGenerator () {
@@ -872,65 +908,6 @@ const ListUtil = {
 
 	getVisibleIds () {
 		return ListUtil._primaryLists.map(l => l.visibleItems.map(it => it.ix)).flat();
-	},
-
-	// FIXME move this out
-	showTable (title, dataList, colTransforms, filter, sorter) {
-		const {$modal} = UiUtil.getShowModal({
-			isWidth100: true,
-			isHeight100: true,
-			isUncappedWidth: true,
-			isUncappedHeight: true,
-			isEmpty: true,
-		});
-
-		const $pnlControl = $(`<div class="split my-3"/>`).appendTo($modal);
-		const $pnlCols = $(`<div class="flex" style="align-items: center;"/>`).appendTo($pnlControl);
-		Object.values(colTransforms).forEach((c, i) => {
-			const $wrpCb = $(`<label class="flex-${c.flex || 1} px-2 mr-2 no-wrap flex-inline-v-center"><span class="mr-2">${c.name}</span></label>`).appendTo($pnlCols);
-			const $cbToggle = $(`<input type="checkbox" data-name="${c.name}" checked>`)
-				.click(() => {
-					const toToggle = $modal.find(`.col_${i}`);
-					if ($cbToggle.prop("checked")) {
-						toToggle.show();
-					} else {
-						toToggle.hide();
-					}
-				})
-				.appendTo($wrpCb);
-		});
-		const $pnlBtns = $(`<div/>`).appendTo($pnlControl);
-		function getAsCsv () {
-			const headers = $pnlCols.find(`input:checked`).map((i, e) => $(e).data("name")).get();
-			const rows = $modal.find(`.data-row`).map((i, e) => $(e)).get().map($e => {
-				return $e.children().filter(`td:visible`).map((j, d) => $(d).text().trim()).get();
-			});
-			return DataUtil.getCsv(headers, rows);
-		}
-		const $btnCsv = $(`<button class="btn btn-primary mr-3">Download CSV</button>`).click(() => {
-			DataUtil.userDownloadText(`${title}.csv`, getAsCsv());
-		}).appendTo($pnlBtns);
-		const $btnCopy = $(`<button class="btn btn-primary">Copy CSV to Clipboard</button>`).click(async () => {
-			await MiscUtil.pCopyTextToClipboard(getAsCsv());
-			JqueryUtil.showCopiedEffect($btnCopy);
-		}).appendTo($pnlBtns);
-		$modal.append(`<hr class="hr-1">`);
-
-		if (typeof filter === "object" && filter.generator) filter = filter.generator();
-
-		let stack = `<div class="overflow-y-auto w-100 h-100 flex-col"><table class="table-striped stats stats--book stats--book-large" style="width: 100%;"><thead><tr>${Object.values(colTransforms).map((c, i) => `<th class="col_${i} px-2" colspan="${c.flex || 1}">${c.name}</th>`).join("")}</tr></thead><tbody>`;
-		const listCopy = JSON.parse(JSON.stringify(dataList)).filter((it, i) => filter ? filter(i) : it);
-		if (sorter) listCopy.sort(sorter);
-		listCopy.forEach(it => {
-			stack += `<tr class="data-row">`;
-			stack += Object.keys(colTransforms).map((k, i) => {
-				const c = colTransforms[k];
-				return `<td class="col_${i} px-2" colspan="${c.flex || 1}">${c.transform === true ? it[k] : c.transform(k[0] === "_" ? it : it[k])}</td>`;
-			}).join("");
-			stack += `</tr>`;
-		});
-		stack += `</tbody></table></div>`;
-		$modal.append(stack);
 	},
 
 	addListShowHide () {

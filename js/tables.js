@@ -19,7 +19,32 @@ class TablesPage extends ListPage {
 			},
 
 			dataProps: ["table", "tableGroup"],
+
+			bindOtherButtonsOptions: {
+				other: [
+					{
+						name: "Copy as CSV",
+						pFn: () => this._pCopyRenderedAsCsv(),
+					},
+				],
+			},
 		});
+	}
+
+	async _pCopyRenderedAsCsv () {
+		const ent = this._dataList[Hist.lastLoadedId];
+
+		const tbls = ent.tables || [ent];
+		const txt = tbls
+			.map(tbl => {
+				const parser = new DOMParser();
+				const rows = tbl.rows.map(row => row.map(cell => parser.parseFromString(`<div>${Renderer.get().render(cell)}</div>`, "text/html").documentElement.textContent));
+				return DataUtil.getCsv((tbl.colLabels || []).map(it => Renderer.stripTags(it)), rows);
+			})
+			.join("\n\n");
+
+		await MiscUtil.pCopyTextToClipboard(txt);
+		JqueryUtil.doToast("Copied!");
 	}
 
 	getListItem (it, tbI, isExcluded) {
@@ -28,14 +53,14 @@ class TablesPage extends ListPage {
 		const sortName = it.name.replace(/^\s*([\d,.]+)\s*gp/, (...m) => m[1].replace(Parser._numberCleanRegexp, "").padStart(9, "0"));
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(it.source);
 		const hash = UrlUtil.autoEncodeHash(it);
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst--border lst__row-inner">
 			<span class="bold col-10 pl-0">${it.name}</span>
-			<span class="col-2 text-center ${Parser.sourceJsonToColor(it.source)} pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${BrewUtil.sourceJsonToStyle(it.source)}>${source}</span>
+			<span class="col-2 text-center ${Parser.sourceJsonToColor(it.source)} pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${BrewUtil2.sourceJsonToStyle(it.source)}>${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -48,7 +73,6 @@ class TablesPage extends ListPage {
 				source,
 			},
 			{
-				uniqueId: it.uniqueId ? it.uniqueId : tbI,
 				isExcluded,
 			},
 		);
@@ -65,10 +89,10 @@ class TablesPage extends ListPage {
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
-	getSublistItem (it, ix) {
+	pGetSublistItem (it, ix) {
 		const hash = UrlUtil.autoEncodeHash(it);
 
-		const $ele = $(`<div class="lst__row lst__row--sublist flex-col"><a href="#${hash}" class="lst--border lst__row-inner" title="${it.name}"><span class="bold col-12 px-0">${it.name}</span></a></div>`)
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col"><a href="#${hash}" class="lst--border lst__row-inner" title="${it.name}"><span class="bold col-12 px-0">${it.name}</span></a></div>`)
 			.contextmenu(evt => ListUtil.openSubContextMenu(evt, listItem))
 			.click(evt => ListUtil.sublist.doSelect(listItem, evt));
 
@@ -90,11 +114,6 @@ class TablesPage extends ListPage {
 		this._$pgContent.empty().append(RenderTables.$getRenderedTable(it));
 
 		ListUtil.updateSelected();
-	}
-
-	async pDoLoadSubHash (sub) {
-		sub = this._filterBox.setFromSubHashes(sub);
-		await ListUtil.pSetFromSubHashes(sub);
 	}
 
 	_getSearchCache (entity) {

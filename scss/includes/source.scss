@@ -50,6 +50,10 @@
 	$rgb-source-DoD: #fe4935;
 	$rgb-source-MaBJoV: #7a2854;
 	$rgb-source-FTD: #b82a15;
+	$rgb-source-NRH: #bd335b;
+	$rgb-source-SCC: #be9c56;
+	$rgb-source-MPMM: #5c758d;
+	$rgb-source-CRCotN: #ac4a70;
 
 	&PHB {
 		color: $rgb-source-PHB !important;
@@ -375,6 +379,51 @@
 		color: $rgb-source-FTD !important;
 		border-color: $rgb-source-FTD !important;
 		text-decoration-color: $rgb-source-FTD !important;
+	}
+
+	&NRH {
+		color: $rgb-source-NRH !important;
+		border-color: $rgb-source-NRH !important;
+		text-decoration-color: $rgb-source-NRH !important;
+
+		&-TCMC,
+		&-AVitW,
+		&-ASS,
+		&-CoI,
+		&-TLT,
+		&-AWoL,
+		&-AT {
+			color: $rgb-source-NRH !important;
+			border-color: $rgb-source-NRH !important;
+			text-decoration-color: $rgb-source-NRH !important;
+		}
+	}
+
+	&SCC {
+		color: $rgb-source-SCC !important;
+		border-color: $rgb-source-SCC !important;
+		text-decoration-color: $rgb-source-SCC !important;
+
+		&-CK,
+		&-HfMT,
+		&-TMM,
+		&-ARiR {
+			color: $rgb-source-SCC !important;
+			border-color: $rgb-source-SCC !important;
+			text-decoration-color: $rgb-source-SCC !important;
+		}
+	}
+
+	&MPMM {
+		color: $rgb-source-MPMM !important;
+		border-color: $rgb-source-MPMM !important;
+		text-decoration-color: $rgb-source-MPMM !important;
+	}
+
+	&CRCotN {
+		color: $rgb-source-CRCotN !important;
+		border-color: $rgb-source-CRCotN !important;
+		text-decoration-color: $rgb-source-CRCotN !important;
 	}
 }
 

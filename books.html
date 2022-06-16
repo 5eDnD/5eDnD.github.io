@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/main.css">
 
 	<!-- Favicons -->
-	<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.115">
+	<link rel="icon" type="image/svg+xml" href="favicon.svg">
 	<link rel="icon" type="image/png" sizes="256x256" href="favicon-256x256.png">
 	<link rel="icon" type="image/png" sizes="144x144" href="favicon-144x144.png">
 	<link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png">
@@ -49,7 +49,7 @@
 	<!-- OpenSearch -->
 	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
 
-	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");</script>
+	<script type="text/javascript" src="sw-injector.js"></script>
 
 	<script type="text/javascript" src="js/styleswitch.js"></script>
 	<script type="text/javascript" src="js/navigation.js"></script>
@@ -77,12 +77,14 @@
 			<button class="btn btn-default" id="reset">Reset</button>
 		</div>
 
-		<div id="filtertools" class="input-group input-group--bottom flex no-shrink">
-			<button class="col-9-7 sort btn btn-default btn-xs" data-sort="name">Name</button>
+		<div id="filtertools" class="input-group input-group--bottom ve-flex no-shrink">
+			<button class="col-1-3 sort btn btn-default btn-xs" data-sort="group">Type</button>
+			<button class="col-8-5 sort btn btn-default btn-xs" data-sort="name">Name</button>
 			<button class="ve-grow sort btn btn-default btn-xs" data-sort="published">Published</button>
+			<button class="btn btn-default btn-xs w-30p mobile__hidden" disabled></button>
 		</div>
 
-		<div class="list books">
+		<div class="list list--stats books">
 			<!-- populate with JS -->
 		</div>
 
@@ -92,7 +94,7 @@
 
 		<hr class="hr-3 mt-4">
 
-		<div class="books--alt flex-h-center flex-wrap bks__wrp-bookshelf">
+		<div class="books--alt ve-flex-h-center ve-flex-wrap bks__wrp-bookshelf">
 			<!-- populate with JS -->
 		</div>
 	</div>
@@ -106,6 +108,8 @@
 <script type="text/javascript" src="lib/localforage.js"></script>
 <script type="text/javascript" src="js/omnidexer.js"></script>
 <script type="text/javascript" src="js/omnisearch.js"></script>
+<script type="text/javascript" src="js/filter.js"></script>
+<script type="text/javascript" src="js/utils-brew.js"></script>
 <script type="text/javascript" src="js/render.js"></script>
 <script type="text/javascript" src="js/render-dice.js"></script>
 <script type="text/javascript" src="js/scalecreature.js"></script>

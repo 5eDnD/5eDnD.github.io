@@ -82,6 +82,8 @@ class AcConvert {
 						case "bone armor":
 						case "deflection":
 						case "mental defense":
+						case "blood aegis":
+						case "psychic defense":
 							froms.push(fromLow);
 							break;
 
@@ -110,6 +112,7 @@ class AcConvert {
 							break;
 
 						case "scale armor": froms.push("{@item scale mail|phb}"); break;
+						case "splint armor": froms.push("{@item splint mail|phb}"); break;
 						case "chain shirt": froms.push("{@item chain shirt|phb}"); break;
 						case "shields": froms.push("{@item shield|phb|shields}"); break;
 
@@ -157,7 +160,7 @@ class AcConvert {
 								froms.push(fromLow);
 							} else {
 								if (cbMan) cbMan(fromLow, `AC requires manual checking: ${mon.name} ${mon.source} p${mon.page}`);
-								nuAc.push(fromClean)
+								froms.push(fromLow);
 							}
 						}
 					}
@@ -283,33 +286,13 @@ TagDc._PROPS = ["action", "reaction", "bonus", "trait", "legendary", "mythic", "
 
 class AlignmentConvert {
 	static tryConvertAlignment (stats, cbMan) {
-		if (!stats.alignment.trim()) return delete stats.alignment;
+		const {alignmentPrefix, alignment} = AlignmentUtil.tryGetConvertedAlignment(stats.alignment, {cbMan});
 
-		// region Support WBtW and onwards formatting
-		stats.alignment = stats.alignment.trim().replace(/^typically\s+/, () => {
-			stats.alignmentPrefix = "typically ";
-			return "";
-		});
-		// endregion
+		stats.alignment = alignment;
+		if (!stats.alignment) delete stats.alignment;
 
-		const orParts = (stats.alignment || "").split(/ or /g).map(it => it.trim().replace(/[.,;]$/g, "").trim());
-		const out = [];
-
-		orParts.forEach(part => {
-			Object.values(AlignmentUtil.ALIGNMENTS).forEach(it => {
-				if (it.regex.test(part)) out.push({alignment: it.output});
-				else {
-					const mChange = it.regexChance.exec(part);
-					if (mChange) {
-						out.push({alignment: it.output, chance: Number(mChange[1])})
-					}
-				}
-			})
-		});
-
-		if (out.length === 1) stats.alignment = out[0].alignment;
-		else if (out.length) stats.alignment = out;
-		else if (cbMan) cbMan(stats.alignment);
+		stats.alignmentPrefix = alignmentPrefix;
+		if (!stats.alignmentPrefix) delete stats.alignmentPrefix;
 	}
 }
 
@@ -462,6 +445,8 @@ TraitActionTag.tags = { // true = map directly; string = map to this string
 		"devil sight": "Devil's Sight",
 
 		"immutable form": "Immutable Form",
+
+		"tree stride": "Tree Stride",
 	},
 	action: {
 		"multiattack": "Multiattack",
@@ -528,7 +513,7 @@ class LanguageTag {
 						if (opt.cbTracked) opt.cbTracked(v);
 						tags.add(v);
 					}
-				})
+				});
 			});
 		}
 
@@ -699,7 +684,62 @@ SpellcastingTypeTag.CLASSES = {
 };
 
 class DamageTypeTag {
-	static _handleProp (m, prop, typeSet) {
+	static _init () {
+		if (DamageTypeTag._isInit) return;
+
+		DamageTypeTag._isInit = true;
+		DamageTypeTag._WALKER = MiscUtil.getWalker({isNoModification: true, keyBlacklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLACKLIST});
+		Object.entries(Parser.DMGTYPE_JSON_TO_FULL).forEach(([k, v]) => DamageTypeTag._TYPE_LOOKUP[v] = k);
+	}
+
+	static _PROPS_PRIMARY = ["action", "reaction", "bonus", "trait", "legendary", "mythic", "variant"];
+	static tryRun (m) {
+		this._init();
+
+		const typeSet = new Set();
+		this._PROPS_PRIMARY.forEach(prop => DamageTypeTag._handleProp({m, prop, typeSet}));
+		if (typeSet.size) m.damageTags = [...typeSet].sort(SortUtil.ascSortLower);
+	}
+
+	static tryRunSpells (m, {cbMan} = {}) {
+		if (!m.spellcasting) return;
+
+		this._init();
+
+		const typeSet = new Set();
+
+		const spells = TaggerUtils.getSpellsFromString(JSON.stringify(m.spellcasting), {cbMan});
+		spells.forEach(spell => {
+			if (!spell.damageInflict) return;
+			spell.damageInflict.forEach(it => typeSet.add(DamageTypeTag._TYPE_LOOKUP[it]));
+		});
+
+		if (typeSet.size) m.damageTagsSpell = [...typeSet].sort(SortUtil.ascSortLower);
+	}
+
+	static tryRunRegionalsLairs (m, {cbMan} = {}) {
+		if (!m.legendaryGroup) return;
+
+		this._init();
+
+		const meta = TaggerUtils.findLegendaryGroup({name: m.legendaryGroup.name, source: m.legendaryGroup.source});
+		if (!meta) return;
+
+		const typeSet = new Set();
+		this._handleEntries({entries: meta, typeSet});
+
+		// region Also add damage types from spells contained in the legendary group
+		const spells = TaggerUtils.getSpellsFromString(JSON.stringify(meta), {cbMan});
+		spells.forEach(spell => {
+			if (!spell.damageInflict) return;
+			spell.damageInflict.forEach(it => typeSet.add(DamageTypeTag._TYPE_LOOKUP[it]));
+		});
+		// endregion
+
+		if (typeSet.size) m.damageTagsLegendary = [...typeSet].sort(SortUtil.ascSortLower);
+	}
+
+	static _handleProp ({m, prop, typeSet}) {
 		if (!m[prop]) return;
 
 		m[prop].forEach(it => {
@@ -708,63 +748,50 @@ class DamageTypeTag {
 				&& DamageTypeTag._BLACKLIST_NAMES.has(it.name.toLowerCase().trim().replace(/\([^)]+\)/g, ""))
 			) return;
 
-			if (it.entries) {
-				DamageTypeTag._WALKER.walk(
-					it.entries,
-					{
-						string: (str) => {
-							// if (str.includes("your spell attack modifier")) debugger
-							str.replace(RollerUtil.REGEX_DAMAGE_DICE, (m0, average, prefix, diceExp, suffix) => {
-								suffix.replace(ConverterConst.RE_DAMAGE_TYPE, (m0, pre, type) => typeSet.add(DamageTypeTag._TYPE_LOOKUP[type]));
-							});
+			if (!it.entries) return;
 
-							str.replace(DamageTypeTag._STATIC_DAMAGE_REGEX, (m0, type) => {
-								typeSet.add(DamageTypeTag._TYPE_LOOKUP[type]);
-							});
-
-							str.replace(DamageTypeTag._TARGET_TASKES_DAMAGE_REGEX, (m0, type) => {
-								typeSet.add(DamageTypeTag._TYPE_LOOKUP[type]);
-							});
-
-							if (DamageTypeTag._isSummon(m)) {
-								str.split(/[.?!]/g)
-									.forEach(sentence => {
-										let isSentenceMatch = DamageTypeTag._SUMMON_DAMAGE_REGEX.test(sentence);
-										if (!isSentenceMatch) return;
-
-										// debugger
-										sentence.replace(ConverterConst.RE_DAMAGE_TYPE, (m0, pre, type) => {
-											typeSet.add(DamageTypeTag._TYPE_LOOKUP[type])
-										});
-									});
-							}
-						},
-					},
-				);
-			}
-		})
+			this._handleEntries({m, entries: it.entries, typeSet});
+		});
 	}
 
-	static tryRun (m) {
-		if (!DamageTypeTag._isInit) {
-			DamageTypeTag._isInit = true;
-			DamageTypeTag._WALKER = MiscUtil.getWalker({isNoModification: true, keyBlacklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLACKLIST});
-			Object.entries(Parser.DMGTYPE_JSON_TO_FULL).forEach(([k, v]) => DamageTypeTag._TYPE_LOOKUP[v] = k);
-		}
+	static _handleEntries ({m = null, entries, typeSet}) {
+		DamageTypeTag._WALKER.walk(
+			entries,
+			{
+				string: (str) => {
+					str.replace(RollerUtil.REGEX_DAMAGE_DICE, (m0, average, prefix, diceExp, suffix) => {
+						suffix.replace(ConverterConst.RE_DAMAGE_TYPE, (m0, type) => typeSet.add(DamageTypeTag._TYPE_LOOKUP[type]));
+					});
 
-		const typeSet = new Set();
-		DamageTypeTag._handleProp(m, "action", typeSet);
-		DamageTypeTag._handleProp(m, "reaction", typeSet);
-		DamageTypeTag._handleProp(m, "bonus", typeSet);
-		DamageTypeTag._handleProp(m, "trait", typeSet);
-		DamageTypeTag._handleProp(m, "legendary", typeSet);
-		DamageTypeTag._handleProp(m, "mythic", typeSet);
-		DamageTypeTag._handleProp(m, "variant", typeSet);
-		if (typeSet.size) m.damageTags = [...typeSet];
+					str.replace(DamageTypeTag._STATIC_DAMAGE_REGEX, (m0, type) => {
+						typeSet.add(DamageTypeTag._TYPE_LOOKUP[type]);
+					});
+
+					str.replace(DamageTypeTag._TARGET_TASKES_DAMAGE_REGEX, (m0, type) => {
+						typeSet.add(DamageTypeTag._TYPE_LOOKUP[type]);
+					});
+
+					if (DamageTypeTag._isSummon(m)) {
+						str.split(/[.?!]/g)
+							.forEach(sentence => {
+								let isSentenceMatch = DamageTypeTag._SUMMON_DAMAGE_REGEX.test(sentence);
+								if (!isSentenceMatch) return;
+
+								// debugger
+								sentence.replace(ConverterConst.RE_DAMAGE_TYPE, (m0, type) => {
+									typeSet.add(DamageTypeTag._TYPE_LOOKUP[type]);
+								});
+							});
+					}
+				},
+			},
+		);
 	}
 
 	/** Attempt to detect an e.g. TCE summon creature. */
 	static _isSummon (m) {
+		if (!m) return false;
+
 		let isSummon = false;
 
 		const reProbableSummon = /level of the spell|spell level|\+\s*PB(?:\W|$)|your (?:[^?!.]+)?level/g;
@@ -849,7 +876,7 @@ class MiscTag {
 						tagSet.add("RNG");
 					}));
 				}
-			})
+			});
 		}
 	}
 
@@ -908,24 +935,22 @@ class SpellcastingTraitConvert {
 		ent.entries.forEach((thisLine, i) => {
 			thisLine = thisLine.replace(/,\s*\*/g, ",*"); // put asterisks on the correct side of commas
 			if (i === 0) return;
-			if (/\/rest/i.test(thisLine)) {
+
+			const perDurations = [
+				{re: /\/rest/i, prop: "rest"},
+				{re: /\/day/i, prop: "daily"},
+				{re: /\/week/i, prop: "weekly"},
+				{re: /\/yeark/i, prop: "yearly"},
+			];
+
+			const perDuration = perDurations.find(({re}) => re.test(thisLine));
+
+			if (perDuration) {
 				hasAnyHeader = true;
 				let property = thisLine.substr(0, 1) + (thisLine.includes(" each:") ? "e" : "");
 				const value = this._getParsedSpells({thisLine, isMarkdown});
-				if (!spellcastingEntry.rest) spellcastingEntry.rest = {};
-				spellcastingEntry.rest[property] = value;
-			} else if (/\/day/i.test(thisLine)) {
-				hasAnyHeader = true;
-				let property = thisLine.substr(0, 1) + (thisLine.includes(" each:") ? "e" : "");
-				const value = this._getParsedSpells({thisLine, isMarkdown});
-				if (!spellcastingEntry.daily) spellcastingEntry.daily = {};
-				spellcastingEntry.daily[property] = value;
-			} else if (/\/week/i.test(thisLine)) {
-				hasAnyHeader = true;
-				let property = thisLine.substr(0, 1) + (thisLine.includes(" each:") ? "e" : "");
-				const value = this._getParsedSpells({thisLine, isMarkdown});
-				if (!spellcastingEntry.weekly) spellcastingEntry.weekly = {};
-				spellcastingEntry.weekly[property] = value;
+				if (!spellcastingEntry[perDuration.prop]) spellcastingEntry[perDuration.prop] = {};
+				spellcastingEntry[perDuration.prop][property] = value;
 			} else if (thisLine.startsWith("Constant: ")) {
 				hasAnyHeader = true;
 				spellcastingEntry.constant = this._getParsedSpells({thisLine, isMarkdown});
@@ -1024,7 +1049,7 @@ class SpellcastingTraitConvert {
 	}
 
 	static _parseToHit (line) {
-		return line.replace(/( \+)(\d+)( to hit with spell)/g, (m0, m1, m2, m3) => ` {@hit ${m2}}${m3}`);
+		return line.replace(/ ([-+])(\d+)( to hit with spell)/g, (m0, m1, m2, m3) => ` {@hit ${m1 === "-" ? "-" : ""}${m2}}${m3}`);
 	}
 
 	static mutSpellcastingAbility (spellcastingEntry) {
@@ -1087,7 +1112,7 @@ class SpellcastingTraitConvert {
 	}
 
 	static _getSpellUids (str) {
-		const uids = []
+		const uids = [];
 		str.replace(/{@spell ([^}]+)}/gi, (...m) => {
 			const [name, source = SRC_PHB.toLowerCase()] = m[1].toLowerCase().split("|").map(it => it.trim());
 			uids.push(`${name}|${source}`);
@@ -1164,9 +1189,9 @@ class SpeedConvert {
 
 			SpeedConvert._splitSpeed(line.toLowerCase()).map(it => it.trim()).forEach(s => {
 				// For e.g. shapechanger speeds, store them behind a "condition" on the previous speed
-				const mParens = /^\((\w+?\s+)?(\d+)\s*ft\.?( .*)?\)$/.exec(s)
+				const mParens = /^\((\w+?\s+)?(\d+)\s*ft\.?( .*)?\)$/.exec(s);
 				if (mParens && prevSpeed) {
-					if (typeof out[prevSpeed] === "number") out[prevSpeed] = {number: out[prevSpeed], condition: s}
+					if (typeof out[prevSpeed] === "number") out[prevSpeed] = {number: out[prevSpeed], condition: s};
 					else out[prevSpeed].condition = s;
 					return;
 				}
@@ -1263,7 +1288,7 @@ class TagImmResVulnConditional {
 
 	static _handleProp_recurse (obj, prop) {
 		if (obj.note) {
-			const note = obj.note.toLowerCase().trim().replace(/^\(/, "").replace(/^damage/, "").trim()
+			const note = obj.note.toLowerCase().trim().replace(/^\(/, "").replace(/^damage/, "").trim();
 			if (
 				note.startsWith("while ")
 				|| note.startsWith("from ")
@@ -1272,12 +1297,24 @@ class TagImmResVulnConditional {
 				|| note.startsWith("against ")
 				|| note.startsWith("except ")
 				|| note.startsWith("with ")
+				|| note.startsWith("that is ")
 			) {
 				obj.cond = true;
 			}
 		}
 
 		if (obj[prop]) obj[prop].forEach(it => this._handleProp_recurse(it, prop));
+	}
+}
+
+class DragonAgeTag {
+	static tryRun (mon) {
+		const type = mon.type?.type ?? mon.type;
+		if (type !== "dragon") return;
+
+		mon.name.replace(/\b(?<age>young|adult|wyrmling|greatwyrm|ancient|aspect)\b/i, (...m) => {
+			mon.dragonAge = m.last().age.toLowerCase();
+		});
 	}
 }
 
@@ -1299,5 +1336,6 @@ if (typeof module !== "undefined") {
 		DetectNamedCreature,
 		TagImmResVulnConditional,
 		SpeedConvert,
+		DragonAgeTag,
 	};
 }

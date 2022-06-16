@@ -1,10 +1,40 @@
 "use strict";
 
-class BooksList {
-	static getDateStr (it) {
-		if (!it.published) return "\u2014";
-		const date = new Date(it.published);
-		return DatetimeUtil.getDateStr(date);
+class AdventuresBooksList {
+	static _getDateStr (advBook) {
+		if (!advBook.published) return "\u2014";
+		const date = new Date(advBook.published);
+		return DatetimeUtil.getDateStr({date, isShort: true, isPad: true});
+	}
+
+	static _getGroupStr (advBook) {
+		const group = advBook.group || "other";
+		const entry = SourceUtil.ADV_BOOK_GROUPS.find(it => it.group === group);
+		return entry.displayName;
+	}
+
+	static _sortAdventuresBooks (dataList, a, b, o) {
+		a = dataList[a.ix];
+		b = dataList[b.ix];
+
+		if (o.sortBy === "name") return this._sortAdventuresBooks_byName(a, b, o);
+		if (o.sortBy === "storyline") return this._sortAdventuresBooks_orFallback(SortUtil.ascSort, "storyline", a, b, o);
+		if (o.sortBy === "level") return this._sortAdventuresBooks_orFallback(SortUtil.ascSort, "_startLevel", a, b, o);
+		if (o.sortBy === "group") return SortUtil.ascSortSourceGroup(a, b) || this._sortAdventuresBooks_byPublished(a, b, o);
+		if (o.sortBy === "published") return this._sortAdventuresBooks_byPublished(a, b, o);
+	}
+
+	static _sortAdventuresBooks_byPublished (a, b, o) {
+		return SortUtil.ascSortDate(b._pubDate, a._pubDate)
+			|| SortUtil.ascSort(a.publishedOrder || 0, b.publishedOrder || 0)
+			|| this._sortAdventuresBooks_byName(a, b, o);
+	}
+
+	static _sortAdventuresBooks_byName (a, b, o) { return SortUtil.ascSort(a.name, b.name); }
+
+	static _sortAdventuresBooks_orFallback (func, prop, a, b, o) {
+		const initial = func(a[prop] || "", b[prop] || "");
+		return initial || this._sortAdventuresBooks_byName(a, b, o);
 	}
 
 	constructor (options) {
@@ -24,6 +54,8 @@ class BooksList {
 	}
 
 	async pOnPageLoad () {
+		await BrewUtil2.pInit();
+
 		const [data] = await Promise.all([
 			await DataUtil.loadJSON(`${Renderer.get().baseUrl}${this._contentsUrl}`),
 			await ExcludeUtil.pInitialise(),
@@ -61,10 +93,9 @@ class BooksList {
 		});
 
 		this.addData(data);
-		const brewData = await BrewUtil.pAddBrewData();
+		const brewData = await BrewUtil2.pGetBrewProcessed();
 		await handleBrew(brewData);
-		BrewUtil.bind({lists: [this._list, this._listAlt]});
-		BrewUtil.makeBrewButton("manage-brew");
+		ManageBrewUi.bindBtnOpen($(`#manage-brew`));
 		this._list.init();
 		this._listAlt.init();
 
@@ -86,7 +117,7 @@ class BooksList {
 
 			const $elesContents = [];
 			it.contents.map((chapter, ixChapter) => {
-				const $lnkChapter = $$`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter}" class="flex w-100 bklist__row-chapter lst--border lst__row-inner lst__row lst__wrp-cells bold">
+				const $lnkChapter = $$`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter}" class="ve-flex w-100 bklist__row-chapter lst--border lst__row-inner lst__row lst__wrp-cells bold">
 					${Parser.bookOrdinalToAbv(chapter.ordinal)}${chapter.name}
 				</a>`;
 				$elesContents.push($lnkChapter);
@@ -101,19 +132,19 @@ class BooksList {
 					const headerTextClean = headerText.toLowerCase().trim();
 					const headerPos = headerCounts[headerTextClean] || 0;
 					headerCounts[headerTextClean] = (headerCounts[headerTextClean] || 0) + 1;
-					const $lnk = $$`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${header.index ? `,${header.index}` : ""}${headerPos > 0 ? `,${headerPos}` : ""}" class="lst__row lst--border lst__row-inner lst__wrp-cells bklist__row-section flex w-100">
+					const $lnk = $$`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)},${ixChapter},${UrlUtil.encodeForHash(headerText)}${header.index ? `,${header.index}` : ""}${headerPos > 0 ? `,${headerPos}` : ""}" class="lst__row lst--border lst__row-inner lst__wrp-cells bklist__row-section ve-flex w-100">
 						${BookUtil.getContentsSectionHeader(header)}
 					</a>`;
 					$elesContents.push($lnk);
 				});
 			});
 
-			const $wrpContents = $$`<div class="flex w-100 relative">
+			const $wrpContents = $$`<div class="ve-flex w-100 relative">
 				<div class="vr-0 absolute bklist__vr-contents"></div>
-				<div class="flex-col w-100 bklist__wrp-rows-inner">${$elesContents}</div>
+				<div class="ve-flex-col w-100 bklist__wrp-rows-inner">${$elesContents}</div>
 			</div>`.hideVe();
 
-			const $btnToggleExpand = $(`<span class="px-2 py-1p bold">[+]</span>`)
+			const $btnToggleExpand = $(`<span class="px-2 py-1p bold mobile__hidden">[+]</span>`)
 				.click(evt => {
 					evt.stopPropagation();
 					evt.preventDefault();
@@ -121,9 +152,9 @@ class BooksList {
 					$wrpContents.toggleVe();
 				});
 
-			const $eleLi = $$`<div class="flex-col w-100">
+			const $eleLi = $$`<div class="ve-flex-col w-100">
 				<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="split-v-center lst--border lst__row-inner lst__row ${isExcluded ? `lst__row--blacklisted` : ""}">
-					<span class="w-100 flex">${this._rowBuilderFn(it)}</span>
+					<span class="w-100 ve-flex">${this._rowBuilderFn(it)}</span>
 					${$btnToggleExpand}
 				</a>
 				${$wrpContents}
@@ -134,22 +165,21 @@ class BooksList {
 				$eleLi,
 				it.name,
 				{source: it.id},
-				{uniqueId: it.uniqueId, $btnToggleExpand},
+				{$btnToggleExpand},
 			);
 
 			this._list.addItem(listItem);
 
 			// region Alt list (covers/thumbnails)
-			const eleLiAlt = $(`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="flex-col flex-v-center m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blacklisted` : ""} py-3 px-2 ${Parser.sourceJsonToColor(it.source)}" ${BrewUtil.sourceJsonToStyle(it.source)}>
-				<img src="${it.coverUrl || `${Renderer.get().baseMediaUrls["img"] || Renderer.get().baseUrl}img/covers/blank.png`}" class="mb-2 bks__bookshelf-image" loading="lazy" alt="Cover Image: ${(it.name || "").qq()}">
-				<div class="bks__bookshelf-item-name flex-vh-center text-center">${it.name}</div>
+			const eleLiAlt = $(`<a href="${this._rootPage}#${UrlUtil.encodeForHash(it.id)}" class="ve-flex-col ve-flex-v-center m-3 bks__wrp-bookshelf-item ${isExcluded ? `bks__wrp-bookshelf-item--blacklisted` : ""} py-3 px-2 ${Parser.sourceJsonToColor(it.source)}" ${BrewUtil2.sourceJsonToStyle(it.source)}>
+				<img src="${Renderer.adventureBook.getCoverUrl(it)}" class="mb-2 bks__bookshelf-image" loading="lazy" alt="Cover Image: ${(it.name || "").qq()}">
+				<div class="bks__bookshelf-item-name ve-flex-vh-center text-center">${it.name}</div>
 			</a>`)[0];
 			const listItemAlt = new ListItem(
 				this._dataIx,
 				eleLiAlt,
 				it.name,
 				{source: it.id},
-				{uniqueId: it.uniqueId},
 			);
 			this._listAlt.addItem(listItemAlt);
 			// endregion

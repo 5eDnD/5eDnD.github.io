@@ -28,7 +28,8 @@ const PANEL_TYP_TWITCH = 11;
 const PANEL_TYP_TWITCH_CHAT = 12;
 const PANEL_TYP_ADVENTURES = 13;
 const PANEL_TYP_BOOKS = 14;
-const PANEL_TYP_INITIATIVE_TRACKER_PLAYER = 15;
+const PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V1 = 15;
+const PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V0 = 151;
 const PANEL_TYP_COUNTER = 16;
 const PANEL_TYP_IMAGE = 20;
 const PANEL_TYP_ADVENTURE_DYNAMIC_MAP = 21;
@@ -185,6 +186,7 @@ class Board {
 		this.doAdjust$creenCss();
 		this.doShowLoading();
 
+		await BrewUtil2.pInit();
 		await ExcludeUtil.pInitialise();
 
 		await Promise.all([
@@ -329,7 +331,7 @@ class Board {
 			indexIdField,
 		},
 	) {
-		const brew = await BrewUtil.pAddBrewData();
+		const brew = await BrewUtil2.pGetBrewProcessed();
 
 		const data = await DataUtil.loadJSON(dataPath);
 		adventureOrBookIdToSource[dataProp] = adventureOrBookIdToSource[dataProp] || {};
@@ -420,7 +422,7 @@ class Board {
 				this.exiledPanels.unshift(toExile);
 				const toDestroy = this.exiledPanels.splice(10);
 				toDestroy.forEach(p => p.destroy());
-				this.sideMenu.doUpdateHistory()
+				this.sideMenu.doUpdateHistory();
 			} else this.destroyPanel(id);
 			this.doSaveStateDebounced();
 		}
@@ -492,7 +494,7 @@ class Board {
 		if (this.$btnLockPanels && (toLoad.lk !== !!this.isLocked)) this.$btnLockPanels.click();
 
 		// re-exile
-		const toReExile = toLoad.ex.filter(Boolean).reverse()
+		const toReExile = toLoad.ex.filter(Boolean).reverse();
 		for (const saved of toReExile) {
 			const p = await Panel.fromSavedState(this, saved);
 			if (p) {
@@ -545,7 +547,7 @@ class Board {
 		Object.values(this.panels).forEach(p => {
 			if (panel && panel.id === p.id) return;
 			p.$btnAddInner.removeClass("faux-hover");
-		})
+		});
 	}
 
 	addPanel (panel) {
@@ -608,7 +610,7 @@ class SideMenu {
 		});
 		renderDivider();
 
-		const $wrpFullscreen = $(`<div class="sidemenu__row flex-vh-center-around"></div>`).appendTo(this.$mnu);
+		const $wrpFullscreen = $(`<div class="sidemenu__row ve-flex-vh-center-around"></div>`).appendTo(this.$mnu);
 		const $btnFullscreen = $(`<button class="btn btn-primary">Toggle Fullscreen</button>`).appendTo($wrpFullscreen);
 		this.board.$btnFullscreen = $btnFullscreen;
 		$btnFullscreen.on("click", () => {
@@ -636,7 +638,7 @@ class SideMenu {
 		renderDivider();
 
 		const $wrpSaveLoad = $(`<div class="sidemenu__row--vert"/>`).appendTo(this.$mnu);
-		const $wrpSaveLoadFile = $(`<div class="sidemenu__row flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
+		const $wrpSaveLoadFile = $(`<div class="sidemenu__row ve-flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
 		const $btnSaveFile = $(`<button class="btn btn-primary">Save to File</button>`).appendTo($wrpSaveLoadFile);
 		$btnSaveFile.on("click", () => {
 			DataUtil.userDownload(`dm-screen`, this.board.getSaveableState(), {fileType: "dm-screen"});
@@ -651,7 +653,7 @@ class SideMenu {
 			this.board.doReset();
 			await this.board.pDoLoadStateFrom(jsons[0]);
 		});
-		const $wrpSaveLoadUrl = $(`<div class="sidemenu__row flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
+		const $wrpSaveLoadUrl = $(`<div class="sidemenu__row ve-flex-vh-center-around"/>`).appendTo($wrpSaveLoad);
 		const $btnSaveLink = $(`<button class="btn btn-primary">Save to URL</button>`).appendTo($wrpSaveLoadUrl);
 		$btnSaveLink.on("click", async () => {
 			const encoded = `${window.location.href.split("#")[0]}#${encodeURIComponent(JSON.stringify(this.board.getSaveableState()))}`;
@@ -660,7 +662,7 @@ class SideMenu {
 		});
 		renderDivider();
 
-		const $wrpCbConfirm = $(`<div class="sidemenu__row split-v-center"><label class="sidemenu__row__label sidemenu__row__label--cb-label"><span>Confirm on Tab Close</span></label></div>`).appendTo(this.$mnu);
+		const $wrpCbConfirm = $(`<div class="sidemenu__row split-v-center"><label class="sidemenu__row__label sidemenu__row__label--cb-label"><span>Confirm on Panel Tab Close</span></label></div>`).appendTo(this.$mnu);
 		this.board.$cbConfirmTabClose = $(`<input type="checkbox" class="sidemenu__row__label__cb">`).appendTo($wrpCbConfirm.find(`label`));
 		renderDivider();
 
@@ -721,7 +723,7 @@ class SideMenu {
 				const offsetY = EventUtil.getClientY(e) - offset.top;
 
 				$body.append($contents);
-				$(`.panel-control`).hide();
+				$(`.panel-control-move`).hide();
 				$contents.css("overflow-y", "hidden");
 				Panel.setMovingCss(e, $contents, w, h, offsetX, offsetY, 61);
 				$wrpHistItem.css("box-shadow", "none");
@@ -890,8 +892,12 @@ class Panel {
 					p.doPopulate_InitiativeTracker(saved.s, saved.r);
 					handleTabRenamed(p);
 					return p;
-				case PANEL_TYP_INITIATIVE_TRACKER_PLAYER:
-					p.doPopulate_InitiativeTrackerPlayer(saved.s, saved.r);
+				case PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V1:
+					p.doPopulate_InitiativeTrackerPlayerV1(saved.s, saved.r);
+					handleTabRenamed(p);
+					return p;
+				case PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V0:
+					p.doPopulate_InitiativeTrackerPlayerV0(saved.s, saved.r);
 					handleTabRenamed(p);
 					return p;
 				case PANEL_TYP_COUNTER:
@@ -931,7 +937,7 @@ class Panel {
 					handleTabRenamed(p);
 					return p;
 				case PANEL_TYP_ADVENTURE_DYNAMIC_MAP:
-					p.doPopulate_AdventureDynamicMap(saved.s, saved.r);
+					p.doPopulate_AdventureBookDynamicMap(saved.s, saved.r);
 					handleTabRenamed(p);
 					return p;
 				case PANEL_TYP_BLANK:
@@ -946,6 +952,11 @@ class Panel {
 		if (saved.a) {
 			p.isTabs = true;
 			p.doRenderTabs();
+
+			// If tab data is untyped, replace it with a blank panel, to avoid breaking "active tab" index.
+			// This can happen if a "blank space" panel is mixed in with other tabs.
+			saved.a.forEach(it => it.t = it.t ?? PANEL_TYP_BLANK);
+
 			for (let ix = 0; ix < saved.a.length; ++ix) {
 				const tab = saved.a[ix];
 				await pLoadState(tab, true, ix);
@@ -1087,9 +1098,9 @@ class Panel {
 					};
 
 					if (originalCr) {
-						doRender(mon)
+						doRender(mon);
 					} else {
-						ScaleCreature.scale(mon, targetCr).then(toRender => doRender(toRender))
+						ScaleCreature.scale(mon, targetCr).then(toRender => doRender(toRender));
 					}
 				},
 			});
@@ -1340,7 +1351,7 @@ class Panel {
 				PANEL_TYP_ADVENTURES,
 				meta,
 				$(`<div class="panel-content-wrapper-inner"></div>`).append(view.$getEle()),
-				title || data.name || "",
+				title || data?.chapter?.name || "",
 				true,
 				!!title,
 			);
@@ -1361,7 +1372,7 @@ class Panel {
 				PANEL_TYP_BOOKS,
 				meta,
 				$(`<div class="panel-content-wrapper-inner"></div>`).append(view.$getEle()),
-				title || data.name || "",
+				title || data?.chapter?.name || "",
 				true,
 				!!title,
 			);
@@ -1394,11 +1405,21 @@ class Panel {
 		);
 	}
 
-	doPopulate_InitiativeTrackerPlayer (state = {}, title) {
+	doPopulate_InitiativeTrackerPlayerV1 (state = {}, title) {
 		this.set$ContentTab(
-			PANEL_TYP_INITIATIVE_TRACKER_PLAYER,
+			PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V1,
 			state,
-			$(`<div class="panel-content-wrapper-inner"/>`).append(InitiativeTrackerPlayer.make$tracker(this.board, state)),
+			$(`<div class="panel-content-wrapper-inner"/>`).append(InitiativeTrackerPlayerV1.make$tracker(this.board, state)),
+			title || "Initiative Tracker",
+			true,
+		);
+	}
+
+	doPopulate_InitiativeTrackerPlayerV0 (state = {}, title) {
+		this.set$ContentTab(
+			PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V0,
+			state,
+			$(`<div class="panel-content-wrapper-inner"/>`).append(InitiativeTrackerPlayerV0.make$tracker(this.board, state)),
 			title || "Initiative Tracker",
 			true,
 		);
@@ -1522,12 +1543,12 @@ class Panel {
 		});
 	}
 
-	doPopulate_AdventureDynamicMap (state, title = "Map Viewer") {
+	doPopulate_AdventureBookDynamicMap (state, title = "Map Viewer") {
 		this.set$ContentTab(
 			PANEL_TYP_ADVENTURE_DYNAMIC_MAP,
 			state,
 			$(`<div class="panel-content-wrapper-inner"/>`).append(DmMapper.$getMapper(this.board, state)),
-			title || "Time Tracker",
+			title || "Map Viewer",
 			true,
 		);
 	}
@@ -1714,7 +1735,7 @@ class Panel {
 			tabDatas: this.tabDatas,
 			tabCanRename: this.tabCanRename,
 			tabRenamed: this.tabRenamed,
-		}
+		};
 	}
 
 	setPanelMeta (type, contentMeta) {
@@ -1772,11 +1793,11 @@ class Panel {
 
 	doRenderTabs () {
 		if (this.isTabs) {
-			this.$pnlWrpTabs.css({display: "flex"});
+			this.$pnlWrpTabs.showVe();
 			this.$pnlWrpContent.addClass("panel-content-wrapper-tabs");
 			this.$pnlAddTab.addClass("hidden");
 		} else {
-			this.$pnlWrpTabs.css({display: ""});
+			this.$pnlWrpTabs.hideVe();
 			this.$pnlWrpContent.removeClass("panel-content-wrapper-tabs");
 			this.$pnlAddTab.removeClass("hidden");
 		}
@@ -1805,8 +1826,10 @@ class Panel {
 	}
 
 	toggleMovable (val) {
-		this.$pnl.find(`.panel-control`).toggle(val);
+		this.$pnl.find(`.panel-control-move`).toggle(val);
+		// TODO this
 		this.$pnl.toggleClass(`panel-mode-move`, val);
+		this.$pnl.find(`.panel-control-bar`).toggleClass("move-expand-active", val);
 	}
 
 	render () {
@@ -1862,7 +1885,7 @@ class Panel {
 			this.$btnAddInner = $btnAdd;
 			this.$pnlWrpContent = $wrpContent;
 
-			const $wrpTabs = $(`<div class="content-tab-bar"/>`).appendTo($pnl);
+			const $wrpTabs = $(`<div class="content-tab-bar ve-flex"/>`).hideVe().appendTo($pnl);
 			const $wrpTabsInner = $(`<div class="content-tab-bar-inner"/>`).on("wheel", (evt) => {
 				const delta = evt.originalEvent.deltaY;
 				const curr = $wrpTabsInner.scrollLeft();
@@ -1996,12 +2019,17 @@ class Panel {
 
 	_get$BtnSelTab (ix, title, tabCanRename) {
 		title = title || "[Untitled]";
-		const $btnSelTab = $(`<span class="btn btn-default content-tab flex ${tabCanRename ? "content-tab-can-rename" : ""}"><span class="content-tab-title overflow-ellipsis" title="${title}">${title}</span></span>`)
+
+		const doCloseTabWithConfirmation = () => {
+			if (!this.board.getConfirmTabClose() || (this.board.getConfirmTabClose() && confirm(`Are you sure you want to close tab "${this.tabDatas[ix].title}"?`))) this.doCloseTab(ix);
+		};
+
+		const $btnSelTab = $(`<span class="btn btn-default content-tab ve-flex ${tabCanRename ? "content-tab-can-rename" : ""}"><span class="content-tab-title overflow-ellipsis" title="${title}">${title}</span></span>`)
 			.on("mousedown", (evt) => {
 				if (evt.which === 1) {
 					this.setActiveTab(ix);
 				} else if (evt.which === 2) {
-					this.doCloseTab(ix);
+					doCloseTabWithConfirmation();
 				}
 			})
 			.on("contextmenu", async (evt) => {
@@ -2019,7 +2047,7 @@ class Panel {
 			.on("mousedown", (evt) => {
 				if (evt.button === 0) {
 					evt.stopPropagation();
-					if (!this.board.getConfirmTabClose() || (this.board.getConfirmTabClose() && confirm(`Are you sure you want to close tab "${this.tabDatas[ix].title}"?`))) this.doCloseTab(ix);
+					doCloseTabWithConfirmation();
 				}
 			}).appendTo($btnSelTab);
 		return $btnSelTab;
@@ -2110,7 +2138,7 @@ class Panel {
 	}
 
 	get$Content () {
-		return this.$content
+		return this.$content;
 	}
 
 	exile () {
@@ -2244,7 +2272,8 @@ class Panel {
 						s: $content.find(`.dm-init`).data("getState")(),
 					};
 				}
-				case PANEL_TYP_INITIATIVE_TRACKER_PLAYER: {
+				case PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V1:
+				case PANEL_TYP_INITIATIVE_TRACKER_PLAYER_V0: {
 					return {
 						t: type,
 						r: toSaveTitle,
@@ -2334,16 +2363,19 @@ class JoystickMenu {
 		this.panel.$pnl.on("mouseover", () => this.panel.board.setHoveringPanel(this.panel));
 		this.panel.$pnl.on("mouseout", () => this.panel.board.setHoveringPanel(null));
 
-		const $ctrlMove = $(`<div class="panel-control panel-control-middle"/>`);
-		const $ctrlXpandUp = $(`<div class="panel-control panel-control-top"/>`);
-		const $ctrlXpandRight = $(`<div class="panel-control panel-control-right"/>`);
-		const $ctrlXpandDown = $(`<div class="panel-control panel-control-bottom"/>`);
-		const $ctrlXpandLeft = $(`<div class="panel-control panel-control-left"/>`);
-		const $ctrlBg = $(`<div class="panel-control panel-control-bg"/>`);
-		this.$ctrls = [$ctrlMove, $ctrlXpandUp, $ctrlXpandRight, $ctrlXpandDown, $ctrlXpandLeft, $ctrlBg];
+		const $ctrlMove = $(`<div class="panel-control-move panel-control-move--bg panel-control-move-middle"></div>`);
+		const $ctrlXpandUp = $(`<div class="panel-control-move panel-control-move--bg panel-control-move-top"></div>`);
+		const $ctrlXpandRight = $(`<div class="panel-control-move panel-control-move--bg panel-control-move-right"></div>`);
+		const $ctrlXpandDown = $(`<div class="panel-control-move panel-control-move--bg panel-control-move-bottom"></div>`);
+		const $ctrlXpandLeft = $(`<div class="panel-control-move panel-control-move--bg panel-control-move-left"></div>`);
+		const $ctrlBtnDone = $(`<div class="panel-control-move panel-control-move--bg panel-control-move-btn-done">
+			<div class="panel-control-move-icn-done glyphicon glyphicon-move text-center" title="Stop Moving"></div>
+		</div>`);
+		const $ctrlBg = $(`<div class="panel-control-move panel-control-bg"></div>`);
+		this.$ctrls = [$ctrlMove, $ctrlXpandUp, $ctrlXpandRight, $ctrlXpandDown, $ctrlXpandLeft, $ctrlBtnDone, $ctrlBg];
 
-		$ctrlMove.on("mousedown touchstart", (e) => {
-			e.preventDefault();
+		$ctrlMove.on("mousedown touchstart", (evt) => {
+			evt.preventDefault();
 			this.panel.board.setVisiblyHoveringPanel(true);
 			const $body = $(`body`);
 			MiscUtil.clearSelection();
@@ -2354,12 +2386,12 @@ class JoystickMenu {
 			const h = this.panel.$content.height();
 			const childH = this.panel.$content.children().first().height();
 			const offset = this.panel.$content.offset();
-			const offsetX = EventUtil.getClientX(e) - offset.left;
-			const offsetY = h > childH ? childH / 2 : (EventUtil.getClientY(e) - offset.top);
+			const offsetX = EventUtil.getClientX(evt) - offset.left;
+			const offsetY = h > childH ? childH / 2 : (EventUtil.getClientY(evt) - offset.top);
 
 			$body.append(this.panel.$content);
-			$(`.panel-control`).hide();
-			Panel.setMovingCss(e, this.panel.$content, w, h, offsetX, offsetY, 52);
+			$(`.panel-control-move`).hide();
+			Panel.setMovingCss(evt, this.panel.$content, w, h, offsetX, offsetY, 52);
 			this.panel.board.get$creen().addClass("board-content-hovering");
 			this.panel.$content.addClass("panel-content-hovering");
 			this.panel.$pnl.addClass("pnl-content-tab-bar-hidden");
@@ -2404,8 +2436,8 @@ class JoystickMenu {
 			evt.preventDefault();
 			MiscUtil.clearSelection();
 			$(`body`).css("userSelect", "none");
-			$(`.panel-control`).hide();
-			$(`.panel-control-bar`).addClass("xpander-active");
+			$(`.panel-control-move`).hide();
+			$(`.panel-control-bar`).addClass("move-expand-active");
 			$ctrlBg.show();
 			this.panel.$pnl.addClass("panel-mode-move");
 			switch (dir) {
@@ -2495,8 +2527,8 @@ class JoystickMenu {
 				$(document).off(`mousemove${EVT_NAMESPACE} touchmove${EVT_NAMESPACE}`).off(`mouseup${EVT_NAMESPACE} touchend${EVT_NAMESPACE}`);
 
 				$(`body`).css("userSelect", "");
-				this.panel.$pnl.find(`.panel-control`).show();
-				$(`.panel-control-bar`).removeClass("xpander-active");
+				this.panel.$pnl.find(`.panel-control-move`).show();
+				$(`.panel-control-bar`).removeClass("move-expand-active");
 				this.panel.$pnl.css({
 					zIndex: "",
 					boxShadow: "",
@@ -2610,7 +2642,19 @@ class JoystickMenu {
 		$ctrlXpandLeft.on("mousedown touchstart", xpandHandler.bind(this, LEFT));
 		$ctrlXpandDown.on("mousedown touchstart", xpandHandler.bind(this, DOWN));
 
-		this.panel.$pnl.append($ctrlBg).append($ctrlMove).append($ctrlXpandUp).append($ctrlXpandRight).append($ctrlXpandDown).append($ctrlXpandLeft);
+		$ctrlBtnDone.on("mousedown touchstart", evt => {
+			evt.preventDefault();
+			this.panel.toggleMovable(false);
+		});
+
+		this.panel.$pnl
+			.append($ctrlBg)
+			.append($ctrlMove)
+			.append($ctrlXpandUp)
+			.append($ctrlXpandRight)
+			.append($ctrlXpandDown)
+			.append($ctrlXpandLeft)
+			.append($ctrlBtnDone);
 	}
 
 	doShow () {
@@ -2667,7 +2711,7 @@ class AddMenu {
 
 	render () {
 		if (!this._$menuInner) {
-			this._$menuInner = $(`<div class="flex-col w-100 h-100">`);
+			this._$menuInner = $(`<div class="ve-flex-col w-100 h-100">`);
 			const $tabBar = $(`<div class="panel-addmenu-bar"/>`).appendTo(this._$menuInner);
 			this.$tabView = $(`<div class="panel-addmenu-view"/>`).appendTo(this._$menuInner);
 
@@ -2873,7 +2917,7 @@ class AddMenuImageTab extends AddMenuTab {
 									content: "Failed to upload: Unknown error",
 									type: "danger",
 								});
-								setTimeout(() => { throw e });
+								setTimeout(() => { throw e; });
 							}
 							this.menu.pnl.doPopulate_Empty(ix);
 						},
@@ -2922,9 +2966,9 @@ class AddMenuImageTab extends AddMenuTab {
 				.click(() => DmMapper.pHandleMenuButtonClick(this.menu));
 
 			$$`<div class="ui-modal__row">
-				<div>Adventure Map Dynamic Viewer</div>
+				<div>Adventure/Book Map Dynamic Viewer</div>
 				${$btnSelectAdventure}
-			</div>`.appendTo($tab)
+			</div>`.appendTo($tab);
 			// endregion
 
 			this.$tab = $tab;
@@ -2957,15 +3001,26 @@ class AddMenuSpecialTab extends AddMenuTab {
 				this.menu.doClose();
 			});
 
-			const $btnPlayertracker = $(`<button class="btn btn-primary btn-sm">Add</button>`)
+			const $btnPlayertrackerV1 = $(`<button class="btn btn-primary btn-sm">Add</button>`)
 				.click(() => {
-					this.menu.pnl.doPopulate_InitiativeTrackerPlayer();
+					this.menu.pnl.doPopulate_InitiativeTrackerPlayerV1();
 					this.menu.doClose();
 				});
 
 			$$`<div class="ui-modal__row">
-			<span>Initiative Tracker Player View</span>
-			${$btnPlayertracker}
+			<span>Initiative Tracker Player View (Standard)</span>
+			${$btnPlayertrackerV1}
+			</div>`.appendTo($tab);
+
+			const $btnPlayertrackerV0 = $(`<button class="btn btn-primary btn-sm">Add</button>`)
+				.click(() => {
+					this.menu.pnl.doPopulate_InitiativeTrackerPlayerV0();
+					this.menu.doClose();
+				});
+
+			$$`<div class="ui-modal__row">
+			<span>Initiative Tracker Player View (Manual/Legacy)</span>
+			${$btnPlayertrackerV0}
 			</div>`.appendTo($tab);
 
 			$(`<hr class="ui-modal__row-sep"/>`).appendTo($tab);
@@ -3225,7 +3280,7 @@ class AddMenuSearchTab extends AddMenuTab {
 				</select>
 			`).appendTo($wrpCtrls).toggle(Object.keys(this.indexes).length !== 1);
 			Object.keys(this.indexes).sort().filter(it => it !== "ALL").forEach(it => {
-				$selCat.append(`<option value="${it}">${this._getCatOptionText(it)}</option>`)
+				$selCat.append(`<option value="${it}">${this._getCatOptionText(it)}</option>`);
 			});
 			$selCat.on("change", () => {
 				this.cat = $selCat.val();
@@ -3287,19 +3342,21 @@ class AdventureOrBookLoader {
 		this._cache = {};
 		this._pLoadings = {};
 		this._availableOfficial = new Set();
+
+		this._indexOfficial = null;
 	}
 
 	async pInit () {
 		const indexPath = this._getIndexPath();
-		const indexJson = await DataUtil.loadJSON(indexPath);
-		indexJson[this._type].forEach(meta => this._availableOfficial.add(meta.id.toLowerCase()));
+		this._indexOfficial = await DataUtil.loadJSON(indexPath);
+		this._indexOfficial[this._type].forEach(meta => this._availableOfficial.add(meta.id.toLowerCase()));
 	}
 
 	_getIndexPath () {
 		switch (this._type) {
 			case "adventure": return `${Renderer.get().baseUrl}data/adventures.json`;
 			case "book": return `${Renderer.get().baseUrl}data/books.json`;
-			default: throw new Error(`Unknown loader type "${this._type}"`)
+			default: throw new Error(`Unknown loader type "${this._type}"`);
 		}
 	}
 
@@ -3307,44 +3364,50 @@ class AdventureOrBookLoader {
 		switch (this._type) {
 			case "adventure": return `${Renderer.get().baseUrl}data/adventure/adventure-${bookOrAdventure.toLowerCase()}.json`;
 			case "book": return `${Renderer.get().baseUrl}data/book/book-${bookOrAdventure.toLowerCase()}.json`;
-			default: throw new Error(`Unknown loader type "${this._type}"`)
+			default: throw new Error(`Unknown loader type "${this._type}"`);
 		}
 	}
 
-	_getBrewData (bookOrAdventure) {
-		const searchFor = bookOrAdventure.toLowerCase();
+	async _pGetBrewData ({advBookId, prop}) {
+		const searchFor = advBookId.toLowerCase();
+		const brew = await BrewUtil2.pGetBrewProcessed();
 		switch (this._type) {
-			case "adventure": {
-				return (BrewUtil.homebrew.adventureData || []).find(it => it.id.toLowerCase() === searchFor);
-			}
+			case "adventure":
 			case "book": {
-				return (BrewUtil.homebrew.bookData || []).find(it => it.id.toLowerCase() === searchFor);
+				return (brew[prop] || []).find(it => it.id.toLowerCase() === searchFor);
 			}
-			default: throw new Error(`Unknown loader type "${this._type}"`)
+			default: throw new Error(`Unknown loader type "${this._type}"`);
 		}
 	}
 
-	async pFill (bookOrAdventure) {
-		if (!this._pLoadings[bookOrAdventure]) {
-			this._pLoadings[bookOrAdventure] = (async () => {
-				this._cache[bookOrAdventure] = {};
-				let data;
-				if (this._availableOfficial.has(bookOrAdventure.toLowerCase())) {
-					data = await DataUtil.loadJSON(this._getJsonPath(bookOrAdventure));
+	async pFill (advBookId) {
+		if (!this._pLoadings[advBookId]) {
+			this._pLoadings[advBookId] = (async () => {
+				this._cache[advBookId] = {};
+
+				let head, body;
+				if (this._availableOfficial.has(advBookId.toLowerCase())) {
+					head = this._indexOfficial[this._type].find(it => it.id.toLowerCase() === advBookId.toLowerCase());
+					body = await DataUtil.loadJSON(this._getJsonPath(advBookId));
 				} else {
-					data = this._getBrewData(bookOrAdventure);
+					head = await this._pGetBrewData({advBookId, prop: this._type});
+					body = await this._pGetBrewData({advBookId, prop: `${this._type}Data`});
 				}
-				if (data) data.data.forEach((chap, i) => this._cache[bookOrAdventure][i] = chap);
+				if (!head || !body) return;
+
+				this._cache[advBookId] = {head, chapters: {}};
+				body.data.forEach((chap, i) => this._cache[advBookId].chapters[i] = chap);
 			})();
 		}
-		await this._pLoadings[bookOrAdventure];
+		await this._pLoadings[advBookId];
 	}
 
 	getFromCache (adventure, chapter, {isAllowMissing = false} = {}) {
-		const out = this._cache?.[adventure]?.[chapter];
-		if (out) return out;
+		const outHead = this._cache?.[adventure]?.head;
+		const outBody = this._cache?.[adventure]?.chapters?.[chapter];
+		if (outHead && outBody) return {chapter: outBody, head: outHead};
 		if (isAllowMissing) return null;
-		return MiscUtil.copy(AdventureOrBookLoader._NOT_FOUND);
+		return {chapter: MiscUtil.copy(AdventureOrBookLoader._NOT_FOUND), head: {source: VeCt.STR_GENERIC, id: VeCt.STR_GENERIC}};
 	}
 }
 AdventureOrBookLoader._NOT_FOUND = {
@@ -3365,80 +3428,87 @@ class NoteBox {
 	static make$Notebox (board, content) {
 		const $iptText = $(`<textarea class="panel-content-textarea" placeholder="Supports inline rolls and content tags (CTRL-q with the caret in the text to activate the embed):\n • Inline rolls,  [[1d20+2]]\n • Content tags (as per the Demo page), {@creature goblin}, {@spell fireball}\n • Link tags, {@link https://5e.tools}">${content || ""}</textarea>`)
 			.on("keydown", async evt => {
-				if ((evt.ctrlKey || evt.metaKey) && evt.key === "q") {
-					const txt = $iptText[0];
-					if (txt.selectionStart === txt.selectionEnd) {
-						const pos = txt.selectionStart - 1;
-						const text = txt.value;
-						const l = text.length;
-						let beltStack = [];
-						let braceStack = [];
-						let belts = 0;
-						let braces = 0;
-						let beltsAtPos = null;
-						let bracesAtPos = null;
-						let lastBeltPos = null;
-						let lastBracePos = null;
-						outer: for (let i = 0; i < l; ++i) {
-							const c = text[i];
-							switch (c) {
-								case "[":
-									belts = Math.min(belts + 1, 2);
-									if (belts === 2) beltStack = [];
-									lastBeltPos = i;
-									break;
-								case "]":
-									belts = Math.max(belts - 1, 0);
-									if (belts === 0 && i > pos) break outer;
-									break;
-								case "{":
-									if (text[i + 1] === "@") {
-										braces = 1;
-										braceStack = [];
-										lastBracePos = i;
-									}
-									break;
-								case "}":
-									braces = 0;
-									if (i >= pos) break outer;
-									break;
-								default:
-									if (belts === 2) {
-										beltStack.push(c);
-									}
-									if (braces) {
-										braceStack.push(c);
-									}
-							}
-							if (i === pos) {
-								beltsAtPos = belts;
-								bracesAtPos = braces;
-							}
-						}
+				const key = EventUtil.getKeyIgnoreCapsLock(evt);
 
-						if (beltsAtPos === 2 && belts === 0) {
-							const str = beltStack.join("");
-							await Renderer.dice.pRoll2(str.replace(`[[`, "").replace(`]]`, ""), {
-								isUser: false,
-								name: "DM Screen",
-							});
-						} else if (bracesAtPos === 1 && braces === 0) {
-							const str = braceStack.join("");
-							const tag = str.split(" ")[0].replace(/^@/, "");
-							const text = str.split(" ").slice(1).join(" ");
-							if (Renderer.hover.TAG_TO_PAGE[tag]) {
-								const r = Renderer.get().render(`{${str}}`);
-								evt.type = "mouseover";
-								evt.shiftKey = true;
-								evt.ctrlKey = false;
-								$(r).trigger(evt);
-							} else if (tag === "link") {
-								const [txt, link] = Renderer.splitTagByPipe(text);
-								window.open(link && link.trim() ? link : txt);
-							}
+				const isCtrlQ = (evt.ctrlKey || evt.metaKey) && key === "q";
+
+				if (!isCtrlQ) {
+					board.doSaveStateDebounced();
+					return;
+				}
+
+				const txt = $iptText[0];
+				if (txt.selectionStart === txt.selectionEnd) {
+					const pos = txt.selectionStart - 1;
+					const text = txt.value;
+					const l = text.length;
+					let beltStack = [];
+					let braceStack = [];
+					let belts = 0;
+					let braces = 0;
+					let beltsAtPos = null;
+					let bracesAtPos = null;
+					let lastBeltPos = null;
+					let lastBracePos = null;
+					outer: for (let i = 0; i < l; ++i) {
+						const c = text[i];
+						switch (c) {
+							case "[":
+								belts = Math.min(belts + 1, 2);
+								if (belts === 2) beltStack = [];
+								lastBeltPos = i;
+								break;
+							case "]":
+								belts = Math.max(belts - 1, 0);
+								if (belts === 0 && i > pos) break outer;
+								break;
+							case "{":
+								if (text[i + 1] === "@") {
+									braces = 1;
+									braceStack = [];
+									lastBracePos = i;
+								}
+								break;
+							case "}":
+								braces = 0;
+								if (i >= pos) break outer;
+								break;
+							default:
+								if (belts === 2) {
+									beltStack.push(c);
+								}
+								if (braces) {
+									braceStack.push(c);
+								}
+						}
+						if (i === pos) {
+							beltsAtPos = belts;
+							bracesAtPos = braces;
 						}
 					}
-				} else board.doSaveStateDebounced();
+
+					if (beltsAtPos === 2 && belts === 0) {
+						const str = beltStack.join("");
+						await Renderer.dice.pRoll2(str.replace(`[[`, "").replace(`]]`, ""), {
+							isUser: false,
+							name: "DM Screen",
+						});
+					} else if (bracesAtPos === 1 && braces === 0) {
+						const str = braceStack.join("");
+						const tag = str.split(" ")[0].replace(/^@/, "");
+						const text = str.split(" ").slice(1).join(" ");
+						if (Renderer.hover.TAG_TO_PAGE[tag]) {
+							const r = Renderer.get().render(`{${str}}`);
+							evt.type = "mouseover";
+							evt.shiftKey = true;
+							evt.ctrlKey = false;
+							$(r).trigger(evt);
+						} else if (tag === "link") {
+							const [txt, link] = Renderer.splitTagByPipe(text);
+							window.open(link && link.trim() ? link : txt);
+						}
+					}
+				}
 			});
 
 		return $iptText;
@@ -3528,7 +3598,7 @@ class UnitConverter {
 					$iptRight.val(Number((total * mL).toFixed(5)));
 				} catch (e) {
 					$iptLeft.addClass(`ipt-invalid`);
-					$iptRight.val("")
+					$iptRight.val("");
 				}
 			} else showInvalid();
 			board.doSaveStateDebounced();
@@ -3587,9 +3657,9 @@ class AdventureOrBookView {
 			<table class="stats stats--book stats--book-hover"><tr class="text"><td colspan="6">${this._$wrpContent}</td></tr></table>
 		</div>`;
 
-		const $wrp = $$`<div class="flex-col h-100">
+		const $wrp = $$`<div class="ve-flex-col h-100">
 		${this._$wrpContentOuter}
-		<div class="flex no-shrink dm-book__wrp-controls">${this._$titlePrev}${$btnPrev}${$btnNext}${this._$titleNext}</div>
+		<div class="ve-flex no-shrink dm-book__wrp-controls">${this._$titlePrev}${$btnPrev}${$btnNext}${this._$titleNext}</div>
 		</div>`;
 
 		// assumes the data has already been loaded/cached
@@ -3612,14 +3682,33 @@ class AdventureOrBookView {
 		return this._loader.getFromCache(this._contentMeta[this._prop], chapter, {isAllowMissing});
 	}
 
+	static _PROP_TO_URL = {
+		"a": UrlUtil.PG_ADVENTURE,
+		"b": UrlUtil.PG_BOOK,
+	};
+
 	_render ({isSkipMissingData = false} = {}) {
 		const hasData = !!this._getData(this._contentMeta.c, {isAllowMissing: true});
 		if (!hasData && isSkipMissingData) return false;
 
-		const data = this._getData(this._contentMeta.c);
+		const {head, chapter} = this._getData(this._contentMeta.c);
 
-		this._panel.setTabTitle(this._tabIx, data.name);
-		this._$wrpContent.empty().append(Renderer.get().setFirstSection(true).render(data));
+		this._panel.setTabTitle(this._tabIx, chapter.name);
+		const stack = [];
+		const page = this.constructor._PROP_TO_URL[this._prop];
+		Renderer
+			.get()
+			.setFirstSection(true)
+			.recursiveRender(
+				chapter,
+				stack,
+				{
+					adventureBookPage: page,
+					adventureBookSource: head.source,
+					adventureBookHash: UrlUtil.URL_TO_HASH_BUILDER[page]({id: this._contentMeta[this._prop]}),
+				},
+			);
+		this._$wrpContent.empty().fastSetHtml(stack[0]);
 
 		const dataPrev = this._getData(this._contentMeta.c - 1, {isAllowMissing: true});
 		const dataNext = this._getData(this._contentMeta.c + 1, {isAllowMissing: true});

@@ -17,15 +17,6 @@
 	.night-mode .nav > li > a {
 		border-color: $rgb-border-grey--night;
 	}
-
-	.nav .caret--right {
-		transform: none;
-	}
-
-	.nav .dropdown-menu--side {
-		top: 100%;
-		left: 0;
-	}
 }
 
 .night-mode {
@@ -64,10 +55,38 @@
 		background-color: $rgb-off-black;
 	}
 }
+
+@media (max-width: $width-screen-lg) {
+	.nav .caret--right {
+		transform: none;
+	}
+
+	.nav .dropdown-menu--side {
+		top: 100%;
+		left: 0;
+	}
+}
 // endregion
 
 // region New
 .nav2 {
+	&-list__ {
+		&label {
+			padding: 0 20px;
+		}
+
+		&disp-source {
+			display: inline-block;
+			height: 15px;
+			border-left: 1px solid;
+			position: relative;
+			border-right: 1px solid;
+			top: 2px;
+			margin-right: 7px;
+			margin-left: 4px;
+		}
+	}
+
 	&-accord__ {
 		&head {
 			padding: 3px 7px 3px 20px;

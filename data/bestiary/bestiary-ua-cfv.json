@@ -5,7 +5,9 @@
 			"source": "UAClassFeatureVariants",
 			"page": 8,
 			"summonedByClass": "Ranger|PHB",
-			"size": "S",
+			"size": [
+				"S"
+			],
 			"type": "beast",
 			"alignment": [
 				"N"
@@ -81,14 +83,17 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Beast of the Earth",
 			"source": "UAClassFeatureVariants",
 			"page": 9,
 			"summonedByClass": "Ranger|PHB",
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "beast",
 			"alignment": [
 				"N"
@@ -174,7 +179,8 @@
 			],
 			"conditionInflict": [
 				"prone"
-			]
+			],
+			"hasToken": true
 		}
 	]
 }

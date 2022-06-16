@@ -18,7 +18,10 @@
 			"source": "TCE",
 			"page": 109,
 			"summonedBySpell": "Summon Aberration|TCE",
-			"size": "M",
+			"summonedBySpellLevel": 4,
+			"size": [
+				"M"
+			],
 			"type": "aberration",
 			"alignment": [
 				"U"
@@ -114,7 +117,8 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Adult Red Dracolich",
@@ -131,14 +135,18 @@
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance"
-			]
+			],
+			"damageTagsLegendary": [],
+			"hasToken": true
 		},
 		{
 			"name": "Beast of the Land",
 			"source": "TCE",
 			"page": 61,
 			"summonedByClass": "Ranger|PHB",
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "beast",
 			"alignment": [
 				"U"
@@ -213,7 +221,9 @@
 			"source": "TCE",
 			"page": 61,
 			"summonedByClass": "Ranger|PHB",
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "beast",
 			"alignment": [
 				"U"
@@ -289,7 +299,9 @@
 			"source": "TCE",
 			"page": 61,
 			"summonedByClass": "Ranger|PHB",
-			"size": "S",
+			"size": [
+				"S"
+			],
 			"type": "beast",
 			"alignment": [
 				"N"
@@ -361,7 +373,10 @@
 			"source": "TCE",
 			"page": 109,
 			"summonedBySpell": "Summon Beast|TCE",
-			"size": "S",
+			"summonedBySpellLevel": 2,
+			"size": [
+				"S"
+			],
 			"type": "beast",
 			"alignment": [
 				"U"
@@ -452,14 +467,18 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Celestial Spirit",
 			"source": "TCE",
 			"page": 110,
 			"summonedBySpell": "Summon Celestial|TCE",
-			"size": "L",
+			"summonedBySpellLevel": 5,
+			"size": [
+				"L"
+			],
 			"type": "celestial",
 			"alignment": [
 				"U"
@@ -546,7 +565,10 @@
 			"source": "TCE",
 			"page": 111,
 			"summonedBySpell": "Summon Construct|TCE",
-			"size": "M",
+			"summonedBySpellLevel": 4,
+			"size": [
+				"M"
+			],
 			"type": "construct",
 			"alignment": [
 				"U"
@@ -557,7 +579,7 @@
 				}
 			],
 			"hp": {
-				"special": "40 + 15 for each spell level above 3rd"
+				"special": "40 + 15 for each spell level above 4th"
 			},
 			"speed": {
 				"walk": 30
@@ -635,14 +657,17 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Dancing Item",
 			"source": "TCE",
 			"page": 29,
 			"summonedByClass": "Bard|PHB",
-			"size": "L",
+			"size": [
+				"L"
+			],
 			"sizeNote": "or smaller",
 			"type": "construct",
 			"alignment": [
@@ -731,7 +756,10 @@
 			"source": "TCE",
 			"page": 111,
 			"summonedBySpell": "Summon Elemental|TCE",
-			"size": "M",
+			"summonedBySpellLevel": 4,
+			"size": [
+				"M"
+			],
 			"type": "elemental",
 			"alignment": [
 				"U"
@@ -856,14 +884,18 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Fey Spirit",
 			"source": "TCE",
 			"page": 112,
 			"summonedBySpell": "Summon Fey|TCE",
-			"size": "S",
+			"summonedBySpellLevel": 3,
+			"size": [
+				"S"
+			],
 			"type": "fey",
 			"alignment": [
 				"U"
@@ -921,17 +953,17 @@
 							"items": [
 								{
 									"type": "item",
-									"name": "Fuming.",
+									"name": "Fuming",
 									"entry": "The fey has advantage on the next attack roll it makes before the end of this turn."
 								},
 								{
 									"type": "item",
-									"name": "Mirthful.",
+									"name": "Mirthful",
 									"entry": "The fey can force one creature it can see within 10 feet of it to make a Wisdom saving throw against your spell save DC. Unless the save succeeds, the target is {@condition charmed} by you and the fey for 1 minute or until the target takes any damage."
 								},
 								{
 									"type": "item",
-									"name": "Tricksy.",
+									"name": "Tricksy",
 									"entry": "The fey can fill a 5-foot cube within 5 feet of it with magical darkness, which lasts until the end of its next turn."
 								}
 							]
@@ -958,14 +990,18 @@
 			],
 			"conditionInflict": [
 				"charmed"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Fiendish Spirit",
 			"source": "TCE",
 			"page": 112,
 			"summonedBySpell": "Summon Fiend|TCE",
-			"size": "L",
+			"summonedBySpellLevel": 6,
+			"size": [
+				"L"
+			],
 			"type": "fiend",
 			"alignment": [
 				"U"
@@ -1082,7 +1118,8 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Homunculus Servant",
@@ -1095,7 +1132,9 @@
 				}
 			],
 			"summonedByClass": "Artificer|TCE",
-			"size": "T",
+			"size": [
+				"T"
+			],
 			"type": "construct",
 			"ac": [
 				{
@@ -1181,7 +1220,9 @@
 			"name": "Juvenile Mimic",
 			"source": "TCE",
 			"page": 167,
-			"size": "T",
+			"size": [
+				"T"
+			],
 			"type": {
 				"type": "monstrosity",
 				"tags": [
@@ -1280,7 +1321,9 @@
 			"name": "Mighty Servant of Leuk-o",
 			"source": "TCE",
 			"page": 131,
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "construct",
 			"alignment": [
 				"U"
@@ -1460,7 +1503,10 @@
 			"source": "TCE",
 			"page": 114,
 			"summonedBySpell": "Summon Shadowspawn|TCE",
-			"size": "M",
+			"summonedBySpellLevel": 3,
+			"size": [
+				"M"
+			],
 			"type": "monstrosity",
 			"alignment": [
 				"U"
@@ -1568,7 +1614,9 @@
 				}
 			],
 			"summonedByClass": "Artificer|TCE",
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "construct",
 			"ac": [
 				{
@@ -1662,7 +1710,10 @@
 			"source": "TCE",
 			"page": 114,
 			"summonedBySpell": "Summon Undead|TCE",
-			"size": "M",
+			"summonedBySpellLevel": 3,
+			"size": [
+				"M"
+			],
 			"type": "undead",
 			"alignment": [
 				"U"
@@ -1710,7 +1761,7 @@
 				{
 					"name": "Incorporeal Passage (Ghostly Only)",
 					"entries": [
-						"The spirit can move through other creatures and objects as if they were difficult terrain. If it ends its turn inside an object, it is shunted to the nearest unoccupied space and takes {@damage 1d10} force damage for every 5 feet traveled."
+						"The spirit can move through other creatures and objects as if they were {@quickref difficult terrain||3}. If it ends its turn inside an object, it is shunted to the nearest unoccupied space and takes {@damage 1d10} force damage for every 5 feet traveled."
 					]
 				},
 				{
@@ -1770,14 +1821,17 @@
 				"frightened",
 				"paralyzed",
 				"poisoned"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Wildfire Spirit",
 			"source": "TCE",
 			"page": 40,
 			"summonedByClass": "Druid|PHB",
-			"size": "S",
+			"size": [
+				"S"
+			],
 			"type": "elemental",
 			"alignment": [
 				"U"

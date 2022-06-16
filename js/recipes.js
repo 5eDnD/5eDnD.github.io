@@ -28,14 +28,6 @@ class RecipesPage extends ListPage {
 		this._lastRender = null;
 	}
 
-	async _pHandleBrew (homebrew) {
-		if (homebrew.recipe) {
-			homebrew = MiscUtil.copy(homebrew);
-			DataUtil.recipe.postProcessData(homebrew);
-		}
-		return super._pHandleBrew(homebrew);
-	}
-
 	static _sublist_customHashHandler (r, customHashId) {
 		return this._pGetModifiedRecipe(r, customHashId);
 	}
@@ -56,7 +48,7 @@ class RecipesPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(it, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(it.source);
 		const hash = UrlUtil.autoEncodeHash(it);
@@ -64,7 +56,7 @@ class RecipesPage extends ListPage {
 		eleLi.innerHTML = `<a href="#${hash}" class="lst--border lst__row-inner">
 			<span class="col-6 bold pl-0">${it.name}</span>
 			<span class="col-4 text-center">${it.type || "\u2014"}</span>
-			<span class="col-2 text-center ${Parser.sourceJsonToColor(it.source)} pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${BrewUtil.sourceJsonToStyle(it.source)}>${source}</span>
+			<span class="col-2 text-center ${Parser.sourceJsonToColor(it.source)} pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${BrewUtil2.sourceJsonToStyle(it.source)}>${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -77,7 +69,6 @@ class RecipesPage extends ListPage {
 				type: it.type,
 			},
 			{
-				uniqueId: it.uniqueId ? it.uniqueId : rpI,
 				isExcluded,
 			},
 		);
@@ -94,12 +85,12 @@ class RecipesPage extends ListPage {
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
-	getSublistItem (itRaw, ix, {customHashId = null} = {}) {
+	pGetSublistItem (itRaw, ix, {customHashId = null} = {}) {
 		const it = this.constructor._pGetModifiedRecipe(itRaw, customHashId);
 		const name = it._displayName || it.name;
 		const hash = UrlUtil.autoEncodeHash(it);
 
-		const $ele = $(`<div class="lst__row lst__row--sublist flex-col">
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
 				<span class="bold col-9 pl-0">${name}</span>
 				<span class="col-3 text-center pr-0">${it.type || "\u2014"}</span>
@@ -129,7 +120,7 @@ class RecipesPage extends ListPage {
 
 		const tabMetas = [
 			new Renderer.utils.TabButton({
-				label: "Traits",
+				label: "Recipe",
 				fnPopulate: this._renderStats.bind(this, it),
 				isVisible: true,
 			}),
@@ -184,8 +175,7 @@ class RecipesPage extends ListPage {
 	}
 
 	async pDoLoadSubHash (sub) {
-		sub = this._filterBox.setFromSubHashes(sub);
-		await ListUtil.pSetFromSubHashes(sub);
+		sub = await super.pDoLoadSubHash(sub);
 
 		const scaledHash = sub.find(it => it.startsWith(RecipesPage._HASH_START_SCALED));
 		if (scaledHash) {

@@ -40,7 +40,7 @@ class ItemParser extends BaseParser {
 		options = this._getValidOptions(options);
 
 		if (!inText || !inText.trim()) return options.cbWarning("No input!");
-		const toConvert = this._getCleanInput(inText)
+		const toConvert = this._getCleanInput(inText, options)
 			.split("\n")
 			.filter(it => it && it.trim());
 		const item = {};
@@ -99,7 +99,7 @@ class ItemParser extends BaseParser {
 		TagCondition.tryTagConditions(stats);
 		ArtifactPropertiesTag.tryRun(stats);
 		if (stats.entries) {
-			stats.entries = stats.entries.map(it => DiceConvert.getTaggedEntry(it))
+			stats.entries = stats.entries.map(it => DiceConvert.getTaggedEntry(it));
 			EntryConvert.tryRun(stats, "entries");
 			stats.entries = SkillTag.tryRun(stats.entries);
 			stats.entries = ActionTag.tryRun(stats.entries);
@@ -243,17 +243,18 @@ class ItemParser extends BaseParser {
 			}
 
 			const mBaseWeapon = /^(weapon|staff) \(([^)]+)\)$/i.exec(part);
-			const mBaseArmor = /^armor \(([^)]+)\)$/i.exec(part);
+			const mBaseArmor = /^armor \((?<type>[^)]+)\)$/i.exec(part);
 			if (mBaseWeapon) {
 				if (mBaseWeapon[1].toLowerCase() === "staff") stats.staff = true;
 				baseItem = ItemParser.getItem(mBaseWeapon[2]);
 				if (!baseItem) throw new Error(`Could not find base item "${mBaseWeapon[2]}"`);
 				continue;
 			} else if (mBaseArmor) {
-				baseItem = ItemParser.getItem(mBaseArmor[1]);
-				if (!baseItem) baseItem = ItemParser.getItem(`${mBaseArmor[1]} armor`); // "armor (plate)" -> "plate armor"
-				if (!baseItem) throw new Error(`Could not find base item "${mBaseArmor[1]}"`);
-				continue
+				if (this._setCleanTaglineInfo_isMutAnyArmor(stats, mBaseArmor)) continue;
+
+				baseItem = this._setCleanTaglineInfo_getArmorBaseItem(mBaseArmor.groups.type);
+				if (!baseItem) throw new Error(`Could not find base item "${mBaseArmor.groups.type}"`);
+				continue;
 			}
 			// endregion
 
@@ -266,12 +267,58 @@ class ItemParser extends BaseParser {
 		if (genericType) stats.__genericType = genericType;
 	}
 
+	static _setCleanTaglineInfo_getArmorBaseItem (name) {
+		let baseItem = ItemParser.getItem(name);
+		if (!baseItem) baseItem = ItemParser.getItem(`${name} armor`); // "armor (plate)" -> "plate armor"
+		return baseItem;
+	}
+
+	static _setCleanTaglineInfo_isMutAnyArmor (stats, mBaseArmor) {
+		if (/^any /i.test(mBaseArmor.groups.type)) {
+			const ptAny = mBaseArmor.groups.type.replace(/^any /i, "");
+			const [ptInclude, ptExclude] = ptAny.split(/\bexcept\b/i).map(it => it.trim()).filter(Boolean);
+
+			const procPart = pt => {
+				switch (pt) {
+					case "light": return {"type": "LA"};
+					case "medium": return {"type": "MA"};
+					case "heavy": return {"type": "HA"};
+					default: {
+						const baseItem = this._setCleanTaglineInfo_getArmorBaseItem(pt);
+						if (!baseItem) throw new Error(`Could not find base item "${pt}"`);
+
+						return {name: baseItem.name};
+					}
+				}
+			};
+
+			if (ptInclude) {
+				stats.requires = [
+					...(stats.requires || []),
+					...ptInclude.split(/\b(?:or|,)\b/g).map(it => it.trim()).filter(Boolean).map(it => procPart(it)),
+				];
+			}
+
+			if (ptExclude) {
+				Object.assign(
+					stats.excludes = stats.excludes || {},
+					ptExclude.split(/\b(?:or|,)\b/g).map(it => it.trim()).filter(Boolean).mergeMap(it => procPart(it)),
+				);
+			}
+
+			return true;
+		}
+
+		return false;
+	}
+
 	static _setCleanTaglineInfo_handleBaseItem (stats, baseItem, options) {
 		if (!baseItem) return;
 
 		const blacklistedProps = new Set([
 			"source",
 			"srd",
+			"basicRules",
 			"page",
 		]);
 
@@ -309,9 +356,17 @@ class ItemParser extends BaseParser {
 		switch (genericType) {
 			case "weapon": stats.requires = [{"weapon": true}]; break;
 			case "sword": stats.requires = [{"sword": true}]; break;
+			case "axe": stats.requires = [{"axe": true}]; break;
 			case "armor": stats.requires = [{"armor": true}]; break;
 			case "bow": stats.requires = [{"bow": true}, {"crossbow": true}]; break;
-			default: throw new Error(`Unhandled generic type "${genericType}"`);
+			case "bludgeoning": stats.requires = [{"dmgType": "B"}]; break;
+			case "piercing": stats.requires = [{"dmgType": "P"}]; break;
+			case "slashing": stats.requires = [{"dmgType": "S"}]; break;
+			default: {
+				stats.requires = [{[genericType]: true}];
+				options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Tagline part "${genericType}" requires manual conversion`);
+				break;
+			}
 		}
 	}
 
@@ -327,7 +382,7 @@ class ItemParser extends BaseParser {
 			const fromText = Parser.textToNumber(m[1]);
 			if (!isNaN(fromText)) stats.weight = fromText;
 
-			if (!stats.weight) options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Weight "${m[1]}" requires manual conversion`)
+			if (!stats.weight) options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Weight "${m[1]}" requires manual conversion`);
 		});
 	}
 
@@ -354,6 +409,7 @@ ItemParser._ALL_CLASSES = null;
 ItemParser._MAPPED_ITEM_NAMES = {
 	"studded leather": "studded leather armor",
 	"leather": "leather armor",
+	"scale": "scale mail",
 };
 
 if (typeof module !== "undefined") {

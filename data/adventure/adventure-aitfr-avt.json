@@ -123,7 +123,7 @@
 				"The grassy ground rises up gradually from the riverbank to where the sepulcher is built into the base of a scrabbly 20-foot cliff. Bits of red granite jut from the cliff and the ground, revealed over long years by the river and the rain. Across the river, wide meadows and wild hedges feed the local sheep.",
 				"Two {@creature troll||trolls} stalk the marsh on the sepulcher's side of the river. They're twin brothers, clad in rough leather and raw sheep's wool. They hunt along the riverbank at this time of year, looking for strays from nearby flocks. They attempt to stay out of sight and avoid adventurers, but trespassers who seem especially vulnerable or those who are laden with supplies and treasure stir the trolls' greed, inspiring them to ambush the party.",
 				"Five {@creature will-o'-wisp||will-o'-wisps} haunt the sepulcher yard, day or night. They are prideful, spiteful things eager to lead living creatures near the waters of the sunken yard or into the clutches of other nearby monsters. Yet each will-o'-wisp is loath to venture inside the sepulcher, which they consider the territory of other, more limited undead. The wisps take pride in moving about outdoors, by sunlight or moonlight. They delight in making other encounters more difficult but never venture deeper into the structure than area 4.",
-				"Note that much of the muddy, soaked ground surrounding the sepulcher may be difficult terrain. The sepulcher grounds and the crypts within are shown in map 1.",
+				"Note that much of the muddy, soaked ground surrounding the sepulcher may be {@quickref difficult terrain||3}. The sepulcher grounds and the crypts within are shown in map 1.",
 				{
 					"type": "image",
 					"href": {
@@ -132,7 +132,321 @@
 					},
 					"title": "Map 1",
 					"width": 633,
-					"height": 662
+					"height": 662,
+					"imageType": "map",
+					"mapRegions": [
+						{
+							"area": "032",
+							"points": [
+								[
+									24,
+									85
+								],
+								[
+									72,
+									85
+								],
+								[
+									72,
+									38
+								],
+								[
+									191,
+									38
+								],
+								[
+									191,
+									85
+								],
+								[
+									239,
+									85
+								],
+								[
+									239,
+									134
+								],
+								[
+									194,
+									134
+								],
+								[
+									194,
+									158
+								],
+								[
+									69,
+									158
+								],
+								[
+									69,
+									133
+								],
+								[
+									24,
+									133
+								]
+							]
+						},
+						{
+							"area": "030",
+							"points": [
+								[
+									93,
+									205
+								],
+								[
+									93,
+									252
+								],
+								[
+									168,
+									252
+								],
+								[
+									168,
+									205
+								]
+							]
+						},
+						{
+							"area": "02e",
+							"points": [
+								[
+									118,
+									260
+								],
+								[
+									118,
+									329
+								],
+								[
+									146,
+									329
+								],
+								[
+									146,
+									260
+								]
+							]
+						},
+						{
+							"area": "028",
+							"points": [
+								[
+									150,
+									300
+								],
+								[
+									150,
+									324
+								],
+								[
+									258,
+									324
+								],
+								[
+									258,
+									300
+								]
+							]
+						},
+						{
+							"area": "023",
+							"points": [
+								[
+									262,
+									279
+								],
+								[
+									262,
+									337
+								],
+								[
+									410,
+									337
+								],
+								[
+									410,
+									279
+								]
+							]
+						},
+						{
+							"area": "01d",
+							"points": [
+								[
+									191,
+									349
+								],
+								[
+									191,
+									398
+								],
+								[
+									257,
+									398
+								],
+								[
+									257,
+									349
+								]
+							]
+						},
+						{
+							"area": "01b",
+							"points": [
+								[
+									262,
+									350
+								],
+								[
+									262,
+									420
+								],
+								[
+									410,
+									420
+								],
+								[
+									410,
+									350
+								]
+							]
+						},
+						{
+							"area": "01f",
+							"points": [
+								[
+									416,
+									350
+								],
+								[
+									416,
+									395
+								],
+								[
+									479,
+									395
+								],
+								[
+									479,
+									350
+								]
+							]
+						},
+						{
+							"area": "010",
+							"points": [
+								[
+									259,
+									425
+								],
+								[
+									259,
+									450
+								],
+								[
+									289,
+									450
+								],
+								[
+									289,
+									425
+								]
+							]
+						},
+						{
+							"area": "012",
+							"points": [
+								[
+									388,
+									425
+								],
+								[
+									388,
+									456
+								],
+								[
+									407,
+									456
+								],
+								[
+									407,
+									425
+								]
+							]
+						},
+						{
+							"area": "00e",
+							"points": [
+								[
+									290,
+									426
+								],
+								[
+									292,
+									439
+								],
+								[
+									297,
+									443
+								],
+								[
+									294,
+									460
+								],
+								[
+									296,
+									485
+								],
+								[
+									308,
+									493
+								],
+								[
+									334,
+									500
+								],
+								[
+									353,
+									502
+								],
+								[
+									374,
+									497
+								],
+								[
+									378,
+									489
+								],
+								[
+									374,
+									477
+								],
+								[
+									375,
+									464
+								],
+								[
+									384,
+									449
+								],
+								[
+									386,
+									435
+								],
+								[
+									386,
+									426
+								]
+							]
+						}
+					],
+					"hrefThumbnail": {
+						"type": "internal",
+						"path": "adventure/AitFR-AVT/thumbnail/13_1476395029.webp"
+					}
 				},
 				{
 					"type": "inset",

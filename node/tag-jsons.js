@@ -10,33 +10,6 @@ if (typeof module !== "undefined") {
 	Object.assign(global, require("../js/converterutils-entries"));
 }
 
-/**
- * Args:
- * file="./data/my-file.json"
- * filePrefix="./data/dir/"
- * inplace
- */
-class ArgParser {
-	static parse () {
-		process.argv
-			.slice(2)
-			.forEach(arg => {
-				let [k, v] = arg.split("=").map(it => it.trim()).filter(Boolean);
-				if (v == null) ArgParser.ARGS[k] = true;
-				else {
-					v = v
-						.replace(/^"(.*)"$/, "$1")
-						.replace(/^'(.*)'$/, "$1")
-					;
-
-					if (!isNaN(v)) ArgParser.ARGS[k] = Number(v);
-					else ArgParser.ARGS[k] = v;
-				}
-			});
-	}
-}
-ArgParser.ARGS = {};
-
 function run (args) {
 	TagJsons._BLACKLIST_FILE_PREFIXES = [
 		...ut.FILE_PREFIX_BLACKLIST,
@@ -56,13 +29,15 @@ function run (args) {
 		}
 	}
 
+	const creatureList = getTaggableCreatureList(args.bestiaryFile);
+
 	files.forEach(file => {
-		console.log(`Tagging file "${file}"`)
+		console.log(`Tagging file "${file}"`);
 		const json = ut.readJson(file);
 
 		if (json instanceof Array) return;
 
-		TagJsons.mutTagObject(json);
+		TagJsons.mutTagObject(json, {creaturesToTag: creatureList});
 
 		const outPath = args.inplace ? file : file.replace("./data/", "./trash/");
 		if (!args.inplace) {
@@ -71,6 +46,21 @@ function run (args) {
 		}
 		fs.writeFileSync(outPath, CleanUtil.getCleanJson(json));
 	});
+}
+
+/**
+ * Return creatures from the provided bestiary which are one of:
+ * - A named creature
+ * - A copy of a creature
+ * - An NPC
+ * as these creatures are likely to be missed by the automated tagging during conversion.
+ */
+function getTaggableCreatureList (filename) {
+	if (!filename) return [];
+	const bestiaryJson = ut.readJson(filename);
+	return (bestiaryJson.monster || [])
+		.filter(it => it.isNamedCreature || it.isNpc || it._copy)
+		.map(it => ({name: it.name, source: it.source}));
 }
 
 function setUp () {
@@ -91,13 +81,20 @@ function loadSpells () {
 	}).flat();
 }
 
+/**
+ * Args:
+ * file="./data/my-file.json"
+ * filePrefix="./data/dir/"
+ * inplace
+ * bestiaryFile="./data/my-file.json"
+ */
 async function main () {
-	ArgParser.parse();
+	ut.ArgParser.parse();
 	setUp();
 	await TagJsons.pInit({
 		spells: loadSpells(),
 	});
-	run(ArgParser.ARGS);
+	run(ut.ArgParser.ARGS);
 	teardown();
 }
 
@@ -105,6 +102,8 @@ if (typeof module !== "undefined") {
 	if (require.main === module) {
 		main().then(() => console.log("Run complete.")).catch(e => { throw e; });
 	} else {
-		module.exports = TagJsons;
+		module.exports = {
+			getTaggableCreatureList,
+		};
 	}
 }

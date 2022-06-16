@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/main.css">
 
 	<!-- Favicons -->
-	<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.115">
+	<link rel="icon" type="image/svg+xml" href="favicon.svg">
 	<link rel="icon" type="image/png" sizes="256x256" href="favicon-256x256.png">
 	<link rel="icon" type="image/png" sizes="144x144" href="favicon-144x144.png">
 	<link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png">
@@ -49,7 +49,7 @@
 	<!-- OpenSearch -->
 	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
 
-	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");</script>
+	<script type="text/javascript" src="sw-injector.js"></script>
 
 	<script type="text/javascript" src="js/styleswitch.js"></script>
 	<script type="text/javascript" src="js/navigation.js"></script>
@@ -58,6 +58,10 @@
 	<style>
 		#initp__wrp_active {
 			display: none;
+		}
+
+		.is-fullscreen .initp__fullscreen-hidden {
+			display: none !important;
 		}
 	</style>
 </head>
@@ -75,42 +79,8 @@
 </header>
 <nav class="container page__nav" id="navigation"><ul class="nav nav-pills page__nav-inner" id="navbar"></ul></nav>
 
-<main class="container view-col-wrapper">
-	<div class="initp__content">
-
-		<div class="initp__initial row">
-			<div class="col-12">
-				<p>
-					The Player View is part of a peer-to-peer (i.e., serverless) system to allow players to connect to a DM's <a href="dmscreen.html">DM Screen</a> initiative tracker. As a player, the usage is as follows:
-				<ol>
-					<li>Enter a name into the "Player Name" field.</li>
-					<li>Paste a "server token," provided by a DM, into the "Server Token" field.</li>
-					<li>Click "Connect."</li>
-				</ol>
-				<p>After a short delay, you should be connected to the DM and this page will change to display the encounter in the DM's tracker. <i>Please note that this system is highly experimental. Your experience may vary.</i></p>
-			</div>
-		</div>
-
-		<hr class="initp__initial">
-
-		<div class="initp__initial row w-100">
-			<div class="col-5 bold">Player Name</div>
-			<div class="col-5 bold">Server Token</div>
-			<div class="col-2 text-center"></div>
-		</div>
-		<div class="initp__initial row w-100 flex mb-4">
-			<div class="col-5 bold"><input class="form-control code" id="initp__ipt_player_name"></div>
-			<div class="col-5 bold"><input class="form-control code" id="initp__ipt_server_token"></div>
-			<div class="col-2 flex-vh-center"><button class="btn btn-xs btn-primary" id="initp__btn_connect">Connect</button></div>
-		</div>
-
-		<div class="initp__wrp_active" id="initp__wrp_active">
-			<div class="initp__meta"></div>
-			<div class="initp__header"></div>
-			<div class="initp__rows"></div>
-		</div>
-	</div>
-
+<main class="container view-col-wrapper" id="page-content">
+	<div class="flex-vh-center initial-message">Loading...</div>
 </main>
 <!--5ETOOLS_SCRIPT_ANCHOR-->
 <!--5ETOOLS_AD_ADHESION-->
@@ -124,6 +94,8 @@
 <script type="text/javascript" src="lib/localforage.js"></script>
 <script type="text/javascript" src="js/omnidexer.js"></script>
 <script type="text/javascript" src="js/omnisearch.js"></script>
+<script type="text/javascript" src="js/filter.js"></script>
+<script type="text/javascript" src="js/utils-brew.js"></script>
 <script type="text/javascript" src="js/render.js"></script>
 <script type="text/javascript" src="js/render-dice.js"></script>
 <script type="text/javascript" src="js/scalecreature.js"></script>

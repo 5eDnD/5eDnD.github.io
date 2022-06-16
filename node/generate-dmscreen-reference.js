@@ -15,7 +15,7 @@ const index = utB.UtilBookReference.getIndex(
 	},
 );
 
-fs.writeFileSync("data/generated/bookref-dmscreen.json", CleanUtil.getCleanJson(index, true), "utf8");
+fs.writeFileSync("data/generated/bookref-dmscreen.json", CleanUtil.getCleanJson(index, {isMinify: true}), "utf8");
 
 function flattenReferenceIndex (ref, skipHeaders) {
 	const outMeta = {
@@ -63,7 +63,7 @@ function flattenReferenceIndex (ref, skipHeaders) {
 					s: meta.section[c.name], // section name
 					p: i, // section index
 					h, // header name
-				})
+				});
 			});
 		});
 	});

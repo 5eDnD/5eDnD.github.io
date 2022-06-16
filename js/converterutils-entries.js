@@ -16,8 +16,10 @@ class TagJsons {
 		await ItemTag.pInit();
 	}
 
-	static mutTagObject (json, {keySet, isOptimistic = true} = {}) {
+	static mutTagObject (json, {keySet, isOptimistic = true, creaturesToTag = null} = {}) {
 		TagJsons.OPTIMISTIC = isOptimistic;
+
+		const fnCreatureTagSpecific = CreatureTag.getFnTryRunSpecific(creaturesToTag);
 
 		Object.keys(json)
 			.forEach(k => {
@@ -27,7 +29,7 @@ class TagJsons {
 					{_: json[k]},
 					{
 						object: (obj, lastKey) => {
-							if (lastKey != null && !LAST_KEY_WHITELIST.has(lastKey)) return obj
+							if (lastKey != null && !LAST_KEY_WHITELIST.has(lastKey)) return obj;
 
 							obj = TagCondition.tryRunBasic(obj);
 							obj = SkillTag.tryRun(obj);
@@ -40,6 +42,9 @@ class TagJsons {
 							obj = HazardTag.tryRun(obj);
 							obj = ChanceTag.tryRun(obj);
 							obj = DiceConvert.getTaggedEntry(obj);
+							obj = QuickrefTag.tryRun(obj);
+
+							if (fnCreatureTagSpecific) obj = fnCreatureTagSpecific(obj);
 
 							return obj;
 						},
@@ -65,12 +70,15 @@ TagJsons.WALKER = MiscUtil.getWalker({
 
 class SpellTag {
 	static init (spells) {
-		spells.forEach(sp => SpellTag._SPELL_NAMES[sp.name.toLowerCase()] = {name: sp.name, source: sp.source});
+		spells
+			// Skip "Divination" to avoid tagging occurrences of the school
+			.filter(it => !(it.name === "Divination" && it.source === SRC_PHB))
+			.forEach(sp => SpellTag._SPELL_NAMES[sp.name.toLowerCase()] = {name: sp.name, source: sp.source});
 
-		SpellTag._SPELL_NAME_REGEX = new RegExp(`(${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")})`, "gi");
-		SpellTag._SPELL_NAME_REGEX_SPELL = new RegExp(`(${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")}) (spell)`, "gi");
-		SpellTag._SPELL_NAME_REGEX_AND = new RegExp(`(${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")}) (and {@spell)`, "gi");
-		SpellTag._SPELL_NAME_REGEX_CAST = new RegExp(`(?<prefix>casts? )(?<spell>${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")})`, "gi");
+		SpellTag._SPELL_NAME_REGEX = new RegExp(`\\b(${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")})\\b`, "gi");
+		SpellTag._SPELL_NAME_REGEX_SPELL = new RegExp(`\\b(${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")}) (spell|cantrip)`, "gi");
+		SpellTag._SPELL_NAME_REGEX_AND = new RegExp(`\\b(${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")}) (and {@spell)`, "gi");
+		SpellTag._SPELL_NAME_REGEX_CAST = new RegExp(`(?<prefix>casts? (?:the )?)(?<spell>${Object.keys(SpellTag._SPELL_NAMES).map(it => it.escapeRegexp()).join("|")})\\b`, "gi");
 	}
 
 	static tryRun (it) {
@@ -104,11 +112,18 @@ class SpellTag {
 				});
 		}
 
+		// Tag common spells which often don't have e.g. the word "spell" nearby
+		strMod = strMod
+			.replace(/\b(antimagic field|dispel magic)\b/gi, (...m) => {
+				const spellMeta = SpellTag._SPELL_NAMES[m[1].toLowerCase()];
+				return `{@spell ${m[1]}${spellMeta.source !== SRC_PHB ? `|${spellMeta.source}` : ""}}`;
+			});
+
 		strMod
 			.replace(SpellTag._SPELL_NAME_REGEX_CAST, (...m) => {
 				const spellMeta = SpellTag._SPELL_NAMES[m.last().spell.toLowerCase()];
 				return `${m.last().prefix}{@spell ${m.last().spell}${spellMeta.source !== SRC_PHB ? `|${spellMeta.source}` : ""}}`;
-			})
+			});
 
 		return strMod
 			.replace(SpellTag._SPELL_NAME_REGEX_AND, (...m) => {
@@ -154,6 +169,8 @@ class ItemTag {
 		// region Other items
 		const otherItems = standardItems.filter(it => {
 			if (toolTypes.has(it.type)) return false;
+			// Disallow specific items
+			if (it.name === "Wave" && it.source === SRC_DMG) return false;
 			// Allow all non-specific-variant DMG items
 			if (it.source === SRC_DMG && !Renderer.item.isMundane(it) && it._category !== "Specific Variant") return true;
 			// Allow "sufficiently complex name" items
@@ -305,6 +322,57 @@ class HazardTag {
 }
 HazardTag._RE_HAZARD_SEE = /\b(High Altitude|Brown Mold|Green Slime|Webs|Yellow Mold|Extreme Cold|Extreme Heat|Heavy Precipitation|Strong Wind|Desecrated Ground|Frigid Water|Quicksand|Razorvine|Slippery Ice|Thin Ice)( \(see)/gi;
 
+class CreatureTag {
+	/**
+	 * Dynamically create a walker which can be re-used.
+	 */
+	static getFnTryRunSpecific (creaturesToTag) {
+		if (!creaturesToTag?.length) return null;
+
+		// region Create a regular expression per source
+		const bySource = {};
+		creaturesToTag.forEach(({name, source}) => {
+			(bySource[source] = bySource[source] || []).push(name);
+		});
+		const res = Object.entries(bySource)
+			.mergeMap(([source, names]) => {
+				const re = new RegExp(`\\b(${names.map(it => it.escapeRegexp()).join("|")})\\b`, "gi");
+				return {[source]: re};
+			});
+		// endregion
+
+		const fnTag = strMod => {
+			Object.entries(res)
+				.forEach(([source, re]) => {
+					strMod = strMod.replace(re, (...m) => `{@creature ${m[0]}${source !== SRC_DMG ? `|${source}` : ""}}`);
+				});
+			return strMod;
+		};
+
+		return (it) => {
+			return TagJsons.WALKER.walk(
+				it,
+				{
+					string: (str) => {
+						const ptrStack = {_: ""};
+						TaggerUtils.walkerStringHandler(
+							["@creature"],
+							ptrStack,
+							0,
+							0,
+							str,
+							{
+								fnTag,
+							},
+						);
+						return ptrStack._;
+					},
+				},
+			);
+		};
+	}
+}
+
 class ChanceTag {
 	static tryRun (it) {
 		return TagJsons.WALKER.walk(
@@ -335,8 +403,43 @@ class ChanceTag {
 	}
 }
 
+class QuickrefTag {
+	static tryRun (it) {
+		return TagJsons.WALKER.walk(
+			it,
+			{
+				string: (str) => {
+					const ptrStack = {_: ""};
+					TaggerUtils.walkerStringHandler(
+						["@quickref"],
+						ptrStack,
+						0,
+						0,
+						str,
+						{
+							fnTag: this._fnTag,
+						},
+					);
+					return ptrStack._;
+				},
+			},
+		);
+	}
+
+	static _fnTag (strMod) {
+		return strMod
+			.replace(QuickrefTag._RE_BASIC, (...m) => `{@quickref ${QuickrefTag._LOOKUP[m[0]]}}`)
+		;
+	}
+}
+QuickrefTag._RE_BASIC = /\b(difficult terrain)\b/g;
+QuickrefTag._LOOKUP = {
+	"difficult terrain": "difficult terrain||3",
+};
+
 if (typeof module !== "undefined") {
 	module.exports = {
 		TagJsons,
+		SpellTag,
 	};
 }

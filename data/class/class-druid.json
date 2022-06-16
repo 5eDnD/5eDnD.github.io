@@ -2490,6 +2490,20 @@
 					"page": true
 				}
 			}
+		},
+		{
+			"name": " Circle of the Primeval (UA)",
+			"shortName": "Primeval (UA)",
+			"source": "UA2022GiantOptions",
+			"className": "Druid",
+			"classSource": "PHB",
+			"page": 2,
+			"subclassFeatures": [
+				"Circle of the Primeval|Druid||Primeval (UA)|UA2022GiantOptions|2",
+				"Prehistoric Conduit|Druid||Primeval (UA)|UA2022GiantOptions|6",
+				"Titanic Bond|Druid||Primeval (UA)|UA2022GiantOptions|10",
+				"Scourge of the Ancients|Druid||Primeval (UA)|UA2022GiantOptions|14"
+			]
 		}
 	],
 	"classFeature": [
@@ -2577,7 +2591,7 @@
 					"type": "entries",
 					"name": "Spellcasting Focus",
 					"entries": [
-						"You can use a {@item druidic focus|phb} as a spellcasting focus for your druid spells"
+						"You can use a {@item druidic focus|phb} as a spellcasting focus for your druid spells."
 					]
 				}
 			]
@@ -2602,6 +2616,9 @@
 			"classSource": "PHB",
 			"level": 2,
 			"isClassFeatureVariant": true,
+			"consumes": {
+				"name": "Wild Shape"
+			},
 			"entries": [
 				"{@i 2nd-level druid {@variantrule optional class features|tce|optional feature}}",
 				"You gain the ability to summon a spirit that assumes an animal form: as an action, you can expend a use of your Wild Shape feature to cast the {@spell find familiar} spell, without material components.",
@@ -2616,6 +2633,9 @@
 			"classSource": "PHB",
 			"level": 2,
 			"isClassFeatureVariant": true,
+			"consumes": {
+				"name": "Wild Shape"
+			},
 			"entries": [
 				"{@i 2nd-level druid feature (enhances Wild Shape)}",
 				"You gain the ability to summon a spirit that assumes an animal form: as an action, you can expend a use of your Wild Shape feature to cast the {@spell find familiar} spell, without material components.",
@@ -2968,7 +2988,7 @@
 			"level": 2,
 			"header": 1,
 			"entries": [
-				"You learn one additional druid cantrip of your choice."
+				"You learn one additional druid cantrip of your choice. This cantrip doesn't count against the number of druid cantrips you know."
 			]
 		},
 		{
@@ -3255,8 +3275,8 @@
 			"level": 6,
 			"header": 2,
 			"entries": [
-				"Starting at 6th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard.",
-				"In addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such those created by the {@spell entangle} spell."
+				"Starting at 6th level, moving through nonmagical {@quickref difficult terrain||3} costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from them if they have thorns, spines, or a similar hazard.",
+				"In addition, you have advantage on saving throws against plants that are magically created or manipulated to impede movement, such as those created by the {@spell entangle} spell."
 			]
 		},
 		{
@@ -3422,6 +3442,10 @@
 			"subclassSource": "PHB",
 			"level": 10,
 			"header": 2,
+			"consumes": {
+				"name": "Wild Shape",
+				"amount": 2
+			},
 			"entries": [
 				"At 10th level, you can expend two uses of Wild Shape at the same time to transform into an {@creature air elemental}, an {@creature earth elemental}, a {@creature fire elemental}, or a {@creature water elemental}."
 			]
@@ -3560,6 +3584,9 @@
 			"subclassSource": "TCE",
 			"level": 2,
 			"header": 1,
+			"consumes": {
+				"name": "Wild Shape"
+			},
 			"entries": [
 				"At 2nd level, you gain the ability to channel magic into your spores. As an action, you can expend a use of your Wild Shape feature to awaken those spores, rather than transforming into a beast form, and you gain 4 temporary hit points for each level you have in this class. While this feature is active, you gain the following benefits:",
 				{
@@ -3731,6 +3758,9 @@
 			"subclassSource": "TCE",
 			"level": 2,
 			"header": 1,
+			"consumes": {
+				"name": "Wild Shape"
+			},
 			"entries": [
 				"{@i 2nd-level Circle of the Stars feature}",
 				"As a bonus action, you can expend a use of your Wild Shape feature to take on a starry form, rather than transforming into a beast.",
@@ -3778,12 +3808,12 @@
 					"items": [
 						{
 							"type": "item",
-							"name": "Weal (even).",
+							"name": "Weal (even)",
 							"entry": "Whenever a creature you can see within 30 feet of you is about to make an attack roll, a saving throw, or an ability check, you can use your reaction to roll a {@dice d6} and add the number rolled to the total."
 						},
 						{
 							"type": "item",
-							"name": "Woe (odd).",
+							"name": "Woe (odd)",
 							"entry": "Whenever a creature you can see within 30 feet of you is about to make an attack roll, a saving throw, or an ability check, you can use your reaction to roll a {@dice d6} and subtract the number rolled from the total."
 						}
 					]
@@ -3903,6 +3933,9 @@
 			"subclassSource": "TCE",
 			"level": 2,
 			"header": 1,
+			"consumes": {
+				"name": "Wild Shape"
+			},
 			"entries": [
 				"{@i 2nd-level Circle of Wildfire feature}",
 				"You can summon the primal spirit bound to your soul. As an action, you can expend one use of your Wild Shape feature to summon your wildfire spirit, rather than assuming a beast form.",
@@ -4047,6 +4080,9 @@
 			"subclassSource": "UA2020SubclassesPt3",
 			"level": 2,
 			"header": 1,
+			"consumes": {
+				"name": "Wild Shape"
+			},
 			"entries": [
 				"{@i 2nd-level Circle of the Stars feature}",
 				"You gain the ability to harness constellations' power to alter your form. As an action, you can expend a use of your Wild Shape feature to take on a starry form rather than transforming into a beast.",
@@ -4139,6 +4175,136 @@
 			]
 		},
 		{
+			"name": "Circle of the Primeval",
+			"source": "UA2022GiantOptions",
+			"page": 3,
+			"className": "Druid",
+			"classSource": "PHB",
+			"subclassShortName": "Primeval (UA)",
+			"subclassSource": "UA2022GiantOptions",
+			"level": 2,
+			"entries": [
+				"The Circle of the Primeval teaches that, though the land may change over time, it never truly forgets. By tapping into the timeworn memory of the earth, these druids summon and bond with the spirit of a primeval behemoth\u2014a hulking creature that once ruled the ancient world alongside the giants. The most well-known primeval behemoths are the dinosaurs, but spirits bonded with members of the Circle of the Primeval have also taken the form of ancient predecessors to today's common beasts and other fantastical titanic creatures.",
+				"Working alongside their companion spirit, most druids of the Circle of the Primeval spend their lives delving into long-forgotten places and preserving the remnants of bygone eras. As a druid's power grows, so does their companion, the beast starting near equal in size to its druid partner before increasing in stature until it too towers over the land.",
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Keeper of Old|Druid||Primeval (UA)|UA2022GiantOptions|2"
+				},
+				{
+					"type": "refSubclassFeature",
+					"subclassFeature": "Primeval Companion|Druid||Primeval (UA)|UA2022GiantOptions|2"
+				}
+			]
+		},
+		{
+			"name": "Keeper of Old",
+			"source": "UA2022GiantOptions",
+			"page": 3,
+			"className": "Druid",
+			"classSource": "PHB",
+			"subclassShortName": "Primeval (UA)",
+			"subclassSource": "UA2022GiantOptions",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2nd-Level Circle of the Primeval Feature}",
+				"Your connection to the mighty primeval behemoths allows you new insight into the ancient world. You gain proficiency in the {@skill History} skill. When you make an Intelligence ({@skill History}) check, you can roll a {@dice d4} and add the number rolled to the ability check."
+			]
+		},
+		{
+			"name": "Primeval Companion",
+			"source": "UA2022GiantOptions",
+			"page": 3,
+			"className": "Druid",
+			"classSource": "PHB",
+			"subclassShortName": "Primeval (UA)",
+			"subclassSource": "UA2022GiantOptions",
+			"level": 2,
+			"header": 1,
+			"entries": [
+				"{@i 2nd-Level Circle of the Primeval Feature}",
+				"Starting when you choose this circle, you can call upon the primeval creature whose spirit is bound to you. As an action, you can expend one use of your Wild Shape feature to summon your primeval companion, rather than assuming a beast form. The companion appears in an unoccupied space of your choice within 30 feet of you.",
+				"The primeval companion is friendly to you and your companions, and it obeys your commands. See this creature's game statistics in the {@creature Primeval Companion|UA2022GiantOptions} stat block, which uses your proficiency bonus (PB) in several places. You can determine the cosmetic appearance of the companion; for example, your companion may evoke ancient predators like raptors or saber-toothed tigers, or it might be more inclined for defense, appearing as an armored ankylosaurus or a wooly rhino. These choices have no effect on the companion's game statistics.",
+				"In combat, the companion shares your initiative count, but it takes its turn immediately after yours. It can move and use its reaction on its own, but the only action it takes on its turn is the {@action Dodge} action, unless you take a bonus action on your turn to command it to take another action. That action can be one in its stat block or some other action. If you are {@condition incapacitated}, the companion can take any action of its choice, not just {@action Dodge}.",
+				"The companion remains until it is reduced to 0 hit points or until you die, at which point the companion vanishes. If you use this feature to summon the companion again and you already have a companion present, the first companion immediately vanishes. Anything the companion was wearing or carrying is left behind when the companion vanishes."
+			]
+		},
+		{
+			"name": "Prehistoric Conduit",
+			"source": "UA2022GiantOptions",
+			"page": 3,
+			"className": "Druid",
+			"classSource": "PHB",
+			"subclassShortName": "Primeval (UA)",
+			"subclassSource": "UA2022GiantOptions",
+			"level": 6,
+			"header": 2,
+			"entries": [
+				"{@i 6th-Level Circle of the Primeval Feature}",
+				"You learn how to channel your magic through your primeval companion. When you cast a spell with a range other than self, the spell can originate from you or your primeval companion.",
+				"In addition, if the primeval companion is affected by a spell you cast that allows creatures to make a saving throw against its effects, the primeval companion has advantage on its saving throw. If the primeval companion would normally take half damage on a successful save against this spell, the companion instead takes no damage on a successful save and half damage with no additional effects on a failed save."
+			]
+		},
+		{
+			"name": "Titanic Bond",
+			"source": "UA2022GiantOptions",
+			"page": 3,
+			"className": "Druid",
+			"classSource": "PHB",
+			"subclassShortName": "Primeval (UA)",
+			"subclassSource": "UA2022GiantOptions",
+			"level": 10,
+			"header": 2,
+			"entries": [
+				"{@i 10th-Level Circle of the Primeval Feature}",
+				"The primeval companion grows to Large size, and when you summon it, you can grant it either a climbing speed or a swimming speed equal to its walking speed.",
+				"In turn, the primeval companion lends you some of its terrifying might. Once per turn while your primeval companion is summoned, when you hit a creature with an attack or deal damage to a creature you can see with a spell you cast, you can force that creature to make a Wisdom saving throw against your spell save DC; on a failure, the creature is {@condition frightened} of you until the end of your next turn."
+			]
+		},
+		{
+			"name": "Scourge of the Ancients",
+			"source": "UA2022GiantOptions",
+			"page": 3,
+			"className": "Druid",
+			"classSource": "PHB",
+			"subclassShortName": "Primeval (UA)",
+			"subclassSource": "UA2022GiantOptions",
+			"level": 14,
+			"header": 2,
+			"entries": [
+				"{@i 14th-Level Circle of the Primeval Feature}",
+				"You have learned to fully harness the titanic legacy of your companion. As part of the bonus action you use to command your companion, you can expend a spell slot of any level to heighten your primeval companion's might, granting it the following benefits:",
+				{
+					"type": "list",
+					"style": "list-hang-notitle",
+					"items": [
+						{
+							"type": "item",
+							"name": "Hulking Behemoth",
+							"entries": [
+								"The companion becomes Huge and gains temporary hit points equal to 10 times the level of the spell slot expended. If there isn't enough room for the companion to become Huge, it attains the maximum possible size in the space available."
+							]
+						},
+						{
+							"type": "item",
+							"name": "Mauler",
+							"entries": [
+								"On a hit, the companion's Strike deals additional damage equal to {@dice 1d8} plus the level of the spell slot expended."
+							]
+						},
+						{
+							"type": "item",
+							"name": "Titanic Stride",
+							"entries": [
+								"The companion's walking speed increases by a number of feet equal to 5 times the level of the spell slot expended."
+							]
+						}
+					]
+				},
+				"These benefits last for 1 hour, until the companion vanishes, or until you expend a spell slot for this feature again."
+			]
+		},
+		{
 			"name": "Circle of Wildfire",
 			"source": "UAClericDruidWizard",
 			"page": 2,
@@ -4215,6 +4381,9 @@
 			"subclassSource": "UAClericDruidWizard",
 			"level": 2,
 			"header": 1,
+			"consumes": {
+				"name": "Wild Shape"
+			},
 			"entries": [
 				"{@i 2nd-level Circle of Wildfire feature}",
 				"You can summon the primal spirit bound to your soul. As an action, you can expend one use of your Wild Shape feature to summon your {@creature wildfire spirit|UAClericDruidWizard}, rather than assuming a beast form.",

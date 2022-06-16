@@ -18,7 +18,9 @@
 			"name": "Expert",
 			"source": "SDW",
 			"level": 9,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"ac": [
 				{
@@ -119,7 +121,9 @@
 		{
 			"name": "Giant Shark Skeleton",
 			"source": "SDW",
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "undead",
 			"alignment": [
 				"U"
@@ -189,6 +193,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -196,7 +201,9 @@
 			"isNpc": true,
 			"isNamedCreature": true,
 			"source": "SDW",
-			"size": "H",
+			"size": [
+				"H"
+			],
 			"type": "dragon",
 			"alignment": [
 				"L",
@@ -439,6 +446,13 @@
 				"P",
 				"S"
 			],
+			"damageTagsLegendary": [
+				"S",
+				"T"
+			],
+			"damageTagsSpell": [
+				"O"
+			],
 			"spellcastingTags": [
 				"CS",
 				"I"
@@ -453,7 +467,8 @@
 				"prone"
 			],
 			"conditionInflictLegendary": [
-				"deafened"
+				"deafened",
+				"prone"
 			],
 			"conditionInflictSpell": [
 				"charmed",
@@ -468,7 +483,9 @@
 			"name": "Spellcaster (Healer)",
 			"source": "SDW",
 			"level": 9,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"ac": [
 				{
@@ -580,6 +597,9 @@
 			"damageTags": [
 				"B"
 			],
+			"damageTagsSpell": [
+				"R"
+			],
 			"spellcastingTags": [
 				"CC"
 			],
@@ -595,7 +615,9 @@
 			"name": "Spellcaster (Mage)",
 			"source": "SDW",
 			"level": 9,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"ac": [
 				{
@@ -707,6 +729,10 @@
 			"damageTags": [
 				"B"
 			],
+			"damageTagsSpell": [
+				"C",
+				"F"
+			],
 			"spellcastingTags": [
 				"CW"
 			],
@@ -723,7 +749,9 @@
 			"name": "Warrior",
 			"source": "SDW",
 			"level": 9,
-			"size": "M",
+			"size": [
+				"M"
+			],
 			"type": "humanoid",
 			"ac": [
 				{
@@ -782,19 +810,27 @@
 				{
 					"name": "Martial Role",
 					"entries": [
-						"The warrior has one of the following traits of your choice:"
-					]
-				},
-				{
-					"name": "Attacker",
-					"entries": [
-						"The warrior gains a +2 bonus to attack rolls."
-					]
-				},
-				{
-					"name": "Defender",
-					"entries": [
-						"The warrior gains the Protection reaction below."
+						"The warrior has one of the following traits of your choice:",
+						{
+							"type": "list",
+							"style": "list-hang-notitle",
+							"items": [
+								{
+									"name": "Attacker",
+									"type": "item",
+									"entries": [
+										"The warrior gains a +2 bonus to attack rolls."
+									]
+								},
+								{
+									"name": "Defender",
+									"type": "item",
+									"entries": [
+										"The warrior gains the Protection reaction below."
+									]
+								}
+							]
+						}
 					]
 				},
 				{

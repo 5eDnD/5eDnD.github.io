@@ -66,7 +66,9 @@ function dataRecurse (file, obj, primitiveHandlers, lastType, lastKey) {
 
 function readJson (path) {
 	try {
-		return JSON.parse(fs.readFileSync(path, "utf8"));
+		const data = fs.readFileSync(path, "utf8")
+			.replace(/^\uFEFF/, ""); // strip BOM
+		return JSON.parse(data);
 	} catch (e) {
 		e.message += ` (Path: ${path})`;
 		throw e;
@@ -108,7 +110,7 @@ function listFiles (opts) {
 		.filter(file => {
 			const path = `${opts.dir}/${file}`;
 			if (isDirectory(path)) return opts.whitelistDirs ? opts.whitelistDirs.includes(path) : true;
-			return !opts.blacklistFilePrefixes.some(it => file.startsWith(it)) && opts.whitelistFileExts.some(it => file.endsWith(it))
+			return !opts.blacklistFilePrefixes.some(it => file.startsWith(it)) && opts.whitelistFileExts.some(it => file.endsWith(it));
 		})
 		.map(file => `${opts.dir}/${file}`);
 
@@ -119,6 +121,17 @@ function listFiles (opts) {
 	}, []);
 }
 
+function rmDirRecursiveSync (dir) {
+	if (fs.existsSync(dir)) {
+		fs.readdirSync(dir).forEach(file => {
+			const curPath = `${dir}/${file}`;
+			if (fs.lstatSync(curPath).isDirectory()) rmDirRecursiveSync(curPath);
+			else fs.unlinkSync(curPath);
+		});
+		fs.rmdirSync(dir);
+	}
+}
+
 class PatchLoadJson {
 	static patchLoadJson () {
 		PatchLoadJson._CACHED = PatchLoadJson._CACHED || DataUtil.loadJSON;
@@ -126,7 +139,7 @@ class PatchLoadJson {
 			const data = readJson(url);
 			await DataUtil.pDoMetaMerge(url, data);
 			return data;
-		}
+		};
 	}
 
 	static unpatchLoadJson () {
@@ -135,6 +148,27 @@ class PatchLoadJson {
 }
 PatchLoadJson._CACHED = null;
 
+class ArgParser {
+	static parse () {
+		process.argv
+			.slice(2)
+			.forEach(arg => {
+				let [k, v] = arg.split("=").map(it => it.trim()).filter(Boolean);
+				if (v == null) ArgParser.ARGS[k] = true;
+				else {
+					v = v
+						.replace(/^"(.*)"$/, "$1")
+						.replace(/^'(.*)'$/, "$1")
+					;
+
+					if (!isNaN(v)) ArgParser.ARGS[k] = Number(v);
+					else ArgParser.ARGS[k] = v;
+				}
+			});
+	}
+}
+ArgParser.ARGS = {};
+
 module.exports = {
 	dataRecurse,
 	readJson,
@@ -142,4 +176,6 @@ module.exports = {
 	FILE_PREFIX_BLACKLIST,
 	patchLoadJson: PatchLoadJson.patchLoadJson,
 	unpatchLoadJson: PatchLoadJson.unpatchLoadJson,
+	ArgParser,
+	rmDirRecursiveSync,
 };
