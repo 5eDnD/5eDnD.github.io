@@ -86,7 +86,6 @@
 				}
 			],
 			"wondrous": true,
-			"weight": 0.01,
 			"bonusSpellAttack": "+1",
 			"bonusSpellSaveDc": "+1",
 			"focus": [
@@ -296,7 +295,6 @@
 				}
 			],
 			"wondrous": true,
-			"weight": 0.01,
 			"bonusSpellAttack": "+2",
 			"bonusSpellSaveDc": "+2",
 			"entries": [
@@ -503,7 +501,6 @@
 				}
 			],
 			"wondrous": true,
-			"weight": 0.01,
 			"bonusSpellAttack": "+3",
 			"bonusSpellSaveDc": "+3",
 			"entries": [
@@ -3629,7 +3626,6 @@
 				}
 			],
 			"wondrous": true,
-			"weight": 0.01,
 			"recharge": "dawn",
 			"charges": 3,
 			"focus": [
@@ -3841,6 +3837,20 @@
 			"value": 200
 		},
 		{
+			"name": "Biza's Breath",
+			"source": "JttRC",
+			"page": 0,
+			"type": "G",
+			"rarity": "none",
+			"poison": true,
+			"entries": [
+				"A creature subjected to this poison must succeed on a DC 16 Constitution saving throw or become {@condition poisoned} for 1 minute. The {@condition poisoned} creature must use its action to make a melee attack against a randomly determined creature within its reach. If there is no other creature within its reach, the {@condition poisoned} creature does nothing on its turn. The creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+			],
+			"poisonTypes": [
+				"inhaled"
+			]
+		},
+		{
 			"name": "Black Chromatic Rose",
 			"source": "WBtW",
 			"page": 208,
@@ -3963,6 +3973,16 @@
 			]
 		},
 		{
+			"name": "Black Ghost Orchid Seed",
+			"source": "JttRC",
+			"page": 0,
+			"type": "G",
+			"rarity": "none",
+			"entries": [
+				"Every few years, a ghost orchid colony grows a black pod as thick as a human fist that holds three soft, black seeds. A creature that consumes one of these black seeds is affected by the spell {@spell feign death}. If the creature is unaware of the pod's effects or does not wish to be affected, it can resist the effect by succeeding on a DC 16 Constitution saving throw. Otherwise, it is considered to be a willing recipient of the spell."
+			]
+		},
+		{
 			"name": "Black Opal",
 			"source": "DMG",
 			"page": 134,
@@ -4051,7 +4071,7 @@
 					"name": "Devour Soul",
 					"type": "entries",
 					"entries": [
-						"Whenever you use it to reduce a creature to 0 hit points, the sword slays the creature devours its soul, unless it is a construct or an undead. A creature whose soul has been devoured by Blackrazor can be restored to life only by a {@spell wish} spell.",
+						"Whenever you use it to reduce a creature to 0 hit points, the sword slays the creature and devours its soul, unless it is a construct or an undead. A creature whose soul has been devoured by Blackrazor can be restored to life only by a {@spell wish} spell.",
 						"When it devours a soul, Blackrazor grants you temporary hit points equal to the slain creature's hit point maximum. These hit points fade after 24 hours. As long as these temporary hit points last and you keep Blackrazor in hand, you have advantage on attack rolls, saving throws, and ability checks.",
 						"If you hit an undead with this weapon, you take {@damage 1d10} necrotic damage and the target regains {@dice 1d10} hit points. If this necrotic damage reduces you to 0 hit points, Blackrazor devours your soul."
 					]
@@ -6494,7 +6514,6 @@
 				}
 			],
 			"wondrous": true,
-			"weight": 0.01,
 			"entries": [
 				"This Tiny pot bears relief scenes of heroes on its cast iron sides. You can use the cauldron as a spellcasting focus for your spells, and it functions as a suitable component for the {@spell scrying} spell. When you finish a long rest, you can use the cauldron to create a {@item potion of greater healing}. The potion lasts for 24 hours, then loses its magic if not consumed.",
 				"As an action, you can cause the cauldron to grow large enough for a Medium creature to crouch within. You can revert the cauldron to its normal size as an action, harmlessly shunting anything that can't fit inside to the nearest unoccupied space.",
@@ -12284,6 +12303,46 @@
 			"hasFluffImages": true
 		},
 		{
+			"name": "Faerie Dust",
+			"source": "SKT",
+			"page": 35,
+			"type": "OTH",
+			"rarity": "unknown (magic)",
+			"entries": [
+				"A pinch of this dust can substitute for the material components of any enchantment spell of 3rd level or lower. If a pinch of faerie dust is sprinkled on a creature, roll percentile dice and consult the Faerie Dust table to determine the effect.",
+				{
+					"type": "table",
+					"caption": "Faerie Dust",
+					"colLabels": [
+						"d100",
+						"Magical Effect"
+					],
+					"colStyles": [
+						"col-2 text-center",
+						"col-10"
+					],
+					"rows": [
+						[
+							"01-70",
+							"The creature sprinkled with dust gains a flying speed of 60 feet for 10 minutes."
+						],
+						[
+							"71-80 ",
+							"The creature sprinkled with dust must succeed on a DC 11 Constitution saving throw or fall {@condition unconscious} for 1 minute. The creature awakens if it takes damage or if it is shaken or slapped as an action."
+						],
+						[
+							"81-90",
+							"The creature sprinkled with dust must succeed on a DC 11 Wisdom saving throw or be affected by a {@spell confusion} spell."
+						],
+						[
+							"91-00",
+							"The creature sprinkled with dust becomes {@condition invisible} for 1 hour. Any equipment it is wearing or carrying is {@condition invisible} as long as it is on the creature's person. The effect on the creature ends if it attacks, deals any damage, or casts a spell."
+						]
+					]
+				}
+			]
+		},
+		{
 			"name": "Failed Experiment Wand",
 			"source": "AI",
 			"page": 162,
@@ -14820,7 +14879,6 @@
 				}
 			],
 			"wondrous": true,
-			"weight": 0.02,
 			"recharge": "dawn",
 			"charges": 3,
 			"entries": [
@@ -14990,6 +15048,18 @@
 			],
 			"lootTables": [
 				"Magic Item Table I"
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Hammock of Worlds",
+			"source": "JttRC",
+			"page": 214,
+			"rarity": "legendary",
+			"wondrous": true,
+			"entries": [
+				"The Hammock of Worlds is a colorful hammock woven with traditional Ataguan designs. It can be used only by a member of the order known as the Green Doctors.",
+				"You can use an action to unfold and place the Hammock of Worlds on a solid surface, whereupon it creates a two-way portal to the Ghost Orchid Tepui in the Feywild or to the Drought Elder in the Far Realm (the user's choice). You can use an action to close an open portal by taking hold of the edges of the cloth and folding it up. Once Hammock of Worlds has opened a portal, it can't do so again for {@dice 1d8} hours."
 			],
 			"hasFluffImages": true
 		},
@@ -18284,7 +18354,7 @@
 							"items": [
 								"You can speak Terran fluently.",
 								"You have resistance to acid damage.",
-								"You have {@sense tremorsense} out to a range of 60 feet.",
+								"You have {@sense tremorsense|MM} out to a range of 60 feet.",
 								"You can sense the presence of precious metals and stones within 60 feet of you, but not their exact location.",
 								"You can cast {@spell dominate monster} (save DC 17) on an {@creature earth elemental}. Once you have done so, Ironfang can't be used this way again until the next dawn."
 							]
@@ -19640,6 +19710,18 @@
 			]
 		},
 		{
+			"name": "Lesser Hammock of Worlds",
+			"source": "JttRC",
+			"page": 0,
+			"rarity": "legendary",
+			"wondrous": true,
+			"entries": [
+				"The Hammock of Worlds is a colorful hammock woven with traditional Ataguan designs.",
+				"You can use an action to unfold and place the lesser version of the Hammock of Worlds on a solid surface, whereupon it creates a two-way portal to another world or plane of existence. Each time the item opens a portal, the DM decides where it leads or the user can cause it to always reliably connect to the Ghost Orchid Tepui. You can use an action to close an open portal by taking hold of the edges of the cloth and folding it up. Once the lesser version of the Hammock of Worlds has opened a portal, it can't do so again for {@dice 1d8} hours."
+			],
+			"hasFluffImages": true
+		},
+		{
 			"name": "Libram of Souls and Flesh",
 			"source": "TCE",
 			"page": 129,
@@ -20155,7 +20237,7 @@
 					"type": "entries",
 					"name": "Enduring Vision",
 					"entries": [
-						"While holding the deck, you automatically succeed on Constitution saving throws made to maintain your concentration on {@spell divination} spells."
+						"While holding the deck, you automatically succeed on Constitution saving throws made to maintain your concentration on divination spells."
 					]
 				},
 				{
@@ -21816,17 +21898,15 @@
 				{
 					"race": "elf",
 					"alignment": [
-						"NX",
-						"NY",
+						"N",
 						"N"
 					]
 				},
 				{
 					"race": "half-elf",
 					"alignment": [
-						"NX",
-						"NY",
-						"N"
+						"N",
+						"G"
 					]
 				}
 			],
@@ -24319,46 +24399,6 @@
 			"entries": [
 				"This dark spider-silk cloak is made by {@creature drow}. It is a {@item cloak of elvenkind}. It also grants resistance to fire damage while you wear it. It loses its magic if exposed to sunlight for 1 hour without interruption.",
 				"While you wear this cloak with its hood up, Wisdom ({@skill Perception}) checks made to see you have disadvantage. and you have advantage on Dexterity ({@skill Stealth}) checks made to hide, as the cloak's color shifts to camouflage you. Pulling the hood up or down requires an action."
-			]
-		},
-		{
-			"name": "Pixie Dust",
-			"source": "SKT",
-			"page": 35,
-			"type": "OTH",
-			"rarity": "unknown (magic)",
-			"entries": [
-				"A pinch of this dust can substitute for the material components of any enchantment spell of 3rd level or lower. If a pinch of pixie dust is sprinkled on a creature, roll percentile dice and consult the Pixie Dust table to determine the effect.",
-				{
-					"type": "table",
-					"caption": "Pixie Dust",
-					"colLabels": [
-						"d100",
-						"Magical Effect"
-					],
-					"colStyles": [
-						"col-2 text-center",
-						"col-10"
-					],
-					"rows": [
-						[
-							"01-70",
-							"The creature sprinkled with dust gains a flying speed of 60 feet for 10 minutes."
-						],
-						[
-							"71-80 ",
-							"The creature sprinkled with dust must succeed on a DC 11 Constitution saving throw or fall {@condition unconscious} for 1 minute. The creature awakens if it takes damage or if it is shaken or slapped as an action."
-						],
-						[
-							"81-90",
-							"The creature sprinkled with dust must succeed on a DC 11 Wisdom saving throw or be affected by a {@spell confusion} spell."
-						],
-						[
-							"91-00",
-							"The creature sprinkled with dust becomes {@condition invisible} for 1 hour. Any equipment it is wearing or carrying is {@condition invisible} as long as it is on the creature's person. The effect on the creature ends if it attacks, deals any damage, or casts a spell."
-						]
-					]
-				}
 			]
 		},
 		{
@@ -30387,7 +30427,6 @@
 			"rarity": "uncommon",
 			"reqAttune": true,
 			"wondrous": true,
-			"bonusAc": "+1",
 			"modifySpeed": {
 				"equal": {
 					"fly": "walk"
@@ -30514,7 +30553,7 @@
 			"age": "modern",
 			"entries": [
 				"As an action, a character can throw a grenade at a point up to 60 feet away. With a grenade launcher, the character can propel the grenade up to 120 feet away.",
-				"One round after a smoke grenade, lands, it emits a cloud of smoke that creates a heavily obscured area in a 20-foot radius. A moderate wind (at least 10 miles per hour) disperses the smoke in 4 rounds; a strong wind (20 or more miles per hour) disperses it in 1 round."
+				"One round after a smoke grenade lands, it emits a cloud of smoke that creates a heavily obscured area in a 20-foot radius. A moderate wind (at least 10 miles per hour) disperses the smoke in 4 rounds; a strong wind (20 or more miles per hour) disperses it in 1 round."
 			]
 		},
 		{
@@ -32711,6 +32750,7 @@
 				}
 			},
 			"rarity": "rare",
+			"bonusAc": "+1",
 			"entries": [
 				"This ornament can be jewelry, a cloak, or another wearable accessory. It appears to be fashioned from a dragon's scale, tooth, or claw, or it incorporates images in those shapes.",
 				"You gain a +1 bonus to AC, and you can't be {@condition charmed} or {@condition frightened}. Moreover, each creature of your choice within 30 feet of you has advantage on saving throws it makes to avoid being {@condition charmed} or {@condition frightened} or to end those conditions on itself."
@@ -33228,7 +33268,8 @@
 			"reqAttuneTags": [
 				{
 					"alignment": [
-						"C"
+						"C",
+						"G"
 					]
 				}
 			],
@@ -33259,6 +33300,7 @@
 			"reqAttuneTags": [
 				{
 					"alignment": [
+						"C",
 						"E"
 					]
 				}
@@ -33290,8 +33332,7 @@
 			"reqAttuneTags": [
 				{
 					"alignment": [
-						"NX",
-						"NY",
+						"L",
 						"N"
 					]
 				}
@@ -33323,8 +33364,7 @@
 			"reqAttuneTags": [
 				{
 					"alignment": [
-						"NX",
-						"NY",
+						"C",
 						"N"
 					]
 				}
@@ -33356,9 +33396,8 @@
 			"reqAttuneTags": [
 				{
 					"alignment": [
-						"NX",
-						"NY",
-						"N"
+						"N",
+						"G"
 					]
 				}
 			],
@@ -33389,8 +33428,6 @@
 			"reqAttuneTags": [
 				{
 					"alignment": [
-						"NX",
-						"NY",
 						"N"
 					]
 				}
@@ -33422,7 +33459,8 @@
 			"reqAttuneTags": [
 				{
 					"alignment": [
-						"L"
+						"L",
+						"G"
 					]
 				}
 			],
@@ -33453,6 +33491,7 @@
 			"reqAttuneTags": [
 				{
 					"alignment": [
+						"L",
 						"E"
 					]
 				}
@@ -33484,9 +33523,8 @@
 			"reqAttuneTags": [
 				{
 					"alignment": [
-						"NX",
-						"NY",
-						"N"
+						"N",
+						"E"
 					]
 				}
 			],
@@ -39134,6 +39172,16 @@
 			"entries": [
 				"Dragon scale mail is made of the scales of one kind of dragon. Sometimes dragons collect their cast-off scales and gift them to humanoids. Other times, hunters carefully skin and preserve the hide of a dead dragon. In either case, dragon scale mail is highly valued. While wearing this armor, you gain a +1 bonus to AC, you have advantage on saving throws against the Frightful Presence and breath weapons of dragons, and you have resistance to cold damage.",
 				"Additionally, you can focus your senses as an action to magically discern the distance and direction to the closest white dragon within 30 miles of you. This special action can't be used again until the next dawn."
+			]
+		},
+		{
+			"name": "White Ghost Orchid Seed",
+			"source": "JttRC",
+			"page": 0,
+			"type": "G",
+			"rarity": "none",
+			"entries": [
+				"More rarely, the orchids produce a smaller pod holding a single white seed. Among its various magical properties, if a white seed is ground and scattered over a dead body, the body is affected by the {@spell resurrection} spell. A white ghost orchid seed has no effect if consumed."
 			]
 		},
 		{

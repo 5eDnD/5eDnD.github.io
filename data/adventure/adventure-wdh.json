@@ -2242,7 +2242,8 @@
 									"hrefThumbnail": {
 										"type": "internal",
 										"path": "adventure/WDH/thumbnail/Zhent-Warehouse-DM.webp"
-									}
+									},
+									"id": "4e8"
 								},
 								{
 									"type": "image",
@@ -3487,7 +3488,8 @@
 									"hrefThumbnail": {
 										"type": "internal",
 										"path": "adventure/WDH/thumbnail/Trollskull-Alley-DM.webp"
-									}
+									},
+									"id": "4e9"
 								},
 								{
 									"type": "image",
@@ -5808,7 +5810,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Gralhund-Villa-DM.webp"
-											}
+											},
+											"id": "4ea"
 										},
 										{
 											"type": "image",
@@ -7302,7 +7305,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Mistshore-DM.webp"
-											}
+											},
+											"id": "4eb"
 										},
 										{
 											"type": "image",
@@ -8072,7 +8076,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Mausoleum-DM.webp"
-											}
+											},
+											"id": "4ec"
 										},
 										{
 											"type": "image",
@@ -8753,7 +8758,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Theater-DM.webp"
-											}
+											},
+											"id": "4ed"
 										},
 										{
 											"type": "image",
@@ -9967,7 +9973,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Courthouse-DM.webp"
-											}
+											},
+											"id": "4ee"
 										},
 										{
 											"type": "image",
@@ -11205,7 +11212,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Cellar-Complex-DM.webp"
-											}
+											},
+											"id": "4ef"
 										},
 										{
 											"type": "image",
@@ -12665,7 +12673,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Windmill-DM.webp"
-											}
+											},
+											"id": "4f0"
 										},
 										{
 											"type": "image",
@@ -14087,7 +14096,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Vault-of-Dragons-DM.webp"
-											}
+											},
+											"id": "4f1"
 										},
 										{
 											"type": "image",
@@ -16639,7 +16649,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Xanathar-Lair-DM.webp"
-											}
+											},
+											"id": "4f2"
 										},
 										{
 											"type": "image",
@@ -19301,12 +19312,197 @@
 															1144
 														]
 													]
+												},
+												{
+													"area": "324",
+													"points": [
+														[
+															712,
+															97
+														],
+														[
+															687,
+															97
+														],
+														[
+															671,
+															111
+														],
+														[
+															671,
+															139
+														],
+														[
+															688,
+															154
+														],
+														[
+															712,
+															153
+														]
+													]
+												},
+												{
+													"area": "325",
+													"points": [
+														[
+															723,
+															152
+														],
+														[
+															723,
+															98
+														],
+														[
+															755,
+															66
+														],
+														[
+															922,
+															66
+														],
+														[
+															922,
+															121
+														],
+														[
+															857,
+															186
+														],
+														[
+															816,
+															186
+														],
+														[
+															816,
+															152
+														]
+													]
+												},
+												{
+													"area": "31f",
+													"points": [
+														[
+															672,
+															395
+														],
+														[
+															686,
+															383
+														],
+														[
+															716,
+															384
+														],
+														[
+															751,
+															351
+														],
+														[
+															777,
+															350
+														],
+														[
+															779,
+															409
+														],
+														[
+															732,
+															452
+														],
+														[
+															719,
+															439
+														],
+														[
+															687,
+															439
+														],
+														[
+															672,
+															425
+														]
+													]
+												},
+												{
+													"area": "32a",
+													"points": [
+														[
+															735,
+															655
+														],
+														[
+															702,
+															688
+														],
+														[
+															674,
+															688
+														],
+														[
+															655,
+															706
+														],
+														[
+															653,
+															769
+														],
+														[
+															674,
+															787
+														],
+														[
+															689,
+															786
+														],
+														[
+															788,
+															881
+														],
+														[
+															810,
+															860
+														],
+														[
+															719,
+															772
+														],
+														[
+															685,
+															770
+														],
+														[
+															670,
+															754
+														],
+														[
+															668,
+															718
+														],
+														[
+															687,
+															701
+														],
+														[
+															716,
+															700
+														],
+														[
+															748,
+															667
+														],
+														[
+															748,
+															655
+														]
+													]
 												}
 											],
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Cassalanter-Villa-DM.webp"
-											}
+											},
+											"id": "4f3"
 										},
 										{
 											"type": "image",
@@ -22035,7 +22231,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Temple-of-Asmodeus-DM.webp"
-											}
+											},
+											"id": "4f4"
 										},
 										{
 											"type": "image",
@@ -24200,7 +24397,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Ships-DM.webp"
-											}
+											},
+											"id": "4f5"
 										},
 										{
 											"type": "image",
@@ -25777,7 +25975,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Scarlet-Marpenoth-DM.webp"
-											}
+											},
+											"id": "4f6"
 										},
 										{
 											"type": "image",
@@ -27610,7 +27809,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Kolat-Towers-DM.webp"
-											}
+											},
+											"id": "4f7"
 										},
 										{
 											"type": "image",
@@ -29421,7 +29621,8 @@
 											"hrefThumbnail": {
 												"type": "internal",
 												"path": "adventure/WDH/thumbnail/Sanctum-DM.webp"
-											}
+											},
+											"id": "4f8"
 										},
 										{
 											"type": "image",

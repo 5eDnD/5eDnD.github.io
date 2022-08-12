@@ -70,7 +70,7 @@ class RenderBestiary {
 			${options.$btnScaleCr || ""}
 			${options.$btnResetScaleCr || ""}
 		</td>
-		` : `<td colspan="3"><strong>Challenge</strong> <span>\u2014</span></td>`}${mon.pbNote || Parser.crToNumber(mon.cr) < VeCt.CR_CUSTOM ? `<td colspan="3" class="text-right"><strong>Proficiency Bonus</strong> ${mon.pbNote ?? UiUtil.intToBonus(Parser.crToPb(mon.cr))}</td>` : ""}</tr>
+		` : `<td colspan="3"><strong>Challenge</strong> <span>\u2014</span></td>`}${mon.pbNote || Parser.crToNumber(mon.cr) < VeCt.CR_CUSTOM ? `<td colspan="3" class="text-right"><strong>Proficiency Bonus</strong> ${mon.pbNote ?? UiUtil.intToBonus(Parser.crToPb(mon.cr), {isPretty: true})}</td>` : ""}</tr>
 
 		<tr>${options.selSummonSpellLevel ? $$`<td colspan="6"><strong>Spell Level</strong> ${options.selSummonSpellLevel}</td>` : ""}</tr>
 		<tr>${options.selSummonClassLevel ? $$`<td colspan="6"><strong>Class Level</strong> ${options.selSummonClassLevel}</td>` : ""}</tr>
@@ -82,8 +82,8 @@ class RenderBestiary {
 		${RenderBestiary._getRenderedSection({mon, prop: "bonus", entries: mon.bonus})}` : ""}
 		${mon.reaction ? `${this._getRenderedSectionHeader({mon, title: "Reactions", prop: "reaction"})}
 		${RenderBestiary._getRenderedSection({mon, prop: "reaction", entries: mon.reaction})}` : ""}
-		${mon.legendary ? `${this._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary", fnGetHeader: Renderer.monster.getLegendaryActionIntro.bind(Renderer.monster)})}
-		${RenderBestiary._getRenderedSection({mon, prop: "legendary", entries: mon.legendary})}` : ""}
+		${mon.legendary ? `${this._getRenderedSectionHeader({mon, title: "Legendary Actions", prop: "legendary"})}
+		${RenderBestiary._getRenderedSection({mon, prop: "legendary", entries: mon.legendary, fnGetHeader: Renderer.monster.getLegendaryActionIntro.bind(Renderer.monster)})}` : ""}
 		${mon.mythic ? `${this._getRenderedSectionHeader({mon, title: "Mythic Actions", prop: "mythic"})}
 		${RenderBestiary._getRenderedSection({mon, prop: "mythic", entries: mon.mythic})}` : ""}
 

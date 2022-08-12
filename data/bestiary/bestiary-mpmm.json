@@ -116,7 +116,7 @@
 				{
 					"name": "Arcane Ward {@recharge 4}",
 					"entries": [
-						"When the abjurer or a creature it can see within 30 feet of it takes damage, the abjurer magically creates a protective barrier around itself or the other creature. The barrier reduces the damage to the protected creature by 26 ({@damage 4d10 + 4}), to a minimum of O, and then vanishes."
+						"When the abjurer or a creature it can see within 30 feet of it takes damage, the abjurer magically creates a protective barrier around itself or the other creature. The barrier reduces the damage to the protected creature by 26 ({@damage 4d10 + 4}), to a minimum of 0, and then vanishes."
 					]
 				}
 			],
@@ -415,7 +415,8 @@
 				"path": "bestiary/oblex-adult.mp3"
 			},
 			"traitTags": [
-				"Amorphous"
+				"Amorphous",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"B"
@@ -935,7 +936,8 @@
 				"Amorphous",
 				"False Appearance",
 				"Magic Resistance",
-				"Spider Climb"
+				"Spider Climb",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"SD"
@@ -1089,7 +1091,8 @@
 				"path": "bestiary/allip.mp3"
 			},
 			"traitTags": [
-				"Incorporeal Movement"
+				"Incorporeal Movement",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -1595,6 +1598,9 @@
 				{
 					"source": "VGM",
 					"page": 209
+				},
+				{
+					"source": "SjA"
 				}
 			],
 			"size": [
@@ -2244,7 +2250,8 @@
 				"path": "bestiary/astral-dreadnought.mp3"
 			},
 			"traitTags": [
-				"Legendary Resistances"
+				"Legendary Resistances",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"SD"
@@ -4689,7 +4696,8 @@
 				"path": "bestiary/bodak.mp3"
 			},
 			"traitTags": [
-				"Sunlight Sensitivity"
+				"Sunlight Sensitivity",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"SD"
@@ -4993,7 +5001,8 @@
 				"path": "bestiary/boneclaw.mp3"
 			},
 			"traitTags": [
-				"Rejuvenation"
+				"Rejuvenation",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -5213,6 +5222,7 @@
 				"P"
 			],
 			"miscTags": [
+				"HPR",
 				"MW"
 			],
 			"conditionInflict": [
@@ -5342,7 +5352,8 @@
 				"path": "bestiary/cadaver-collector.mp3"
 			},
 			"traitTags": [
-				"Magic Resistance"
+				"Magic Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -6083,6 +6094,9 @@
 				"type": "internal",
 				"path": "bestiary/choker.mp3"
 			},
+			"traitTags": [
+				"Spider Climb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -6384,7 +6398,8 @@
 				"path": "bestiary/bronze-scout.mp3"
 			},
 			"traitTags": [
-				"Magic Resistance"
+				"Magic Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -6518,7 +6533,8 @@
 				"path": "bestiary/iron-cobra.mp3"
 			},
 			"traitTags": [
-				"Magic Resistance"
+				"Magic Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -6656,7 +6672,8 @@
 				"path": "bestiary/oaken-bolter.mp3"
 			},
 			"traitTags": [
-				"Magic Resistance"
+				"Magic Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -6782,7 +6799,8 @@
 				"path": "bestiary/stone-defender.mp3"
 			},
 			"traitTags": [
-				"Magic Resistance"
+				"Magic Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -7209,6 +7227,9 @@
 				"type": "internal",
 				"path": "bestiary/corpse-flower.mp3"
 			},
+			"traitTags": [
+				"Spider Climb"
+			],
 			"senseTags": [
 				"B"
 			],
@@ -7833,7 +7854,8 @@
 				"path": "bestiary/deathlock.mp3"
 			},
 			"traitTags": [
-				"Turn Resistance"
+				"Turn Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -8012,7 +8034,8 @@
 			},
 			"traitTags": [
 				"Devil's Sight",
-				"Turn Resistance"
+				"Turn Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"SD"
@@ -8177,7 +8200,8 @@
 				"path": "bestiary/deathlock-wight.mp3"
 			},
 			"traitTags": [
-				"Sunlight Sensitivity"
+				"Sunlight Sensitivity",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -8192,6 +8216,7 @@
 				"N"
 			],
 			"miscTags": [
+				"HPR",
 				"MW"
 			],
 			"conditionInflictSpell": [
@@ -8763,6 +8788,7 @@
 				"Y"
 			],
 			"miscTags": [
+				"HPR",
 				"MW",
 				"RCH"
 			],
@@ -9135,6 +9161,9 @@
 				"type": "internal",
 				"path": "bestiary/devourer.mp3"
 			},
+			"traitTags": [
+				"Unusual Nature"
+			],
 			"senseTags": [
 				"SD"
 			],
@@ -10773,6 +10802,7 @@
 				"Y"
 			],
 			"miscTags": [
+				"HPR",
 				"MW"
 			],
 			"conditionInflictSpell": [
@@ -12640,6 +12670,7 @@
 				"Y"
 			],
 			"miscTags": [
+				"HPR",
 				"MW"
 			],
 			"conditionInflict": [
@@ -12895,7 +12926,8 @@
 			},
 			"traitTags": [
 				"Incorporeal Movement",
-				"Turn Resistance"
+				"Turn Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -13280,7 +13312,8 @@
 				"path": "bestiary/elder-oblex.mp3"
 			},
 			"traitTags": [
-				"Amorphous"
+				"Amorphous",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"B"
@@ -13719,7 +13752,7 @@
 				{
 					"name": "Arcane Burst",
 					"entries": [
-						"{@atk ms,rs} {@hit 7} to hit, reach 5 ft. or range 120 ft., one target. {@h}20 ({@damage 3d10 + 3}) force damage."
+						"{@atk ms,rs} {@hit 7} to hit, reach 5 ft. or range 120 ft., one target. {@h}25 ({@damage 4d10 + 3}) force damage."
 					]
 				},
 				{
@@ -15439,6 +15472,9 @@
 				{
 					"source": "VGM",
 					"page": 126
+				},
+				{
+					"source": "SjA"
 				}
 			],
 			"size": [
@@ -15577,6 +15613,7 @@
 			"environment": [
 				"underdark"
 			],
+			"familiar": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/gazer.mp3"
@@ -15839,6 +15876,7 @@
 				"S"
 			],
 			"miscTags": [
+				"HPR",
 				"MW",
 				"RCH"
 			],
@@ -15955,6 +15993,9 @@
 				{
 					"source": "MTF",
 					"page": 204
+				},
+				{
+					"source": "SjA"
 				}
 			],
 			"size": [
@@ -17296,6 +17337,9 @@
 				"type": "internal",
 				"path": "bestiary/gnoll-witherling.mp3"
 			},
+			"traitTags": [
+				"Unusual Nature"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -18755,8 +18799,7 @@
 				{
 					"name": "Multiattack",
 					"entries": [
-						"The guard drake makes one Bite attack and one",
-						"Tail attack."
+						"The guard drake makes one Bite attack and one Tail attack."
 					]
 				},
 				{
@@ -19156,7 +19199,8 @@
 			},
 			"traitTags": [
 				"Immutable Form",
-				"Magic Resistance"
+				"Magic Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"SD"
@@ -19357,7 +19401,7 @@
 				{
 					"ac": 15,
 					"from": [
-						"unarmored defense"
+						"Unarmored Defense"
 					]
 				}
 			],
@@ -22317,7 +22361,7 @@
 				{
 					"ac": 16,
 					"from": [
-						"unarmored defense"
+						"Unarmored Defense"
 					]
 				}
 			],
@@ -22575,7 +22619,8 @@
 			"traitTags": [
 				"Immutable Form",
 				"Legendary Resistances",
-				"Magic Resistance"
+				"Magic Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -24192,6 +24237,7 @@
 				"L"
 			],
 			"miscTags": [
+				"HPR",
 				"MW",
 				"RCH"
 			],
@@ -24664,6 +24710,7 @@
 			],
 			"miscTags": [
 				"AOE",
+				"HPR",
 				"MW"
 			],
 			"hasToken": true,
@@ -25296,6 +25343,9 @@
 				{
 					"source": "VGM",
 					"page": 179
+				},
+				{
+					"source": "SjA"
 				}
 			],
 			"size": [
@@ -25838,6 +25888,9 @@
 				"type": "internal",
 				"path": "bestiary/nightwalker.mp3"
 			},
+			"traitTags": [
+				"Unusual Nature"
+			],
 			"senseTags": [
 				"SD"
 			],
@@ -25848,6 +25901,7 @@
 				"N"
 			],
 			"miscTags": [
+				"HPR",
 				"MW",
 				"RCH"
 			],
@@ -26206,7 +26260,8 @@
 				"path": "bestiary/oblex-spawn.mp3"
 			},
 			"traitTags": [
-				"Amorphous"
+				"Amorphous",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"B"
@@ -26796,6 +26851,7 @@
 			],
 			"miscTags": [
 				"AOE",
+				"HPR",
 				"MW"
 			],
 			"conditionInflict": [
@@ -27484,7 +27540,7 @@
 				{
 					"name": "Swoop (Costs 2 Actions)",
 					"entries": [
-						"The phoenix moves up to its speed and makes on Fiery Talons attack."
+						"The phoenix moves up to its speed and makes one Fiery Talons attack."
 					]
 				}
 			],
@@ -28531,7 +28587,8 @@
 				"path": "bestiary/sacred-statue.mp3"
 			},
 			"traitTags": [
-				"False Appearance"
+				"False Appearance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -30195,7 +30252,8 @@
 				"path": "bestiary/skull-lord.mp3"
 			},
 			"traitTags": [
-				"Legendary Resistances"
+				"Legendary Resistances",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -30478,7 +30536,8 @@
 				"path": "bestiary/spawn-of-kyuss.mp3"
 			},
 			"traitTags": [
-				"Regeneration"
+				"Regeneration",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -31658,7 +31717,8 @@
 				"path": "bestiary/steel-predator.mp3"
 			},
 			"traitTags": [
-				"Magic Resistance"
+				"Magic Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"B",
@@ -31945,7 +32005,8 @@
 				"path": "bestiary/stone-cursed.mp3"
 			},
 			"traitTags": [
-				"False Appearance"
+				"False Appearance",
+				"Unusual Nature"
 			],
 			"languageTags": [
 				"LF"
@@ -32906,7 +32967,8 @@
 				"path": "bestiary/sword-wraith-commander.mp3"
 			},
 			"traitTags": [
-				"Turn Resistance"
+				"Turn Resistance",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -33038,6 +33100,9 @@
 				"type": "internal",
 				"path": "bestiary/sword-wraith-warrior.mp3"
 			},
+			"traitTags": [
+				"Unusual Nature"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -33522,6 +33587,7 @@
 				"S"
 			],
 			"miscTags": [
+				"HPR",
 				"MW"
 			],
 			"conditionInflict": [
@@ -34481,7 +34547,8 @@
 				}
 			],
 			"traitTags": [
-				"Sunlight Sensitivity"
+				"Sunlight Sensitivity",
+				"Unusual Nature"
 			],
 			"senseTags": [
 				"D"
@@ -34489,6 +34556,9 @@
 			"damageTags": [
 				"N",
 				"R"
+			],
+			"miscTags": [
+				"HPR"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -35490,7 +35560,7 @@
 				{
 					"name": "Scimitar",
 					"entries": [
-						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) bludgeoning damage plus 14 ({@damage 4d6}) fire damage."
+						"{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}6 ({@damage 1d6 + 3}) slashing damage plus 14 ({@damage 4d6}) fire damage."
 					]
 				},
 				{
@@ -37138,6 +37208,7 @@
 				"L"
 			],
 			"miscTags": [
+				"HPR",
 				"MW",
 				"RCH"
 			],

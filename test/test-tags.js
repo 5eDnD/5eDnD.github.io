@@ -31,6 +31,7 @@ const MSG = {
 	BackgroundDataCheck: "",
 	BestiaryDataCheck: "",
 	RefTagCheck: "",
+	TestCopyCheck: "",
 };
 
 const WALKER = MiscUtil.getWalker({
@@ -299,18 +300,10 @@ class LinkCheck {
 				MSG.LinkCheck += `Missing link: ${match[0]} in file ${file} (evaluates to "${url}")\nSimilar URLs were:\n${getSimilar(url)}\n`;
 			}
 		}
-
-		while ((match = LinkCheck.SKILL_RE.exec(str))) {
-			const skill = match[1];
-			if (!Parser.SKILL_JSON_TO_FULL[skill]) {
-				MSG.LinkCheck += `Unknown skill: ${match[0]} in file ${file} (evaluates to "${skill}")\n`;
-			}
-		}
 	}
 }
 LinkCheck._RE_TAG_BLACKLIST = new Set(["quickref"]);
 LinkCheck.RE = RegExp(`{@(${Object.keys(Parser.TAG_TO_DEFAULT_SOURCE).filter(tag => !LinkCheck._RE_TAG_BLACKLIST.has(tag)).join("|")}) ([^}]*?)}`, "g");
-LinkCheck.SKILL_RE = /{@skill (.*?)(\|.*?)?}/g;
 
 class ClassLinkCheck {
 	static addHandlers () {
@@ -441,7 +434,7 @@ class ItemDataCheck extends GenericDataCheck {
 		items.itemGroup.forEach(it => this._checkRoot("data/items.json", it, it.name, it.source));
 
 		const magicVariants = require(`../data/magicvariants.json`);
-		magicVariants.variant.forEach(va => this._checkRoot("data/magicvariants.json", va, va.name, va.source) || (va.inherits && this._checkRoot("data/magicvariants.json", va.inherits, `${va.name} (inherits)`, va.source)));
+		magicVariants.magicvariant.forEach(va => this._checkRoot("data/magicvariants.json", va, va.name, va.source) || (va.inherits && this._checkRoot("data/magicvariants.json", va.inherits, `${va.name} (inherits)`, va.source)));
 	}
 }
 
@@ -1153,6 +1146,41 @@ class RefTagCheck {
 RefTagCheck._RE_TAG = /^ref[A-Z]/;
 RefTagCheck._TO_CHECK = [];
 
+class TestCopyCheck {
+	static checkFile (file, contents) {
+		if (!contents._meta) return;
+
+		const fileErrors = [];
+
+		Object.entries(contents)
+			.forEach(([prop, arr]) => {
+				if (!(arr instanceof Array)) return;
+
+				const propNoFluff = prop.replace(/Fluff$/, "");
+				const hashBuilder = UrlUtil.URL_TO_HASH_BUILDER[prop] || UrlUtil.URL_TO_HASH_BUILDER[propNoFluff];
+				if (!hashBuilder) return;
+
+				arr.forEach(ent => {
+					if (!ent._copy) return;
+
+					const hash = hashBuilder(ent);
+					const hashCopy = hashBuilder(ent._copy);
+
+					if (hash !== hashCopy) return;
+
+					fileErrors.push({prop, hash, ent});
+				});
+			});
+
+		if (!fileErrors.length) return;
+
+		MSG.TestCopyCheck += `Self-referencing _copy hashes in ${file}! See below:\n`;
+		fileErrors.forEach(({prop, hash, ent}) => {
+			MSG.TestCopyCheck += `\t${prop} "${ent.name}" with hash "${hash}"\n`;
+		});
+	}
+}
+
 async function main () {
 	await TagTestUtil.pInit();
 
@@ -1169,6 +1197,7 @@ async function main () {
 	ParsedJsonChecker.register(EscapeCharacterCheck.checkFile.bind(EscapeCharacterCheck));
 	ParsedJsonChecker.register(DuplicateEntityCheck.checkFile.bind(DuplicateEntityCheck));
 	ParsedJsonChecker.register(RefTagCheck.checkFile.bind(RefTagCheck));
+	ParsedJsonChecker.register(TestCopyCheck.checkFile.bind(TestCopyCheck));
 	ParsedJsonChecker.runAll();
 
 	ut.patchLoadJson();

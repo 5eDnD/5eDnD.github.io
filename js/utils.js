@@ -7,7 +7,7 @@ if (IS_NODE) require("./parser.js");
 
 // in deployment, `IS_DEPLOYED = "<version number>";` should be set below.
 IS_DEPLOYED = undefined;
-VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.159.0"/* 5ETOOLS_VERSION__CLOSE */;
+VERSION_NUMBER = /* 5ETOOLS_VERSION__OPEN */"1.166.0"/* 5ETOOLS_VERSION__CLOSE */;
 DEPLOYED_STATIC_ROOT = ""; // "https://static.5etools.com/"; // FIXME re-enable this when we have a CDN again
 // for the roll20 script to set
 IS_VTT = false;
@@ -73,6 +73,8 @@ VeCt = {
 
 	DRAG_TYPE_IMPORT: "ve-Import",
 	DRAG_TYPE_LOOT: "ve-Loot",
+
+	Z_INDEX_BENEATH_HOVER: 199,
 };
 
 // STRING ==============================================================================================================
@@ -429,7 +431,7 @@ SourceUtil = {
 
 	isNonstandardSource (source) {
 		return source != null
-			&& (typeof BrewUtil2 !== "undefined" && !BrewUtil2.hasSourceJson(source))
+			&& (typeof BrewUtil2 === "undefined" || !BrewUtil2.hasSourceJson(source))
 			&& SourceUtil.isNonstandardSourceWotc(source);
 	},
 
@@ -1062,8 +1064,14 @@ MiscUtil = {
 	COLOR_BLOODIED: "#f7a100",
 	COLOR_DEFEATED: "#cc0000",
 
-	copy (obj, safe = false) {
-		if (safe && obj === undefined) return undefined; // Generally use "unsafe," as this helps identify bugs.
+	/**
+	 * @param obj
+	 * @param isSafe
+	 * @param isPreserveUndefinedValueKeys Otherwise, drops the keys of `undefined` values
+	 * (e.g. `{a: undefined}` -> `{}`).
+	 */
+	copy (obj, {isSafe = false, isPreserveUndefinedValueKeys = false} = {}) {
+		if (isSafe && obj === undefined) return undefined; // Generally use "unsafe," as this helps identify bugs.
 		return JSON.parse(JSON.stringify(obj));
 	},
 
@@ -1128,7 +1136,7 @@ MiscUtil = {
 
 	getThenSetCopy (object1, object2, ...path) {
 		const val = MiscUtil.get(object1, ...path);
-		return MiscUtil.set(object2, ...path, MiscUtil.copy(val, true));
+		return MiscUtil.set(object2, ...path, MiscUtil.copy(val, {isSafe: true}));
 	},
 
 	delete (object, ...path) {
@@ -1185,6 +1193,9 @@ MiscUtil = {
 		return obj1;
 	},
 
+	/**
+	 * @deprecated
+	 */
 	mix: (superclass) => new MiscUtil._MixinBuilder(superclass),
 	_MixinBuilder: function (superclass) {
 		this.superclass = superclass;
@@ -1317,20 +1328,46 @@ MiscUtil = {
 		}
 	},
 
-	findCommonPrefix (strArr) {
+	findCommonPrefix (strArr, {isRespectWordBoundaries} = {}) {
+		if (isRespectWordBoundaries) {
+			let prefixTks = null;
+			strArr
+				.map(str => str.split(" "))
+				.forEach(tks => {
+					if (prefixTks == null) {
+						prefixTks = tks;
+						return;
+					}
+
+					const minLen = Math.min(tks.length, prefixTks.length);
+					for (let i = 0; i < minLen; ++i) {
+						const cp = prefixTks[i];
+						const cs = tks[i];
+						if (cp !== cs) {
+							prefixTks = prefixTks.slice(0, i);
+							break;
+						}
+					}
+				});
+
+			if (!prefixTks.length) return "";
+			return `${prefixTks.join(" ")} `;
+		}
+
 		let prefix = null;
 		strArr.forEach(s => {
 			if (prefix == null) {
 				prefix = s;
-			} else {
-				const minLen = Math.min(s.length, prefix.length);
-				for (let i = 0; i < minLen; ++i) {
-					const cp = prefix[i];
-					const cs = s[i];
-					if (cp !== cs) {
-						prefix = prefix.substring(0, i);
-						break;
-					}
+				return;
+			}
+
+			const minLen = Math.min(s.length, prefix.length);
+			for (let i = 0; i < minLen; ++i) {
+				const cp = prefix[i];
+				const cs = s[i];
+				if (cp !== cs) {
+					prefix = prefix.substring(0, i);
+					break;
 				}
 			}
 		});
@@ -1542,7 +1579,9 @@ MiscUtil = {
 							if (obj != null) {
 								const out = new Array(obj.length);
 								for (let i = 0, len = out.length; i < len; ++i) {
+									if (stack) stack.push(obj);
 									out[i] = fn(obj[i], primitiveHandlers, lastKey, stack);
+									if (stack) stack.pop();
 									if (out[i] === VeCt.SYM_WALKER_BREAK) return out[i];
 								}
 								if (!opts.isNoModification) obj = out;
@@ -1557,8 +1596,8 @@ MiscUtil = {
 						if (opts.isDepthFirst) {
 							if (stack) stack.push(obj);
 							const flag = doObjectRecurse(obj, primitiveHandlers, stack);
-							if (flag === VeCt.SYM_WALKER_BREAK) return flag;
 							if (stack) stack.pop();
+							if (flag === VeCt.SYM_WALKER_BREAK) return flag;
 
 							if (primitiveHandlers.object) {
 								const out = MiscUtil._getWalker_applyHandlers({opts, handlers: primitiveHandlers.object, obj, lastKey, stack});
@@ -1577,7 +1616,9 @@ MiscUtil = {
 							if (obj == null) {
 								if (!opts.isAllowDeleteObjects) throw new Error(`Object handler(s) returned null!`);
 							} else {
+								if (stack) stack.push(obj);
 								const flag = doObjectRecurse(obj, primitiveHandlers, stack);
+								if (stack) stack.pop();
 								if (flag === VeCt.SYM_WALKER_BREAK) return flag;
 							}
 						}
@@ -1855,12 +1896,18 @@ ContextUtil = {
 
 		this._userData = null;
 
+		this._$ele = null;
+		this._$btnsActions = [];
+
 		this.remove = function () { if (this._$ele) this._$ele.remove(); };
 
 		this.width = function () { return this._$ele ? this._$ele.width() : undefined; };
 		this.height = function () { return this._$ele ? this._$ele.height() : undefined; };
 
 		this.pOpen = function (evt, userData) {
+			evt.stopPropagation();
+			evt.preventDefault();
+
 			this._initLazy();
 
 			if (this._resolveResult) this._resolveResult(null);
@@ -1886,6 +1933,8 @@ ContextUtil = {
 					pointerEvents: "",
 				});
 
+			this._$btnsActions[0].focus();
+
 			return this._pResult;
 		};
 		this.close = function () { if (this._$ele) this._$ele.hideVe(); };
@@ -1896,7 +1945,7 @@ ContextUtil = {
 			const $elesAction = this._actions.map(it => {
 				if (it == null) return $(`<div class="my-1 w-100 ui-ctx__divider"></div>`);
 
-				const $btnAction = $(`<div class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${it.fnActionAlt ? "" : "pr-5"}" ${it.isDisabled ? "disabled" : ""}>${it.text}</div>`)
+				const $btnAction = $(`<div class="w-100 min-w-0 ui-ctx__btn py-1 pl-5 ${it.fnActionAlt ? "" : "pr-5"}" ${it.isDisabled ? "disabled" : ""} tabindex="0">${it.text}</div>`)
 					.click(async evt => {
 						if (it.isDisabled) return;
 
@@ -1907,8 +1956,14 @@ ContextUtil = {
 
 						const result = await it.fnAction(evt, this._userData);
 						if (this._resolveResult) this._resolveResult(result);
+					})
+					.keydown(evt => {
+						if (evt.key !== "Enter") return;
+						$btnAction.click();
 					});
 				if (it.title) $btnAction.title(it.title);
+
+				this._$btnsActions.push($btnAction);
 
 				const $btnActionAlt = it.fnActionAlt ? $(`<div class="ui-ctx__btn ml-1 bl-1 py-1 px-4" ${it.isDisabled ? "disabled" : ""}>${it.textAlt ?? `<span class="glyphicon glyphicon-cog"></span>`}</div>`)
 					.click(async evt => {
@@ -2061,34 +2116,6 @@ UrlUtil = {
 	categoryToPage (category) { return UrlUtil.CAT_TO_PAGE[category]; },
 	categoryToHoverPage (category) { return UrlUtil.CAT_TO_HOVER_PAGE[category] || UrlUtil.categoryToPage(category); },
 
-	bindLinkExportButton (filterBox, $btn) {
-		$btn = $btn || ListUtil.getOrTabRightButton(`btn-link-export`, `magnet`);
-		$btn.addClass("btn-copy-effect")
-			.off("click")
-			.on("click", async evt => {
-				let url = window.location.href;
-
-				if (evt.ctrlKey) {
-					await MiscUtil.pCopyTextToClipboard(filterBox.getFilterTag());
-					JqueryUtil.showCopiedEffect($btn);
-					return;
-				}
-
-				const parts = filterBox.getSubHashes({isAddSearchTerm: true});
-				parts.unshift(url);
-
-				if (evt.shiftKey && ListUtil.sublist) {
-					const toEncode = JSON.stringify(ListUtil.getExportableSublist());
-					const part2 = UrlUtil.packSubHash(ListUtil.SUB_HASH_PREFIX, [toEncode], {isEncodeBoth: true});
-					parts.push(part2);
-				}
-
-				await MiscUtil.pCopyTextToClipboard(parts.join(HASH_PART_SEP));
-				JqueryUtil.showCopiedEffect($btn);
-			})
-			.title("Get link to filters (shift adds list; CTRL copies @filter tag)");
-	},
-
 	getFilename (url) { return url.slice(url.lastIndexOf("/") + 1); },
 
 	mini: {
@@ -2109,7 +2136,7 @@ UrlUtil = {
 				case "x": return null;
 				case "b": return !!Number(data);
 				case "n": return Number(data);
-				case "s": return String(data);
+				case "s": return decodeURIComponent(String(data));
 				default: throw new Error(`Unhandled type "${type}"`);
 			}
 		},
@@ -2254,32 +2281,34 @@ UrlUtil.PG_CLASS_SUBCLASS_FEATURES = "classfeatures.html";
 UrlUtil.PG_MAPS = "maps.html";
 UrlUtil.PG_SEARCH = "search.html";
 
+UrlUtil.URL_TO_HASH_GENERIC = (it) => UrlUtil.encodeForHash([it.name, it.source]);
+
 UrlUtil.URL_TO_HASH_BUILDER = {};
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OPT_FEATURES] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_PSIONICS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_REWARDS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VARIANTRULES] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BESTIARY] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_SPELLS] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BACKGROUNDS] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OPT_FEATURES] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_PSIONICS] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RACES] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_REWARDS] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VARIANTRULES] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ADVENTURE] = (it) => UrlUtil.encodeForHash(it.id);
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ADVENTURES] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ADVENTURE];
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BOOK] = (it) => UrlUtil.encodeForHash(it.id);
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BOOKS] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_BOOK];
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_DEITIES] = (it) => UrlUtil.encodeForHash([it.name, it.pantheon, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CULTS_BOONS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OBJECTS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TRAPS_HAZARDS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TABLES] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VEHICLES] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ACTIONS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_LANGUAGES] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CHAR_CREATION_OPTIONS] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CULTS_BOONS] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_OBJECTS] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TRAPS_HAZARDS] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TABLES] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_VEHICLES] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ACTIONS] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_LANGUAGES] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CHAR_CREATION_OPTIONS] = UrlUtil.URL_TO_HASH_GENERIC;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_RECIPES] = (it) => `${UrlUtil.encodeForHash([it.name, it.source])}${it._scaleFactor ? `${HASH_PART_SEP}${VeCt.HASH_SCALED}${HASH_SUB_KV_SEP}${it._scaleFactor}` : ""}`;
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASS_SUBCLASS_FEATURES] = (it) => (it.__prop === "subclassFeature" || it.subclassSource) ? UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](it) : UrlUtil.URL_TO_HASH_BUILDER["classFeature"](it);
 UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_QUICKREF] = ({name, ixChapter, ixHeader}) => {
@@ -2295,7 +2324,7 @@ UrlUtil.URL_TO_HASH_BUILDER["background"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.
 UrlUtil.URL_TO_HASH_BUILDER["item"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
 UrlUtil.URL_TO_HASH_BUILDER["itemGroup"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
 UrlUtil.URL_TO_HASH_BUILDER["baseitem"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
-UrlUtil.URL_TO_HASH_BUILDER["variant"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
+UrlUtil.URL_TO_HASH_BUILDER["magicvariant"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS];
 UrlUtil.URL_TO_HASH_BUILDER["class"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CLASSES];
 UrlUtil.URL_TO_HASH_BUILDER["condition"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
 UrlUtil.URL_TO_HASH_BUILDER["disease"] = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_CONDITIONS_DISEASES];
@@ -2335,11 +2364,13 @@ UrlUtil.URL_TO_HASH_BUILDER["subclass"] = it => {
 };
 UrlUtil.URL_TO_HASH_BUILDER["classFeature"] = (it) => UrlUtil.encodeForHash([it.name, it.className, it.classSource, it.level, it.source]);
 UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"] = (it) => UrlUtil.encodeForHash([it.name, it.className, it.classSource, it.subclassShortName, it.subclassSource, it.level, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER["legendaryGroup"] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
-UrlUtil.URL_TO_HASH_BUILDER["itemEntry"] = (it) => UrlUtil.encodeForHash([it.name, it.source]);
+UrlUtil.URL_TO_HASH_BUILDER["legendaryGroup"] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER["itemEntry"] = UrlUtil.URL_TO_HASH_GENERIC;
 Object.keys(UrlUtil.URL_TO_HASH_BUILDER)
 	.filter(k => !k.endsWith(".html") && k.toLowerCase() !== k)
 	.forEach(k => UrlUtil.URL_TO_HASH_BUILDER[k.toLowerCase()] = UrlUtil.URL_TO_HASH_BUILDER[k]);
+UrlUtil.URL_TO_HASH_BUILDER["skill"] = UrlUtil.URL_TO_HASH_GENERIC;
+UrlUtil.URL_TO_HASH_BUILDER["sense"] = UrlUtil.URL_TO_HASH_GENERIC;
 // endregion
 
 UrlUtil.PG_TO_NAME = {};
@@ -2435,14 +2466,42 @@ UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_LEGENDARY_GROUP] = null;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_CHAR_CREATION_OPTIONS] = UrlUtil.PG_CHAR_CREATION_OPTIONS;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_RECIPES] = UrlUtil.PG_RECIPES;
 UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_STATUS] = UrlUtil.PG_CONDITIONS_DISEASES;
+UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_SKILLS] = "skill";
+UrlUtil.CAT_TO_PAGE[Parser.CAT_ID_SENSES] = "sense";
 
 UrlUtil.CAT_TO_HOVER_PAGE = {};
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_CLASS_FEATURE] = "classfeature";
 UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_SUBCLASS_FEATURE] = "subclassfeature";
+UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_SKILLS] = "skill";
+UrlUtil.CAT_TO_HOVER_PAGE[Parser.CAT_ID_SENSES] = "sense";
 
 UrlUtil.HASH_START_CREATURE_SCALED = `${VeCt.HASH_SCALED}${HASH_SUB_KV_SEP}`;
 UrlUtil.HASH_START_CREATURE_SCALED_SPELL_SUMMON = `${VeCt.HASH_SCALED_SPELL_SUMMON}${HASH_SUB_KV_SEP}`;
 UrlUtil.HASH_START_CREATURE_SCALED_CLASS_SUMMON = `${VeCt.HASH_SCALED_CLASS_SUMMON}${HASH_SUB_KV_SEP}`;
+
+UrlUtil.SUBLIST_PAGES = {
+	[UrlUtil.PG_BESTIARY]: true,
+	[UrlUtil.PG_SPELLS]: true,
+	[UrlUtil.PG_BACKGROUNDS]: true,
+	[UrlUtil.PG_ITEMS]: true,
+	[UrlUtil.PG_CONDITIONS_DISEASES]: true,
+	[UrlUtil.PG_FEATS]: true,
+	[UrlUtil.PG_OPT_FEATURES]: true,
+	[UrlUtil.PG_PSIONICS]: true,
+	[UrlUtil.PG_RACES]: true,
+	[UrlUtil.PG_REWARDS]: true,
+	[UrlUtil.PG_VARIANTRULES]: true,
+	[UrlUtil.PG_DEITIES]: true,
+	[UrlUtil.PG_CULTS_BOONS]: true,
+	[UrlUtil.PG_OBJECTS]: true,
+	[UrlUtil.PG_TRAPS_HAZARDS]: true,
+	[UrlUtil.PG_TABLES]: true,
+	[UrlUtil.PG_VEHICLES]: true,
+	[UrlUtil.PG_ACTIONS]: true,
+	[UrlUtil.PG_LANGUAGES]: true,
+	[UrlUtil.PG_CHAR_CREATION_OPTIONS]: true,
+	[UrlUtil.PG_RECIPES]: true,
+};
 
 if (!IS_DEPLOYED && !IS_VTT && typeof window !== "undefined") {
 	// for local testing, hotkey to get a link to the current page on the main site
@@ -2830,7 +2889,6 @@ DataUtil = {
 
 					sourceIds.forEach(sourceId => loadedSourceIds.add(sourceId));
 
-					// This loads the brew as a side-effect
 					const includesData = await Promise.all(sourceIds.map(sourceId => DataUtil.pLoadByMeta(dataProp, sourceId)));
 
 					const flatIncludesData = includesData.map(dd => dd[dataProp]).flat();
@@ -2911,7 +2969,13 @@ DataUtil = {
 	},
 
 	/** Always returns an array of files, even in "single" mode. */
-	pUserUpload ({isMultiple = false, expectedFileType = null, propVersion = "siteVersion"} = {}) {
+	pUserUpload (
+		{
+			isMultiple = false,
+			expectedFileTypes = null,
+			propVersion = "siteVersion",
+		} = {},
+	) {
 		return new Promise(resolve => {
 			const $iptAdd = $(`<input type="file" ${isMultiple ? "multiple" : ""} class="ve-hidden" accept=".json">`)
 				.on("change", (evt) => {
@@ -2929,12 +2993,15 @@ DataUtil = {
 						try {
 							const json = JSON.parse(text);
 
-							const isSkipFile = expectedFileType != null && json.fileType && json.fileType !== expectedFileType && !(await InputUiUtil.pGetUserBoolean({
-								textYes: "Yes",
-								textNo: "Cancel",
-								title: "File Type Mismatch",
-								htmlDescription: `The file "${name}" has the type "${json.fileType}" when the expected file type was "${expectedFileType}".<br>Are you sure you want to upload this file?`,
-							}));
+							const isSkipFile = expectedFileTypes != null
+								&& json.fileType
+								&& !expectedFileTypes.includes(json.fileType)
+								&& !(await InputUiUtil.pGetUserBoolean({
+									textYes: "Yes",
+									textNo: "Cancel",
+									title: "File Type Mismatch",
+									htmlDescription: `The file "${name}" has the type "${json.fileType}" when the expected file type was "${expectedFileTypes.join("/")}".<br>Are you sure you want to upload this file?`,
+								}));
 
 							if (!isSkipFile) {
 								delete json.fileType;
@@ -3162,7 +3229,11 @@ DataUtil = {
 		async _pMergeCopy (impl, page, entryList, entry, options) {
 			if (!entry._copy) return;
 
+			const hashCurrent = UrlUtil.URL_TO_HASH_BUILDER[page](entry);
 			const hash = UrlUtil.URL_TO_HASH_BUILDER[page](entry._copy);
+
+			if (hashCurrent === hash) throw new Error(`${hashCurrent} _copy self-references! This is a bug!`);
+
 			const it = impl._mergeCache[hash] || DataUtil.generic._pMergeCopy_search(impl, page, entryList, entry, options);
 
 			if (!it) {
@@ -3193,6 +3264,10 @@ DataUtil = {
 			});
 		},
 
+		COPY_ENTRY_PROPS: [
+			"action", "bonus", "reaction", "trait", "legendary", "mythic", "variant", "spellcasting",
+			"actionHeader", "bonusHeader", "reactionHeader", "legendaryHeader", "mythicHeader",
+		],
 		_applyCopy (impl, copyFrom, copyTo, traitData, options = {}) {
 			if (options.doKeepCopy) copyTo.__copy = MiscUtil.copy(copyFrom);
 
@@ -3470,7 +3545,6 @@ DataUtil = {
 			}
 
 			function doMod_addAllSaves (modInfo) {
-				// debugger
 				return doMod_addSaves({
 					mode: "addSaves",
 					saves: Object.keys(Parser.ATB_ABV_TO_FULL).mergeMap(it => ({[it]: modInfo.saves})),
@@ -3478,7 +3552,6 @@ DataUtil = {
 			}
 
 			function doMod_addAllSkills (modInfo) {
-				// debugger
 				return doMod_addSkills({
 					mode: "addSkills",
 					skills: Object.keys(Parser.SKILL_TO_ATB_ABV).mergeMap(it => ({[it]: modInfo.skills})),
@@ -3580,6 +3653,46 @@ DataUtil = {
 				}
 			}
 
+			function doMod_removeSpells (modInfo) {
+				if (!copyTo.spellcasting) throw new Error(`${msgPtFailed} Creature did not have a spellcasting property!`);
+
+				// TODO could accept a "position" or "name" parameter should spells need to be added to other spellcasting traits
+				const spellcasting = copyTo.spellcasting[0];
+
+				if (modInfo.spells) {
+					const spells = spellcasting.spells;
+
+					Object.keys(modInfo.spells).forEach(k => {
+						if (!spells[k]?.spells) return;
+
+						spells[k].spells = spells[k].spells.filter(it => !modInfo.spells[k].includes(it));
+					});
+				}
+
+				["constant", "will", "ritual"].forEach(prop => {
+					if (!modInfo[prop]) return;
+					spellcasting[prop].filter(it => !modInfo[prop].includes(it));
+				});
+
+				["rest", "daily", "weekly", "yearly"].forEach(prop => {
+					if (!modInfo[prop]) return;
+
+					for (let i = 1; i <= 9; ++i) {
+						const e = `${i}e`;
+
+						spellcasting[prop] = spellcasting[prop] || {};
+
+						if (modInfo[prop][i]) {
+							spellcasting[prop][i] = spellcasting[prop][i].filter(it => !modInfo[prop][i].includes(it));
+						}
+
+						if (modInfo[prop][e]) {
+							spellcasting[prop][e] = spellcasting[prop][e].filter(it => !modInfo[prop][e].includes(it));
+						}
+					}
+				});
+			}
+
 			function doMod_scalarAddHit (modInfo, prop) {
 				if (!copyTo[prop]) return;
 				copyTo[prop] = JSON.parse(JSON.stringify(copyTo[prop]).replace(/{@hit ([-+]?\d+)}/g, (m0, m1) => `{@hit ${Number(m1) + modInfo.scalar}}`));
@@ -3650,6 +3763,7 @@ DataUtil = {
 								case "addAllSkills": return doMod_addAllSkills(modInfo);
 								case "addSpells": return doMod_addSpells(modInfo);
 								case "replaceSpells": return doMod_replaceSpells(modInfo);
+								case "removeSpells": return doMod_removeSpells(modInfo);
 								case "scalarAddHit": return doMod_scalarAddHit(modInfo, prop);
 								case "scalarAddDc": return doMod_scalarAddDc(modInfo, prop);
 								case "maxSize": return doMod_maxSize(modInfo);
@@ -3679,7 +3793,7 @@ DataUtil = {
 									case "name": return copyTo.name;
 									case "short_name":
 									case "title_short_name": {
-										return Renderer.monster.getShortName(copyTo, parts[0] === "title_short_name");
+										return Renderer.monster.getShortName(copyTo, {isTitleCase: parts[0] === "title_short_name"});
 									}
 									case "spell_dc": {
 										if (!Parser.ABIL_ABVS.includes(parts[1])) throw new Error(`${msgPtFailed} Unknown ability score "${parts[1]}"`);
@@ -3708,7 +3822,7 @@ DataUtil = {
 				});
 
 				Object.entries(copyMeta._mod).forEach(([prop, modInfos]) => {
-					if (prop === "*") doMod(modInfos, "action", "bonus", "reaction", "trait", "legendary", "mythic", "variant", "spellcasting", "legendaryHeader");
+					if (prop === "*") doMod(modInfos, ...DataUtil.generic.COPY_ENTRY_PROPS);
 					else if (prop === "_") doMod(modInfos);
 					else doMod(modInfos, prop);
 				});
@@ -3976,13 +4090,22 @@ DataUtil = {
 				DataUtil.item._loadedRawJson = {
 					item: MiscUtil.copy(dataItems.item),
 					itemGroup: MiscUtil.copy(dataItems.itemGroup),
-					variant: MiscUtil.copy(dataVariants.variant),
+					magicvariant: MiscUtil.copy(dataVariants.magicvariant),
 					baseitem: MiscUtil.copy(dataItemsBase.baseitem),
 				};
 			})();
 			await DataUtil.item._pLoadingRawJson;
 
 			return DataUtil.item._loadedRawJson;
+		},
+
+		async loadJson () {
+			return {item: await Renderer.item.pBuildList({isAddGroups: true})};
+		},
+
+		async loadBrew () {
+			const brew = await BrewUtil2.pGetBrewProcessed();
+			return {item: await Renderer.item.pGetItemsFromHomebrew(brew)};
 		},
 	},
 
@@ -4511,6 +4634,7 @@ DataUtil = {
 			return {
 				name: nameCaption,
 				source: group.source,
+				__prop: "table",
 				page: group.page,
 				caption: nameCaption,
 				colLabels: [
@@ -4740,21 +4864,7 @@ RollerUtil = {
 	},
 
 	addListRollButton (isCompact) {
-		const $btnRoll = $(`<button class="btn btn-default ${isCompact ? "px-2" : ""}" id="feelinglucky" title="Feeling Lucky?"><span class="glyphicon glyphicon-random"></span></button>`);
-		$btnRoll.on("click", () => {
-			const primaryLists = ListUtil.getPrimaryLists();
-			if (primaryLists && primaryLists.length) {
-				const allLists = primaryLists.filter(l => l.visibleItems.length);
-				if (allLists.length) {
-					const rollX = RollerUtil.roll(allLists.length);
-					const list = allLists[rollX];
-					const rollY = RollerUtil.roll(list.visibleItems.length);
-					window.location.hash = $(list.visibleItems[rollY].ele).find(`a`).prop("hash");
-				}
-			}
-		});
 
-		$(`#filter-search-group`).find(`#reset`).before($btnRoll);
 	},
 
 	getColRollType (colLabel) {
@@ -4898,9 +5008,9 @@ function StorageUtilBase () {
 		return storage.removeItem(key);
 	};
 
-	this.pGetForPage = async function (key) { return this.pGet(this.getPageKey(key)); };
-	this.pSetForPage = async function (key, value) { return this.pSet(this.getPageKey(key), value); };
-	this.pRemoveForPage = async function (key) { return this.pRemove(this.getPageKey(key)); };
+	this.pGetForPage = async function (key, {page = null} = {}) { return this.pGet(this.getPageKey(key, page)); };
+	this.pSetForPage = async function (key, value, {page = null} = {}) { return this.pSet(this.getPageKey(key, page), value); };
+	this.pRemoveForPage = async function (key, {page = null} = {}) { return this.pRemove(this.getPageKey(key, page)); };
 
 	this._pTrackKey = async function (key, isRemove) {
 		const storage = await this._getAsyncStorage();
@@ -5953,78 +6063,6 @@ ExcludeUtil = {
 	async pSave () { /* no-op */ },
 };
 
-// ENCOUNTERS ==========================================================================================================
-EncounterUtil = {
-	async pGetInitialState () {
-		if (await EncounterUtil._pHasSavedStateLocal()) {
-			if (await EncounterUtil._hasSavedStateUrl()) {
-				return {
-					type: "url",
-					data: EncounterUtil._getSavedStateUrl(),
-				};
-			} else {
-				return {
-					type: "local",
-					data: await EncounterUtil._pGetSavedStateLocal(),
-				};
-			}
-		} else return null;
-	},
-
-	_hasSavedStateUrl () {
-		return window.location.hash.length && Hist.getSubHash(EncounterUtil.SUB_HASH_PREFIX) != null;
-	},
-
-	_getSavedStateUrl () {
-		let out = null;
-		try {
-			out = JSON.parse(decodeURIComponent(Hist.getSubHash(EncounterUtil.SUB_HASH_PREFIX)));
-		} catch (e) {
-			setTimeout(() => {
-				throw e;
-			});
-		}
-		Hist.setSubhash(EncounterUtil.SUB_HASH_PREFIX, null);
-		return out;
-	},
-
-	async _pHasSavedStateLocal () {
-		return !!StorageUtil.pGet(VeCt.STORAGE_ENCOUNTER);
-	},
-
-	async _pGetSavedStateLocal () {
-		try {
-			return await StorageUtil.pGet(VeCt.STORAGE_ENCOUNTER);
-		} catch (e) {
-			JqueryUtil.doToast({
-				content: "Error when loading encounters! Purged encounter data. (See the log for more information.)",
-				type: "danger",
-			});
-			await StorageUtil.pRemove(VeCt.STORAGE_ENCOUNTER);
-			setTimeout(() => { throw e; });
-		}
-	},
-
-	async pDoSaveState (toSave) {
-		StorageUtil.pSet(VeCt.STORAGE_ENCOUNTER, toSave);
-	},
-
-	async pGetSavedState () {
-		const saved = await StorageUtil.pGet(EncounterUtil.SAVED_ENCOUNTER_SAVE_LOCATION);
-		return saved || {};
-	},
-
-	getEncounterName (encounter) {
-		if (encounter.l && encounter.l.items && encounter.l.items.length) {
-			const largestCount = encounter.l.items.sort((a, b) => SortUtil.ascSort(Number(b.c), Number(a.c)))[0];
-			const name = (UrlUtil.decodeHash(largestCount.h)[0] || "(Unnamed)").toTitleCase();
-			return `Encounter with ${name} ×${largestCount.c}`;
-		} else return "(Unnamed Encounter)";
-	},
-};
-EncounterUtil.SUB_HASH_PREFIX = "encounter";
-EncounterUtil.SAVED_ENCOUNTER_SAVE_LOCATION = "ENCOUNTER_SAVED_STORAGE";
-
 // EXTENSIONS ==========================================================================================================
 ExtensionUtil = {
 	ACTIVE: false,
@@ -6103,16 +6141,28 @@ TokenUtil = {
 };
 
 // LOCKS ===============================================================================================================
-VeLock = function () {
+VeLock = function ({name = null, isDbg = false} = {}) {
+	this._name = name;
+	this._isDbg = isDbg;
 	this._lockMeta = null;
+
+	this._getCaller = () => {
+		return (new Error()).stack.split("\n")[3].trim();
+	};
 
 	this.pLock = async ({token = null} = {}) => {
 		if (token != null && this._lockMeta?.token === token) {
 			++this._lockMeta.depth;
+			// eslint-disable-next-line no-console
+			if (this._isDbg) console.warn(`Lock "${this._name || "(unnamed)"}" add (now ${this._lockMeta.depth}) at ${this._getCaller()}`);
 			return token;
 		}
 
 		while (this._lockMeta) await this._lockMeta.lock;
+
+		// eslint-disable-next-line no-console
+		if (this._isDbg) console.warn(`Lock "${this._name || "(unnamed)"}" acquired at ${this._getCaller()}`);
+
 		let unlock = null;
 		const lock = new Promise(resolve => unlock = resolve);
 		this._lockMeta = {
@@ -6128,7 +6178,14 @@ VeLock = function () {
 	this.unlock = () => {
 		if (!this._lockMeta) return;
 
-		if (this._lockMeta.depth > 0) return --this._lockMeta.depth;
+		if (this._lockMeta.depth > 0) {
+			// eslint-disable-next-line no-console
+			if (this._isDbg) console.warn(`Lock "${this._name || "(unnamed)"}" sub (now ${this._lockMeta.depth - 1}) at ${this._getCaller()}`);
+			return --this._lockMeta.depth;
+		}
+
+		// eslint-disable-next-line no-console
+		if (this._isDbg) console.warn(`Lock "${this._name || "(unnamed)"}" released at ${this._getCaller()}`);
 
 		const lockMeta = this._lockMeta;
 		this._lockMeta = null;
