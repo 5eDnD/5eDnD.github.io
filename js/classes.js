@@ -78,7 +78,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 			$wrpList: $(`.list.classes`),
 			$btnReset,
 			$btnClear: $(`#lst__search-glass`),
-			$dispPageTagline: $(`.page__subtitle`),
+			dispPageTagline: document.getElementById(`page__subtitle`),
 			isBindFindHotkey: true,
 			optsList: {
 				isUseJquery: true,
@@ -1707,10 +1707,28 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 
 				const isAnySubclassDisplayed = this._pageFilter.isAnySubclassDisplayed(filterValues, cpyCls);
 
-				levelsWithFeatures.forEach((lvl, i) => {
-					const isLastRow = i === levelsWithFeatures - 1;
+				levelsWithFeatures.forEach(lvl => {
+					const isLastRow = lvl === levelsWithFeatures.last();
 
 					renderStack.push(`<div class="ve-flex ${isLastRow ? "mb-4" : ""}">`);
+
+					const isAnyFeature = cls.subclasses
+						.filter(sc => !this.constructor.isSubclassExcluded_(cls, sc))
+						.filter(sc => {
+							const key = UrlUtil.getStateKeySubclass(sc);
+							return this._state[key];
+						})
+						.some((sc, ixSubclass) => {
+							return sc.subclassFeatures
+								.some(it => it.length && it[0].level === lvl);
+						});
+
+					if (isAnyFeature) {
+						renderStack.push(`<div class="ve-flex-vh-center sticky cls-bkmv__wrp-level br-1p bt-1p bb-1p btr-5p bbr-5p mr-2 ml-n2">
+							<span class="cls-bkmv__disp-level no-shrink small-caps">Level ${lvl}</span>
+						</div>`);
+					}
+
 					cls.subclasses
 						.filter(sc => !this.constructor.isSubclassExcluded_(cls, sc))
 						.forEach((sc, ixSubclass) => {
@@ -1758,7 +1776,7 @@ class ClassesPage extends MixinComponentGlobalState(MixinBaseComponent(MixinProx
 						});
 					renderStack.push(`</div>`);
 
-					if (!isLastRow) renderStack.push(`<hr class="hr-2 mt-3 cls-comp__hr-level"/>`);
+					if (!isLastRow && isAnyFeature) renderStack.push(`<hr class="hr-2 mt-3 cls-comp__hr-level"/>`);
 				});
 				$wrpContent.append(renderStack.join(""));
 

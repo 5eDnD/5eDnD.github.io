@@ -59,6 +59,7 @@ class SublistManager {
 		this._contextMenuListSub = null;
 
 		this._$wrpContainer = null;
+		this._$wrpSummaryControls = null;
 
 		this._pSaveSublistDebounced = MiscUtil.debounce(this._pSaveSublist.bind(this), 50);
 	}
@@ -92,13 +93,15 @@ class SublistManager {
 
 		if (this._$wrpContainer.hasClass(`sublist--resizable`)) this._pBindSublistResizeHandlers();
 
-		this._saveManager.render({
+		this._$wrpSummaryControls = this._saveManager.$getRenderedSummary({
 			cbOnNew: (evt) => this.pHandleClick_new(evt),
 			cbOnSave: (evt) => this.pHandleClick_save(evt),
+			cbOnLoad: (evt) => this.pHandleClick_load(evt),
 			cbOnReset: (evt, exportedSublist) => this.pDoLoadExportedSublist(exportedSublist),
 			cbOnUpload: (evt) => this.pHandleClick_upload({isAdditive: evt.shiftKey}),
-		})
-			.appendTo(this._$wrpContainer);
+		});
+
+		this._$wrpContainer.after(this._$wrpSummaryControls);
 
 		this._initContextMenu();
 
@@ -283,6 +286,8 @@ class SublistManager {
 
 		if (exportedSublist && !isAdditive) await this.pDoSublistRemoveAll({isNoSave: true});
 
+		await this._listPage.pDoLoadExportedSublistSources(exportedSublist);
+
 		// Do this in series to ensure sublist items are added before having their counts updated
 		//  This only becomes a problem when there are duplicate items in the list, but as we're not finalizing, the
 		//  performance implications are negligible.
@@ -307,6 +312,8 @@ class SublistManager {
 			isAdditive,
 			isMemoryOnly,
 		}));
+
+		await this._saveManager.pDoUpdateCurrentStateFrom(exportedSublist, {isNoSave});
 
 		await this._pFinaliseSublist({isNoSave});
 	}
@@ -398,6 +405,8 @@ class SublistManager {
 		await this._pSaveSublist();
 
 		JqueryUtil.doToast(`Saved "${saveInfo.name}"!`);
+
+		return true;
 	}
 
 	async pHandleClick_download ({isUrl = false, $eleCopyEffect = null} = {}) {
@@ -577,6 +586,7 @@ class SublistManager {
 
 	_updateSublistVisibility () {
 		this._$wrpContainer.toggleClass("sublist--visible", !!this._listSub.items.length);
+		this._$wrpSummaryControls.toggleVe(!!this._listSub.items.length);
 	}
 
 	async pDoSublistRemove ({entity, doFinalize = true} = {}) {
@@ -865,7 +875,7 @@ class ListPage {
 			$wrpList: $(`.list.${this._listClass}`),
 			$btnReset,
 			$btnClear: $(`#lst__search-glass`),
-			$dispPageTagline: $(`.page__subtitle`),
+			dispPageTagline: document.getElementById(`page__subtitle`),
 			isPreviewable: this._isPreviewable,
 			syntax: this._listSyntax,
 			isBindFindHotkey: true,
@@ -905,6 +915,8 @@ class ListPage {
 
 	async _pOnLoad_pPreDataLoad () { /* Implement as required */ }
 	async _pOnLoad_pPostLoad () { /* Implement as required */ }
+
+	async pDoLoadExportedSublistSources (exportedSublist) { /* Implement as required */ }
 
 	async _pOnLoad_pGetData () {
 		const data = await (typeof this._dataSource === "string" ? DataUtil.loadJSON(this._dataSource) : this._dataSource());
@@ -1170,7 +1182,7 @@ class ListPage {
 		$btnReset.before($btnHideSearch);
 
 		const $btnShowSearch = $(`<button class="btn btn-block btn-default btn-xs" type="button">Show List</button>`);
-		const $wrpBtnShowSearch = $$`<div class="col-12 ve-hidden">${$btnShowSearch}<br></div>`.prependTo($wrpContent);
+		const $wrpBtnShowSearch = $$`<div class="col-12 mb-1 ve-hidden">${$btnShowSearch}</div>`.prependTo($wrpContent);
 
 		$btnHideSearch.click(() => {
 			$wrpList.hideVe();
@@ -1281,7 +1293,7 @@ class ListPage {
 			$wrpList,
 			$btnReset,
 			$btnClear,
-			$dispPageTagline,
+			dispPageTagline,
 			isPreviewable,
 			isBindFindHotkey,
 			syntax,
@@ -1337,8 +1349,8 @@ class ListPage {
 		$iptSearch.on("keydown", handleSearchChange);
 		// endregion
 
-		if ($dispPageTagline) {
-			$dispPageTagline.html(`${$dispPageTagline.html()} Press J/K to navigate${isPreviewable ? `, M to expand` : ""}.`);
+		if (dispPageTagline) {
+			dispPageTagline.innerHTML += ` Press J/K to navigate${isPreviewable ? `, M to expand` : ""}.`;
 			this._initList_bindWindowHandlers();
 		}
 

@@ -1248,14 +1248,29 @@ function Renderer () {
 	this._renderStatblock = function (entry, textStack, meta, options) {
 		this._renderPrefix(entry, textStack, meta, options);
 
-		const page = Renderer.hover.TAG_TO_PAGE[entry.tag];
+		const page = entry.prop || Renderer.hover.TAG_TO_PAGE[entry.tag];
 		const source = entry.source || Parser.TAG_TO_DEFAULT_SOURCE[entry.tag];
-		const hash = entry.hash || UrlUtil.URL_TO_HASH_BUILDER[page]({name: entry.name, source});
+		const hash = entry.hash || (UrlUtil.URL_TO_HASH_BUILDER[page] ? UrlUtil.URL_TO_HASH_BUILDER[page]({...entry, name: entry.name, source}) : null);
+
+		const asTag = `{@${entry.tag} ${entry.name}|${source}${entry.displayName ? `|${entry.displayName}` : ""}}`;
+
+		if (!page || !source || !hash) {
+			this._renderDataHeader(textStack, entry.name, entry.style);
+			textStack[0] += `<tr>
+				<td colspan="6">
+					<i class="text-danger">Cannot load ${entry.tag ? `&quot;${asTag}&quot;` : entry.displayName || entry.name}! An unknown tag/prop, source, or hash was provided.</i>
+				</td>
+			</tr>`;
+			this._renderDataFooter(textStack);
+			this._renderSuffix(entry, textStack, meta, options);
+
+			return;
+		}
 
 		this._renderDataHeader(textStack, entry.name, entry.style);
 		textStack[0] += `<tr>
-			<td colspan="6" data-rd-tag="${entry.tag.qq()}" data-rd-page="${page.qq()}" data-rd-source="${(source || "").qq()}" data-rd-hash="${hash.qq()}" data-rd-name="${(entry.name || "").qq()}" data-rd-style="${(entry.style || "").qq()}">
-				<i>Loading ${Renderer.get().render(`{@${entry.tag} ${entry.name}|${source}}`)}...</i>
+			<td colspan="6" data-rd-tag="${(entry.tag || "").qq()}" data-rd-page="${(page || "").qq()}" data-rd-source="${(source || "").qq()}" data-rd-hash="${(hash || "").qq()}" data-rd-name="${(entry.name || "").qq()}" data-rd-display-name="${(entry.displayName || "").qq()}" data-rd-style="${(entry.style || "").qq()}">
+				<i>Loading ${entry.tag ? `${Renderer.get().render(asTag)}` : entry.displayName || entry.name}...</i>
 				<style onload="Renderer.events.handleLoad_inlineStatblock(this)"></style>
 			</td>
 		</tr>`;
@@ -1526,6 +1541,7 @@ function Renderer () {
 
 			// DICE ////////////////////////////////////////////////////////////////////////////////////////////
 			case "@dice":
+			case "@autodice":
 			case "@damage":
 			case "@hit":
 			case "@d20":
@@ -1964,6 +1980,7 @@ Renderer.events = {
 		const page = ele.dataset.rdPage.uq();
 		const source = ele.dataset.rdSource.uq();
 		const name = ele.dataset.rdName.uq();
+		const displayName = ele.dataset.rdDisplayName.uq();
 		const hash = ele.dataset.rdHash.uq();
 		const style = ele.dataset.rdStyle.uq();
 
@@ -1972,14 +1989,17 @@ Renderer.events = {
 				const tr = ele.closest("tr");
 
 				if (!toRender) {
-					tr.innerHTML = `<td colspan="6"><i>Failed to load ${Renderer.get().render(`{@${tag} ${name}|${source}}`)}!</i></td>`;
-					throw new Error(`Could not find ${tag} ${hash}`);
+					tr.innerHTML = `<td colspan="6"><i class="text-danger">Failed to load ${tag ? Renderer.get().render(`{@${tag} ${name}|${source}${displayName ? `|${displayName}` : ""}}`) : displayName || name}!</i></td>`;
+					throw new Error(`Could not find tag: "${tag}" (page/prop: "${page}") hash: "${hash}"`);
 				}
+
+				const headerName = displayName
+					|| (name ?? toRender.name ?? (toRender.entries?.length ? toRender.entries?.[0]?.name : "(Unknown)"));
 
 				const fnRender = Renderer.hover.getFnRenderCompact(page);
 				const tbl = tr.closest("table");
 				const nxt = e_({
-					outer: Renderer.utils.getEmbeddedDataHeader(toRender.name, style)
+					outer: Renderer.utils.getEmbeddedDataHeader(headerName, style)
 						+ fnRender(toRender)
 						+ Renderer.utils.getEmbeddedDataFooter(),
 				});
@@ -2212,7 +2232,16 @@ Renderer.getRollableEntryDice = function (
 
 	toDisplay = (pluginResults || []).filter(it => it.toDisplay)[0]?.toDisplay ?? toDisplay;
 
-	return `<span class="roller render-roller" ${titlePart} ${handlerPart} ${additionalDataPart}>${toDisplay}</span>`;
+	const ptRoll = Renderer.getRollableEntryDice._getPtRoll(toPack);
+
+	return `<span class="roller render-roller" ${titlePart} ${handlerPart} ${additionalDataPart}>${toDisplay}</span>${ptRoll}`;
+};
+
+Renderer.getRollableEntryDice._getPtRoll = (toPack) => {
+	if (!toPack.autoRoll) return "";
+
+	const r = Renderer.dice.parseRandomise2(toPack.toRoll);
+	return ` (<span data-rd-is-autodice-result="true">${r}</span>)`;
 };
 
 Renderer.getEntryDiceTitle = function (subType) {
@@ -3163,6 +3192,7 @@ Renderer.utils = {
 	getTagEntry (tag, text) {
 		switch (tag) {
 			case "@dice":
+			case "@autodice":
 			case "@damage":
 			case "@hit":
 			case "@d20":
@@ -3183,6 +3213,7 @@ Renderer.utils = {
 
 				switch (tag) {
 					case "@dice":
+					case "@autodice":
 					case "@damage": {
 						// format: {@dice 1d2 + 3 + 4d5 - 6}
 						fauxEntry.toRoll = rollText;
@@ -3191,6 +3222,7 @@ Renderer.utils = {
 						if ((!fauxEntry.displayText && (rollText || "").includes("#$")) || (fauxEntry.displayText && fauxEntry.displayText.includes("#$"))) fauxEntry.displayText = (fauxEntry.displayText || rollText).replace(/#\$prompt_number[^$]*\$#/g, "(n)");
 
 						if (tag === "@damage") fauxEntry.subType = "damage";
+						if (tag === "@autodice") fauxEntry.autoRoll = true;
 
 						return fauxEntry;
 					}
@@ -8050,9 +8082,7 @@ Renderer.vehicle = {
 			const ptSpeed = veh.speed != null
 				? Parser.getSpeedString(veh, {isSkipZeroWalk: true})
 				: "";
-			const ptPace = veh.pace != null
-				? `(<span class="help-subtle" title="${veh.pace * 24} miles per day">${veh.pace} mph</span>)`
-				: "";
+			const ptPace = Renderer.vehicle.spelljammer._getPtPace(renderer, veh);
 
 			const ptSpeedPace = [ptSpeed, ptPace].filter(Boolean).join(" ");
 
@@ -8064,7 +8094,7 @@ Renderer.vehicle = {
 					</tr>
 					<tr>
 						<td class="col-6"><b>Hit Points:</b> ${veh.hull?.hp ?? "\u2014"}</td>
-						<td class="col-6"><b>Crew:</b> ${veh.capCrew ?? "\u2014"}</td>
+						<td class="col-6"><b>Crew:</b> ${veh.capCrew ?? "\u2014"}${veh.capCrewNote ? ` ${renderer.render(veh.capCrewNote)}` : ""}</td>
 					</tr>
 					<tr>
 						<td class="col-6"><b>Damage Threshold:</b> ${veh.hull?.dt ?? "\u2014"}</td>
@@ -8078,10 +8108,29 @@ Renderer.vehicle = {
 			</td></tr>`;
 		},
 
+		_getPtPace (renderer, veh) {
+			if (!veh.pace) return "";
+
+			const isMulti = Object.keys(veh.pace).length > 1;
+
+			const out = Parser.SPEED_MODES
+				.map(mode => {
+					const pace = veh.pace[mode];
+					if (!pace) return null;
+
+					const asNum = Parser.vulgarToNumber(pace);
+					return `<span class="help-subtle" title="${asNum * 24} miles per day">${isMulti && mode !== "walk" ? `${mode} ` : ""}${pace} mph</span>`;
+				})
+				.filter(Boolean)
+				.join(", ");
+
+			return `(${out})`;
+		},
+
 		getWeaponSection_ (renderer, weap) {
 			const isMultiple = weap.count != null && weap.count > 1;
 			const ptAction = weap.action?.length
-				? weap.action.map(act => `<div class="mt-1">${renderer.render(act, 2)}</div>`)
+				? weap.action.map(act => `<div class="mt-1">${renderer.render(act, 2)}</div>`).join("")
 				: "";
 			return `
 				<tr class="mon__stat-header-underline"><td colspan="6"><h3 class="mon__sect-header-inner">${isMultiple ? `${weap.count} ` : ""}${weap.name}${weap.crew ? ` (Crew: ${weap.crew}${isMultiple ? " each" : ""})` : ""}</h3></td></tr>
@@ -8097,7 +8146,7 @@ Renderer.vehicle = {
 			const ptCosts = sect.costs?.length
 				? sect.costs.map(cost => {
 					return `${Parser.vehicleCostToFull(cost) || "\u2014"}${cost.note ? `  (${renderer.render(cost.note)})` : ""}`;
-				})
+				}).join(", ")
 				: "\u2014";
 			return `
 				<div><b>Armor Class:</b> ${sect.ac == null ? "\u2014" : sect.ac}</div>
@@ -9181,7 +9230,7 @@ Renderer.hover = {
 			});
 		const $wrpContent = $(`<div class="hwin__wrp-table"></div>`);
 		if (opts.height != null) $wrpContent.css("height", opts.height);
-		const $hovTitle = $(`<span class="window-title">${opts.title || ""}</span>`);
+		const $hovTitle = $(`<span class="window-title min-w-0 overflow-ellipsis" title="${`${opts.title || ""}`.qq()}">${opts.title || ""}</span>`);
 
 		const out = {};
 		const hoverId = Renderer.hover._getNextId();
@@ -9401,7 +9450,7 @@ Renderer.hover = {
 		$brdrTop.attr("data-display-title", false);
 		$brdrTop.on("dblclick", () => doToggleMinimizedMaximized());
 		$brdrTop.append($hovTitle);
-		const $brdTopRhs = $(`<div class="ve-flex ml-auto"></div>`).appendTo($brdrTop);
+		const $brdTopRhs = $(`<div class="ve-flex ml-auto no-shrink"></div>`).appendTo($brdrTop);
 
 		if (opts.pageUrl && !position.window._IS_POPOUT && !Renderer.get().isInternalLinksDisabled()) {
 			const $btnGotoPage = $(`<a class="hwin__top-border-icon glyphicon glyphicon-modal-window" title="Go to Page" href="${opts.pageUrl}"></a>`)
@@ -10321,6 +10370,9 @@ Renderer.hover = {
 		// Add a copy using the subclass source, for omnisearch results
 		Renderer.hover._addToCache(UrlUtil.PG_CLASSES, sc.source || SRC_PHB, scHash, scEntries);
 
+		// Add a copy for loading via "statblock" entries
+		Renderer.hover._addToCache("subclass", sc.source || SRC_PHB, scHash, scEntries);
+
 		// add all class/subclass features
 		UrlUtil.class.getIndexedSubclassEntries(sc).forEach(it => Renderer.hover._addToCache(UrlUtil.PG_CLASSES, it.source, it.hash, it.entry));
 	},
@@ -10718,6 +10770,8 @@ Renderer.hover = {
 			case "subclassfeature":
 			case "subclassFeature":
 				return Renderer.hover.getGenericCompactRenderedString;
+			case "subclass":
+				return Renderer.hover.getGenericCompactRenderedString;
 			// endregion
 			default:
 				if (Renderer[page]?.getCompactRenderedString) return Renderer[page].getCompactRenderedString;
@@ -10965,6 +11019,7 @@ Renderer._stripTagLayer = function (str) {
 					case "@d20":
 					case "@damage":
 					case "@dice":
+					case "@autodice":
 					case "@hit":
 					case "@recharge":
 					case "@ability":
@@ -10973,7 +11028,8 @@ Renderer._stripTagLayer = function (str) {
 						const [rollText, displayText] = Renderer.splitTagByPipe(text);
 						switch (tag) {
 							case "@damage":
-							case "@dice": {
+							case "@dice":
+							case "@autodice": {
 								return displayText || rollText.replace(/;/g, "/");
 							}
 							case "@d20":

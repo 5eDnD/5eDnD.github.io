@@ -453,6 +453,10 @@ i > i {
 .absolute {
 	position: absolute !important;
 }
+
+.sticky {
+	position: sticky !important;
+}
 // endregion
 
 // region Display
@@ -749,6 +753,12 @@ i > i {
 
 .border-dotted {
 	border-style: dotted !important;
+}
+// endregion
+
+// region Opacity
+.opacity-50 {
+	opacity: 0.5 !important;
 }
 // endregion
 

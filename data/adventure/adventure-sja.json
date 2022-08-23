@@ -517,7 +517,7 @@
 									"id": "01c",
 									"entries": [
 										"{@i Security Level: Gold (Bridge Rank) Only}",
-										"These opulent chambers are home to the Bridge\u2014the high-ranking officers who run Spelljammer Academy. In addition to the officers' quarters, this level contains a private banqueting chamber, a library of spellbooks, and a magical communication chamber known as an oracularium. Characters visit the Bridge Quarters in{@area part 3|031|x} of this adventure."
+										"These opulent chambers are home to the Bridge\u2014the high-ranking officers who run Spelljammer Academy. In addition to the officers' quarters, this level contains a private banqueting chamber, a library of spellbooks, and a magical communication chamber known as an oracularium. Characters visit the Bridge Quarters in {@area part 3|031|x} of this adventure."
 									]
 								},
 								{
@@ -1828,7 +1828,7 @@
 					"name": "Handout 1: Hammerhead Ship",
 					"id": "08a",
 					"entries": [
-						"{@vehicle Hammerhead ship|SjA|Hammerhead ships} are popular craft, especially among pirates and merchants carrying heavy cargo. They can float on water and sail across it, but they aren't built to land on the ground (their keels would cause them to tip to one side). Standard weapons on a hammerhead ship include fore and aft mangonels, a ballista, and a reinforced bow for ramming.",
+						"{@vehicle Hammerhead ship|AAG|Hammerhead ships} are popular craft, especially among pirates and merchants carrying heavy cargo. They can float on water and sail across it, but they aren't built to land on the ground (their keels would cause them to tip to one side). Standard weapons on a hammerhead ship include fore and aft mangonels, a ballista, and a reinforced bow for ramming.",
 						{
 							"type": "image",
 							"href": {
@@ -1901,7 +1901,7 @@
 							"name": "Appendix B: Squid Ship",
 							"id": "08e",
 							"entries": [
-								"Among the oldest types of spelljamming vessels, {@vehicle squid ship|SjA|squid ships} are popular with privateers and are often used as patrol ships. Standard weapons on a squid ship include a forward-mounted mangonel, two aft-mounted ballistae, and a reinforced bow for ramming. The tentacles that extend from the bow account for nearly half the ship's keel length.",
+								"Among the oldest types of spelljamming vessels, {@vehicle squid ship|AAG|squid ships} are popular with privateers and are often used as patrol ships. Standard weapons on a squid ship include a forward-mounted mangonel, two aft-mounted ballistae, and a reinforced bow for ramming. The tentacles that extend from the bow account for nearly half the ship's keel length.",
 								"Squid ships can float and sail on water, and can land on ground.",
 								{
 									"type": "image",
@@ -3185,7 +3185,7 @@
 									"name": "Damselfly Ship",
 									"id": "0ee",
 									"entries": [
-										"The damselfly ship has a crew of four {@creature giff shipmate|SjA|giff shipmates} and four {@creature Githyanki Warrior||githyanki warriors} (not including Qitru). As the tyrant ship moves away from the asteroid, the damselfly's canny giff captain, Mustaf Shultz, instructs the ship's spelljammer, a githyanki named Nalvoor, to follow the tyrant ship to Toril while keeping a safe distance.",
+										"The damselfly ship has a crew of four {@creature giff shipmate|BAM|giff shipmates} and four {@creature Githyanki Warrior||githyanki warriors} (not including Qitru). As the tyrant ship moves away from the asteroid, the damselfly's canny giff captain, Mustaf Shultz, instructs the ship's spelljammer, a githyanki named Nalvoor, to follow the tyrant ship to Toril while keeping a safe distance.",
 										"The characters encounter the damselfly ship again in the next part of the adventure."
 									]
 								}
@@ -3237,7 +3237,7 @@
 									"name": "Creatures",
 									"id": "0f4",
 									"entries": [
-										"The two {@creature giff shipmate|SjA|giff shipmates} have orders to secure the {@i Flighty Foundling} while an extraction team retrieves Miken, dead or alive. The giff give the characters a chance to flee the vessel. If the characters stand their ground, the giff hurl grenades at them before closing to melee range.",
+										"The two {@creature giff shipmate|BAM|giff shipmates} have orders to secure the {@i Flighty Foundling} while an extraction team retrieves Miken, dead or alive. The giff give the characters a chance to flee the vessel. If the characters stand their ground, the giff hurl grenades at them before closing to melee range.",
 										"If captured and interrogated, the giff reveal that they take their orders from Mustaf Shultz, the giff captain of the damselfly ship, who takes his orders from Vocath the mercane. Shultz and his fellow giff are mercenaries, and Vocath pays them well for their loyalty."
 									]
 								},
@@ -3527,7 +3527,7 @@
 							"items": [
 								"{@creature Apprentice Wizard|MPMM}",
 								"{@creature Gazer|MPMM}",
-								"{@creature Giff Shipmate|SjA}",
+								"{@creature Giff Shipmate|BAM}",
 								"{@creature Githyanki Warrior}",
 								"{@creature Ogre}",
 								"{@creature Spectator}",

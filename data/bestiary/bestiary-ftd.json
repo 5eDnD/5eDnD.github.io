@@ -202,13 +202,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -496,13 +489,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -1094,13 +1080,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -1389,13 +1368,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -1465,6 +1437,9 @@
 				"P",
 				"R",
 				"S"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"AOE",
@@ -1686,13 +1661,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -2012,13 +1980,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -2251,13 +2212,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -2549,13 +2503,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -2865,13 +2812,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -3160,13 +3100,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -4037,13 +3970,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -4334,13 +4260,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -4406,6 +4325,9 @@
 				"P",
 				"R",
 				"S"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"AOE",
@@ -4628,13 +4550,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -5107,13 +5022,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -7407,13 +7315,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -7706,13 +7607,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -8562,6 +8456,9 @@
 				"O",
 				"P"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"AOE",
 				"MW",
@@ -8711,6 +8608,9 @@
 				"S"
 			],
 			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
 				"O"
 			],
 			"miscTags": [
@@ -9189,6 +9089,9 @@
 				"F",
 				"R"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW"
 			],
@@ -9404,6 +9307,9 @@
 			],
 			"damageTags": [
 				"T"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"conditionInflictSpell": [
 				"charmed",
@@ -11118,13 +11024,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -11417,13 +11316,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -13992,13 +13884,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -14296,13 +14181,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -14960,13 +14838,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -15253,13 +15124,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -15800,13 +15664,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -16032,13 +15889,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -16698,13 +16548,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -16945,13 +16788,6 @@
 						},
 						{
 							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
-							]
-						},
-						{
-							"type": "entries",
 							"name": "Other Traits and Actions",
 							"entries": [
 								"You can borrow traits and actions from other monsters to add unique flavor to a dragon. Consider these examples:",
@@ -17015,6 +16851,9 @@
 				"P",
 				"R",
 				"S"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"AOE",
@@ -17180,13 +17019,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{
@@ -17572,13 +17404,6 @@
 							"name": "Skills",
 							"entries": [
 								"Most dragons are proficient in the {@skill Perception} and {@skill Stealth} skills, and many dragons have additional skill proficiencies. As with languages, you can customize a dragon's skill list (even doubling their proficiency bonus with certain skills) to reflect particular interests and activities. You can also give a dragon tool proficiencies, particularly if the dragon spends time in Humanoid form."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Spells",
-							"entries": [
-								"{@note See the \"Variant: Dragons as Innate Spellcasters\" inset(s), below.}"
 							]
 						},
 						{

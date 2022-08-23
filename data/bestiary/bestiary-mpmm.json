@@ -68,7 +68,6 @@
 					"headerEntries": [
 						"The abjurer casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 16}):"
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell dancing lights}",
 						"{@spell mage hand}",
@@ -89,7 +88,8 @@
 							"{@spell wall of force}"
 						]
 					},
-					"ability": "int"
+					"ability": "int",
+					"displayAs": "action"
 				}
 			],
 			"action": [
@@ -138,6 +138,9 @@
 			],
 			"damageTagsSpell": [
 				"L"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"AOE"
@@ -341,9 +344,8 @@
 				{
 					"name": "Spellcasting (Psionics)",
 					"headerEntries": [
-						"The oblex casts one of the following spells, requiring no spell components and using Intelligence as the spellcasting ability (spell save DC {@dc 15}):"
+						"The oblex casts one of the following spells, requiring no spell components and using Intelligence as the spellcasting ability (spell save {@dc 15}):"
 					],
-					"displayAs": "action",
 					"daily": {
 						"3e": [
 							"{@spell charm person} (as 5th-level spell)",
@@ -352,7 +354,7 @@
 						]
 					},
 					"ability": "int",
-					"type": "spellcasting"
+					"displayAs": "action"
 				}
 			],
 			"trait": [
@@ -391,7 +393,7 @@
 				{
 					"name": "Eat Memories",
 					"entries": [
-						"The oblex targets one creature it can see within 5 feet of it. The target must succeed on a DC {@dc 15} Wisdom saving throw or take 18 ({@damage 4d8}) psychic damage and become memory drained until it finishes a short or long rest or until it benefits from the {@spell greater restoration} or {@spell heal} spell. Constructs, Oozes, Plants, and Undead succeed on the save automatically.",
+						"The oblex targets one creature it can see within 5 feet of it. The target must succeed on a {@dc 15} Wisdom saving throw or take 18 ({@damage 4d8}) psychic damage and become memory drained until it finishes a short or long rest or until it benefits from the {@spell greater restoration} or {@spell heal} spell. Constructs, Oozes, Plants, and Undead succeed on the save automatically.",
 						"While memory drained, the target must roll a {@dice d4} and subtract the number rolled from its ability checks and attack rolls. Each time the target is memory drained beyond the first, the die size increases by one: the {@dice d4} becomes a {@dice d6}, the {@dice d6} becomes a {@dice d8}, and so on until the die becomes a {@dice d20}, at which point the target becomes {@condition unconscious} for 1 hour. The effect then ends.",
 						"The oblex learns all the languages a memory-drained target knows and gains all its skill proficiencies."
 					]
@@ -765,6 +767,9 @@
 				"C",
 				"O",
 				"Y"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"AOE"
@@ -1316,6 +1321,9 @@
 			"damageTagsSpell": [
 				"Y"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RCH"
@@ -1580,6 +1588,9 @@
 				"P",
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW"
 			],
@@ -1648,7 +1659,6 @@
 					"headerEntries": [
 						"The apprentice casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 12})"
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell mage hand}",
 						"{@spell prestidigitation}"
@@ -1660,7 +1670,8 @@
 							"{@spell mage armor}"
 						]
 					},
-					"ability": "int"
+					"ability": "int",
+					"displayAs": "action"
 				}
 			],
 			"action": [
@@ -1687,6 +1698,9 @@
 			],
 			"damageTagsSpell": [
 				"F"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -1828,6 +1842,9 @@
 				"B",
 				"F",
 				"I"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW"
@@ -2513,6 +2530,9 @@
 				"S",
 				"Y"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RNG",
@@ -2665,6 +2685,9 @@
 			],
 			"damageTagsSpell": [
 				"F"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW"
@@ -2892,6 +2915,9 @@
 				"F",
 				"P",
 				"S"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW",
@@ -3395,6 +3421,9 @@
 				"O",
 				"P"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RCH"
@@ -3733,6 +3762,9 @@
 			"damageTagsSpell": [
 				"O"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW"
 			],
@@ -3871,6 +3903,9 @@
 				"P",
 				"S",
 				"Y"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW"
@@ -4040,6 +4075,9 @@
 			"damageTagsSpell": [
 				"B",
 				"C"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW"
@@ -4363,6 +4401,9 @@
 				"P",
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RCH",
@@ -4556,6 +4597,9 @@
 			"damageTags": [
 				"L",
 				"P"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW"
@@ -6281,6 +6325,9 @@
 				"O",
 				"P"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RW",
@@ -6973,6 +7020,9 @@
 				"O",
 				"Y"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RCH"
@@ -7043,7 +7093,6 @@
 					"headerEntries": [
 						"The conjurer casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 14}):"
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell dancing lights}",
 						"{@spell mage hand}",
@@ -7061,7 +7110,8 @@
 							"{@spell web}"
 						]
 					},
-					"ability": "int"
+					"ability": "int",
+					"displayAs": "action"
 				}
 			],
 			"action": [
@@ -7110,6 +7160,9 @@
 			],
 			"damageTagsSpell": [
 				"F"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"conditionInflictSpell": [
 				"restrained"
@@ -7873,6 +7926,9 @@
 				"A",
 				"C"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW"
 			],
@@ -8052,6 +8108,9 @@
 			"damageTagsSpell": [
 				"O"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW"
 			],
@@ -8214,6 +8273,9 @@
 			],
 			"damageTags": [
 				"N"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"HPR",
@@ -8787,6 +8849,9 @@
 			"damageTagsSpell": [
 				"Y"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"HPR",
 				"MW",
@@ -9048,6 +9113,9 @@
 			"damageTags": [
 				"B",
 				"R"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW"
@@ -9343,6 +9411,9 @@
 			"damageTags": [
 				"O"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"AOE",
 				"MW"
@@ -9628,7 +9699,6 @@
 					"headerEntries": [
 						"The diviner casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 15}):"
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell mage hand}",
 						"{@spell message}",
@@ -9649,7 +9719,8 @@
 							"{@spell true seeing}"
 						]
 					},
-					"ability": "int"
+					"ability": "int",
+					"displayAs": "action"
 				}
 			],
 			"action": [
@@ -9699,6 +9770,9 @@
 			],
 			"damageTagsSpell": [
 				"L"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"AOE"
@@ -10060,6 +10134,9 @@
 				"P",
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RCH"
@@ -10257,6 +10334,9 @@
 				"O",
 				"P"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RW"
@@ -10432,6 +10512,9 @@
 				"F",
 				"O"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW"
 			],
@@ -10605,6 +10688,9 @@
 				"I",
 				"P",
 				"S"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW",
@@ -10800,6 +10886,9 @@
 				"O",
 				"P",
 				"Y"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"HPR",
@@ -11033,6 +11122,9 @@
 			"damageTagsSpell": [
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"AOE",
 				"MW",
@@ -11222,6 +11314,9 @@
 				"N",
 				"P",
 				"Y"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW",
@@ -12669,6 +12764,9 @@
 				"O",
 				"Y"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"HPR",
 				"MW"
@@ -13233,7 +13331,7 @@
 				{
 					"name": "Spellcasting (Psionics)",
 					"headerEntries": [
-						"The oblex casts one of the following spells, requiring no spell components and using Intelligence as the spellcasting ability (spell save DC {@dc 18}):"
+						"The oblex casts one of the following spells, requiring no spell components and using Intelligence as the spellcasting ability (spell save {@dc 18}):"
 					],
 					"will": [
 						"{@spell charm person} (as 5th-level spell)",
@@ -13247,9 +13345,8 @@
 							"{@spell telekinesis}"
 						]
 					},
-					"displayAs": "action",
 					"ability": "int",
-					"type": "spellcasting"
+					"displayAs": "action"
 				}
 			],
 			"trait": [
@@ -13598,7 +13695,6 @@
 					"headerEntries": [
 						"The enchanter casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 14}):"
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell friends}",
 						"{@spell mage hand}",
@@ -13614,7 +13710,8 @@
 							"{@spell tongues}"
 						]
 					},
-					"ability": "int"
+					"ability": "int",
+					"displayAs": "action"
 				}
 			],
 			"action": [
@@ -13654,6 +13751,9 @@
 			],
 			"damageTags": [
 				"Y"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"conditionInflictSpell": [
 				"charmed",
@@ -13722,7 +13822,6 @@
 					"headerEntries": [
 						"The evoker casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 15}):"
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell light}",
 						"{@spell mage hand}",
@@ -13739,7 +13838,8 @@
 							"{@spell wall of ice}"
 						]
 					},
-					"ability": "int"
+					"ability": "int",
+					"displayAs": "action"
 				}
 			],
 			"action": [
@@ -13782,6 +13882,9 @@
 				"B",
 				"C",
 				"L"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"AOE"
@@ -14276,6 +14379,9 @@
 			"damageTags": [
 				"F",
 				"P"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW"
@@ -14857,6 +14963,9 @@
 				"P",
 				"S",
 				"Y"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW",
@@ -15874,6 +15983,9 @@
 				"C",
 				"P",
 				"S"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"HPR",
@@ -17679,6 +17791,9 @@
 				"A",
 				"O"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RCH"
@@ -17861,6 +17976,9 @@
 				"B",
 				"P",
 				"S"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW"
@@ -18628,6 +18746,9 @@
 			"damageTagsSpell": [
 				"P"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RNG",
@@ -19363,6 +19484,9 @@
 				"F",
 				"L"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW"
 			],
@@ -19510,6 +19634,9 @@
 			"damageTags": [
 				"B",
 				"P"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW"
@@ -20013,6 +20140,9 @@
 				"P",
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"AOE",
 				"MW",
@@ -20219,6 +20349,9 @@
 			"damageTagsSpell": [
 				"B"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW"
 			],
@@ -20290,7 +20423,6 @@
 					"headerEntries": [
 						"The illusionist casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 13}):"
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell dancing lights}",
 						"{@spell mage hand}",
@@ -20306,7 +20438,8 @@
 							"{@spell phantom steed}"
 						]
 					},
-					"ability": "int"
+					"ability": "int",
+					"displayAs": "action"
 				}
 			],
 			"action": [
@@ -20349,6 +20482,9 @@
 			],
 			"damageTagsSpell": [
 				"Y"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"conditionInflictSpell": [
 				"invisible"
@@ -20568,6 +20704,9 @@
 			"damageTagsLegendary": [
 				"F"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RCH",
@@ -20774,6 +20913,9 @@
 			"damageTags": [
 				"O",
 				"R"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW",
@@ -21232,6 +21374,9 @@
 			"damageTags": [
 				"P"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RW",
@@ -21398,6 +21543,9 @@
 			"damageTagsSpell": [
 				"B"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RW"
@@ -21544,6 +21692,9 @@
 			],
 			"damageTagsSpell": [
 				"B"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"conditionInflict": [
 				"frightened",
@@ -23589,6 +23740,9 @@
 			"damageTagsSpell": [
 				"B"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW"
 			],
@@ -24009,6 +24163,9 @@
 				"P",
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"AOE",
 				"MW",
@@ -24236,6 +24393,9 @@
 			"damageTagsSpell": [
 				"L"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"HPR",
 				"MW",
@@ -24410,6 +24570,9 @@
 			],
 			"damageTagsSpell": [
 				"L",
+				"O"
+			],
+			"spellcastingTags": [
 				"O"
 			],
 			"miscTags": [
@@ -24877,6 +25040,9 @@
 				"O",
 				"Y"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"AOE",
 				"MW"
@@ -25121,7 +25287,6 @@
 					"headerEntries": [
 						"The necromancer casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 15}):"
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell dancing lights}",
 						"{@spell mage hand}",
@@ -25138,7 +25303,8 @@
 							"{@spell circle of death}"
 						]
 					},
-					"ability": "int"
+					"ability": "int",
+					"displayAs": "action"
 				}
 			],
 			"action": [
@@ -25191,6 +25357,9 @@
 			"damageTagsSpell": [
 				"F",
 				"N",
+				"O"
+			],
+			"spellcastingTags": [
 				"O"
 			],
 			"conditionInflictSpell": [
@@ -25605,6 +25774,9 @@
 			"damageTagsSpell": [
 				"A",
 				"C",
+				"O"
+			],
+			"spellcastingTags": [
 				"O"
 			],
 			"miscTags": [
@@ -26042,6 +26214,9 @@
 			"damageTags": [
 				"B",
 				"Y"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW"
@@ -26849,6 +27024,9 @@
 			"damageTagsSpell": [
 				"Y"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"AOE",
 				"HPR",
@@ -26984,6 +27162,11 @@
 					"headerEntries": [
 						"While holding the {@item Wand of Orcus}, Orcus casts one of the following spells (spell save {@dc 18}), some of which require charges; the wand has 7 charges to fuel these spells, and it regains {@dice 1d4 + 3} charges daily at dawn:"
 					],
+					"will": [
+						"{@spell animate dead} (as an action)",
+						"{@spell blight}",
+						"{@spell speak with dead}"
+					],
 					"charges": {
 						"1e": [
 							"{@spell circle of death}",
@@ -26994,11 +27177,6 @@
 						]
 					},
 					"chargesItem": "wand of orcus|dmg",
-					"will": [
-						"{@spell animate dead} (as an action)",
-						"{@spell blight}",
-						"{@spell speak with dead}"
-					],
 					"displayAs": "action"
 				}
 			],
@@ -27104,6 +27282,9 @@
 			],
 			"damageTagsSpell": [
 				"N"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"AOE",
@@ -27243,7 +27424,7 @@
 								{
 									"type": "item",
 									"name": "Entanglement",
-									"entry": "The target must make a successful {@dc 17} Dexterity saving throw or be {@condition restrained} for 1 hour by strands of sticky webbing. The target can escape by taking an action to make a DC {@dc 17} Strength or Dexterity check and succeeding."
+									"entry": "The target must make a successful {@dc 17} Dexterity saving throw or be {@condition restrained} for 1 hour by strands of sticky webbing. The target can escape by taking an action to make a {@dc 17} Strength or Dexterity check and succeeding."
 								},
 								{
 									"type": "item",
@@ -27272,7 +27453,7 @@
 				{
 					"name": "Explosive Retribution",
 					"entries": [
-						"In response to dropping to 15 hit points or fewer, the orthon explodes. All other creatures within 30 feet of it must each make a DC {@dc 17} Dexterity saving throw, taking 9 ({@damage 2d8}) fire damage plus 9 ({@damage 2d8}) thunder damage on a failed save, or half as much damage on a successful one. The orthon, its infernal dagger, and its brass crossbow are destroyed."
+						"In response to dropping to 15 hit points or fewer, the orthon explodes. All other creatures within 30 feet of it must each make a {@dc 17} Dexterity saving throw, taking 9 ({@damage 2d8}) fire damage plus 9 ({@damage 2d8}) thunder damage on a failed save, or half as much damage on a successful one. The orthon, its infernal dagger, and its brass crossbow are destroyed."
 					]
 				}
 			],
@@ -28228,6 +28409,9 @@
 			"damageTagsSpell": [
 				"F"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RCH"
@@ -28900,6 +29084,9 @@
 				"N",
 				"P"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RW",
@@ -29239,6 +29426,9 @@
 			],
 			"damageTagsSpell": [
 				"N"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"AOE",
@@ -29926,6 +30116,9 @@
 			"damageTagsSpell": [
 				"Y"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RCH"
@@ -30271,6 +30464,9 @@
 			"damageTagsSpell": [
 				"C",
 				"I",
+				"O"
+			],
+			"spellcastingTags": [
 				"O"
 			],
 			"miscTags": [
@@ -30859,6 +31055,9 @@
 				"S",
 				"Y"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RNG",
@@ -31269,6 +31468,9 @@
 			"damageTags": [
 				"B",
 				"N",
+				"O"
+			],
+			"spellcastingTags": [
 				"O"
 			],
 			"miscTags": [
@@ -31737,6 +31939,9 @@
 				"T"
 			],
 			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
 				"O"
 			],
 			"miscTags": [
@@ -33586,6 +33791,9 @@
 				"P",
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"HPR",
 				"MW"
@@ -33956,6 +34164,9 @@
 			"damageTagsSpell": [
 				"T"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW"
 			],
@@ -34024,7 +34235,6 @@
 					"headerEntries": [
 						"The transmuter casts one of the following spells, using Intelligence as the spellcasting ability (spell save {@dc 14}):"
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell light}",
 						"{@spell message}",
@@ -34043,7 +34253,8 @@
 							"{@spell telekinesis}"
 						]
 					},
-					"ability": "int"
+					"ability": "int",
+					"displayAs": "action"
 				}
 			],
 			"trait": [
@@ -34120,6 +34331,9 @@
 			],
 			"damageTagsSpell": [
 				"F"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"conditionInflictSpell": [
 				"restrained"
@@ -34295,7 +34509,6 @@
 			"spellcasting": [
 				{
 					"name": "Spellcasting (Psionics)",
-					"displayAs": "action",
 					"headerEntries": [
 						"The ulitharid casts one of the following spells, requiring no spell components and using Intelligence as the spellcasting ability (spell save {@dc 17}):"
 					],
@@ -34314,7 +34527,8 @@
 							"{@spell telekinesis}"
 						]
 					},
-					"ability": "int"
+					"ability": "int",
+					"displayAs": "action"
 				}
 			],
 			"trait": [
@@ -35214,7 +35428,6 @@
 					"headerEntries": [
 						"The war priest casts one of the following spells, using Wisdom as the spellcasting ability (spell save {@dc 15}):"
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell light}",
 						"{@spell spare the dying}",
@@ -35232,7 +35445,8 @@
 							"{@spell revivify}"
 						]
 					},
-					"ability": "wis"
+					"ability": "wis",
+					"displayAs": "action"
 				}
 			],
 			"action": [
@@ -35284,6 +35498,9 @@
 			"damageTagsSpell": [
 				"F",
 				"R"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"MW"
@@ -35364,7 +35581,6 @@
 					"headerEntries": [
 						"The warlock casts one of the following spells, using Charisma as the spellcasting ability (spell save {@dc 14}): "
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell dancing lights}",
 						"{@spell disguise self}",
@@ -35381,7 +35597,8 @@
 							"{@spell hold monster}"
 						]
 					},
-					"ability": "cha"
+					"ability": "cha",
+					"displayAs": "action"
 				}
 			],
 			"action": [
@@ -35524,7 +35741,6 @@
 					"headerEntries": [
 						"The warlock casts one of the following spells, using Charisma as the spellcasting ability (spell save {@dc 15}): "
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell alter self}",
 						"{@spell mage armor} (self only)",
@@ -35539,7 +35755,8 @@
 							"{@spell suggestion}"
 						]
 					},
-					"ability": "cha"
+					"ability": "cha",
+					"displayAs": "action"
 				}
 			],
 			"trait": [
@@ -35683,7 +35900,6 @@
 					"headerEntries": [
 						"The warlock casts one of the following spells, using Charisma as the spellcasting ability (spell save {@dc 15}): "
 					],
-					"displayAs": "action",
 					"will": [
 						"{@spell detect magic}",
 						"{@spell guidance}",
@@ -35700,7 +35916,8 @@
 							"{@spell true seeing}"
 						]
 					},
-					"ability": "cha"
+					"ability": "cha",
+					"displayAs": "action"
 				}
 			],
 			"trait": [
@@ -36527,6 +36744,9 @@
 				"P",
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RNG",
@@ -37010,6 +37230,9 @@
 			"damageTagsSpell": [
 				"F"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW"
 			],
@@ -37206,6 +37429,9 @@
 			],
 			"damageTagsSpell": [
 				"L"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"HPR",
@@ -37446,6 +37672,9 @@
 			],
 			"damageTagsLegendary": [
 				"P"
+			],
+			"spellcastingTags": [
+				"O"
 			],
 			"miscTags": [
 				"AOE",
@@ -39036,6 +39265,9 @@
 				"P",
 				"S"
 			],
+			"spellcastingTags": [
+				"O"
+			],
 			"miscTags": [
 				"MW",
 				"RCH"
@@ -39251,6 +39483,9 @@
 				"I"
 			],
 			"damageTagsSpell": [
+				"O"
+			],
+			"spellcastingTags": [
 				"O"
 			],
 			"miscTags": [

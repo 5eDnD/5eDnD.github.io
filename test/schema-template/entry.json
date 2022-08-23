@@ -4,7 +4,7 @@
 
 	"title": "Entry",
 	"description": "A recursively renderable object.",
-	"version": "1.7.4",
+	"version": "1.7.6",
 
 	"definitions" : {
 		"_arrayOfSpell": {
@@ -554,7 +554,11 @@
 							"type": "array",
 							"items": {
 								"type": "string",
-								"enum": ["str", "dex", "con", "int", "wis", "cha", "spellcasting"]
+								"$$ifSiteElse_key": {
+									"keySite": "enum",
+									"keyBrew": "examples",
+									"value": ["str", "dex", "con", "int", "wis", "cha", "spellcasting"]
+								}
 							}
 						}
 					},
@@ -1230,20 +1234,43 @@
 			]
 		},
 		"entryStatblock": {
-			"type": "object",
-			"$$merge": [
-				{"$ref" : "#/definitions/entry"},
+			"oneOf": [
 				{
-					"properties": {
-						"type": {"const": "statblock"},
-						"tag": {"$ref": "util.json#/definitions/tagNameStats"},
-						"name": {"type": "string"},
-						"source": {"type": "string"},
-						"hash": {"type": "string"},
-						"style": {"$ref": "#/definitions/_entryDataStyle"}
-					},
-					"required": ["tag", "name"],
-					"additionalProperties": false
+					"type": "object",
+					"$$merge": [
+						{"$ref" : "#/definitions/entry"},
+						{
+							"properties": {
+								"type": {"const": "statblock"},
+								"tag": {"$ref": "util.json#/definitions/tagNameStats"},
+								"name": {"type": "string"},
+								"displayName": {"type": "string"},
+								"source": {"type": "string"},
+								"hash": {"type": "string"},
+								"style": {"$ref": "#/definitions/_entryDataStyle"}
+							},
+							"required": ["tag", "name"],
+							"additionalProperties": false
+						}
+					]
+				},
+				{
+					"type": "object",
+					"$$merge": [
+						{"$ref" : "#/definitions/entry"},
+						{
+							"properties": {
+								"type": {"const": "statblock"},
+								"prop": {"$ref": "util.json#/definitions/propNameStats"},
+								"name": {"type": "string"},
+								"displayName": {"type": "string"},
+								"source": {"type": "string"},
+								"hash": {"type": "string"},
+								"style": {"$ref": "#/definitions/_entryDataStyle"}
+							},
+							"required": ["prop", "name", "source"]
+						}
+					]
 				}
 			]
 		},
