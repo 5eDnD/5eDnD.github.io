@@ -4,11 +4,15 @@ class PageFilterObjects extends PageFilter {
 	constructor () {
 		super();
 
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD"], isMiscFilter: true});
+		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD", "Legacy", "Has Images", "Has Info", "Has Token"], isMiscFilter: true});
 	}
 
 	static mutateForFilters (obj) {
 		obj._fMisc = obj.srd ? ["SRD"] : [];
+		if (SourceUtil.isLegacySourceWotc(obj.source)) obj._fMisc.push("Legacy");
+		if (obj.tokenUrl || obj.hasToken) obj._fMisc.push("Has Token");
+		if (obj.hasFluff || obj.fluff?.entries) obj._fMisc.push("Has Info");
+		if (obj.hasFluffImages || obj.fluff?.images) obj._fMisc.push("Has Images");
 	}
 
 	addToFilters (obj, isExcluded) {
@@ -32,3 +36,14 @@ class PageFilterObjects extends PageFilter {
 		);
 	}
 }
+
+globalThis.PageFilterObjects = PageFilterObjects;
+
+class ListSyntaxObjects extends ListUiUtil.ListSyntax {
+	static _INDEXABLE_PROPS_ENTRIES = [
+		"entries",
+		"actionEntries",
+	];
+}
+
+globalThis.ListSyntaxObjects = ListSyntaxObjects;

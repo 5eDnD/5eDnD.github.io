@@ -8,6 +8,9 @@
 			"otherSources": [
 				{
 					"source": "TCE"
+				},
+				{
+					"source": "BMT"
 				}
 			],
 			"size": [
@@ -134,7 +137,8 @@
 			"senseTags": [
 				"D"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Larva",
@@ -143,6 +147,12 @@
 			"otherSources": [
 				{
 					"source": "BGDIA"
+				},
+				{
+					"source": "SatO"
+				},
+				{
+					"source": "ToFW"
 				}
 			],
 			"size": [

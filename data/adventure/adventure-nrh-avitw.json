@@ -846,11 +846,17 @@
 								}
 							],
 							"imageType": "map",
+							"grid": {
+								"type": "square",
+								"size": 70,
+								"distance": 10
+							},
 							"hrefThumbnail": {
 								"type": "internal",
 								"path": "adventure/NRH-AVitW/thumbnail/004.webp"
 							},
-							"id": "025"
+							"id": "025",
+							"credit": "Red Central"
 						},
 						{
 							"type": "entries",

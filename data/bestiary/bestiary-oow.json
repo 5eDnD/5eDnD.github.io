@@ -28,7 +28,8 @@
 				"petrified",
 				"poisoned"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Dagdra Deepforge",
@@ -61,6 +62,10 @@
 					}
 				}
 			},
+			"alignment": [
+				"N",
+				"G"
+			],
 			"ac": [
 				{
 					"ac": 15,
@@ -187,7 +192,8 @@
 				"O",
 				"X"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Grunka",
@@ -228,7 +234,8 @@
 				"RNG",
 				"RW"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Jelayne",
@@ -283,7 +290,7 @@
 				"name": "Cat",
 				"source": "MM",
 				"_mod": {
-					"action": {
+					"trait": {
 						"mode": "appendArr",
 						"items": [
 							{

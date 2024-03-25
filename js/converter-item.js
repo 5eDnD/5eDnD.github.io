@@ -1,14 +1,5 @@
 "use strict";
 
-if (typeof module !== "undefined") {
-	const cv = require("./converterutils.js");
-	Object.assign(global, cv);
-	const cvItem = require("./converterutils-item.js");
-	Object.assign(global, cvItem);
-	global.PropOrder = require("./utils-proporder.js");
-	Object.assign(global, require("./converterutils-entries.js"));
-}
-
 class ItemParser extends BaseParser {
 	static init (itemData, classData) {
 		ItemParser._ALL_ITEMS = itemData;
@@ -87,6 +78,7 @@ class ItemParser extends BaseParser {
 		else this._setWeight(item, options);
 
 		if (item.staff) this._setQuarterstaffStats(item, options);
+		this._mutRemoveBaseItemProps(item, options);
 
 		this._doItemPostProcess(item, options);
 		this._setCleanTaglineInfo_handleGenericType(item, options);
@@ -115,6 +107,7 @@ class ItemParser extends BaseParser {
 		const manName = stats.name ? `(${stats.name}) ` : "";
 		ChargeTag.tryRun(stats);
 		RechargeTypeTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Recharge type requires manual conversion`)});
+		RechargeAmountTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Recharge amount requires manual conversion`)});
 		BonusTag.tryRun(stats);
 		ItemMiscTag.tryRun(stats);
 		ItemSpellcastingFocusTag.tryRun(stats);
@@ -123,7 +116,7 @@ class ItemParser extends BaseParser {
 		DamageVulnerabilityTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Damage vulnerability tagging requires manual conversion`)});
 		ConditionImmunityTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Condition immunity tagging requires manual conversion`)});
 		ReqAttuneTagTag.tryRun(stats, {cbMan: () => options.cbWarning(`${manName}Attunement requirement tagging requires manual conversion`)});
-		TagJsons.mutTagObject(stats, {keySet: new Set(["entries"]), isOptimistic: false});
+		TagJsons.mutTagObject(stats, {keySet: new Set(["entries"]), isOptimistic: true});
 		AttachedSpellTag.tryRun(stats);
 
 		// TODO
@@ -138,7 +131,7 @@ class ItemParser extends BaseParser {
 
 	// SHARED PARSING FUNCTIONS ////////////////////////////////////////////////////////////////////////////////////////
 	static _setCleanTaglineInfo (stats, curLine, options) {
-		const parts = curLine.split(",").map(it => it.trim()).filter(Boolean);
+		const parts = curLine.trim().split(StrUtil.COMMAS_NOT_IN_PARENTHESES_REGEX).map(it => it.trim()).filter(Boolean);
 
 		const handlePartRarity = (rarity) => {
 			rarity = rarity.trim().toLowerCase();
@@ -149,6 +142,7 @@ class ItemParser extends BaseParser {
 				case "very rare": stats.rarity = rarity; return true;
 				case "legendary": stats.rarity = rarity; return true;
 				case "artifact": stats.rarity = rarity; return true;
+				case "varies":
 				case "rarity varies": {
 					stats.rarity = "varies";
 					stats.__prop = "itemGroup";
@@ -165,7 +159,6 @@ class ItemParser extends BaseParser {
 		};
 
 		let baseItem = null;
-		let genericType = null;
 
 		for (let i = 0; i < parts.length; ++i) {
 			let part = parts[i];
@@ -195,7 +188,7 @@ class ItemParser extends BaseParser {
 				const [rarityRaw, ...rest] = part.split("(");
 				const rarity = rarityRaw.trim().toLowerCase();
 
-				const isHandledRarity = handlePartRarity(rarity);
+				const isHandledRarity = rarity ? handlePartRarity(rarity) : true;
 				if (!isHandledRarity) options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Rarity "${rarityRaw}" requires manual conversion`);
 
 				let attunement = rest.join("(");
@@ -208,13 +201,14 @@ class ItemParser extends BaseParser {
 
 				// if specific attunement is required, absorb any further parts which are class names
 				if (/(^| )by a /i.test(stats.reqAttune)) {
-					for (let ii = i; ii < parts.length; ++ii) {
+					for (let ii = i + 1; ii < parts.length; ++ii) {
 						const nxtPart = parts[ii]
 							.trim()
 							.replace(/^(?:or|and) /, "")
 							.trim()
 							.replace(/\)$/, "")
-							.trim();
+							.trim()
+							.toLowerCase();
 						const isClassName = ItemParser._ALL_CLASSES.some(cls => cls.name.toLowerCase() === nxtPart);
 						if (isClassName) {
 							stats.reqAttune += `, ${parts[ii].replace(/\)$/, "")}`;
@@ -228,29 +222,37 @@ class ItemParser extends BaseParser {
 			// endregion
 
 			// region weapon/armor
-			if (partLower === "weapon" || partLower === "weapon (any)") {
-				genericType = "weapon";
-				continue;
-			} else if (/^armou?r(?: \(any\))?$/.test(partLower)) {
-				genericType = "armor";
-				continue;
-			} else {
-				const mWeaponAnyX = /^weapon \(any ([^)]+)\)$/i.exec(part);
-				if (mWeaponAnyX) {
-					stats.__genericType = mWeaponAnyX[1].trim().toCamelCase();
+			const isGenericWeaponArmor = this._setCleanTaglineInfo_mutIsGenericWeaponArmor({stats, part, partLower, options});
+			if (isGenericWeaponArmor) continue;
+
+			const mBaseWeapon = /^(?<ptPre>weapon|staff) \((?<ptParens>[^)]+)\)$/i.exec(part);
+			if (mBaseWeapon) {
+				if (mBaseWeapon.groups.ptPre.toLowerCase() === "staff") stats.staff = true;
+
+				if (mBaseWeapon.groups.ptParens === "spear or javelin") {
+					(stats.requires ||= []).push(...this._setCleanTaglineInfo_getGenericRequires({stats, str: "spear", options}));
+					stats.__genericType = true;
 					continue;
 				}
+
+				const ptsParens = ConverterUtils.splitConjunct(mBaseWeapon.groups.ptParens);
+				const baseItems = ptsParens.map(pt => ItemParser.getItem(pt));
+				if (baseItems.some(it => it == null) || !baseItems.length) throw new Error(`Could not find base item(s) for "${mBaseWeapon.groups.ptParens}"`);
+
+				if (baseItems.length === 1) {
+					baseItem = baseItems[0];
+					continue;
+				}
+
+				throw new Error(`Multiple base item(s) for "${mBaseWeapon.groups.ptParens}"`);
 			}
 
-			const mBaseWeapon = /^(weapon|staff) \(([^)]+)\)$/i.exec(part);
 			const mBaseArmor = /^armou?r \((?<type>[^)]+)\)$/i.exec(part);
-			if (mBaseWeapon) {
-				if (mBaseWeapon[1].toLowerCase() === "staff") stats.staff = true;
-				baseItem = ItemParser.getItem(mBaseWeapon[2]);
-				if (!baseItem) throw new Error(`Could not find base item "${mBaseWeapon[2]}"`);
-				continue;
-			} else if (mBaseArmor) {
-				if (this._setCleanTaglineInfo_isMutAnyArmor(stats, mBaseArmor)) continue;
+			if (mBaseArmor) {
+				if (this._setCleanTaglineInfo_isMutAnyArmor(stats, mBaseArmor)) {
+					stats.__genericType = true;
+					continue;
+				}
 
 				baseItem = this._setCleanTaglineInfo_getArmorBaseItem(mBaseArmor.groups.type);
 				if (!baseItem) throw new Error(`Could not find base item "${mBaseArmor.groups.type}"`);
@@ -263,8 +265,49 @@ class ItemParser extends BaseParser {
 		}
 
 		this._setCleanTaglineInfo_handleBaseItem(stats, baseItem, options);
-		// Stash the genericType for later processing/removal
-		if (genericType) stats.__genericType = genericType;
+	}
+
+	static _GENERIC_CATEGORY_TO_PROP = {
+		"sword": "sword",
+		"polearm": "polearm",
+	};
+
+	static _setCleanTaglineInfo_mutIsGenericWeaponArmor ({stats, part, partLower, options}) {
+		if (partLower === "weapon" || partLower === "weapon (any)") {
+			(stats.requires ||= []).push(...this._setCleanTaglineInfo_getGenericRequires({stats, str: "weapon", options}));
+			stats.__genericType = true;
+			return true;
+		}
+
+		if (/^armou?r(?: \(any\))?$/.test(partLower)) {
+			(stats.requires ||= []).push(...this._setCleanTaglineInfo_getGenericRequires({stats, str: "armor", options}));
+			stats.__genericType = true;
+			return true;
+		}
+
+		const mWeaponAnyX = /^weapon \(any ([^)]+)\)$/i.exec(part);
+		if (mWeaponAnyX) {
+			(stats.requires ||= []).push(...this._setCleanTaglineInfo_getGenericRequires({stats, str: mWeaponAnyX[1].trim(), options}));
+
+			if (mWeaponAnyX[1].trim().toLowerCase() === "ammunition") stats.ammo = true;
+
+			stats.__genericType = true;
+			return true;
+		}
+
+		const mWeaponCategory = /^weapon \((?<category>[^)]+)\)$/i.exec(part);
+		if (!mWeaponCategory) return false;
+
+		const ptsCategory = ConverterUtils.splitConjunct(mWeaponCategory.groups.category);
+		if (!ptsCategory.length) return false;
+
+		const strs = ptsCategory
+			.map(pt => this._GENERIC_CATEGORY_TO_PROP[pt.toLowerCase()]);
+		if (strs.some(it => it == null)) return false;
+
+		(stats.requires ||= []).push(...strs.flatMap(str => this._setCleanTaglineInfo_getGenericRequires({stats, str, options})));
+		stats.__genericType = true;
+		return true;
 	}
 
 	static _setCleanTaglineInfo_getArmorBaseItem (name) {
@@ -273,49 +316,58 @@ class ItemParser extends BaseParser {
 		return baseItem;
 	}
 
+	static _setCleanTaglineInfo_getProcArmorPart ({pt}) {
+		switch (pt) {
+			case "light": return {"type": "LA"};
+			case "medium": return {"type": "MA"};
+			case "heavy": return {"type": "HA"};
+			default: {
+				const baseItem = this._setCleanTaglineInfo_getArmorBaseItem(pt);
+				if (!baseItem) throw new Error(`Could not find base item "${pt}"`);
+
+				return {name: baseItem.name};
+			}
+		}
+	}
+
 	static _setCleanTaglineInfo_isMutAnyArmor (stats, mBaseArmor) {
 		if (/^any /i.test(mBaseArmor.groups.type)) {
 			const ptAny = mBaseArmor.groups.type.replace(/^any /i, "");
 			const [ptInclude, ptExclude] = ptAny.split(/\bexcept\b/i).map(it => it.trim()).filter(Boolean);
 
-			const procPart = pt => {
-				switch (pt) {
-					case "light": return {"type": "LA"};
-					case "medium": return {"type": "MA"};
-					case "heavy": return {"type": "HA"};
-					default: {
-						const baseItem = this._setCleanTaglineInfo_getArmorBaseItem(pt);
-						if (!baseItem) throw new Error(`Could not find base item "${pt}"`);
-
-						return {name: baseItem.name};
-					}
-				}
-			};
-
 			if (ptInclude) {
 				stats.requires = [
 					...(stats.requires || []),
-					...ptInclude.split(/\b(?:or|,)\b/g).map(it => it.trim()).filter(Boolean).map(it => procPart(it)),
+					...ptInclude.split(/\b(?:or|,)\b/g).map(it => it.trim()).filter(Boolean).map(it => this._setCleanTaglineInfo_getProcArmorPart({pt: it})),
 				];
 			}
 
 			if (ptExclude) {
 				Object.assign(
 					stats.excludes = stats.excludes || {},
-					ptExclude.split(/\b(?:or|,)\b/g).map(it => it.trim()).filter(Boolean).mergeMap(it => procPart(it)),
+					ptExclude.split(/\b(?:or|,)\b/g).map(it => it.trim()).filter(Boolean).mergeMap(it => this._setCleanTaglineInfo_getProcArmorPart({pt: it})),
 				);
 			}
 
 			return true;
 		}
 
-		return false;
+		return ConverterUtils.splitConjunct(mBaseArmor.groups.type)
+			.every(ptType => {
+				if (!/^(?:light|medium|heavy)$/i.test(ptType)) return false;
+
+				stats.requires = [
+					...(stats.requires || []),
+					this._setCleanTaglineInfo_getProcArmorPart({pt: ptType}),
+				];
+				return true;
+			});
 	}
 
 	static _setCleanTaglineInfo_handleBaseItem (stats, baseItem, options) {
 		if (!baseItem) return;
 
-		const blacklistedProps = new Set([
+		const blocklistedProps = new Set([
 			"source",
 			"srd",
 			"basicRules",
@@ -324,28 +376,62 @@ class ItemParser extends BaseParser {
 
 		// Apply base item stats only if there's no existing data
 		Object.entries(baseItem)
-			.filter(([k]) => stats[k] === undefined && !k.startsWith("_") && !blacklistedProps.has(k))
+			.filter(([k]) => stats[k] === undefined && !k.startsWith("_") && !blocklistedProps.has(k))
 			.forEach(([k, v]) => stats[k] = v);
 
 		// Clean unwanted base properties
 		delete stats.armor;
 		delete stats.value;
 
-		stats.baseItem = `${baseItem.name.toLowerCase()}${baseItem.source === SRC_DMG ? "" : `|${baseItem.source}`}`;
+		stats.baseItem = `${baseItem.name.toLowerCase()}${baseItem.source === Parser.SRC_DMG ? "" : `|${baseItem.source}`}`;
 	}
+
+	static _setCleanTaglineInfo_getGenericRequires ({stats, str, options}) {
+		switch (str.toLowerCase()) {
+			case "weapon": return [{"weapon": true}];
+			case "sword": return [{"sword": true}];
+			case "axe": return [{"axe": true}];
+			case "armor": return [{"armor": true}];
+			case "bow": return [{"bow": true}];
+			case "crossbow": return [{"crossbow": true}];
+			case "bow or crossbow": return [{"bow": true}, {"crossbow": true}];
+			case "spear": return [{"spear": true}];
+			case "polearm": return [{"polearm": true}];
+			case "weapon that deals bludgeoning damage":
+			case "bludgeoning": return [{"dmgType": "B"}];
+			case "piercing": return [{"dmgType": "P"}];
+			case "slashing": return [{"dmgType": "S"}];
+			case "ammunition": return [{"type": "A"}, {"type": "AF"}];
+			case "arrow": return [{"arrow": true}];
+			case "bolt": return [{"bolt": true}];
+			case "arrow or bolt": return [{"arrow": true}, {"bolt": true}];
+			case "melee": return [{"type": "M"}];
+			case "martial weapon": return [{"weaponCategory": "martial"}];
+			case "melee bludgeoning weapon": return [{"type": "M", "dmgType": "B"}];
+			default: {
+				options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Tagline part "${str}" requires manual conversion`);
+				return [{[str.toCamelCase()]: true}];
+			}
+		}
+	}
+
+	static _RE_CATEGORIES_PREFIX_SUFFIX = /(?:weapon|blade|armor|sword|polearm|bow|crossbow|axe|ammunition|arrows?|bolts?)/;
+	static _RE_CATEGORIES_PREFIX = new RegExp(`^${this._RE_CATEGORIES_PREFIX_SUFFIX.source} `, "i");
+	static _RE_CATEGORIES_SUFFIX = new RegExp(` ${this._RE_CATEGORIES_PREFIX_SUFFIX.source}$`, "i");
 
 	static _setCleanTaglineInfo_handleGenericType (stats, options) {
 		if (!stats.__genericType) return;
-		const genericType = stats.__genericType;
 		delete stats.__genericType;
 
 		let prefixSuffixName = stats.name;
-		prefixSuffixName = prefixSuffixName.replace(/^weapon /i, "");
+		prefixSuffixName = prefixSuffixName
+			.replace(this._RE_CATEGORIES_PREFIX, "")
+			.replace(this._RE_CATEGORIES_SUFFIX, "");
 		const isSuffix = /^\s*of /i.test(prefixSuffixName);
 
 		stats.inherits = MiscUtil.copy(stats);
 		// Clean/move inherit props into inherits object
-		delete stats.inherits.name; // maintain name on base object
+		["name", "requires", "excludes", "ammo"].forEach(prop => delete stats.inherits[prop]); // maintain some props on base object
 		Object.keys(stats.inherits).forEach(k => delete stats[k]);
 
 		if (isSuffix) stats.inherits.nameSuffix = ` ${prefixSuffixName.trim()}`;
@@ -353,21 +439,6 @@ class ItemParser extends BaseParser {
 
 		stats.__prop = "magicvariant";
 		stats.type = "GV";
-		switch (genericType) {
-			case "weapon": stats.requires = [{"weapon": true}]; break;
-			case "sword": stats.requires = [{"sword": true}]; break;
-			case "axe": stats.requires = [{"axe": true}]; break;
-			case "armor": stats.requires = [{"armor": true}]; break;
-			case "bow": stats.requires = [{"bow": true}, {"crossbow": true}]; break;
-			case "bludgeoning": stats.requires = [{"dmgType": "B"}]; break;
-			case "piercing": stats.requires = [{"dmgType": "P"}]; break;
-			case "slashing": stats.requires = [{"dmgType": "S"}]; break;
-			default: {
-				stats.requires = [{[genericType]: true}];
-				options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Tagline part "${genericType}" requires manual conversion`);
-				break;
-			}
-		}
 	}
 
 	static _setWeight (stats, options) {
@@ -387,7 +458,7 @@ class ItemParser extends BaseParser {
 	}
 
 	static _setQuarterstaffStats (stats) {
-		const cpyStatsQuarterstaff = MiscUtil.copy(ItemParser._ALL_ITEMS.find(it => it.name === "Quarterstaff" && it.source === SRC_PHB));
+		const cpyStatsQuarterstaff = MiscUtil.copy(ItemParser._ALL_ITEMS.find(it => it.name === "Quarterstaff" && it.source === Parser.SRC_PHB));
 
 		// remove unwanted properties
 		delete cpyStatsQuarterstaff.name;
@@ -395,13 +466,32 @@ class ItemParser extends BaseParser {
 		delete cpyStatsQuarterstaff.page;
 		delete cpyStatsQuarterstaff.rarity;
 		delete cpyStatsQuarterstaff.value;
-		delete cpyStatsQuarterstaff.weapon; // tag found only on basic items
+		delete cpyStatsQuarterstaff.srd;
+		delete cpyStatsQuarterstaff.basicRules;
 
 		Object.entries(cpyStatsQuarterstaff)
 			.filter(([k]) => !k.startsWith("_"))
 			.forEach(([k, v]) => {
 				if (stats[k] == null) stats[k] = v;
 			});
+	}
+
+	static _mutRemoveBaseItemProps (stats) {
+		if (stats.__prop === "baseitem") return;
+
+		// region tags found only on basic items
+		delete stats.armor;
+		delete stats.axe;
+		delete stats.bow;
+		delete stats.crossbow;
+		delete stats.dagger;
+		delete stats.mace;
+		delete stats.net;
+		delete stats.spear;
+		delete stats.sword;
+		delete stats.weapon;
+		delete stats.hammer;
+		// endregion
 	}
 }
 ItemParser._ALL_ITEMS = null;
@@ -412,8 +502,4 @@ ItemParser._MAPPED_ITEM_NAMES = {
 	"scale": "scale mail",
 };
 
-if (typeof module !== "undefined") {
-	module.exports = {
-		ItemParser,
-	};
-}
+globalThis.ItemParser = ItemParser;

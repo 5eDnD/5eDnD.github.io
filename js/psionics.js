@@ -7,14 +7,33 @@ class PsionicsSublistManager extends SublistManager {
 		});
 	}
 
+	static get _ROW_TEMPLATE () {
+		return [
+			new SublistCellTemplate({
+				name: "Name",
+				css: "bold col-6 pl-0",
+				colStyle: "",
+			}),
+			new SublistCellTemplate({
+				name: "Type",
+				css: "col-3 ve-text-center",
+				colStyle: "text-center",
+			}),
+			new SublistCellTemplate({
+				name: "Order",
+				css: "col-3 ve-text-center pr-0",
+				colStyle: "text-center",
+			}),
+		];
+	}
+
 	pGetSublistItem (it, hash) {
 		const typeMeta = Parser.psiTypeToMeta(it.type);
+		const cellsText = [it.name, typeMeta.short, it._fOrder];
 
 		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
-				<span class="bold col-6 pl-0">${it.name}</span>
-				<span class="col-3">${typeMeta.short}</span>
-				<span class="col-3 ${it._fOrder === VeCt.STR_NONE ? "list-entry-none" : ""} pr-0">${it._fOrder}</span>
+				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`)
 			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
@@ -31,6 +50,7 @@ class PsionicsSublistManager extends SublistManager {
 			},
 			{
 				entity: it,
+				mdRow: [...cellsText],
 			},
 		);
 		return listItem;
@@ -51,11 +71,12 @@ class PsionicsPage extends ListPage {
 
 			dataProps: ["psionic"],
 
+			isMarkdownPopout: true,
+
 			bookViewOptions: {
-				$btnOpen: $(`#btn-psibook`),
-				$eleNoneVisible: $(`<span class="initial-message">If you wish to view multiple psionics, please first make a list</span>`),
+				namePlural: "psionics",
 				pageTitle: "Psionics Book View",
-				fnPartition: it => it.type === "T" ? 0 : 1,
+				fnPartition: ent => ent.type === "T" ? 0 : 1,
 			},
 
 			tableViewOptions: {
@@ -63,9 +84,11 @@ class PsionicsPage extends ListPage {
 				colTransforms: {
 					name: UtilsTableview.COL_TRANSFORM_NAME,
 					source: UtilsTableview.COL_TRANSFORM_SOURCE,
-					_text: {name: "Text", transform: (it) => Renderer.psionic.getBodyText(it, Renderer.get()), flex: 3},
+					_text: {name: "Text", transform: (it) => Renderer.psionic.getBodyText(it), flex: 3},
 				},
 			},
+
+			listSyntax: new ListSyntaxPsionics({fnGetDataList: () => this._dataList}),
 		});
 	}
 
@@ -86,7 +109,7 @@ class PsionicsPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(p, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(p.source);
 		const hash = UrlUtil.autoEncodeHash(p);
@@ -94,9 +117,9 @@ class PsionicsPage extends ListPage {
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst--border lst__row-inner">
 			<span class="bold col-6 pl-0">${p.name}</span>
-			<span class="col-2 text-center">${typeMeta.short}</span>
-			<span class="col-2 text-center ${p._fOrder === VeCt.STR_NONE ? "list-entry-none" : ""}">${p._fOrder}</span>
-			<span class="col-2 text-center pr-0" title="${Parser.sourceJsonToFull(p.source)}" ${BrewUtil2.sourceJsonToStyle(p.source)}>${source}</span>
+			<span class="col-2 ve-text-center">${typeMeta.short}</span>
+			<span class="col-2 ve-text-center ${p._fOrder === VeCt.STR_NONE ? "list-entry-none" : ""}">${p._fOrder}</span>
+			<span class="col-2 ve-text-center pr-0" title="${Parser.sourceJsonToFull(p.source)}" ${Parser.sourceJsonToStyle(p.source)}>${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -121,32 +144,8 @@ class PsionicsPage extends ListPage {
 		return listItem;
 	}
 
-	handleFilterChange () {
-		const f = this._filterBox.getValues();
-		this._list.filter(item => this._pageFilter.toDisplay(f, this._dataList[item.ix]));
-		FilterBox.selectFirstVisible(this._dataList);
-	}
-
-	_doLoadHash (id) {
-		const psi = this._dataList[id];
-
-		this._$pgContent.empty().append(RenderPsionics.$getRenderedPsionic(psi));
-
-		this._updateSelected();
-	}
-
-	async pDoLoadSubHash (sub) {
-		sub = await super.pDoLoadSubHash(sub);
-		await this._bookView.pHandleSub(sub);
-	}
-
-	_getSearchCache (entity) {
-		if (!entity.entries && !entity.modes && !entity.focus) return "";
-		const ptrOut = {_: ""};
-		this._getSearchCache_handleEntryProp(entity, "entries", ptrOut);
-		this._getSearchCache_handleEntryProp(entity, "modes", ptrOut);
-		this._getSearchCache_handleEntryProp(entity, "focus", ptrOut);
-		return ptrOut._;
+	_renderStats_doBuildStatsTab ({ent}) {
+		this._$pgContent.empty().append(RenderPsionics.$getRenderedPsionic(ent));
 	}
 }
 

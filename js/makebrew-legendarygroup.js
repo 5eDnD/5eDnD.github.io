@@ -3,11 +3,10 @@
 class LegendaryGroupBuilder extends Builder {
 	constructor () {
 		super({
-			titleSidebarLoadExisting: "Load Existing Legendary Group",
+			titleSidebarLoadExisting: "Copy Existing Legendary Group",
 			titleSidebarDownloadJson: "Download Legendary Groups as JSON",
 			prop: "legendaryGroup",
 			titleSelectDefaultSource: "(Same as Legendary Group)",
-			typeRenderData: "dataLegendaryGroup",
 		});
 
 		this._renderOutputDebounced = MiscUtil.debounce(() => this._renderOutput(), 50);
@@ -16,7 +15,7 @@ class LegendaryGroupBuilder extends Builder {
 	async pHandleSidebarLoadExistingClick () {
 		const result = await SearchWidget.pGetUserLegendaryGroupSearch();
 		if (result) {
-			const legGroup = MiscUtil.copy(await Renderer.hover.pCacheAndGet(result.page, result.source, result.hash));
+			const legGroup = MiscUtil.copy(await DataLoader.pCacheAndGet(result.page, result.source, result.hash));
 			return this.pHandleSidebarLoadExistingData(legGroup);
 		}
 	}

@@ -8,13 +8,14 @@
 	<meta charset="utf-8">
 	<meta name="description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
 	<title>Changelog - 5etools</title>
 
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/changelog.css">
 
 	<!-- Favicons -->
 	<link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -54,23 +55,15 @@
 	<script type="text/javascript" src="js/styleswitch.js"></script>
 	<script type="text/javascript" src="js/navigation.js"></script>
 	<script type="text/javascript" src="js/browsercheck.js"></script>
-
-	<style>
-		.night-mode #pagecontent {
-			background: #222;
-			border-top: 1px solid #555555a0;
-		}
-	</style>
 </head>
 
 <body>
 <div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
 
 <header class="hidden-xs hidden-sm page__header">
-	<div class="container">
-
-		<h1 class="page__title">Changelog</h1>
-		<p class="page__subtitle" id="page__subtitle">See what changed.</p>
+	<div class="container ve-flex-v-baseline">
+		<h1 class="page__title no-wrap my-0">Changelog</h1>
+		<p class="page__subtitle no-wrap my-0" id="page__subtitle">See what changed.</p>
 	</div>
 </header>
 
@@ -89,6 +82,7 @@
 <script type="text/javascript" src="js/omnidexer.js"></script>
 <script type="text/javascript" src="js/omnisearch.js"></script>
 <script type="text/javascript" src="js/filter.js"></script>
+<script type="text/javascript" src="js/utils-dataloader.js"></script>
 <script type="text/javascript" src="js/utils-brew.js"></script>
 <script type="text/javascript" src="js/render.js"></script>
 <script type="text/javascript" src="js/render-dice.js"></script>
@@ -99,7 +93,10 @@
 <script type="text/javascript" src="lib/elasticlunr.js"></script>
 <script>
 	(async () => {
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 		ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
 
 		DataUtil.loadJSON(`${Renderer.get().baseUrl}data/changelog.json`)

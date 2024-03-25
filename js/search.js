@@ -2,7 +2,10 @@
 
 class SearchPage {
 	static async pInit () {
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 		ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
 
 		SearchPage._isAllExpanded = (await StorageUtil.pGetForPage(SearchPage._STORAGE_KEY_IS_EXPANDED)) || false;
@@ -66,12 +69,12 @@ class SearchPage {
 			text: "Include UA",
 		});
 
-		const $btnToggleBlacklisted = this._render_$getBtnToggleFilter({
-			propOmnisearch: "isShowBlacklisted",
-			fnAddHookOmnisearch: "addHookBlacklisted",
-			fnDoToggleOmnisearch: "doToggleBlacklisted",
-			title: "Filter blacklisted content results",
-			text: "Include Blacklisted",
+		const $btnToggleBlocklisted = this._render_$getBtnToggleFilter({
+			propOmnisearch: "isShowBlocklisted",
+			fnAddHookOmnisearch: "addHookBlocklisted",
+			fnDoToggleOmnisearch: "doToggleBlocklisted",
+			title: "Filter blocklisted content results",
+			text: "Include Blocklisted",
 		});
 
 		const $btnToggleSrd = this._render_$getBtnToggleFilter({
@@ -101,15 +104,15 @@ class SearchPage {
 		SearchPage._$wrpResults = $(`<div class="ve-flex-col w-100">${this._getWrpResult_message("Loading...")}</div>`);
 
 		$$(SearchPage._$wrp)`<div class="ve-flex-col w-100 pg-search__wrp">
-			<div class="ve-flex-v-center mb-2 mobile__ve-flex-col">
-				<div class="ve-flex-v-center input-group btn-group mr-2 w-100 mobile__mb-2">${$iptSearch}${$btnSearch}</div>
+			<div class="ve-flex-v-center mb-2 mobile-ish__ve-flex-col">
+				<div class="ve-flex-v-center input-group btn-group mr-2 w-100 mobile-ish__mb-2">${$iptSearch}${$btnSearch}</div>
 
-				<div class="ve-flex-v-center mobile__ve-flex-col mobile__ve-flex-ai-start mobile__w-100">
+				<div class="ve-flex-v-center mobile__ve-flex-col mobile-ish__ve-flex-ai-start mobile-ish__w-100">
 					${$btnHelp}
 					<div class="ve-flex-v-center btn-group mr-2 mobile__mb-2 mobile__mr-0">
 						${$btnToggleBrew}
 						${$btnToggleUa}
-						${$btnToggleBlacklisted}
+						${$btnToggleBlocklisted}
 						${$btnToggleSrd}
 					</div>
 					<div class="btn-group ve-flex-v-center">
@@ -169,7 +172,9 @@ class SearchPage {
 						? `<a href="${adventureBookSourceHref}">${ptPageInner}</a>`
 						: ptPageInner;
 
-					const ptSourceInner = source ? `<i>${Parser.sourceJsonToFull(source)}</i> (<span class="${Parser.sourceJsonToColor(source)}" ${BrewUtil2.sourceJsonToStyle(source)}>${Parser.sourceJsonToAbv(source)}</span>)${isSrd ? `<span class="ve-muted relative help-subtle pg-search__disp-srd" title="Available in the Systems Reference Document">[SRD]</span>` : ""}` : `<span></span>`;
+					const ptSourceInner = source
+						? `<i>${Parser.sourceJsonToFull(source)}</i> (<span class="${Parser.sourceJsonToColor(source)}" ${Parser.sourceJsonToStyle(source)}>${Parser.sourceJsonToAbv(source)}</span>)${isSrd ? `<span class="ve-muted relative help-subtle pg-search__disp-srd" title="Available in the Systems Reference Document">[SRD]</span>` : ""}${Parser.sourceJsonToMarkerHtml(source, {isList: false, additionalStyles: "pg-search__disp-source-marker"})}`
+						: `<span></span>`;
 					const ptSource = ptPage || !adventureBookSourceHref
 						? ptSourceInner
 						: `<a href="${adventureBookSourceHref}">${ptSourceInner}</a>`;
@@ -225,7 +230,12 @@ class SearchPage {
 						{
 							onObserve: () => {
 								const page = UrlUtil.categoryToHoverPage(category);
-								Renderer.hover.pCacheAndGet(
+								if (!page) {
+									$dispImage.addClass(`mobile__hidden`);
+									return;
+								}
+
+								DataLoader.pCacheAndGet(
 									page,
 									source,
 									hash,
@@ -234,12 +244,16 @@ class SearchPage {
 									let isImagePopulated = false;
 
 									switch (category) {
-										case Parser.CAT_ID_CREATURE: {
+										case Parser.CAT_ID_CREATURE:
+										case Parser.CAT_ID_VEHICLE:
+										case Parser.CAT_ID_OBJECT: {
 											const hasToken = ent.tokenUrl || ent.hasToken;
 											if (hasToken) {
+												const fnGetTokenUrl = category === Parser.CAT_ID_CREATURE ? Renderer.monster.getTokenUrl : category === Parser.CAT_ID_VEHICLE ? Renderer.vehicle.getTokenUrl : Renderer.object.getTokenUrl;
+
 												isImagePopulated = true;
-												const tokenUrl = Renderer.monster.getTokenUrl(ent);
-												$dispImage.html(`<img src="${tokenUrl}" class="w-100 h-100" alt="Token Image: ${(ent.name || "").qq()}" loading="lazy">`);
+												const tokenUrl = fnGetTokenUrl(ent);
+												$dispImage.html(`<img src="${tokenUrl}" class="w-100 h-100" alt="Token Image: ${(ent.name || "").qq()}" ${ent.tokenCredit ? `title="Credit: ${ent.tokenCredit.qq()}"` : ""} loading="lazy">`);
 											}
 											break;
 										}
@@ -258,6 +272,7 @@ class SearchPage {
 									if (isHoverable) {
 										// region Render preview
 										Renderer.hover.$getHoverContent_stats(page, ent)
+											.removeClass("w-100")
 											.addClass("pg-search__wrp-preview mobile__w-100 br-0")
 											.appendTo($dispPreview);
 										// endregion

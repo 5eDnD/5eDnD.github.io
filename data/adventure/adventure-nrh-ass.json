@@ -157,6 +157,12 @@
 									},
 									"width": 630,
 									"height": 1042,
+									"grid": {
+										"type": "square",
+										"size": 70,
+										"offsetY": -25,
+										"distance": 10
+									},
 									"mapRegions": [
 										{
 											"area": "017",
@@ -322,7 +328,8 @@
 										"type": "internal",
 										"path": "adventure/NRH-ASS/thumbnail/006.webp"
 									},
-									"id": "023"
+									"id": "023",
+									"credit": "Red Central"
 								}
 							],
 							"id": "00c"

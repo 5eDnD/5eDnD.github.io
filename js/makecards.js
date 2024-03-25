@@ -2,7 +2,10 @@
 
 class MakeCards extends BaseComponent {
 	static async pInit () {
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 		await ExcludeUtil.pInitialise();
 
 		MakeCards._ = new MakeCards();
@@ -60,9 +63,9 @@ class MakeCards extends BaseComponent {
 
 		$$($wrpConfig)`<h5 class="split-v-center"><div>New Card Defaults</div>${$btnResetDefaults}</h5>
 		<div class="ve-flex-v-center bold">
-			<div class="col-4 text-center pr-2">Type</div>
-			<div class="col-4 text-center p-2">Color</div>
-			<div class="col-4 text-center pl-2">Icon</div>
+			<div class="col-4 ve-text-center pr-2">Type</div>
+			<div class="col-4 ve-text-center p-2">Color</div>
+			<div class="col-4 ve-text-center pl-2">Icon</div>
 		</div>`;
 
 		const $getColorIconConfigRow = (entityType) => {
@@ -303,7 +306,7 @@ class MakeCards extends BaseComponent {
 		}
 		cardMeta.count = cardMeta.count || 1;
 
-		const loaded = await Renderer.hover.pCacheAndGet(cardMeta.page, cardMeta.source, cardMeta.hash);
+		const loaded = await DataLoader.pCacheAndGet(cardMeta.page, cardMeta.source, cardMeta.hash);
 
 		const $cbSel = $(`<input type="checkbox">`);
 
@@ -329,7 +332,7 @@ class MakeCards extends BaseComponent {
 			this._doSaveStateDebounced();
 		};
 
-		const $iptCount = $(`<input class="form-control form-control--minimal input-xs text-center">`)
+		const $iptCount = $(`<input class="form-control form-control--minimal input-xs ve-text-center">`)
 			.change(() => {
 				const asNum = UiUtil.strToInt($iptCount.val(), 1, {min: 1, fallbackOnNaN: 1});
 				listItem.values.count = asNum;
@@ -378,7 +381,7 @@ class MakeCards extends BaseComponent {
 		const $ele = $$`<label class="ve-flex-v-center my-1 w-100 lst__row lst--border lst__row-inner">
 			<div class="col-1 mr-2 ve-flex-vh-center">${$cbSel}</div>
 			<div class="col-3 mr-2 ve-flex-v-center">${loaded.name}</div>
-			<div class="col-1-5 mr-2 ve-flex-vh-center ${Parser.sourceJsonToColor(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}" ${BrewUtil2.sourceJsonToStyle(loaded.source)}>${Parser.sourceJsonToAbv(loaded.source)}</div>
+			<div class="col-1-5 mr-2 ve-flex-vh-center ${Parser.sourceJsonToColor(loaded.source)}" title="${Parser.sourceJsonToFull(loaded.source)}" ${Parser.sourceJsonToStyle(loaded.source)}>${Parser.sourceJsonToAbv(loaded.source)}</div>
 			<div class="col-1-5 mr-2 ve-flex-vh-center">${Parser.getPropDisplayName(cardMeta.entityType)}</div>
 			<div class="col-1-1 mr-2 ve-flex-vh-center">${$iptRgb}</div>
 			<div class="col-1-1 mr-2 ve-flex-vh-center">${$btnIcon}</div>
@@ -440,12 +443,15 @@ class MakeCards extends BaseComponent {
 		const fnGetSpellTraits = Renderer.monster.getSpellcastingRenderedTraits.bind(Renderer.monster, renderer);
 		const allTraits = Renderer.monster.getOrderedTraits(mon, {fnGetSpellTraits});
 		const allActions = Renderer.monster.getOrderedActions(mon, {fnGetSpellTraits});
+		const allBonusActions = Renderer.monster.getOrderedBonusActions(mon, {fnGetSpellTraits});
+		const allReactions = Renderer.monster.getOrderedReactions(mon, {fnGetSpellTraits});
 
 		return [
 			this._ct_subtitle(Renderer.monster.getTypeAlignmentPart(mon)),
 			this._ct_rule(),
 			this._ct_property("Armor class", this._ct_htmlToText(Parser.acToFull(mon.ac))),
 			this._ct_property("Hit points", this._ct_htmlToText(Renderer.monster.getRenderedHp(mon.hp))),
+			...(mon.resource || []).map(res => this._ct_property(res.name, this._ct_htmlToText(Renderer.monster.getRenderedResource(res)))),
 			this._ct_property("Speed", this._ct_htmlToText(Parser.getSpeedString(mon))),
 			this._ct_rule(),
 			this._ct_dndstats(...Parser.ABIL_ABVS.map(it => mon[it])),
@@ -460,13 +466,13 @@ class MakeCards extends BaseComponent {
 			this._ct_property("Languages", this._ct_htmlToText(Renderer.monster.getRenderedLanguages(mon.languages))),
 			this._ct_property("Challenge", this._ct_htmlToText(Parser.monCrToFull(mon.cr, {isMythic: !!mon.mythic}))),
 			this._ct_rule(),
-			...(allTraits ? this._ct_renderEntries(allTraits, 2) : []),
-			allActions ? this._ct_section("Actions") : null,
-			...(allActions ? this._ct_renderEntries(allActions, 2) : []),
-			mon.bonus ? this._ct_section("Bonus Actions") : null,
-			...(mon.bonus ? this._ct_renderEntries(mon.bonus, 2) : []),
-			mon.reaction ? this._ct_section("Reactions") : null,
-			...(mon.reaction ? this._ct_renderEntries(mon.reaction, 2) : []),
+			...(allTraits?.length ? this._ct_renderEntries(allTraits, 2) : []),
+			allActions?.length ? this._ct_section("Actions") : null,
+			...(allActions?.length ? this._ct_renderEntries(allActions, 2) : []),
+			allBonusActions?.length ? this._ct_section("Bonus Actions") : null,
+			...(allBonusActions?.length ? this._ct_renderEntries(allBonusActions, 2) : []),
+			allReactions?.length ? this._ct_section("Reactions") : null,
+			...(allReactions?.length ? this._ct_renderEntries(mon.reaction, 2) : []),
 			mon.legendary ? this._ct_section("Legendary Actions") : null,
 			mon.legendary ? this._ct_text(this._ct_htmlToText(Renderer.monster.getLegendaryActionIntro(mon, {renderer}))) : null,
 			...(mon.legendary ? this._ct_renderEntries(mon.legendary, 2) : []),
@@ -537,7 +543,7 @@ class MakeCards extends BaseComponent {
 	static _getCardContents_race (race) {
 		return [
 			this._ct_property("Ability Scores", Renderer.getAbilityData(race.ability).asText),
-			this._ct_property("Size", (race.size || [SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/")),
+			this._ct_property("Size", (race.size || [Parser.SZ_VARIES]).map(sz => Parser.sizeAbvToFull(sz)).join("/")),
 			this._ct_property("Speed", Parser.getSpeedString(race)),
 			this._ct_rule(),
 			...this._ct_renderEntries(race.entries, 2),
@@ -551,17 +557,19 @@ class MakeCards extends BaseComponent {
 	}
 
 	static _getCardContents_feat (feat) {
-		const prerequisite = Renderer.utils.getPrerequisiteHtml(feat.prerequisite, {isListMode: true});
+		const prerequisite = Renderer.utils.prerequisite.getHtml(feat.prerequisite, {isListMode: true});
+		const ptRepeatable = Renderer.utils.getRepeatableHtml(feat, {isListMode: true});
 		Renderer.feat.initFullEntries(feat);
 		return [
-			prerequisite ? this._ct_property("Prerequisites", prerequisite) : null,
-			prerequisite ? this._ct_rule() : null,
+			(prerequisite && prerequisite !== "\u2014") ? this._ct_property("Prerequisites", prerequisite) : null,
+			(ptRepeatable && ptRepeatable !== "\u2014") ? this._ct_property("Repeatable", ptRepeatable) : null,
+			(prerequisite || ptRepeatable) ? this._ct_rule() : null,
 			...this._ct_renderEntries(feat._fullEntries || feat.entries, 2),
 		].filter(Boolean);
 	}
 
 	static _getCardContents_optionalfeature (optfeat) {
-		const prerequisite = Renderer.utils.getPrerequisiteHtml(optfeat.prerequisite, {isListMode: true});
+		const prerequisite = Renderer.utils.prerequisite.getHtml(optfeat.prerequisite, {isListMode: true});
 		Renderer.feat.initFullEntries(optfeat);
 		return [
 			prerequisite ? this._ct_property("Prerequisites", prerequisite) : null,
@@ -600,9 +608,9 @@ class MakeCards extends BaseComponent {
 		];
 
 		if (classIconNames.includes(iconName)) {
-			return `https://raw.githubusercontent.com/crobi/rpg-cards/gh-pages/generator/icons/${iconName}.png`;
+			return `https://rpg-cards.vercel.app/icons/${iconName}.png`;
 		}
-		return `https://raw.githubusercontent.com/crobi/rpg-cards/gh-pages/generator/icons/${iconName}.svg`;
+		return `https://rpg-cards.vercel.app/icons/${iconName}.svg`;
 	}
 
 	static _pGetUserIcon (initialVal) {
@@ -714,7 +722,7 @@ MakeCards._AVAILABLE_TYPES = {
 		fnGetTags: (mon) => {
 			const types = Parser.monTypeToFullObj(mon.type);
 			const cr = mon.cr == null ? "unknown CR" : `CR ${(mon.cr.cr || mon.cr)}`;
-			return ["creature", Parser.sourceJsonToAbv(mon.source), types.type, cr, Renderer.utils.getRenderedSize(mon.size)];
+			return ["creature", Parser.sourceJsonToAbv(mon.source), ...types.types, cr, Renderer.utils.getRenderedSize(mon.size)];
 		},
 	},
 	item: {
@@ -797,8 +805,8 @@ MakeCards._AVAILABLE_TYPES = {
 		},
 	},
 	optionalfeature: {
-		searchTitle: "Optional Feature",
-		pageTitle: "Optional Features",
+		searchTitle: "Option/Feature",
+		pageTitle: "Options/Features",
 		page: UrlUtil.PG_OPT_FEATURES,
 		colorDefault: "#8c6a00",
 		iconDefault: "checkbox-tree",
@@ -853,9 +861,9 @@ MakeCards.utils = class {
 	static enhanceItemAlt (item) {
 		delete item._fullEntries;
 
-		if (item.type && (MakeCards.utils.itemPropertyMap[item.type] || Renderer.item.typeMap[item.type])) {
+		if (item.type && (MakeCards.utils.itemPropertyMap[item.type] || Renderer.item.getType(item.type))) {
 			Renderer.item._initFullEntries(item);
-			(((MakeCards.utils.itemTypeMap[item.type] || Renderer.item.typeMap[item.type]) || {}).entries || []).forEach(e => item._fullEntries.push(e));
+			(((MakeCards.utils.itemTypeMap[item.type] || Renderer.item.getType(item.type)) || {}).entries || []).forEach(e => item._fullEntries.push(e));
 		}
 
 		if (item.property) {
@@ -865,9 +873,9 @@ MakeCards.utils = class {
 						Renderer.item._initFullEntries(item);
 						MakeCards.utils.itemPropertyMap[p].entries.forEach(e => item._fullEntries.push(e));
 					}
-				} else if (Renderer.item.propertyMap[p].entries) {
+				} else if (Renderer.item.getProperty(p).entries) {
 					Renderer.item._initFullEntries(item);
-					Renderer.item.propertyMap[p].entries.forEach(e => item._fullEntries.push(e));
+					Renderer.item.getProperty(p).entries.forEach(e => item._fullEntries.push(e));
 				}
 			});
 		}

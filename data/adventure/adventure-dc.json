@@ -9,7 +9,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/DC/000-hf9lp-ebondeaths-lair.jpg"
+						"path": "adventure/DC/000-hf9lp-ebondeaths-lair.webp"
 					},
 					"title": "{@creature Ebondeath|DC}'s Lair",
 					"width": 1164,
@@ -108,6 +108,13 @@
 											"width": 2105,
 											"height": 2933,
 											"imageType": "map",
+											"grid": {
+												"type": "hexColsOdd",
+												"size": 95,
+												"offsetX": -34,
+												"offsetY": -80,
+												"units": "miles"
+											},
 											"id": "12f"
 										},
 										{
@@ -116,10 +123,17 @@
 												"type": "internal",
 												"path": "adventure/DC/002-wnecz-map-sword-coast-pc.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 2153,
 											"height": 3000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "hexColsOdd",
+												"size": 97,
+												"offsetX": -31,
+												"offsetY": -80,
+												"units": "miles"
+											},
 											"mapParent": {
 												"id": "12f",
 												"autoScale": true
@@ -308,6 +322,9 @@
 							"width": 3600,
 							"height": 2280,
 							"imageType": "map",
+							"grid": {
+								"type": "none"
+							},
 							"id": "130",
 							"mapRegions": [
 								{
@@ -616,10 +633,13 @@
 								"type": "internal",
 								"path": "adventure/DC/004-qfdcj-map-leilon-town-map_player.jpg"
 							},
-							"title": "(Player Version)",
+							"title": "Player Version",
 							"width": 3600,
 							"height": 2280,
 							"imageType": "mapPlayer",
+							"grid": {
+								"type": "none"
+							},
 							"mapParent": {
 								"id": "130"
 							}
@@ -1089,6 +1109,12 @@
 											"width": 2835,
 											"height": 3600,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 136,
+												"offsetX": -78,
+												"offsetY": 37
+											},
 											"id": "131"
 										},
 										{
@@ -1097,10 +1123,16 @@
 												"type": "internal",
 												"path": "adventure/DC/006-oubp4-map-dumathoins-gulch_player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 2835,
 											"height": 3600,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 136,
+												"offsetX": -78,
+												"offsetY": 37
+											},
 											"mapParent": {
 												"id": "131"
 											}
@@ -1313,10 +1345,17 @@
 										"type": "internal",
 										"path": "adventure/DC/007-nokov-map-ebondeaths-mausoleum_dm.jpg"
 									},
-									"title": "Map 4: {@creature Ebondeath|DC}'s Mausoleum",
+									"title": "Map 4: Ebondeath's Mausoleum",
 									"width": 3600,
 									"height": 2279,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 35,
+										"offsetY": 23,
+										"distance": 10
+									},
 									"id": "132",
 									"mapRegions": [
 										{
@@ -2683,10 +2722,17 @@
 										"type": "internal",
 										"path": "adventure/DC/008-xva5z-map-ebondeaths-mausoleum_player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 3600,
 									"height": 2279,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 35,
+										"offsetY": 23,
+										"distance": 10
+									},
 									"mapParent": {
 										"id": "132"
 									}
@@ -2728,7 +2774,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/DC/009-fui5e-zombie-lair-in-water.jpg"
+												"path": "adventure/DC/009-fui5e-zombie-lair-in-water.webp"
 											},
 											"title": "Zombie Lair in Water",
 											"width": 1000,
@@ -3025,6 +3071,12 @@
 											"width": 3600,
 											"height": 2279,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 35,
+												"offsetY": 23
+											},
 											"id": "133",
 											"mapRegions": [
 												{
@@ -4332,10 +4384,16 @@
 												"type": "internal",
 												"path": "adventure/DC/011-enh49-map-icingdeath-and-twinkle_player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 3600,
 											"height": 2279,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 35,
+												"offsetY": 23
+											},
 											"mapParent": {
 												"id": "133"
 											}
@@ -4964,7 +5022,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/DC/012-ozw9h-flowchart-export.png"
+												"path": "adventure/DC/012-ozw9h-flowchart-export.webp"
 											},
 											"title": "Battle Flowchart",
 											"width": 850,
@@ -5285,7 +5343,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/DC/013-n3ef5-ghostly-warrior.png"
+												"path": "adventure/DC/013-n3ef5-ghostly-warrior.webp"
 											},
 											"title": "Ghostly Warrior",
 											"width": 800,
@@ -5450,7 +5508,7 @@
 							"type": "list",
 							"items": [
 								"Characters who played the \"{@adventure Icingdeath and Twinkle|DC|4}\" quest can call on either captain to help them. For a cut of 20% of the 8,000 gp reward, the captain offers the services of his ship and crew.",
-								"The characters can hire or buy a ship from the shipyards of Neverwinter. {@adventure Chapter 5|DMG|-1} of the {@book Dungeon Master's Guide|DMG} contains rules for maritime vessels and a breakdown of their costs.",
+								"The characters can hire or buy a ship from the shipyards of Neverwinter. {@book chapter 5|DMG|5} of the {@book Dungeon Master's Guide|DMG} contains rules for maritime vessels and a breakdown of their costs.",
 								"Characters who spared the green dragon Claugiyliamatar in the \"{@adventure Leilon Besieged|DC|5}\" quest could compel her to fly them out to sea. She refuses to fight on their behalf but gladly transports the party to repay her debt.",
 								"Spells such as wind walk or polymorph can grant flight for a limited duration."
 							]
@@ -5541,6 +5599,12 @@
 											"width": 3600,
 											"height": 2280,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 37,
+												"offsetY": 24
+											},
 											"id": "134",
 											"mapRegions": [
 												{
@@ -6669,10 +6733,16 @@
 												"type": "internal",
 												"path": "adventure/DC/015-en4hl-map-stormlordshideout_player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 3600,
 											"height": 2280,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 37,
+												"offsetY": 24
+											},
 											"mapParent": {
 												"id": "134"
 											}
@@ -6803,7 +6873,7 @@
 									"id": "0fa",
 									"entries": [
 										"String hammocks are strung up here like cobwebs. Due to the awkwardness of this space, any Medium or larger creature fighting in here counts as squeezing into a smaller space (see \"{@book Creature Size|PHB|9|Creature Size}\" in chapter 9 of the {@book Player's Handbook|PHB}).",
-										"This area, including cabins {@adventure {@dice D15}|DC|6|D15. Prisoner Cell} and {@adventure {@dice D16}|DC|6|D16. Armory}, is guarded by the last of Fheralai's cultists. The players encounter one {@creature blackguard|VGM} plus two {@creature Anchorite of Talos|DIP|anchorites of Talos} for every character in the party, including sidekicks. The cultists fight to the death."
+										"This area, including cabins {@adventure D15|DC|6|D15. Prisoner Cell} and {@adventure D16|DC|6|D16. Armory}, is guarded by the last of Fheralai's cultists. The players encounter one {@creature blackguard|VGM} plus two {@creature Anchorite of Talos|DIP|anchorites of Talos} for every character in the party, including sidekicks. The cultists fight to the death."
 									]
 								},
 								{
@@ -6966,7 +7036,7 @@
 								"Gallio can answer any questions the players have about the history of the tower or the mission at hand (see \"{@area Into the Ethereal|124|x}\").",
 								{
 									"type": "inset",
-									"name": "Gallio's Hidden Agenda ",
+									"name": "Gallio's Hidden Agenda",
 									"id": "10d",
 									"entries": [
 										"Gallio has secret orders from his superiors in the Order of the Many-Starred Cloak to recover a magical artifact called the {@item ruinstone|DC} from the Ethereal Plane. He intends to use the party to lure the {@item Ruinstone|DC|ruinstone's} guardians away, allowing him to seize it for his studies. Gallio doesn't know that the artifact is protected by a field of wild magic. Touching it unleashes a magical backlash that overloads the planar beacon and frees any monsters held inside the tower: the same fate that befell Thalivar."
@@ -6985,6 +7055,12 @@
 											"width": 3600,
 											"height": 2280,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 35,
+												"offsetY": 25
+											},
 											"id": "135",
 											"mapRegions": [
 												{
@@ -7581,10 +7657,16 @@
 												"type": "internal",
 												"path": "adventure/DC/017-vxcmx-map-thalivars-beacon_player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 3600,
 											"height": 2280,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 35,
+												"offsetY": 25
+											},
 											"mapParent": {
 												"id": "135"
 											}
@@ -7932,7 +8014,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/023-ynkgo-donnabella.png"
+										"path": "adventure/DC/023-ynkgo-donnabella.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -7996,7 +8078,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/024-leeom-galandro.png"
+										"path": "adventure/DC/024-leeom-galandro.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -8060,7 +8142,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/025-l3v6r-inverna.png"
+										"path": "adventure/DC/025-l3v6r-inverna.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -8124,7 +8206,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/026-3krsm-nib.png"
+										"path": "adventure/DC/026-3krsm-nib.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -8188,7 +8270,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/027-pu4f2-pete.png"
+										"path": "adventure/DC/027-pu4f2-pete.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -8252,7 +8334,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/028-gttxp-quinn.png"
+										"path": "adventure/DC/028-gttxp-quinn.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -8316,7 +8398,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/029-1qyge-ruby.png"
+										"path": "adventure/DC/029-1qyge-ruby.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -8380,7 +8462,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/030-nemem-shanjan.png"
+										"path": "adventure/DC/030-nemem-shanjan.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -8444,7 +8526,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/031-nrqv1-talon.png"
+										"path": "adventure/DC/031-nrqv1-talon.webp"
 									},
 									"width": 850,
 									"height": 1000

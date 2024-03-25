@@ -20,7 +20,11 @@
 			"size": [
 				"M"
 			],
-			"type": "humanoid",
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "expert",
+				"sidekickHidden": true
+			},
 			"ac": [
 				{
 					"ac": 15,
@@ -97,6 +101,11 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb",
+				"shortbow|phb",
+				"shortsword|phb"
+			],
 			"languageTags": [
 				"C"
 			],
@@ -104,6 +113,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW",
@@ -181,6 +191,9 @@
 				"paralyzed",
 				"poisoned"
 			],
+			"savingThrowForced": [
+				"constitution"
+			],
 			"hasToken": true
 		},
 		{
@@ -190,7 +203,14 @@
 			"size": [
 				"M"
 			],
-			"type": "humanoid",
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "spellcaster",
+				"tags": [
+					"healer"
+				],
+				"sidekickHidden": true
+			},
 			"ac": [
 				{
 					"ac": 13,
@@ -288,6 +308,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
 			"languageTags": [
 				"C"
 			],
@@ -301,7 +324,11 @@
 				"CC"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
 			],
 			"hasToken": true
 		},
@@ -312,7 +339,14 @@
 			"size": [
 				"M"
 			],
-			"type": "humanoid",
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "spellcaster",
+				"tags": [
+					"mage"
+				],
+				"sidekickHidden": true
+			},
 			"ac": [
 				{
 					"ac": 13,
@@ -410,6 +444,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
 			"languageTags": [
 				"C"
 			],
@@ -423,7 +460,11 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
 			],
 			"hasToken": true
 		},
@@ -545,6 +586,7 @@
 		{
 			"name": "Tooth-N-Claw",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "SLW",
 			"size": [
 				"M"
@@ -639,6 +681,9 @@
 				"AOE",
 				"MW"
 			],
+			"savingThrowForced": [
+				"dexterity"
+			],
 			"hasToken": true
 		},
 		{
@@ -648,7 +693,11 @@
 			"size": [
 				"M"
 			],
-			"type": "humanoid",
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "warrior",
+				"sidekickHidden": true
+			},
 			"ac": [
 				{
 					"ac": 20,
@@ -754,6 +803,10 @@
 					"source": "SLW"
 				}
 			],
+			"attachedItems": [
+				"longbow|phb",
+				"longsword|phb"
+			],
 			"languageTags": [
 				"C"
 			],
@@ -762,6 +815,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"

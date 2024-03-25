@@ -202,10 +202,11 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/LLK/001-cartophile.png"
+								"path": "adventure/LLK/001-cartophile.webp"
 							},
 							"width": 1000,
-							"height": 1679
+							"height": 1679,
+							"credit": "Maxx Marshall"
 						},
 						"The gnome's collection contains notes and an initial map from the early stages of Kwalish's expedition into the Barrier Peaks. In exchange for allowing the characters to use that lore, he asks only that any further journals, notes, maps, and other documents from Kwalish's earlier expedition be returned to him.",
 						"The Cartophile has no interest in adventuring, talking of how he once stood too close to a {@item Bag of Holding} accidentally placed within a {@item Portable Hole} and never fully recovered from it. However, in the interest of ensuring a successful mission, he offers the characters the services of a number of hirelings in his employ\u2014and insists that at least one of those hirelings accompany the party, to serve as custodian of his maps and materials.",
@@ -231,15 +232,16 @@
 									"id": "017",
 									"entries": [
 										"{@i LE male vampire}",
-										"Once a dwarven warrior, Ctenmiir was transformed into a {@creature Vampire} and hidden away within White Plume Mountain (see {@adventure Tales from the Yawning Portal|TftYP}) until captured there by an Emerald Enclave ranger. The vampire has long been imprisoned within a magical iron coffin mounted atop animated golem legs (an early Kwalish design), forced to atone for his evil deeds by working for the Cartophile.",
+										"Once a dwarven warrior, Ctenmiir was transformed into a {@creature Vampire} and hidden away within White Plume Mountain (see {@adventure Tales from the Yawning Portal|TftYP-WPM}) until captured there by an Emerald Enclave ranger. The vampire has long been imprisoned within a magical iron coffin mounted atop animated golem legs (an early Kwalish design), forced to atone for his evil deeds by working for the Cartophile.",
 										{
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/LLK/002-ctinmiir_wmask.png"
+												"path": "adventure/LLK/002-ctinmiir_wmask.webp"
 											},
 											"width": 1000,
-											"height": 1236
+											"height": 1236,
+											"credit": "Maxx Marshall"
 										},
 										"Ctenmiir's coffin has a speed of 30 feet and a climbing speed of 10 feet, and protects the vampire from sunlight even as it prevents him from escaping his servitude. Though Ctenmiir is able to speak from within the coffin and help guide the expedition, the coffin obeys only the commands of the party members. Cold, calculating, and manipulative, the vampire aids the party as long as he believes he can earn his release from the coffin along the way\u2014by any means possible.",
 										{
@@ -284,10 +286,11 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/LLK/003-n-pc_garret.png"
+												"path": "adventure/LLK/003-n-pc_garret.webp"
 											},
 											"width": 1000,
-											"height": 1639
+											"height": 1639,
+											"credit": "Stan!"
 										},
 										{
 											"type": "entries",
@@ -325,15 +328,16 @@
 									"id": "01f",
 									"entries": [
 										"{@i LN monodrone}",
-										"A simple and kindly {@creature Monodrone} modron, Gearbox has been sent as an agent of Mechanus to investigate Kwalish's works and experiments. Its mechanical body has been programmed with several unique utility powers (see below) that make the modron a perfect cartographer's assistant. If both Garret and Gearbox join the expedition, Gearbox assists the tiefling with his work, even as Garret delights in referring to the modron as \"Doohickey\", \"Contraption\", \"Thingamabob\", and so on.",
+										"A simple and kindly {@creature Monodrone} modron, {@creature Gearbox|LLK} has been sent as an agent of Mechanus to investigate Kwalish's works and experiments. Its mechanical body has been programmed with several unique utility powers (see below) that make the modron a perfect cartographer's assistant. If both Garret and {@creature Gearbox|LLK} join the expedition, {@creature Gearbox|LLK} assists the tiefling with his work, even as Garret delights in referring to the modron as \"Doohickey\", \"Contraption\", \"Thingamabob\", and so on.",
 										{
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/LLK/004-npc_gearbox.png"
+												"path": "adventure/LLK/004-npc_gearbox.webp"
 											},
 											"width": 1000,
-											"height": 1000
+											"height": 1000,
+											"credit": "Stan!"
 										},
 										{
 											"type": "entries",
@@ -341,7 +345,7 @@
 											"page": 6,
 											"id": "020",
 											"entries": [
-												"Gearbox's unique programming allows the modron to function as an {@item Orb of Direction|XGE} and an {@item Orb of Time|XGE} (see {@book Xanathar's Guide to Everything|XGE}), to cast the {@spell light} cantrip at will, and to grant other characters advantage on Dexterity checks made with thieves' tools and on ability checks made to identify or operate mechanical or laboratory equipment. It can also help override the security of the monastery's control room ({@area M8|06d}) and treasury ({@area area M10|079|x}), and can pilot the skiff first seen in {@area area C3|03b|x}."
+												"{@creature Gearbox|LLK}'s unique programming allows the modron to function as an {@item Orb of Direction|XGE} and an {@item Orb of Time|XGE} (see {@book Xanathar's Guide to Everything|XGE}), to cast the {@spell light} cantrip at will, and to grant other characters advantage on Dexterity checks made with thieves' tools and on ability checks made to identify or operate mechanical or laboratory equipment. It can also help override the security of the monastery's control room ({@area M8|06d}) and treasury ({@area area M10|079|x}), and can pilot the skiff first seen in {@area area C3|03b|x}."
 											]
 										},
 										{
@@ -350,7 +354,7 @@
 											"page": 6,
 											"id": "021",
 											"entries": [
-												"None as such. Gearbox genuinely wishes to help the characters, but he will be tempted to connect with the monastery control room."
+												"None as such. {@creature Gearbox|LLK} genuinely wishes to help the characters, but he will be tempted to connect with the monastery control room."
 											]
 										},
 										{
@@ -359,7 +363,7 @@
 											"page": 6,
 											"id": "022",
 											"entries": [
-												"Gearbox can appear with Garret whenever the tiefling first appears, or he could be found in the monastery's control room. The modron might choose to remain at the monastery, integrating with its control room to become the site's new integrated mind."
+												"{@creature Gearbox|LLK} can appear with Garret whenever the tiefling first appears, or he could be found in the monastery's control room. The modron might choose to remain at the monastery, integrating with its control room to become the site's new integrated mind."
 											]
 										}
 									]
@@ -376,10 +380,11 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/LLK/005-mary.png"
+												"path": "adventure/LLK/005-mary.webp"
 											},
-											"width": 1000,
-											"height": 1618
+											"width": 998,
+											"height": 1616,
+											"credit": "Maxx Marshall"
 										},
 										"She also claims past tutelage by Thingizzard, a witch dwelling in the fens near White Plume Mountain. In addition to her work for the Cartophile, Mary is eager to accompany the expedition so that she might search the Barrier Peaks for rare ingredients for her potions.",
 										"Mary strikes an eerie, witch-like figure, surrounded always by swirling magical-mechanical trinkets of her own devising. She is often seen shuffling a {@item Deck of Several Things|LLK}, and will try to quietly tempt party members to draw a card. (See {@adventure appendix D|LLK|7} for more information on the deck, and its distinct connections to the adventure.) Mary is always accompanied by her familiar, a glowing-eyed cat. See {@adventure appendix C|LLK|6} for Mary's stat block.",
@@ -581,6 +586,13 @@
 							},
 							"width": 4926,
 							"height": 6426,
+							"title": "Monastery of the Distressed Body",
+							"credit": "Claudio Pozas",
+							"imageType": "map",
+							"grid": {
+								"type": "none",
+								"distance": 50
+							},
 							"mapRegions": [
 								{
 									"area": "06d",
@@ -1237,12 +1249,11 @@
 									]
 								}
 							],
-							"imageType": "map",
 							"hrefThumbnail": {
 								"type": "internal",
 								"path": "adventure/LLK/thumbnail/006-318365_extra_life_monastery.webp"
 							},
-							"id": "0d7"
+							"id": "0d9"
 						},
 						{
 							"type": "image",
@@ -1250,12 +1261,17 @@
 								"type": "internal",
 								"path": "adventure/LLK/007-playerversionllok2.jpg"
 							},
-							"title": "(Player Version)",
+							"title": "Player Version",
 							"width": 5000,
 							"height": 6471,
+							"credit": "Claudio Pozas",
 							"imageType": "mapPlayer",
+							"grid": {
+								"type": "none",
+								"distance": 50
+							},
 							"mapParent": {
-								"id": "0d7",
+								"id": "0d9",
 								"autoScale": true
 							}
 						},
@@ -1288,10 +1304,11 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/LLK/008-147478_cn_wmask.png"
+										"path": "adventure/LLK/008-147478_cn_wmask.webp"
 									},
 									"width": 1000,
-									"height": 719
+									"height": 719,
+									"credit": "David Rapoza"
 								},
 								{
 									"type": "insetReadaloud",
@@ -1368,7 +1385,7 @@
 										"A pulse of fire marks something igniting at the edge of the floating island, alongside its distant dock. Something detaches and floats smoothly towards you\u2014a flying skiff piloted by a hooded figure."
 									]
 								},
-								"The ferry is operated by a {@creature Merrenoloth|MTF} (originally from {@book Mordenkainen's Tome of Foes|MTF}). It is crafted from laboratory debris attached to a small engine similar to the large engines holding the monastery aloft. The skiff can ferry up to ten Medium creatures at one time, and can be controlled automatically by the merrenoloth, Gearbox the modron, or a rescued brain in a jar (see area M8). A character can decipher the controls of a skiff with a successful DC 15 Intelligence check, allowing that character to control it. A skiff also requires at least one fully charged energy cell from the treasury (area M10) for fuel.",
+								"The ferry is operated by a {@creature Merrenoloth|MTF} (originally from {@book Mordenkainen's Tome of Foes|MTF}). It is crafted from laboratory debris attached to a small engine similar to the large engines holding the monastery aloft. The skiff can ferry up to ten Medium creatures at one time, and can be controlled automatically by the merrenoloth, {@creature Gearbox|LLK} the modron, or a rescued brain in a jar (see area M8). A character can decipher the controls of a skiff with a successful DC 15 Intelligence check, allowing that character to control it. A skiff also requires at least one fully charged energy cell from the treasury (area M10) for fuel.",
 								"The merrenoloth stays silent, but any character who succeeds on a DC 14 Wisdom ({@skill Perception}) check to glimpse beneath its hood sees a skeletal face. (The character can later note the resemblance between this visage and the monastery's flayed monks.)"
 							]
 						},
@@ -1439,7 +1456,7 @@
 									"page": 12,
 									"id": "044",
 									"entries": [
-										"The Monastery of the Distressed Body has been secretly drawing in outlaws for decades. As such, you might add to the ranks of the monks with any number of villainous NPCs the players have heard about, or even foes that slipped through their clutches in years past. Sir Bluto Sans Pite from White Plume Mountain in {@adventure Tales from the Yawning Portal|TftYP} is a good candidate, as are Faroul and Gondolo from Port Nyanzaru in {@i Tomb of Annihilation}.",
+										"The Monastery of the Distressed Body has been secretly drawing in outlaws for decades. As such, you might add to the ranks of the monks with any number of villainous NPCs the players have heard about, or even foes that slipped through their clutches in years past. Sir Bluto Sans Pite from White Plume Mountain in {@adventure Tales from the Yawning Portal|TftYP-WPM} is a good candidate, as are Faroul and Gondolo from Port Nyanzaru in {@i Tomb of Annihilation}.",
 										"The monks do not interfere as the characters initially explore the monastery, and they keep their cowls down if they are approached. They say little about the workings of the place, but vaguely hint at how newcomers will be welcome to either join their \"immured brothers\" (the prisoners in area M6) or the \"enlightened ones\" (the brains in jars in the control room of area M8). They readily direct characters toward the Grand Master in the central abbey (area M3). If the monks are harassed, or if the characters spend too much time exploring on their own, Lean Meimbaol from area M1 arrives to personally escort them to the abbey.",
 										"If combat breaks out, the monks all reveal their true natures, and attempt to overwhelm and capture the characters."
 									]
@@ -1556,10 +1573,11 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/LLK/009-extraalife_bonedevil.png"
+														"path": "adventure/LLK/009-extraalife_bonedevil.webp"
 													},
 													"width": 3324,
-													"height": 2980
+													"height": 2980,
+													"credit": "Shawn Wood"
 												},
 												"The bone devil is an arrogant bully, and assumes that the characters have come to join its cult. However, it also comes across as whiny and petulant, reliant on the protection of its bodyguards rather than making any physical threats. If asked about Kwalish, the Grand Master gladly recounts how it took over the floating island and drove Kwalish to a second location\u2014some lost city farther into the Barrier Peaks.",
 												"The devil has seen Kwalish's notes (found in the treasury, area M10), which confirm that the inventor was intent on seeking the legendary city of Daoine Gloine. It offers to let the characters see them as well\u2014in exchange for the \"modest fee\" of all the characters' magic items, and one year of service from either the strongest or most intelligent character. (The devil is always in need of fresh servants to shovel fuel in the engine room, and fresh minds to replace the brains in the control room.) If the characters reject this offer, the Grand Master demands a year of service simply for the honor of the characters having visited the monastery, after which they are free to leave.",
@@ -1580,7 +1598,7 @@
 														"Local teleportation-field bracelets encircle the devil's arms and tail. These devices allow the Grand Master to make its claw and sting attacks remotely, though still on the devil's turn and using its actions."
 													]
 												},
-												"Two half-orc monks named East Wind and West Wind protect the Grand Master at all times. Each is a {@creature Martial Arts Adept|VGM} with these changes:",
+												"Two half-orc monks named {@creature East Wind|LLK} and {@creature West Wind|LLK} protect the Grand Master at all times. Each is a {@creature Martial Arts Adept|VGM} with these changes:",
 												{
 													"type": "list",
 													"items": [
@@ -1590,7 +1608,7 @@
 															"page": 14,
 															"id": "053",
 															"entries": [
-																"{@i Melee Weapon Attack}: +5 to hit, reach 5 ft., one target. {@i Hit}: 7 ({@dice 1d8 + 3}) piercing damage. If East Wind rolls a 20 on the attack roll, the target must succeed on a DC 15 Wisdom saving throw or suffer the effects of a {@i polymorph} spell."
+																"{@i Melee Weapon Attack}: +5 to hit, reach 5 ft., one target. {@i Hit}: 7 ({@dice 1d8 + 3}) piercing damage. If {@creature East Wind|LLK} rolls a 20 on the attack roll, the target must succeed on a DC 15 Wisdom saving throw or suffer the effects of a {@i polymorph} spell."
 															]
 														},
 														{
@@ -1599,7 +1617,7 @@
 															"page": 14,
 															"id": "054",
 															"entries": [
-																"{@i Melee Weapon Attack}: +5 to hit, reach 5 ft., one target. {@i Hit}: 7 ({@dice 1d8 + 3}) piercing damage. If West Wind rolls a 20 on the attack roll, the target must succeed on a DC 15 Constitution saving throw or suffer the effects of a {@i flesh to stone} spell."
+																"{@i Melee Weapon Attack}: +5 to hit, reach 5 ft., one target. {@i Hit}: 7 ({@dice 1d8 + 3}) piercing damage. If {@creature West Wind|LLK} rolls a 20 on the attack roll, the target must succeed on a DC 15 Constitution saving throw or suffer the effects of a {@i flesh to stone} spell."
 															]
 														}
 													]
@@ -1881,7 +1899,7 @@
 											"page": 17,
 											"id": "073",
 											"entries": [
-												"If Gearbox the modron is with the party, one character can attempt a DC 12 Dexterity check to connect the construct to the controls in this area. Successfully doing so overrides all the brains in jars and keeps all the floating disks active. However, doing so instills Gearbox with a greater sense of purpose, after which it refuses to disconnect. The modron thereafter integrates its consciousness into the monastery's, running its systems as its new integrated mind."
+												"If {@creature Gearbox|LLK} the modron is with the party, one character can attempt a DC 12 Dexterity check to connect the construct to the controls in this area. Successfully doing so overrides all the brains in jars and keeps all the floating disks active. However, doing so instills {@creature Gearbox|LLK} with a greater sense of purpose, after which it refuses to disconnect. The modron thereafter integrates its consciousness into the monastery's, running its systems as its new integrated mind."
 											]
 										}
 									]
@@ -1974,10 +1992,11 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/LLK/010-art_floatingdiscs.png"
+														"path": "adventure/LLK/010-art_floatingdiscs.webp"
 													},
 													"width": 1200,
-													"height": 280
+													"height": 280,
+													"credit": "Emi Tanji"
 												}
 											]
 										}
@@ -2033,7 +2052,7 @@
 											"page": 18,
 											"id": "07e",
 											"entries": [
-												"As in the control room, if Gearbox the modron is with the party, a character can attempt a DC 12 Dexterity check to help the construct override the brain's control of the treasury engine. Successfully doing so keeps the engine running, but Gearbox is unable to disconnect as a result."
+												"As in the control room, if {@creature Gearbox|LLK} the modron is with the party, a character can attempt a DC 12 Dexterity check to help the construct override the brain's control of the treasury engine. Successfully doing so keeps the engine running, but {@creature Gearbox|LLK} is unable to disconnect as a result."
 											]
 										},
 										{
@@ -2076,7 +2095,7 @@
 						"To reduce the travel time to the lost city to nothing, you might have Kwalish's notes provide instructions for reopening the planar archway in area M3. Instead of leading to the Nine Hells, the inventor's instructions open a gate directly to area O1 of Daoine Gloine.",
 						{
 							"type": "inset",
-							"name": "First Things Last ",
+							"name": "First Things Last",
 							"page": 19,
 							"id": "081",
 							"entries": [
@@ -2112,8 +2131,15 @@
 								"type": "internal",
 								"path": "adventure/LLK/011-318365_extra_life_ooze.png"
 							},
+							"title": "Daoine Gloine",
+							"credit": "Claudio Pozas",
 							"width": 4926,
 							"height": 6426,
+							"imageType": "map",
+							"grid": {
+								"type": "none",
+								"distance": 50
+							},
 							"mapRegions": [
 								{
 									"area": "097",
@@ -2758,12 +2784,11 @@
 									]
 								}
 							],
-							"imageType": "map",
 							"hrefThumbnail": {
 								"type": "internal",
 								"path": "adventure/LLK/thumbnail/011-318365_extra_life_ooze.webp"
 							},
-							"id": "0d8"
+							"id": "0da"
 						},
 						{
 							"type": "image",
@@ -2771,12 +2796,17 @@
 								"type": "internal",
 								"path": "adventure/LLK/012-playerversionllok1.jpg"
 							},
-							"title": "(Player Version)",
+							"title": "Player Version",
+							"credit": "Claudio Pozas",
 							"width": 5000,
 							"height": 6471,
 							"imageType": "mapPlayer",
+							"grid": {
+								"type": "none",
+								"distance": 50
+							},
 							"mapParent": {
-								"id": "0d8",
+								"id": "0db",
 								"autoScale": true
 							}
 						},
@@ -2893,10 +2923,11 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/LLK/013-extraalife_medusa.png"
+												"path": "adventure/LLK/013-extraalife_medusa.webp"
 											},
 											"width": 1000,
-											"height": 797
+											"height": 797,
+											"credit": "Shawn Wood"
 										},
 										"The tallest tower in the city, this former temple once housed the cult of the medusa.",
 										{
@@ -3004,7 +3035,7 @@
 											"page": 23,
 											"id": "099",
 											"entries": [
-												"A {@creature Clockwork Kraken|LLK} has been installed in this area by Kwalish to protect the city. The main component of the construct's clockwork engine is a coffin-like structure that bears a strong resemblance to Ctenmiir's coffin. The engine housing can be opened with a successful DC 15 Intelligence ({@skill Arcana}) check or Dexterity check made with thieves' tools or tinker's tools. If Gearbox is with the party, a character can attempt a DC 12 Dexterity check to help the modron open and override the engine.",
+												"A {@creature Clockwork Kraken|LLK} has been installed in this area by Kwalish to protect the city. The main component of the construct's clockwork engine is a coffin-like structure that bears a strong resemblance to Ctenmiir's coffin. The engine housing can be opened with a successful DC 15 Intelligence ({@skill Arcana}) check or Dexterity check made with thieves' tools or tinker's tools. If {@creature Gearbox|LLK} is with the party, a character can attempt a DC 12 Dexterity check to help the modron open and override the engine.",
 												"Within the coffin is the jellified remains of a former kenku high priest of Daoine Gloine. Her undead body now powers the kraken, though she does not control it. If still active, the kraken's tentacles work to defend its engine.",
 												"Kwalish developed a process of using living and undead creatures as a control module for powerful constructs, and placed the evil high priest here as punishment for her role in the countless sacrifices made to {@creature Gloine Nathair-Nathair|LLK}. If the priest is attacked, treat her as a {@creature Vampire Spawn} that cannot leave the coffin. But after endless years of undead incarceration, she sees the characters as potential servants, not foes."
 											]
@@ -3022,10 +3053,11 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/LLK/014-apparatus1.png"
+														"path": "adventure/LLK/014-apparatus1.webp"
 													},
 													"width": 806,
-													"height": 551
+													"height": 551,
+													"credit": "Aaron Hübrich"
 												}
 											]
 										},
@@ -3366,7 +3398,7 @@
 							"id": "0b3",
 							"entries": [
 								"If Kwalish's knowledge was needed to oppose threats in other lands, those threats might have been permanently quelled\u2014or they might only have been temporarily driven back. Moreover, Kwalish's aid could inadvertently create new threats, as might happen if opening the coffin-prison of the vampire, Ctenmiir, opens similar Kwalish-designed prisons across the world.",
-								"The power in the Barrier Peaks likely shifts dramatically if the Grand Master is defeated, and a new power struggle soon ensues for control of the monastery. If Ctenmiir escapes or is freed, he might return to the monastery to occupy it as his new lair. {@creature Mary Greymalkin|LLK} joins him there, creating a sanctum of evil magic. If Gearbox has connected with the monastery, he might remain there as the pair's unwitting servant\u2014or the modron might seek to overthrow this new set of evil lords in the name of establishing the monastery as a place of pure knowledge and balance."
+								"The power in the Barrier Peaks likely shifts dramatically if the Grand Master is defeated, and a new power struggle soon ensues for control of the monastery. If Ctenmiir escapes or is freed, he might return to the monastery to occupy it as his new lair. {@creature Mary Greymalkin|LLK} joins him there, creating a sanctum of evil magic. If {@creature Gearbox|LLK} has connected with the monastery, he might remain there as the pair's unwitting servant\u2014or the modron might seek to overthrow this new set of evil lords in the name of establishing the monastery as a place of pure knowledge and balance."
 							]
 						},
 						{
@@ -3389,14 +3421,35 @@
 								{
 									"type": "inset",
 									"id": "0b6",
+									"name": "KWALISH LIVES?",
 									"entries": [
-										"KWALISH LIVES?",
 										"Since his expedition vanished ages ago, it's prudent to think about how it's possible for Kwalish to be found alive and well in his lab. If the gnome is found trapped inside the powered armor in stasis or scattered throughout his laboratory, the answer is easy. You might also consider that Kwalish's research into the planar craft's magical technology, astral cords, and similar topics might have allowed him to prolong his life indefinitely by magical means. Alternatively, given the inventor's ability to craft lifelike constructs, this version of Kwalish might not be the original gnome at all."
 									]
 								}
 							]
 						}
 					]
+				},
+				{
+					"type": "section",
+					"name": "Acknowledgments and Final Thanks",
+					"page": 29,
+					"entries": [
+						"To E. Gary Gygax, as author of the original Expedition to the Barrier Peaks (may chocolate and peanut butter forever collide into one another). To Kennedy O'Day, for playing one of her first games of D&D next to Bart at the 2017 Extra Life livestream in the Wizards of the Coast offices (it was awesome!).",
+						"We would also like to extend special acknowledgment of a designer for certain spells and magic items appearing within this adventure. To Laurence Withey\u2014we hope this presentation of your material does justice to Galder, and we humbly thank you for allowing us to include it.",
+						"Final thanks to everyone who purchased this adventure\u2014your donation is going to a truly great cause. On behalf of the entire Dungeons & Dragons team, we sincerely thank you for your contribution to Extra Life and the Children's Miracle Network Hospitals.",
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "adventure/LLK/015-ack.webp"
+							},
+							"width": 1500,
+							"height": 1715,
+							"credit": "Quinn Carroll, Shawn Wood, Shauna Narciso"
+						}
+					],
+					"id": "0d8"
 				}
 			]
 		},
@@ -3407,7 +3460,7 @@
 			"id": "0b7",
 			"entries": [
 				"Characters undertaking this adventure will spend a significant amount of game time on the journey to the Monastery of the Distressed Body and the lost city of Daoine Gloine. You can help bring those weeks of exploration to life with random encounters\u2014some of which might increase or decrease the length of the characters' journey, as you decide.",
-				"{@adventure Chapter 2|XGE|-1} of {@book Xanathar's Guide to Everything|XGE} includes random forest encounters, Underdark encounters, and mountain encounters. Or you can roll for or select more detailed encounters using the following tables.",
+				"{@book Chapter 2|XGE|2} of {@book Xanathar's Guide to Everything|XGE} includes random forest encounters, Underdark encounters, and mountain encounters. Or you can roll for or select more detailed encounters using the following tables.",
 				{
 					"type": "entries",
 					"name": "Wilderness Encounters",
@@ -3419,10 +3472,11 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/LLK/016-144578_wmask.png"
+								"path": "adventure/LLK/016-144578_wmask.webp"
 							},
 							"width": 1000,
-							"height": 2418
+							"height": 2418,
+							"credit": "Mark Winters"
 						},
 						{
 							"type": "table",
@@ -3462,9 +3516,12 @@
 								],
 								[
 									"8\u201310",
-									"The characters come across a group of roving outlaws (five to ten {@creature Thug||Thugs} led by a {@creature Bandit Captain}), who are heading to the monastery to join its ranks. They possess rumors and fragments of a map, and are keen to steal the characters' resources\u2014especially if Gearbox the modron is present."
+									"The characters come across a group of roving outlaws (five to ten {@creature Thug||Thugs} led by a {@creature Bandit Captain}), who are heading to the monastery to join its ranks. They possess rumors and fragments of a map, and are keen to steal the characters' resources\u2014especially if {@creature Gearbox|LLK} the modron is present."
 								]
-							]
+							],
+							"data": {
+								"tableInclude": true
+							}
 						}
 					]
 				},
@@ -3515,7 +3572,10 @@
 									"8\u201310",
 									"A monastery work party\u2014six humanoid prisoners ({@creature Commoner||Commoners}) watched by five {@creature Cultist||Cultists} and a {@creature Cult Fanatic}\u2014is seen collecting ore to fuel the monastery's engines. If the prisoners are rescued, they can supply some knowledge of the monastery before fleeing the mountains."
 								]
-							]
+							],
+							"data": {
+								"tableInclude": true
+							}
 						}
 					]
 				},
@@ -3562,7 +3622,10 @@
 									"8\u201310",
 									"An isolated village clings to the mountainside, populated by {@creature Kenku} descended from Daoine Gloine refugees who fled the city when it was flooded with ooze. The kenku still remember ancient legends their forebears told about a cult of the medusa, as well as Kwalish's arrival and the \"plague of ooze.\" However, their ability to speak only in mimicry might make it challenging for the characters to communicate with them. In the course of the conversation, the kenku might mimic the sounds of destruction and screaming heard as the city was overwhelmed, relay the mad ranting of the medusa, and so forth. They might even repeat the words of Kwalish himself as he talks of his extradimensional experiments with glass baubles, and his efforts to hide his lab inside of one."
 								]
-							]
+							],
+							"data": {
+								"tableInclude": true
+							}
 						}
 					]
 				}
@@ -3593,7 +3656,7 @@
 					"id": "0bd",
 					"entries": [
 						"A number of options present themselves for using the {@i deck of several things} within the adventure. As written, Mary already carries the deck, and no matter how many cards are drawn from it, the complete deck reappears magically in her possession at the conclusion of the adventure. But if she remains as an NPC in your campaign, or is first placed in an earlier adventure, consider modifying the cards' effects to more broadly fit the campaign.",
-						"You might also decide that the cards' effects are as closely tied to the adventure as they are because they are really a set of clockwork-controlling punch cards from the crashed planar craft. Whether Gearbox is with the party or not, the cards might be used to connect to any of the technology in the adventure that the modron can interface with. You might also add additional possible effects, such as inserting the correct card into the sphinx's enhanced brain in order to issue it commands. Even if used in these ways, though, a card must first be formally drawn so that its primary effect can play out.",
+						"You might also decide that the cards' effects are as closely tied to the adventure as they are because they are really a set of clockwork-controlling punch cards from the crashed planar craft. Whether {@creature Gearbox|LLK} is with the party or not, the cards might be used to connect to any of the technology in the adventure that the modron can interface with. You might also add additional possible effects, such as inserting the correct card into the sphinx's enhanced brain in order to issue it commands. Even if used in these ways, though, a card must first be formally drawn so that its primary effect can play out.",
 						"Additionally (and especially if the characters don't choose to take Mary as a hireling), the {@i deck of several things} might not be in her possession. Instead, characters can find the cards scattered in various locations throughout the adventure, allowing them to be collected, then used."
 					]
 				},
@@ -3707,9 +3770,9 @@
 											"page": 35,
 											"id": "0cc",
 											"entries": [
-												"Every brain in a jar is desperate for a new body, and a brain immediately agrees to aid the characters any way it can if they promise to restore it to life. Any number of possible options might be available to characters wanting to achieve this end. Most easily, the brains can guide characters through the process of transferring their intellect into a host such as a slain monk, or a mechanical entity such as Ctenmiir's coffin or Gearbox. This process requires a successful DC 14 Wisdom ({@skill Medicine}) check or Dexterity check with thieves' tools or tinker's tools. However, on a failed check, the brain is destroyed and any floating disks it controls in the treasury (area M10) are permanently deactivated.",
+												"Every brain in a jar is desperate for a new body, and a brain immediately agrees to aid the characters any way it can if they promise to restore it to life. Any number of possible options might be available to characters wanting to achieve this end. Most easily, the brains can guide characters through the process of transferring their intellect into a host such as a slain monk, or a mechanical entity such as Ctenmiir's coffin or {@creature Gearbox|LLK}. This process requires a successful DC 14 Wisdom ({@skill Medicine}) check or Dexterity check with thieves' tools or tinker's tools. However, on a failed check, the brain is destroyed and any floating disks it controls in the treasury (area M10) are permanently deactivated.",
 												"The characters might also attempt to craft an entirely new mechanical body as a brain host\u2014either individual bodies for each brain, or a single body that houses all the brains at once. Doing so requires a suitable amount of time, access to materials, and a successful DC 16 Intelligence ({@skill Arcana}) check or Dexterity check with thieves' tools or tinker's tools. Furthermore, each such body also requires a new energy cell from the treasury.",
-												"You could also establish that the process of returning a brain to a new body might require knowledge available only from Kwalish. In this scenario, one or more brains will secure a promise from the characters to return with this knowledge\u2014or they might seek to accompany them onward. The brains can go mobile by attaching their canisters to Gearbox, Ctenmiir's coffin, the merrenoloth's skiff, one of the treasury floating disks made mobile\u2014or even to the characters themselves."
+												"You could also establish that the process of returning a brain to a new body might require knowledge available only from Kwalish. In this scenario, one or more brains will secure a promise from the characters to return with this knowledge\u2014or they might seek to accompany them onward. The brains can go mobile by attaching their canisters to {@creature Gearbox|LLK}, Ctenmiir's coffin, the merrenoloth's skiff, one of the treasury floating disks made mobile\u2014or even to the characters themselves."
 											]
 										},
 										{
@@ -3808,7 +3871,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/LLK/022-dndxl-froghemoth.png"
+								"path": "adventure/LLK/022-dndxl-froghemoth.webp"
 							},
 							"width": 1000,
 							"height": 835
@@ -3828,10 +3891,11 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/LLK/031-gearbox.png"
+								"path": "adventure/LLK/031-gearbox.webp"
 							},
 							"width": 1000,
-							"height": 1072
+							"height": 1072,
+							"credit": "Matt Warren"
 						},
 						"{@creature Mind Flayer Arcanist}",
 						"{@creature Ooze-Folk|LLK}",
@@ -3842,7 +3906,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/LLK/035-dndxl-skeleton.png"
+								"path": "adventure/LLK/035-dndxl-skeleton.webp"
 							},
 							"width": 1296,
 							"height": 866
@@ -3855,7 +3919,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/LLK/040-dndxl-stirge.png"
+								"path": "adventure/LLK/040-dndxl-stirge.webp"
 							},
 							"width": 1000,
 							"height": 834
@@ -3872,7 +3936,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/LLK/046-dndxl-wretched.png"
+								"path": "adventure/LLK/046-dndxl-wretched.webp"
 							},
 							"width": 1000,
 							"height": 425
@@ -4343,6 +4407,1021 @@
 							"100",
 							"The Soul Catcher, they call it. Its victims stagger out of the Barrier Peaks with nary a scratch on their bodies, but their hearts aren't right anymore. The lucky ones are caught by the healers and confined to places where they can't hurt anyone. The ones who aren't so lucky... Well, you tell me. What would you call an adventurer who can't feel the slightest tinge of remorse or guilt or fear?"
 						]
+					]
+				}
+			]
+		},
+		{
+			"type": "section",
+			"name": "Daoine Gloine Map",
+			"id": "0d7",
+			"entries": [
+				{
+					"type": "gallery",
+					"images": [
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "adventure/LLK/daoine-colors-final.webp"
+							},
+							"imageType": "map",
+							"id": "0db",
+							"title": "Daoine Gloine",
+							"credit": "Jason Bradley Thompson",
+							"width": 5000,
+							"height": 3832,
+							"mapRegions": [
+								{
+									"area": "085",
+									"points": [
+										[
+											3,
+											1415
+										],
+										[
+											126,
+											1495
+										],
+										[
+											123,
+											1582
+										],
+										[
+											95,
+											1677
+										],
+										[
+											120,
+											1763
+										],
+										[
+											157,
+											1825
+										],
+										[
+											209,
+											1948
+										],
+										[
+											234,
+											2018
+										],
+										[
+											145,
+											2172
+										],
+										[
+											132,
+											2295
+										],
+										[
+											157,
+											2375
+										],
+										[
+											154,
+											2449
+										],
+										[
+											151,
+											2572
+										],
+										[
+											172,
+											2594
+										],
+										[
+											240,
+											2631
+										],
+										[
+											385,
+											2634
+										],
+										[
+											455,
+											2625
+										],
+										[
+											489,
+											2652
+										],
+										[
+											477,
+											2738
+										],
+										[
+											474,
+											2843
+										],
+										[
+											474,
+											2917
+										],
+										[
+											523,
+											2994
+										],
+										[
+											542,
+											3083
+										],
+										[
+											572,
+											3178
+										],
+										[
+											625,
+											3231
+										],
+										[
+											692,
+											3258
+										],
+										[
+											794,
+											3225
+										],
+										[
+											837,
+											3197
+										],
+										[
+											905,
+											3243
+										],
+										[
+											938,
+											3311
+										],
+										[
+											969,
+											3375
+										],
+										[
+											1040,
+											3363
+										],
+										[
+											1111,
+											3412
+										],
+										[
+											1145,
+											3502
+										],
+										[
+											1160,
+											3548
+										],
+										[
+											1191,
+											3622
+										],
+										[
+											1280,
+											3625
+										],
+										[
+											1348,
+											3683
+										],
+										[
+											1397,
+											3825
+										],
+										[
+											3,
+											3825
+										]
+									]
+								},
+								{
+									"area": "088",
+									"points": [
+										[
+											1015,
+											2711
+										],
+										[
+											1222,
+											2634
+										],
+										[
+											1394,
+											2634
+										],
+										[
+											1600,
+											2806
+										],
+										[
+											1643,
+											2929
+										],
+										[
+											1834,
+											2791
+										],
+										[
+											1883,
+											2591
+										],
+										[
+											2157,
+											2748
+										],
+										[
+											2412,
+											2809
+										],
+										[
+											2662,
+											3117
+										],
+										[
+											2892,
+											3271
+										],
+										[
+											3086,
+											3363
+										],
+										[
+											3031,
+											3572
+										],
+										[
+											2708,
+											3542
+										],
+										[
+											2502,
+											3572
+										],
+										[
+											2240,
+											3480
+										],
+										[
+											2166,
+											3455
+										],
+										[
+											2049,
+											3489
+										],
+										[
+											1911,
+											3403
+										],
+										[
+											1788,
+											3200
+										],
+										[
+											1735,
+											3154
+										],
+										[
+											1569,
+											3129
+										],
+										[
+											1449,
+											3240
+										],
+										[
+											1320,
+											3292
+										],
+										[
+											1209,
+											3234
+										],
+										[
+											1166,
+											3095
+										],
+										[
+											1015,
+											3126
+										],
+										[
+											929,
+											3074
+										],
+										[
+											902,
+											2898
+										],
+										[
+											988,
+											2757
+										]
+									]
+								},
+								{
+									"area": "08c",
+									"points": [
+										[
+											646,
+											2938
+										],
+										[
+											600,
+											2695
+										],
+										[
+											612,
+											2511
+										],
+										[
+											643,
+											2348
+										],
+										[
+											726,
+											2206
+										],
+										[
+											800,
+											2126
+										],
+										[
+											849,
+											2132
+										],
+										[
+											920,
+											2262
+										],
+										[
+											1052,
+											2372
+										],
+										[
+											1212,
+											2348
+										],
+										[
+											1277,
+											2329
+										],
+										[
+											1443,
+											2345
+										],
+										[
+											1523,
+											2520
+										],
+										[
+											1428,
+											2554
+										],
+										[
+											1246,
+											2588
+										],
+										[
+											1022,
+											2618
+										],
+										[
+											898,
+											2742
+										],
+										[
+											806,
+											2797
+										],
+										[
+											742,
+											2892
+										]
+									]
+								},
+								{
+									"area": "08f",
+									"points": [
+										[
+											2895,
+											1858
+										],
+										[
+											2911,
+											1692
+										],
+										[
+											2951,
+											1628
+										],
+										[
+											2988,
+											1394
+										],
+										[
+											3015,
+											1440
+										],
+										[
+											3065,
+											1369
+										],
+										[
+											3126,
+											1354
+										],
+										[
+											3203,
+											1363
+										],
+										[
+											3246,
+											1431
+										],
+										[
+											3252,
+											1458
+										],
+										[
+											3268,
+											1409
+										],
+										[
+											3289,
+											1486
+										],
+										[
+											3317,
+											1582
+										],
+										[
+											3323,
+											1502
+										],
+										[
+											3372,
+											1471
+										],
+										[
+											3431,
+											1489
+										],
+										[
+											3468,
+											1535
+										],
+										[
+											3486,
+											1554
+										],
+										[
+											3502,
+											1517
+										],
+										[
+											3538,
+											1477
+										],
+										[
+											3588,
+											1468
+										],
+										[
+											3603,
+											1514
+										],
+										[
+											3634,
+											1498
+										],
+										[
+											3649,
+											1452
+										],
+										[
+											3649,
+											1388
+										],
+										[
+											3671,
+											1468
+										],
+										[
+											3711,
+											1418
+										],
+										[
+											3751,
+											1458
+										],
+										[
+											3760,
+											1532
+										],
+										[
+											3788,
+											1658
+										],
+										[
+											3828,
+											1717
+										],
+										[
+											3828,
+											1775
+										],
+										[
+											3862,
+											1843
+										],
+										[
+											3858,
+											1942
+										],
+										[
+											3788,
+											1905
+										],
+										[
+											3745,
+											1905
+										],
+										[
+											3745,
+											1957
+										],
+										[
+											3671,
+											1960
+										],
+										[
+											3658,
+											1914
+										],
+										[
+											3557,
+											1926
+										],
+										[
+											3548,
+											1954
+										],
+										[
+											3502,
+											1929
+										],
+										[
+											3440,
+											1945
+										],
+										[
+											3415,
+											1966
+										],
+										[
+											3388,
+											1948
+										],
+										[
+											3295,
+											1948
+										],
+										[
+											3178,
+											1972
+										],
+										[
+											3083,
+											1975
+										],
+										[
+											3025,
+											1942
+										],
+										[
+											3028,
+											1898
+										],
+										[
+											2948,
+											1902
+										],
+										[
+											2902,
+											1886
+										]
+									]
+								},
+								{
+									"area": "097",
+									"points": [
+										[
+											3825,
+											2298
+										],
+										[
+											3871,
+											2209
+										],
+										[
+											3892,
+											2095
+										],
+										[
+											3902,
+											2037
+										],
+										[
+											3991,
+											2000
+										],
+										[
+											4025,
+											1926
+										],
+										[
+											4151,
+											1902
+										],
+										[
+											4329,
+											1938
+										],
+										[
+											4342,
+											2022
+										],
+										[
+											4412,
+											2040
+										],
+										[
+											4455,
+											2231
+										],
+										[
+											4465,
+											2354
+										],
+										[
+											4458,
+											2415
+										],
+										[
+											4397,
+											2462
+										],
+										[
+											4311,
+											2406
+										],
+										[
+											4240,
+											2415
+										],
+										[
+											4145,
+											2425
+										],
+										[
+											3978,
+											2369
+										],
+										[
+											3889,
+											2338
+										]
+									]
+								},
+								{
+									"area": "09d",
+									"points": [
+										[
+											3662,
+											2262
+										],
+										[
+											3554,
+											1985
+										],
+										[
+											3452,
+											1960
+										],
+										[
+											3271,
+											2043
+										],
+										[
+											2911,
+											2058
+										],
+										[
+											2680,
+											2003
+										],
+										[
+											2631,
+											1766
+										],
+										[
+											2443,
+											1797
+										],
+										[
+											2329,
+											1686
+										],
+										[
+											2062,
+											1603
+										],
+										[
+											1969,
+											1523
+										],
+										[
+											1705,
+											1425
+										],
+										[
+											1311,
+											1366
+										],
+										[
+											926,
+											1449
+										],
+										[
+											714,
+											1634
+										],
+										[
+											662,
+											1812
+										],
+										[
+											932,
+											2055
+										],
+										[
+											1062,
+											2043
+										],
+										[
+											1212,
+											2034
+										],
+										[
+											1449,
+											2062
+										],
+										[
+											1563,
+											2172
+										],
+										[
+											1794,
+											2182
+										],
+										[
+											2012,
+											2271
+										],
+										[
+											2286,
+											2434
+										],
+										[
+											2483,
+											2508
+										],
+										[
+											2745,
+											2745
+										],
+										[
+											2938,
+											3003
+										],
+										[
+											2868,
+											3123
+										],
+										[
+											3018,
+											3252
+										],
+										[
+											3246,
+											3305
+										],
+										[
+											3366,
+											3231
+										],
+										[
+											3625,
+											3212
+										],
+										[
+											3785,
+											3332
+										],
+										[
+											4108,
+											3323
+										],
+										[
+											4375,
+											3249
+										],
+										[
+											4622,
+											3243
+										],
+										[
+											4742,
+											3086
+										],
+										[
+											4778,
+											2889
+										],
+										[
+											4754,
+											2680
+										],
+										[
+											4474,
+											2532
+										],
+										[
+											4225,
+											2520
+										],
+										[
+											3754,
+											2400
+										]
+									]
+								},
+								{
+									"area": "0a0",
+									"points": [
+										[
+											898,
+											2172
+										],
+										[
+											920,
+											2092
+										],
+										[
+											1009,
+											2068
+										],
+										[
+											1043,
+											2098
+										],
+										[
+											1095,
+											2065
+										],
+										[
+											1209,
+											2052
+										],
+										[
+											1308,
+											2058
+										],
+										[
+											1406,
+											2123
+										],
+										[
+											1437,
+											2222
+										],
+										[
+											1428,
+											2292
+										],
+										[
+											1308,
+											2314
+										],
+										[
+											1154,
+											2320
+										],
+										[
+											1062,
+											2305
+										],
+										[
+											942,
+											2255
+										]
+									]
+								},
+								{
+									"area": "08f",
+									"points": [
+										[
+											1925,
+											64
+										],
+										[
+											2880,
+											64
+										],
+										[
+											2880,
+											979
+										],
+										[
+											1925,
+											979
+										]
+									]
+								},
+								{
+									"area": "097",
+									"points": [
+										[
+											2933,
+											64
+										],
+										[
+											3893,
+											64
+										],
+										[
+											3893,
+											976
+										],
+										[
+											2933,
+											976
+										]
+									]
+								},
+								{
+									"area": "0a0",
+									"points": [
+										[
+											3957,
+											66
+										],
+										[
+											4915,
+											66
+										],
+										[
+											4915,
+											974
+										],
+										[
+											3957,
+											974
+										]
+									]
+								}
+							],
+							"hrefThumbnail": {
+								"type": "internal",
+								"path": "adventure/LLK/thumbnail/daoine-colors-final.webp"
+							},
+							"grid": {
+								"type": "none"
+							}
+						},
+						{
+							"type": "image",
+							"href": {
+								"type": "internal",
+								"path": "adventure/LLK/daoinegloineplayershandout.webp"
+							},
+							"imageType": "mapPlayer",
+							"mapParent": {
+								"id": "0db",
+								"autoScale": true
+							},
+							"title": "Player Version",
+							"credit": "Jason Bradley Thompson",
+							"width": 3300,
+							"height": 2529,
+							"grid": {
+								"type": "none"
+							}
+						}
 					]
 				}
 			]

@@ -67,6 +67,20 @@
 			]
 		},
 		{
+			"name": "Captain Xendros",
+			"source": "GoS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/GoS/004-01-04.webp"
+					},
+					"credit": "Leesha Hannigan"
+				}
+			]
+		},
+		{
 			"name": "Drowned Ascetic",
 			"source": "GoS",
 			"entries": [
@@ -100,8 +114,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Drowned One.jpg"
-					}
+						"path": "bestiary/GoS/Drowned One.webp"
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -139,8 +154,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Drowned One.jpg"
-					}
+						"path": "bestiary/GoS/Drowned One.webp"
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -178,8 +194,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Drowned One.jpg"
-					}
+						"path": "bestiary/GoS/Drowned One.webp"
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -217,8 +234,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Drowned One.jpg"
-					}
+						"path": "bestiary/GoS/Drowned One.webp"
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -314,8 +332,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Juvenile Kraken.jpg"
-					}
+						"path": "bestiary/GoS/Juvenile Kraken.webp"
+					},
+					"credit": "Joachim Barrum"
 				}
 			]
 		},
@@ -345,8 +364,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Koalinth.jpg"
-					}
+						"path": "bestiary/GoS/Koalinth.webp"
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -376,8 +396,23 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Koalinth Sergeant.jpg"
-					}
+						"path": "bestiary/GoS/Koalinth Sergeant.webp"
+					},
+					"credit": "Olga Drebas"
+				}
+			]
+		},
+		{
+			"name": "Krell Grohlg",
+			"source": "GoS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/GoS/034-04-04-unholy-shrine-p92.webp"
+					},
+					"credit": "Sam Keiser"
 				}
 			]
 		},
@@ -467,6 +502,16 @@
 						}
 					]
 				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/GoS/Lizardfolk Render.webp"
+					},
+					"credit": "Scott Murphy"
+				}
 			]
 		},
 		{
@@ -539,8 +584,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Locathah.jpg"
-					}
+						"path": "bestiary/GoS/Locathah.webp"
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -570,8 +616,23 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Locathah.jpg"
-					}
+						"path": "bestiary/GoS/Locathah.webp"
+					},
+					"credit": "Shawn Wood"
+				}
+			]
+		},
+		{
+			"name": "Master Refrum",
+			"source": "GoS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/GoS/Master Refrum.webp"
+					},
+					"credit": "Joachim Barrum"
 				}
 			]
 		},
@@ -667,8 +728,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Monstrous Peryton.jpg"
-					}
+						"path": "bestiary/GoS/Monstrous Peryton.webp"
+					},
+					"credit": "Eric Belisle"
 				}
 			]
 		},
@@ -698,8 +760,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Mr. Dory.jpg"
-					}
+						"path": "bestiary/GoS/Mr. Dory.webp"
+					},
+					"credit": "Joachim Barrum"
 				}
 			]
 		},
@@ -1012,6 +1075,20 @@
 			]
 		},
 		{
+			"name": "Sauriv",
+			"source": "GoS",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/GoS/Sauriv.webp"
+					},
+					"credit": "Olga Drebas"
+				}
+			]
+		},
+		{
 			"name": "Shell Shark",
 			"source": "GoS",
 			"entries": [
@@ -1059,8 +1136,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Skeletal Alchemist.jpg"
-					}
+						"path": "bestiary/GoS/Skeletal Alchemist.webp"
+					},
+					"credit": "Leesha Hannigan"
 				}
 			]
 		},
@@ -1134,8 +1212,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Skum.jpg"
-					}
+						"path": "bestiary/GoS/Skum.webp"
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -1165,8 +1244,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/GoS/Thousand Teeth.jpg"
-					}
+						"path": "bestiary/GoS/Thousand Teeth.webp"
+					},
+					"credit": "Leesha Hannigan"
 				}
 			]
 		},

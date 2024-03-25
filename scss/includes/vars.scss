@@ -81,15 +81,17 @@ $rgb-shadow-grey--dark: rgba(0, 0, 0, 0.475);
 
 $rgb-stripe-grey: #88888818;
 $rgb-stripe-grey--faint: #bbbbbb18;
-$rgb-stripe-grey--night: #aaa4;
+$rgb-stripe-grey--night: #aaa2;
 
 $rgb-cb-grey: #666;
 
 $rgb-bg: white;
 $rgb-bg--alt: whitesmoke;
+$rgb-bg-homebrew: #ff00001a;
 
 $rgb-bg--night: #222;
 $rgb-bg--alt-night: #383838;
+$rgb-bg-homebrew--night: rgba(255, 0, 0, 0.15);
 
 $rgb-bg-highlight--night: #cc0;
 $rgb-font: #333;
@@ -144,6 +146,16 @@ $rgb-btn-danger-red--night: #7e3a38; // #d9534f blended with #222
 $rgb-btn-warning-orange--night: #896838; // #f0ad4e blended with #222
 $rgb-btn-info-blue--night: #2a697c; // #31b0d5 blended with #222
 $rgb-btn-success-green--night: #427442; // #5cb85c blended with #222
+
+$rgb-alert-info-blue--night: #375a7f;
+$rgb-alert-danger-red--night: #8d1d1a;
+$rgb-alert-warning-orange--night: #cd8514;
+$rgb-alert-success-green--night: #009e56;
+
+$rgb-alert-info-border-blue--night: lighten($rgb-alert-info-blue--night, $pct-darken-border);
+$rgb-alert-danger-border-red--night: lighten($rgb-alert-danger-red--night, $pct-darken-border);
+$rgb-alert-warning-border-orange--night: lighten($rgb-alert-warning-orange--night, $pct-darken-border);
+$rgb-alert-success-border-green--night: lighten($rgb-alert-success-green--night, $pct-darken-border);
 
 /* Z-Indices */
 $z-token-image: 10;
@@ -218,11 +230,11 @@ $font-line-height: 1.42857143;
 }
 
 @mixin row-glow-active {
-	box-shadow: inset 0 0 0 1000px rgba(0, 107, 196, 0.3);
+	box-shadow: inset 0 0 0 5000px rgba(0, 107, 196, 0.3);
 }
 
 @mixin row-glow-active--alt {
-	box-shadow: inset 0 0 0 1000px rgba(148, 148, 148, 0.2);
+	box-shadow: inset 0 0 0 5000px rgba(148, 148, 148, 0.2);
 }
 
 @mixin overflow-dots {
@@ -235,6 +247,16 @@ $font-line-height: 1.42857143;
 	width: 1px;
 	height: 100%;
 	border-left: 1px solid $rgb-border-grey;
+}
+
+@mixin is-print {
+	@media print {
+		@content;
+	}
+
+	@at-root html.is-faux-print #{&} {
+		@content;
+	}
 }
 
 /* *** */
@@ -347,3 +369,4 @@ $fltr-2stripe: 22px;
 	}
 }
 // endregion
+

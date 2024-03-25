@@ -20,6 +20,7 @@
 		{
 			"name": "Ahmaergo",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 193,
 			"size": [
@@ -124,6 +125,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"greataxe|phb",
+				"heavy crossbow|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -140,6 +145,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
@@ -151,6 +157,7 @@
 		{
 			"name": "Ammalia Cassalanter",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 193,
 			"size": [
@@ -275,6 +282,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
 			"languageTags": [
 				"C",
 				"DR",
@@ -292,10 +302,16 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Aurinax",
@@ -315,11 +331,13 @@
 					}
 				}
 			},
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Avi",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 32,
 			"_copy": {
@@ -357,7 +375,7 @@
 				"G"
 			],
 			"speed": {
-				"walk": 25,
+				"walk": 30,
 				"swim": 30
 			},
 			"resist": [
@@ -453,6 +471,7 @@
 		{
 			"name": "Barnibus Blastwind",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 195,
 			"size": [
@@ -573,6 +592,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"languageTags": [
 				"C",
 				"D",
@@ -586,9 +608,14 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RW",
 				"THW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -597,6 +624,7 @@
 		{
 			"name": "Bepis Honeymaker",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 112,
 			"size": [
@@ -762,6 +790,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"hand crossbow|phb",
+				"rapier|phb"
+			],
 			"traitTags": [
 				"Sneak Attack"
 			],
@@ -776,6 +808,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
@@ -813,6 +846,7 @@
 		{
 			"name": "Bonnie",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 20,
 			"_copy": {
@@ -836,6 +870,7 @@
 		{
 			"name": "Davil Starsong",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 199,
 			"size": [
@@ -973,6 +1008,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -995,12 +1033,16 @@
 				"CB"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflictSpell": [
 				"charmed",
 				"invisible",
 				"unconscious"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -1269,6 +1311,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"shortsword|phb"
+			],
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -1291,8 +1336,13 @@
 				"I"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -1301,6 +1351,7 @@
 		{
 			"name": "Durnan",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 203,
 			"size": [
@@ -1412,6 +1463,7 @@
 		{
 			"name": "Elzerina Cassalanter",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 115,
 			"size": [
@@ -1449,11 +1501,13 @@
 			"languageTags": [
 				"C"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Embric",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 32,
 			"_copy": {
@@ -1519,6 +1573,7 @@
 		{
 			"name": "Emmek Frewn",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 42,
 			"_copy": {
@@ -1628,6 +1683,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -1645,7 +1703,11 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -1653,6 +1715,7 @@
 		{
 			"name": "Fala Lefaliir",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 32,
 			"size": [
@@ -1757,6 +1820,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -1779,10 +1845,15 @@
 				"CD"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflictSpell": [
 				"restrained"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"strength"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -1808,6 +1879,7 @@
 		{
 			"name": "Fel'rekt Lafeen",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 67,
 			"_copy": {
@@ -1831,6 +1903,7 @@
 		{
 			"name": "Floon Blagmaar",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 202,
 			"_copy": {
@@ -2016,6 +2089,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb",
+				"lance|phb"
+			],
 			"languageTags": [
 				"C",
 				"X"
@@ -2024,6 +2101,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RCH"
 			],
@@ -2034,6 +2112,7 @@
 		{
 			"name": "Grinda Garloth",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 65,
 			"_copy": {
@@ -2070,11 +2149,13 @@
 				"H",
 				"U"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Grum'shar",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 29,
 			"size": [
@@ -2161,6 +2242,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -2178,7 +2262,11 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -2186,6 +2274,7 @@
 		{
 			"name": "Hester Barch",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 83,
 			"_copy": {
@@ -2411,6 +2500,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dart|phb"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -2439,6 +2531,16 @@
 			"conditionInflictSpell": [
 				"deafened"
 			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"strength"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity",
+				"wisdom"
+			],
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -2446,6 +2548,7 @@
 		{
 			"name": "Hrabbaz",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 205,
 			"size": [
@@ -2529,6 +2632,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"morningstar|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -2543,6 +2649,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -2552,6 +2659,7 @@
 		{
 			"name": "Istrid Horn",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 199,
 			"size": [
@@ -2702,6 +2810,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"maul|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -2725,12 +2836,18 @@
 				"CC"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflictSpell": [
 				"deafened",
 				"incapacitated",
 				"paralyzed"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -2739,6 +2856,7 @@
 		{
 			"name": "Jalester Silvermane",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 205,
 			"size": [
@@ -2832,6 +2950,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb",
+				"longsword|phb"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -2844,6 +2966,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -2853,6 +2976,7 @@
 		{
 			"name": "Jandar Chergoba",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 116,
 			"size": [
@@ -2971,6 +3095,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -2994,11 +3121,16 @@
 				"I"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflictSpell": [
 				"paralyzed",
 				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -3172,6 +3304,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"+3 rapier|dmg"
+			],
 			"traitTags": [
 				"Fey Ancestry",
 				"Legendary Resistances",
@@ -3199,9 +3334,14 @@
 				"I"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RW",
 				"THW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -3210,6 +3350,7 @@
 		{
 			"name": "Jenks",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 63,
 			"size": [
@@ -3241,11 +3382,13 @@
 			"cha": 10,
 			"passive": 10,
 			"cr": "Unknown",
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Kaevja Cynavern",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 158,
 			"size": [
@@ -3373,6 +3516,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"languageTags": [
 				"C",
 				"D",
@@ -3392,7 +3538,13 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -3400,6 +3552,7 @@
 		{
 			"name": "Kalain",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 89,
 			"size": [
@@ -3523,6 +3676,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"shortbow|phb",
+				"shortsword|phb"
+			],
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -3544,6 +3701,7 @@
 				"CB"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
@@ -3553,12 +3711,20 @@
 				"invisible",
 				"unconscious"
 			],
+			"savingThrowForced": [
+				"charisma"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Krebbyg Masq'il'yr",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 67,
 			"_copy": {
@@ -3582,6 +3748,7 @@
 		{
 			"name": "Lady Gondafrey",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 152,
 			"size": [
@@ -3694,6 +3861,7 @@
 		{
 			"name": "Laeral Silverhand",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 207,
 			"size": [
@@ -3958,6 +4126,17 @@
 				"restrained",
 				"stunned"
 			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"intelligence",
+				"wisdom"
+			],
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -3965,6 +4144,7 @@
 		{
 			"name": "Laiba \"Nana\" Rosse",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 116,
 			"size": [
@@ -4083,6 +4263,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -4106,11 +4289,16 @@
 				"I"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflictSpell": [
 				"paralyzed",
 				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -4118,6 +4306,7 @@
 		{
 			"name": "Losser Mirklav",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 85,
 			"size": [
@@ -4249,6 +4438,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"languageTags": [
 				"C",
 				"H"
@@ -4267,7 +4459,13 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -4275,6 +4473,7 @@
 		{
 			"name": "Magister Umbero Zastro",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 82,
 			"size": [
@@ -4344,6 +4543,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"rapier|phb"
+			],
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -4361,6 +4563,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -4369,6 +4572,7 @@
 		{
 			"name": "Manafret Cherryport",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 149,
 			"size": [
@@ -4500,6 +4704,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"languageTags": [
 				"C",
 				"H"
@@ -4517,10 +4724,16 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflictSpell": [
 				"invisible"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -4528,6 +4741,7 @@
 		{
 			"name": "Manshoon",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 209,
 			"size": [
@@ -4740,6 +4954,12 @@
 			"miscTags": [
 				"MW"
 			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"intelligence",
+				"wisdom"
+			],
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -4899,12 +5119,18 @@
 			"miscTags": [
 				"MW"
 			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Mattrim \"Threestrings\" Mereg",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 20,
 			"_copy": {
@@ -4934,6 +5160,7 @@
 		{
 			"name": "Maxeene",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 37,
 			"size": [
@@ -5037,6 +5264,7 @@
 		{
 			"name": "Melannor Fellbranch",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 36,
 			"size": [
@@ -5137,6 +5365,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -5158,10 +5389,15 @@
 				"CD"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflictSpell": [
 				"restrained"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"strength"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -5169,6 +5405,7 @@
 		{
 			"name": "Meloon Wardragon",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 210,
 			"size": [
@@ -5257,6 +5494,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"azuredge|wdh"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -5278,6 +5518,7 @@
 		{
 			"name": "Mirt",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 211,
 			"size": [
@@ -5385,6 +5626,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"+1 dagger|dmg",
+				"+1 longsword|dmg"
+			],
 			"traitTags": [
 				"Brute",
 				"Sneak Attack"
@@ -5402,6 +5647,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -5411,6 +5657,7 @@
 		{
 			"name": "Nar'l Xibrindas",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 211,
 			"_copy": {
@@ -5441,6 +5688,7 @@
 		{
 			"name": "Nat",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 63,
 			"size": [
@@ -5472,11 +5720,13 @@
 			"cha": 10,
 			"passive": 10,
 			"cr": "Unknown",
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Nihiloor",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 212,
 			"_copy": {
@@ -5491,7 +5741,8 @@
 					}
 				}
 			},
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Nimblewright",
@@ -5611,6 +5862,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb",
+				"rapier|phb"
+			],
 			"traitTags": [
 				"Magic Resistance",
 				"Magic Weapons"
@@ -5629,6 +5884,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -5638,6 +5894,7 @@
 		{
 			"name": "Noska Ur'gray",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 213,
 			"size": [
@@ -5729,6 +5986,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"heavy crossbow|phb",
+				"mace|phb"
+			],
 			"traitTags": [
 				"Pack Tactics"
 			],
@@ -5747,6 +6008,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
@@ -5758,6 +6020,7 @@
 		{
 			"name": "Obaya Uday",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 20,
 			"_copy": {
@@ -5787,6 +6050,7 @@
 		{
 			"name": "Obliteros",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 66,
 			"size": [
@@ -5873,6 +6137,7 @@
 		{
 			"name": "Orond Gralhund",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 213,
 			"size": [
@@ -5938,6 +6203,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"rapier|phb"
+			],
 			"actionTags": [
 				"Parry"
 			],
@@ -5948,6 +6216,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -5957,6 +6226,7 @@
 		{
 			"name": "Osvaldo Cassalanter",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 124,
 			"_copy": {
@@ -5971,11 +6241,13 @@
 					}
 				}
 			},
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Ott Steeltoes",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 214,
 			"size": [
@@ -6050,6 +6322,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"scimitar|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -6061,6 +6336,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -6154,6 +6430,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"languageTags": [
 				"C",
 				"D"
@@ -6168,7 +6447,11 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -6176,6 +6459,7 @@
 		{
 			"name": "Remallia Haventree",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 214,
 			"size": [
@@ -6334,6 +6618,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -6360,6 +6647,7 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflictSpell": [
@@ -6371,12 +6659,20 @@
 				"stunned",
 				"unconscious"
 			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"intelligence",
+				"wisdom"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Renaer Neverember",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 215,
 			"size": [
@@ -6460,6 +6756,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb",
+				"rapier|phb"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -6470,6 +6770,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -6479,6 +6780,7 @@
 		{
 			"name": "Rishaal the Page-Turner",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 33,
 			"size": [
@@ -6603,6 +6905,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"actionTags": [
 				"Breath Weapon"
 			],
@@ -6626,7 +6931,16 @@
 			],
 			"miscTags": [
 				"AOE",
+				"MLW",
 				"MW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -6634,6 +6948,7 @@
 		{
 			"name": "Saeth Cromley",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 216,
 			"size": [
@@ -6709,6 +7024,11 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"heavy crossbow|phb",
+				"longsword|phb",
+				"shortsword|phb"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -6720,6 +7040,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
@@ -6731,6 +7052,7 @@
 		{
 			"name": "Samara Strongbones",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 104,
 			"_copy": {
@@ -6876,6 +7198,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"hand crossbow|phb",
+				"shortsword|phb"
+			],
 			"traitTags": [
 				"Keen Senses",
 				"Shapechanger"
@@ -6895,9 +7221,13 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
+			],
+			"savingThrowForced": [
+				"constitution"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -6905,6 +7235,7 @@
 		{
 			"name": "Skeemo Weirdbottle",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 200,
 			"size": [
@@ -7034,6 +7365,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -7056,7 +7390,13 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -7065,6 +7405,7 @@
 		{
 			"name": "Soluun Xibrindas",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 202,
 			"size": [
@@ -7191,6 +7532,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"scimitar|phb"
+			],
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -7214,8 +7558,13 @@
 				"I"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -7223,6 +7572,7 @@
 		{
 			"name": "Squiddly",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 63,
 			"size": [
@@ -7254,7 +7604,8 @@
 			"cha": 10,
 			"passive": 10,
 			"cr": "Unknown",
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Swarm of Books",
@@ -7456,6 +7807,7 @@
 		{
 			"name": "Sylgar",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 220,
 			"size": [
@@ -7521,6 +7873,7 @@
 		{
 			"name": "Talisolvanar \"Tally\" Fellbranch",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 32,
 			"size": [
@@ -7577,6 +7930,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"club|phb"
+			],
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -7591,6 +7947,7 @@
 				"B"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -7599,6 +7956,7 @@
 		{
 			"name": "Tashlyn Yafeera",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 200,
 			"size": [
@@ -7688,6 +8046,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"greatsword|phb",
+				"shortbow|phb"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -7699,6 +8061,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
@@ -7710,6 +8073,7 @@
 		{
 			"name": "Terenzio Cassalanter",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 115,
 			"size": [
@@ -7752,6 +8116,7 @@
 		{
 			"name": "Thorvin Twinbeard",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 216,
 			"size": [
@@ -7811,6 +8176,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"club|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -7822,6 +8190,7 @@
 				"B"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -7831,6 +8200,7 @@
 		{
 			"name": "Thrakkus",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 89,
 			"size": [
@@ -7898,6 +8268,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"greataxe|phb"
+			],
 			"traitTags": [
 				"Reckless"
 			],
@@ -7914,7 +8287,11 @@
 			],
 			"miscTags": [
 				"AOE",
+				"MLW",
 				"MW"
+			],
+			"savingThrowForced": [
+				"dexterity"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -7922,6 +8299,7 @@
 		{
 			"name": "Tissina Khyret",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 116,
 			"size": [
@@ -8040,6 +8418,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -8063,11 +8444,16 @@
 				"I"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflictSpell": [
 				"paralyzed",
 				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -8075,6 +8461,7 @@
 		{
 			"name": "Urstul Floxin",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 216,
 			"size": [
@@ -8138,7 +8525,7 @@
 				{
 					"name": "Assassinate",
 					"entries": [
-						"During its first turn, Urstul has advantage on attack rolls against any creature that hasn't taken a turn. Any hit Urstul scores against a surprised creature is a critical hit."
+						"During its first turn, Urstul has advantage on attack rolls against any creature that hasn't taken a turn. Any hit Urstul scores against a {@quickref Surprise|PHB|3|0|surprised} creature is a critical hit."
 					]
 				},
 				{
@@ -8174,6 +8561,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"light crossbow|phb",
+				"shortsword|phb"
+			],
 			"traitTags": [
 				"Sneak Attack"
 			],
@@ -8190,9 +8581,13 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
+			],
+			"savingThrowForced": [
+				"constitution"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -8201,6 +8596,7 @@
 		{
 			"name": "Vajra Safahr",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 217,
 			"size": [
@@ -8406,6 +8802,12 @@
 			"miscTags": [
 				"MW"
 			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -8413,6 +8815,7 @@
 		{
 			"name": "Valetta",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 47,
 			"size": [
@@ -8524,6 +8927,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"mace|phb"
+			],
 			"languageTags": [
 				"C",
 				"DR"
@@ -8542,7 +8948,15 @@
 			],
 			"miscTags": [
 				"AOE",
+				"MLW",
 				"MW"
+			],
+			"savingThrowForced": [
+				"dexterity"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -8550,6 +8964,7 @@
 		{
 			"name": "Victoro Cassalanter",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 218,
 			"size": [
@@ -8748,6 +9163,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"rapier|phb"
+			],
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -8777,6 +9195,7 @@
 				"CC"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflict": [
@@ -8790,12 +9209,23 @@
 				"prone",
 				"stunned"
 			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Vincent Trench",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 32,
 			"_copy": {
@@ -8940,6 +9370,9 @@
 				"MW",
 				"RW"
 			],
+			"savingThrowForced": [
+				"dexterity"
+			],
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -8947,6 +9380,7 @@
 		{
 			"name": "Willifort Crowelle",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 62,
 			"_copy": {
@@ -8966,6 +9400,7 @@
 		{
 			"name": "Xanathar",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 220,
 			"_copy": {
@@ -8993,11 +9428,13 @@
 				}
 			},
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Yagra Stonefist",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 20,
 			"size": [
@@ -9085,6 +9522,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"heavy crossbow|phb",
+				"mace|phb"
+			],
 			"traitTags": [
 				"Pack Tactics"
 			],
@@ -9103,6 +9544,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
@@ -9114,6 +9556,7 @@
 		{
 			"name": "Yalah Gralhund",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 220,
 			"size": [
@@ -9180,6 +9623,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"rapier|phb"
+			],
 			"actionTags": [
 				"Parry"
 			],
@@ -9191,6 +9637,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -9200,6 +9647,7 @@
 		{
 			"name": "Yorn",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 150,
 			"size": [
@@ -9282,6 +9730,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"heavy crossbow|phb",
+				"mace|phb"
+			],
 			"traitTags": [
 				"Pack Tactics"
 			],
@@ -9300,6 +9752,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
@@ -9410,6 +9863,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dart|phb"
+			],
 			"actionTags": [
 				"Multiattack"
 			],
@@ -9430,12 +9886,18 @@
 				"prone",
 				"stunned"
 			],
+			"savingThrowForced": [
+				"constitution",
+				"dexterity",
+				"strength"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Ziraj the Hunter",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "WDH",
 			"page": 201,
 			"size": [
@@ -9550,6 +10012,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"glaive|phb",
+				"oversized longbow|wdh"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -9572,6 +10038,7 @@
 				"CP"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
@@ -9582,6 +10049,14 @@
 			"conditionInflictSpell": [
 				"blinded",
 				"prone"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"strength",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true,

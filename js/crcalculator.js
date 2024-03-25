@@ -6,7 +6,10 @@ let msbcr;
 let monsterFeatures;
 
 window.addEventListener("load", async () => {
-	await BrewUtil2.pInit();
+	await Promise.all([
+		PrereleaseUtil.pInit(),
+		BrewUtil2.pInit(),
+	]);
 	ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
 	msbcr = await DataUtil.loadJSON(MONSTER_STATS_BY_CR_JSON_URL);
 	const mfData = await DataUtil.loadJSON(MONSTER_FEATURES_JSON_URL);
@@ -90,7 +93,7 @@ function addMonsterFeatures (mfData) {
 				</div>
 				<div class="col-2">${f.name}</div>
 				<div class="col-2">${Renderer.get().render(`{@creature ${f.example}}`)}</div>
-				<div class="col-7"><span title="${effectOnCr.join(", ")}">${f.effect}</span></div>
+				<div class="col-7"><span title="${effectOnCr.join(", ")}">${Renderer.get().render(f.effect)}</span></div>
 			</label>
 		`);
 	});

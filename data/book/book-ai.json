@@ -9,14 +9,15 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "book/AI/000-01-01.png"
+						"path": "book/AI/000-01-01.webp"
 					},
 					"width": 1522,
-					"height": 1054
+					"height": 1054,
+					"credit": "Klaus Pillon"
 				},
 				"Acquisitions Incorporated was founded in Seattle, Washington, in a time spoken of in only hushed tones: the year 2009. It first saw life as a podcast, which, at the time, was an unusual way to play Dungeons & Dragons. The intervening decade saw Acq Inc take on many forms\u2014streams, recorded content, comics, and, of course, live roleplaying shows. While these are all now completely normal ways to discover and enjoy D&D, back then, not so much. We just did it because it seemed like a cool idea, and ten years later, it seems like maybe we were right. Today, Acq Inc's adventures continue, dutifully chronicled online at acq-inc.com.",
 				"Our intention with Acquisitions Incorporated was to bring dark office comedy to a world of swords, sorcery, dungeons, and (dare we say) dragons. This book, created in concert with Wizards of the Coast, sets you up for success in your own fantasy-business endeavors. Chapter 1 provides an orientation for new franchise members, detailing how to start a game and play the Acquisitions Incorporated way. {@book Chapter 2|AI|1} explores the various positions within an Acq Inc franchise, introducing a variety of roles vital to an adventuring enterprise's success. {@book Chapter 3|AI|2} delves into backgrounds for Acq Inc franchise members, entrenching company goals at the core of their beings. In {@adventure Chapter 4|OoW|0}, all this comes together in an adventure taking characters from level 1 to 6, establishing a party's claim on a world they've begun to explore and strip-mine for profit.",
-				"Following these chapters, {@book appendix A|AI|3} presents stalwarts of the Acquisitions Incorporated world, founding members and characters from the company's ongoing adventures. {@book Appendix B|AI|11} details foes, from terrifying deep crows to infamous keg robots. {@book Appendices C|AI|12}, {@book D|AI|13}, and {@book E|AI|14} conclude this guide with a variety of Acq Inc tools and treasures, from vehicles like the {@vehicle battle balloon|AI} to the mighty {@item Orrery of the Wanderer|AI}.",
+				"Following these chapters, {@book appendix A|AI|4} presents stalwarts of the Acquisitions Incorporated world, founding members and characters from the company's ongoing adventures. {@book Appendix B|AI|11} details foes, from terrifying deep crows to infamous keg robots. {@book Appendices C|AI|12}, {@book D|AI|13}, and {@book E|AI|14} conclude this guide with a variety of Acq Inc tools and treasures, from vehicles like the {@vehicle battle balloon|AI} to the mighty {@item Orrery of the Wanderer|AI}.",
 				"Many hands worked diligently throughout the process of creating the Acquisitions Incorporated campaign and this resulting book. If you put your ear very close to the pages, you will hear us whisper, \"thank you.\"",
 				{
 					"type": "section",
@@ -58,10 +59,11 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "book/AI/001-01-02.png"
+								"path": "book/AI/001-01-02.webp"
 							},
 							"width": 613,
-							"height": 1000
+							"height": 1000,
+							"credit": "Aviv Or"
 						},
 						"Throughout history, some people have had things and other people have wanted those things. But where most would gaze upon that arrangement and see an inescapable life of unfulfillment, {@creature Omin Dran|AI|Ominifis Hereward \"Omin\" Dran} saw a business opportunity. Thus was Acquisitions Incorporated born. In the years since, Omin and longtime employee (though less-longtime friend) {@creature Jim Darkmagic|AI|James Winifred \"Jim\" Darkmagic III} have turned a talent for redistribution of property into a reputation as the multiverse's premier adventurers for hire.",
 						"{@creature Omin Dran|AI}, CEO of Acquisitions Incorporated and war priest of Tymora, is the very model of the modern Faerûn business mien. He prioritizes his responsibilities first to his shareholders (which is to say, himself); second to his goddess; and then at some later stage to the well-being of his employees. It's definitely not third. But it's up there somewhere.",
@@ -378,10 +380,11 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "book/AI/002-02-01.png"
+						"path": "book/AI/002-02-01.webp"
 					},
 					"width": 1545,
-					"height": 1000
+					"height": 1000,
+					"credit": "Daarken"
 				},
 				"As a run-of-the-dungeon adventurer, your character might kick through countless locked doors, lay down ancient magics, or send any number of monsters to the afterlife in the pursuit of fame and treasure. But when you take your place as part of an Acquisitions Incorporated franchise, you become something more than a mere hero. As a member of an elite group standing on the cutting edge of the adventuring business, the brand precedes you. And sure, sometimes the blades on the cutting edge are kind of sharp. But with Head Office at your back, you know you have the best tools in the industry at your disposal. And maybe the basic funeral packages Acq Inc offers aren't that great, but there are some tasteful upgrades you might consider.",
 				"This chapter introduces the Acquisitions Incorporated franchise and the rules for running it. Franchise benefits are organized by level tier, and include an ever-expanding business territory, wide ranges of options and upgrades for a franchise headquarters, and more. This chapter also introduces company positions\u2014a new set of rules for franchise characters granting access to unique, tier-based abilities that can help a party stand out in a crowded marketplace. And because taking a vacation is no excuse for diminished returns, an Acquisitions Incorporated franchise can make use of expanded rules for downtime and franchise activities, allowing players to help shape the business and the narrative of the campaign even when they aren't in the field.",
@@ -517,10 +520,11 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/003-02-02.png"
+										"path": "book/AI/003-02-02.webp"
 									},
 									"width": 791,
-									"height": 1000
+									"height": 1000,
+									"credit": "Aviv Or"
 								},
 								"Each franchise rank grants a number of new staff members who live in the franchise headquarters or within its geographic scope. The cost of maintaining staff is included in a franchise's costs. Each staff member has a proficiency bonus equal to 2 + the franchise's rank. For skilled hirelings or crew, the DM might substitute NPC statistics when that seems appropriate. Each time a franchise gains a rank, existing staff members can be gifted with early retirement (that is, fired), and replaced alongside new hires that fit the franchise's needs.",
 								"A franchise might engage all kinds of hirelings and agents over the course of a campaign, but specialized franchise staff fall into four different categories.",
@@ -580,11 +584,12 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/004-02-03.png"
+												"path": "book/AI/004-02-03.webp"
 											},
-											"title": "HAPPY FRANCHISE STAFF",
+											"title": "Happy Franchise Staff",
 											"width": 792,
-											"height": 1000
+											"height": 1000,
+											"credit": "Aviv Or"
 										},
 										"A skilled hireling has one or more skill, weapon, or tool proficiencies. A franchise can request skilled hirelings when needed (up to the maximum allowed by franchise rank), with the players describing the concept behind the hirelings and selecting one proficiency for each. The DM can then customize the hirelings as desired, perhaps by adding additional proficiencies or adjusting their combat statistics.",
 										"Skilled hirelings can be fired and hired as needed. A franchise might bring on a couple of thugs to act as distraction during a street fair, then release those NPCs to hire a different set of skilled hirelings to conduct franchise tasks and downtime activities.",
@@ -728,11 +733,12 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "book/AI/005-02-04.png"
+														"path": "book/AI/005-02-04.webp"
 													},
 													"title": "The \"C\" Team's Wagon Headquarters",
 													"width": 1546,
-													"height": 1000
+													"height": 1000,
+													"credit": "Michele Giorgi"
 												}
 											],
 											"id": "023"
@@ -1257,10 +1263,11 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/006-02-05.png"
+												"path": "book/AI/006-02-05.webp"
 											},
 											"width": 773,
-											"height": 1000
+											"height": 1000,
+											"credit": "Aviv Or"
 										},
 										"If your tale is told with reverence and precision, you and up to six other creatures plus their gear (including vehicles or mounts) become encircled in a magical bubble and are pulled into the {@book Border Ethereal|DMG|2|Border Ethereal} (see chapter 2 of the {@book Dungeon Master's Guide|DMG}). During the ritual, you tell a story of your future journey, relating details of what will be seen en route. The DM can choose to add to the story, imparting additional details or planting seeds for future adventures. If you wish, the ritual can be ended early, allowing the party to encounter what's being described by the DM.",
 										"Whenever the ritual is ended or interrupted by you, all the travelers arrive safely at the destination. At the DM's discretion, all the travelers affected by the ritual can gain the benefit of either a short rest or a long rest during the voyage."
@@ -1355,11 +1362,12 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/007-02-06.png"
+												"path": "book/AI/007-02-06.webp"
 											},
-											"title": "CARTOGRAPHER'S MAP CASE",
+											"title": "Cartographer's Map Case",
 											"width": 1164,
-											"height": 1000
+											"height": 1000,
+											"credit": "Chris Walton"
 										}
 									],
 									"id": "052"
@@ -1447,10 +1455,11 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/008-02-07.png"
+										"path": "book/AI/008-02-07.webp"
 									},
 									"width": 773,
-									"height": 1000
+									"height": 1000,
+									"credit": "Aviv Or"
 								},
 								"{@b Noteworthy Decisionists}: {@creature Donaar Blit'zen|AI} (\"C\" Team), Kelshi Annab",
 								"{@b Essential Functions}: Receive one extra vote on franchise matters; resolve interparty conflicts",
@@ -1622,11 +1631,12 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/009-02-08.png"
+												"path": "book/AI/009-02-08.webp"
 											},
-											"title": "COIN OF DECISIONRY",
+											"title": "Coin Of Decisionry",
 											"width": 1218,
-											"height": 1000
+											"height": 1000,
+											"credit": "Chris Walton"
 										}
 									],
 									"id": "05a"
@@ -1778,10 +1788,11 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/010-02-09.png"
+										"path": "book/AI/010-02-09.webp"
 									},
 									"width": 773,
-									"height": 1000
+									"height": 1000,
+									"credit": "Aviv Or"
 								},
 								"{@b Noteworthy Documancers}: {@creature Walnut Dankgrass|AI} (\"C\" Team), Brynshal Flume",
 								"{@b Essential Functions}: Record information; track job and quest details within the franchise",
@@ -1893,11 +1904,12 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/011-02-10.png"
+												"path": "book/AI/011-02-10.webp"
 											},
-											"title": "DOCUMANCY SATCHEL",
+											"title": "Documancy Satchel",
 											"width": 934,
-											"height": 1000
+											"height": 1000,
+											"credit": "Chris Walton"
 										}
 									],
 									"id": "065"
@@ -2037,10 +2049,11 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/012-02-11.png"
+												"path": "book/AI/012-02-11.webp"
 											},
 											"width": 773,
-											"height": 1000
+											"height": 1000,
+											"credit": "Aviv Or"
 										},
 										{
 											"type": "inset",
@@ -2129,11 +2142,12 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/013-02-12.png"
+												"path": "book/AI/013-02-12.webp"
 											},
-											"title": "LIVING LOOT SATCHEL",
+											"title": "Living Loot Satchel",
 											"width": 904,
-											"height": 1000
+											"height": 1000,
+											"credit": "Chris Walton"
 										},
 										"The {@item living loot satchel|AI} is a kind of magical being that safeguards the franchise's funds and valuables. Its innards are connected to a secure coffer within Head Office's vault in Waterdeep, to which the satchel periodically transfers the franchise's wealth. As an action, you can transfer any amount of your franchise funds back to your satchel with a successful DC 15 Dexterity ({@skill Sleight of Hand}) check."
 									],
@@ -2360,10 +2374,11 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/014-02-13.png"
+												"path": "book/AI/014-02-13.webp"
 											},
 											"width": 773,
-											"height": 1000
+											"height": 1000,
+											"credit": "Aviv Or"
 										}
 									],
 									"id": "074"
@@ -2401,11 +2416,12 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/015-02-14.png"
+												"path": "book/AI/015-02-14.webp"
 											},
-											"title": "WHISPER JAR",
+											"title": "Whisper Jar",
 											"width": 988,
-											"height": 1000
+											"height": 1000,
+											"credit": "Chris Walton"
 										}
 									],
 									"id": "076"
@@ -2626,10 +2642,11 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/016-02-15.png"
+												"path": "book/AI/016-02-15.webp"
 											},
 											"width": 773,
-											"height": 1000
+											"height": 1000,
+											"credit": "Aviv Or"
 										}
 									],
 									"id": "07f"
@@ -2667,11 +2684,12 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/017-02-16.png"
+												"path": "book/AI/017-02-16.webp"
 											},
-											"title": "TRAVEL ALCHEMICAL KIT",
+											"title": "Travel Alchemical Kit",
 											"width": 1070,
-											"height": 1000
+											"height": 1000,
+											"credit": "Chris Walton"
 										}
 									],
 									"id": "082"
@@ -2812,10 +2830,11 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/018-02-17.png"
+												"path": "book/AI/018-02-17.webp"
 											},
 											"width": 773,
-											"height": 1000
+											"height": 1000,
+											"credit": "Aviv Or"
 										}
 									],
 									"id": "087"
@@ -2900,11 +2919,12 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/019-02-18.png"
+												"path": "book/AI/019-02-18.webp"
 											},
-											"title": "OCCULTANT ABACUS",
+											"title": "Occultant Abacus",
 											"width": 858,
-											"height": 1000
+											"height": 1000,
+											"credit": "Chris Walton"
 										}
 									],
 									"id": "08b"
@@ -3123,10 +3143,11 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/020-02-19.png"
+												"path": "book/AI/020-02-19.webp"
 											},
 											"width": 773,
-											"height": 1000
+											"height": 1000,
+											"credit": "Aviv Or"
 										}
 									],
 									"id": "092"
@@ -3165,11 +3186,12 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/021-02-20.png"
+												"path": "book/AI/021-02-20.webp"
 											},
-											"title": "SENDING STONE",
+											"title": "Sending Stone",
 											"width": 916,
-											"height": 1000
+											"height": 1000,
+											"credit": "Chris Walton"
 										}
 									],
 									"id": "095"
@@ -3438,1271 +3460,20 @@
 								"The length of time required for these new downtime or franchise activities varies, from a number of days to one workweek (5 days) or more. All the normal rules for downtime must be followed by the character or NPC undertaking the downtime or franchise activity, including spending 8 hours each day engaged in that activity for the day to count toward the activity's completion. The one exception to this rule is that any costs for a franchise activity are paid for by the characters, even if franchise staff are executing the task.",
 								"Some downtime and franchise activities alter a franchise's monthly costs. See the \"{@book Franchise Advancement|AI|1|Franchise Advancement}\" section earlier in this chapter for how to determine a franchise's base monthly costs, and see the \"{@book Running a Franchise|AI|1|Running a Franchise}\" section below for more information on how that activity modifies the base cost.",
 								{
-									"type": "entries",
-									"name": "Explore Territory",
-									"page": 37,
-									"entries": [
-										"No matter how densely populated or remote and wild the territory in which a franchise is licensed to operate, that territory has secrets. Characters and franchise staff can explore their licensed territory in search of useful features, hidden lairs, resources, and creatures that can be engaged in beneficial service. (Or, you know, sold for parts. If you're okay with that). Exploration can be done any number of times in a franchise's territory, representing new areas being explored, new discoveries, or elements that have changed since the last exploration.",
-										{
-											"type": "entries",
-											"name": "Resources",
-											"page": 37,
-											"entries": [
-												"Exploring a portion of a licensed territory requires at least one workweek of effort and incurs 200 gp per franchise rank in expenses. Spending more time and money increases the chance that the expedition finds something of use to the franchise."
-											],
-											"id": "0ac"
-										},
-										{
-											"type": "entries",
-											"name": "Resolution",
-											"page": 37,
-											"entries": [
-												"A character or staff member directing the expedition makes a Wisdom ({@skill Survival}) check to determine the outcome. This check gains a +2 bonus if a character with the cartographer or occultant position is part of the expedition, a +1 bonus for each workweek beyond the first that is spent exploring, and a +1 bonus for every additional 200 gp spent over the baseline expenses. A maximum bonus of +10 can be applied to this check. The total of the check determines the outcome, as shown on the Exploration Discoveries table.",
-												{
-													"type": "table",
-													"caption": "Exploration Discoveries",
-													"colStyles": [
-														"col-2 text-center",
-														"col-10"
-													],
-													"colLabels": [
-														"Check Total",
-														"Discovery"
-													],
-													"rows": [
-														[
-															"1\u20135",
-															"Major threat*"
-														],
-														[
-															"6\u201310",
-															"Minor threat*"
-														],
-														[
-															"11\u201315",
-															"No discovery of note"
-														],
-														[
-															"16\u201320",
-															"Natural feature"
-														],
-														[
-															"21\u201325",
-															"New customers"
-														],
-														[
-															"26\u201330",
-															"Ally or useful monster"
-														],
-														[
-															"31+",
-															"Expanded benefit"
-														]
-													],
-													"footnotes": [
-														"*Might involve a rival"
-													]
-												}
-											],
-											"id": "0ad"
-										},
-										{
-											"type": "entries",
-											"name": "Major Threat",
-											"page": 38,
-											"entries": [
-												"A result on the table indicating a major threat represents a discovery, event, or entity that might completely undo a franchise's ability to do business\u2014or destroy it altogether. Such threats might include the discovery of a massing orc tribe, or a dragon entering the area to raid the franchise's trade routes. The franchise's monthly costs increase by 50 percent until the threat is resolved, as determined by the DM."
-											],
-											"id": "0ae"
-										},
-										{
-											"type": "entries",
-											"name": "Minor Threat",
-											"page": 38,
-											"entries": [
-												"A minor threat to the franchise involves uncovering a danger that can disrupt the characters' ability to conduct business effectively. Such threats might arise from stumbling upon the lair of a monster, learning of the machinations of a noble, or discovering a rival's outpost. The franchise's monthly costs increase by 25 percent until the threat is resolved, as determined by the DM."
-											],
-											"id": "0af"
-										},
-										{
-											"type": "entries",
-											"name": "Natural Feature",
-											"page": 38,
-											"entries": [
-												"The expedition could locate timber, precious metals, or other valuable natural resources; a feature that serves as a lookout or offers defensive value; a location that can serve as a safe house; or the like. Valuable resources lower a franchise's monthly costs by 25 percent for {@dice 1d4 + 1} months. Other natural features can offer material benefits in future gaming sessions. For example, a tall spire of rock could serve as a watchtower, allowing the franchise to gain advance warning of any large-scale forces moving through their territory. A cave network acting as a safe house could allow the franchise to conceal goods or people in times of trouble."
-											],
-											"id": "0b0"
-										},
-										{
-											"type": "entries",
-											"name": "New Customers",
-											"page": 38,
-											"entries": [
-												"A new settlement is discovered in the territory, and the people there are eager to deal. These could be newcomers settling the area or a previously unnoticed village or group of farmsteads. The presence of new customers lowers franchise costs by 25 percent for {@dice 2d4} months before rivals catch wind of them."
-											],
-											"id": "0b1"
-										},
-										{
-											"type": "entries",
-											"name": "Ally or Useful Monster",
-											"page": 38,
-											"entries": [
-												"The dwelling of a useful ally, such as a sage or a former franchise member, is discovered. This ally can become a source of lore, providing insights into one or more campaign secrets\u2014for a low, low fee of 100 gp times the franchise tier for each secret. The party can also make one-time use of the ally to lower franchise costs by 50 percent for {@dice 1d4} months, after which the ally departs.",
-												"The expedition could instead locate a monster that is either willing to help the party or can be tamed. The challenge rating of the monster is typically equal to franchise rank, and providing for the monster's needs costs 100 gp per month. This monster could serve as a scout or spy, alerting the franchise to danger in its territory. Or it could serve as a mount or guardian and be based in the franchise headquarters. Such a monster remains with the franchise as long as its costs are covered and it is treated well."
-											],
-											"id": "0b2"
-										},
-										{
-											"type": "entries",
-											"name": "Expanded Benefit",
-											"page": 38,
-											"entries": [
-												"The DM chooses whether the expedition turns up a natural feature, new customers, or an ally or useful monster, then increases the benefit or reduces the cost of that discovery. Natural resources might be found in greater abundance, an ally might provide secrets for half the normal fee, a monster might be of a higher challenge rating than normal, and so on."
-											],
-											"id": "0b3"
-										},
-										{
-											"type": "entries",
-											"name": "Complications",
-											"page": 38,
-											"entries": [
-												"A result of 1\u201310 on the Exploration Discoveries table is its own complication, but the DM can add unexpected side effects to a successful result by choosing from or rolling on the Explore Territory Complications table.",
-												{
-													"type": "table",
-													"caption": "Explore Territory Complications",
-													"colLabels": [
-														"d6",
-														"Complication"
-													],
-													"colStyles": [
-														"text-center col-2",
-														"col-10"
-													],
-													"rows": [
-														[
-															"1",
-															"Within 1 month, the characters find legal documents indicating the beneficial element is owned by or sworn to serve someone else.*"
-														],
-														[
-															"2",
-															"One or more staff members go missing during the exploration activity. Their fate is a mystery the characters must resolve.*"
-														],
-														[
-															"3",
-															"The beneficial element has a nefarious past, bears a curse, or comes with a dark secret."
-														],
-														[
-															"4",
-															"The beneficial element is short-lived, ending with little notice. Allies might suddenly leave, or a natural feature could be destroyed by a storm."
-														],
-														[
-															"5",
-															"Outsiders are drawn to the beneficial element, getting in the way of the franchise's operations.*"
-														],
-														[
-															"6",
-															"Bad luck seems to follow anyone interacting with the beneficial element."
-														]
-													],
-													"footnotes": [
-														"*Might involve a rival"
-													]
-												}
-											],
-											"id": "0b4"
-										}
-									],
-									"id": "0ab"
-								},
-								{
-									"type": "entries",
-									"name": "Franchise Restructuring",
-									"page": 38,
-									"entries": [
-										"A growing franchise often needs fine-tuning to improve its operations and remain lean and capable. Efficiency measures, bold new paradigms, shiny business plans, internal audits, and inventory management can be key to new profits. The best plans often end up creating an auxiliary market for \"how-to\" books, such as {@i Can't-Miss Principles of Franchise Reinvisionary Strategery} and {@i What to Inquire about How to Acquire}. In some campaigns, Head Office might periodically require this task to ensure that a franchise grows effectively.",
-										{
-											"type": "entries",
-											"name": "Resources",
-											"page": 38,
-											"entries": [
-												"Boldly restructuring a franchise requires at least two workweeks of effort. The franchise must also spend 100 gp per franchise rank in expenses. Spending more time and money increases the characters' chance to effectively restructure their franchise."
-											],
-											"id": "0b6"
-										},
-										{
-											"type": "entries",
-											"name": "Resolution",
-											"page": 38,
-											"entries": [
-												"Characters or staff members in charge of the restructuring make two ability checks with a DC of 13 + franchise rank. First, a character or staff member must succeed at either an Intelligence ({@skill History}) or Wisdom ({@skill Insight}) check to select the right vision or identify the right areas to innovate. This check gains a +1 bonus for every character with the loremonger or hoardsperson position in the franchise, and an additional +1 bonus if the character making the check has one of those positions.",
-												"A character or staff member must then make a Charisma ({@skill Deception}, {@skill Performance}, or {@skill Persuasion}) check to get all other characters and staff on board with the prescribed changes. This check gains a +1 bonus for each decisionist or secretarian in the franchise, and an additional +1 bonus if the character making the check has one of those positions.",
-												"All checks gain a +1 bonus for every two workweeks beyond the initial time that is spent undertaking this activity. Each check also gains a +1 bonus for every additional 100 gp spent over the baseline expenses. A maximum bonus of +10 can be applied to each check.",
-												"The total number of successes determines the outcome of the activity, as noted on the Franchise Restructuring table.",
-												{
-													"type": "table",
-													"caption": "Franchise Restructuring",
-													"colStyles": [
-														"col-2 text-center",
-														"col-10"
-													],
-													"colLabels": [
-														"Successes",
-														"Benefit"
-													],
-													"rows": [
-														[
-															"0",
-															"The restructuring plan is a failure. The franchise's monthly costs increase by 20 percent for 1 month."
-														],
-														[
-															"1",
-															"The restructuring plan provides minor benefits. The franchise's monthly costs decrease by 10 percent for {@dice 1d4} months."
-														],
-														[
-															"2",
-															"The restructuring plan provides strong benefits. The franchise's monthly costs decrease by 20 percent for {@dice 1d4} months."
-														]
-													]
-												}
-											],
-											"id": "0b7"
-										},
-										{
-											"type": "entries",
-											"name": "Complications",
-											"page": 39,
-											"entries": [
-												"A result of 0 successes typically indicates that the failed restructuring results in a complication. At the DM's discretion, even a successful outcome might have unexpected side effects. The DM can choose a complication or roll on the Franchise Restructuring Complications table.",
-												{
-													"type": "table",
-													"caption": "Franchise Restructuring Complications",
-													"colLabels": [
-														"d6",
-														"Complication"
-													],
-													"colStyles": [
-														"text-center col-2",
-														"col-10"
-													],
-													"rows": [
-														[
-															"1",
-															"The restructuring plan has too many buzzwords and acronyms. The resulting confusion sees shipments or staff sent to dangerous locations. A side trek adventure is required to recover the lost goods or personnel."
-														],
-														[
-															"2",
-															"The changes to the franchise alienate an important staff member, who takes one of the franchise's best practices or secrets to a rival.*"
-														],
-														[
-															"3",
-															"The search for efficiency uncovers a previously unrecognized issue, such as corruption, problems with staff dynamics, or influence from a rival.*"
-														],
-														[
-															"4",
-															"An audit reveals that one of the staff members was a spy, feeding secrets to a rival. The spy escapes, possibly inspiring a side trek adventure to catch them.*"
-														],
-														[
-															"5",
-															"The restructuring efforts produce lingering chaos. The next two times a check is made for a downtime or franchise activity in the campaign, the check is made with disadvantage."
-														],
-														[
-															"6",
-															"A staff member becomes outraged by the changes and secretly begins to undermine the franchise. The characters must uncover the culprit and decide how to deal with them.*"
-														]
-													],
-													"footnotes": [
-														"*Might involve a rival"
-													]
-												}
-											],
-											"id": "0b8"
-										}
-									],
-									"id": "0b5"
-								},
-								{
-									"type": "entries",
-									"name": "Headquarters Modification",
-									"page": 39,
-									"entries": [
-										"Major headquarters modifications are made as a regular part of franchise advancement (see \"{@book Franchise Advancement|AI|1|Franchise Advancement}\" earlier in this chapter). But it's sometimes desirable to update a previous modification in ways that don't provide any additional mechanical benefits.",
-										"Characters and franchise staff members can use this activity to modify an existing headquarters feature. This change is subject to DM approval, and is typically done within the same feature category, such as swapping one weapon option for another. In response to pressing need, the DM might allow a franchise to swap options between categories, such as losing a weapon option in favor of an arcane option. The DM can limit how often this activity is used.",
-										{
-											"type": "entries",
-											"name": "Resources",
-											"page": 39,
-											"entries": [
-												"Once a modification is approved, this activity requires the involvement of the franchise's majordomo and at least one other character or staff member. This team must dedicate at least three workweeks to this activity, and the franchise must spend 1,000 gp per franchise rank to cover expenses. The DM might also require a side trek to gather necessary materials or hire specialist labor before the activity can be commenced."
-											],
-											"id": "0ba"
-										},
-										{
-											"type": "entries",
-											"name": "Resolution",
-											"page": 39,
-											"entries": [
-												"One character or the majordomo acts as the lead for this activity, making an Intelligence ({@skill Arcana} or {@skill History}) check to draft the modifications. A character or the majordomo must then make two ability checks to complete the modifications, using either Strength ({@skill Athletics}) or an Intelligence check using appropriate tools. With DM approval, a different ability and skill appropriate for the modification can be substituted for any of the checks.",
-												"Each check receives a +1 bonus for every two staff participating who are skilled hirelings, and a +1 bonus if any participant has the cartographer, loremonger, or hoardsperson position. The number of successes is compared to the Headquarters Modification table.",
-												{
-													"type": "table",
-													"caption": "Headquarters Modification",
-													"colStyles": [
-														"col-2 text-center",
-														"col-10"
-													],
-													"colLabels": [
-														"Successes",
-														"Benefit"
-													],
-													"rows": [
-														[
-															"0",
-															"The modification fails, and the franchise incurs cost overruns of 1,000 gp per franchise rank."
-														],
-														[
-															"1",
-															"The modification fails, and the franchise incurs cost overruns of 500 gp per franchise rank. However, the cause of the failure is apparent, granting advantage on any future checks to perform the same modification."
-														],
-														[
-															"2",
-															"The modification succeeds but incurs a cost overrun of 100 gp per franchise rank. The modification also has a minor drawback, as determined by the DM."
-														],
-														[
-															"3",
-															"The modification succeeds with no cost overruns or drawbacks."
-														]
-													]
-												}
-											],
-											"id": "0bb"
-										},
-										{
-											"type": "entries",
-											"name": "Complications",
-											"page": 39,
-											"entries": [
-												"A result of 0 successes or 1 success automatically creates a complication. Other results might create a complication at the DM's determination. The DM can select a complication or roll on the Headquarters Modification Complications table.",
-												{
-													"type": "table",
-													"caption": "Headquarters Modification Complications",
-													"colLabels": [
-														"d6",
-														"Complication"
-													],
-													"colStyles": [
-														"text-center col-2",
-														"col-10"
-													],
-													"rows": [
-														[
-															"1",
-															"An accident during the modification injures a franchise staff member. That NPC's family demands compensation equal to 100 gp per franchise rank. It might be possible to instead appease the family by performing a service."
-														],
-														[
-															"2",
-															"A spy makes a copy of the plans for the modification, learning its function and taking that information back to a rival organization.*"
-														],
-														[
-															"3",
-															"The modification was based on information originating with a rival. If the modification failed, the plans were intentionally faulty. If it succeeded, the characters detected the fault, but must decide how to respond to the attempted sabotage.*"
-														],
-														[
-															"4",
-															"A local official insists that permits were needed for the modification, and demands payment or a favor to make the problem go away.*"
-														],
-														[
-															"5",
-															"The work causes the franchise headquarters to develop a quirk, such as strange noises, unwelcome smells, weird vibrations while mobile, and the like. Resolving the problem might require consulting a sage or an expert in headquarters construction."
-														],
-														[
-															"6",
-															"The modification work uncovers a previously unknown problem with the headquarters, such as a structural defect, a dormant monster, bodies interred in the foundations, a concealed cursed item, and so forth."
-														]
-													],
-													"footnotes": [
-														"*Might involve a rival"
-													]
-												},
-												{
-													"type": "image",
-													"href": {
-														"type": "internal",
-														"path": "book/AI/022-02-21.png"
-													},
-													"title": "THE MAGIC OF MARKETEERING",
-													"width": 792,
-													"height": 1000
-												}
-											],
-											"id": "0bc"
-										}
-									],
-									"id": "0b9"
-								},
-								{
-									"type": "entries",
-									"name": "Marketeering",
-									"page": 40,
-									"entries": [
-										"Every successful franchise knows that brands require constant management. Developing new markets, shaping catchy slogans, and surveying and engaging customers can all create new sources of revenue. Should you write and sell exciting chapbook serials based on the exploits of Omin, Jim, {@creature Môrgæn|AI}, and {@creature Viari|AI}? Should you sell a complex investment scheme to a city's guild masters? Should you create a branded stage production based on your franchise's exciting adventures, with a line of clothing to match? All those things and more are encompassed by the fine art of marketeering.",
-										{
-											"type": "entries",
-											"name": "Resources",
-											"page": 40,
-											"entries": [
-												"The players must first sketch out their marketeering plan and present it to the DM. A character or franchise staff member must spend at least one workweek to engage in marketeering, and must spend 100 gp per franchise rank in expenses. Spending more money increases the chance of the plan's success."
-											],
-											"id": "0be"
-										},
-										{
-											"type": "entries",
-											"name": "Resolution",
-											"page": 40,
-											"entries": [
-												"A marketeering effort requires three ability checks, representing drafting the campaign, launching the campaign, and managing its success. Any of the characters or staff members involved in the marketeering can make a check. The DM decides which abilities and skills are applicable, based on the marketeering plan. For example, a plan involving selling a new line of religious items might require an Intelligence ({@skill Religion}) check to draft the idea and develop the products, a Charisma ({@skill Deception}) check to convince local temples to promote the idea, and a Charisma ({@skill Persuasion}) check to ensure the plan receives continued support.",
-												"Each check gains a +1 bonus for each additional 100 gp per franchise rank spent above the baseline expenses. When additional gold is spent, the character making the checks determines which checks the bonuses apply to. Additional gold can be spent at any point in the process, allowing the franchise to put more effort into subsequent checks if earlier checks are less than successful. If the character making the check has the obviator or secretarian position, they receive an additional +1 bonus to each check. A maximum bonus of +5 can be applied to each check.",
-												"The DC of each check is determined randomly, reflecting the always-unpredictable conditions of the market. The DM rolls {@dice 2d10 + 5} for the DC, generating a separate result for each check. The total number of successes determines the outcome of the activity, as noted on the Marketeering table.",
-												{
-													"type": "table",
-													"caption": "Marketeering",
-													"colStyles": [
-														"col-2 text-center",
-														"col-10"
-													],
-													"colLabels": [
-														"Successes",
-														"Benefit"
-													],
-													"rows": [
-														[
-															"0",
-															"The marketeering plan fails. The franchise's monthly costs increase by 20 percent for 1 month."
-														],
-														[
-															"1",
-															"The marketeering plan provides no improvements or setbacks."
-														],
-														[
-															"2",
-															"The marketeering plan provides moderate benefits. The franchise's monthly costs decrease by 25 percent for 1 month."
-														],
-														[
-															"3",
-															"The marketeering plan is a complete success. The franchise's monthly costs decrease by 25 percent for 2 months."
-														]
-													]
-												}
-											],
-											"id": "0bf"
-										},
-										{
-											"type": "entries",
-											"name": "Complications",
-											"page": 40,
-											"entries": [
-												"A result of 0 successes or 1 success typically indicates that the marketeering plan incurs a complication. However, even a successful result can trigger a complication at the DM's determination. The DM can choose a complication or roll on the Marketeering Complications table.",
-												{
-													"type": "table",
-													"caption": "Marketeering Complications",
-													"colLabels": [
-														"d8",
-														"Complication"
-													],
-													"colStyles": [
-														"text-center col-2",
-														"col-10"
-													],
-													"rows": [
-														[
-															"1",
-															"The marketeering plan attracts the attention of Head Office, where someone absolutely hates it. A NPC is sent to oversee the franchise \"for a while,\" with an outcome determined by the DM.*"
-														],
-														[
-															"2",
-															"Marketeering materials go missing right before launch, forcing the franchise to recreate them at the last minute. This might incur additional baseline costs or affect the reduction of franchise costs, as the DM determines.*"
-														],
-														[
-															"3",
-															"Just as the marketeering plan is released to the public, the characters realize that a competing group released a surprisingly similar plan just a tenday previous. Customers now think the franchise is copying its rival.*"
-														],
-														[
-															"4",
-															"The marketeering's message alienates or offends a crucial demographic. Protests spring up, and the affected group demands reparations."
-														],
-														[
-															"5",
-															"A local official or noble begins to look into claims of deceptive advertising tactics or questionable hiring practices related to the marketeering plan.*"
-														],
-														[
-															"6",
-															"The marketeering plan creates great interest\u2014but unfortunately steers customers toward similar products or services offered by a competitor.*"
-														],
-														[
-															"7",
-															"The catchphrase or theme song of the marketeering campaign is a surprise hit, and everyone repeats it endlessly! Until they tire of it and begin blaming the franchise for mental trauma."
-														],
-														[
-															"8",
-															"The marketeering plan is undermined by rumors of a problem with the product or service, causing it to be dangerous to anyone using it.*"
-														]
-													],
-													"footnotes": [
-														"*Might involve a rival"
-													]
-												}
-											],
-											"id": "0c0"
-										}
-									],
-									"id": "0bd"
-								},
-								{
-									"type": "entries",
-									"name": "Philanthropic Enterprise",
-									"page": 41,
-									"entries": [
-										"It can feel great to give to charity and help those in need. Pretending to care about others can also be a great way to earn favor with governments and nobility, gain tax write-offs, or win over customers. Head Office might suggest (or even require) that a franchise undertake this activity if it has recently gained negative publicity or been discovered to engage in shady activities.",
-										"Franchise members should select a philanthropic cause related to a nearby area, settlement, or group of people. Example causes include such efforts as picking up trash from roads or forests, improving schools, and raising funds for victims of a recent disaster. (That last one is an especially good idea if the disaster was caused by the franchise). Success benefits the franchise by helping the selected cause\u2014or at least giving the appearance of having done so. Failure might worsen both the underlying issue and the franchise's reputation.",
-										{
-											"type": "entries",
-											"name": "Resources",
-											"page": 41,
-											"entries": [
-												"The philanthropic exercise activity requires at least one workweek of effort, and incurs 50 gp per franchise rank in expenses."
-											],
-											"id": "0c2"
-										},
-										{
-											"type": "entries",
-											"name": "Resolution",
-											"page": 41,
-											"entries": [
-												"One character or staff member involved in the philanthropic enterprise makes an ability check determined by the DM. A Charisma check using the character's choice of skill is often appropriate, but the DM might decide that a specific philanthropic approach requires a different ability and skill. A character with the documancer or occultant position gains a +1 bonus to the check. The total of the check determines the outcome, as shown on the Philanthropic Enterprise table.",
-												{
-													"type": "table",
-													"caption": "Philanthropic Enterprise",
-													"colStyles": [
-														"col-2 text-center",
-														"col-10"
-													],
-													"colLabels": [
-														"Check Total",
-														"Result"
-													],
-													"rows": [
-														[
-															"1\u20135",
-															"The philanthropic enterprise is a disaster. The cause is left severely worse off, and literally everyone blames the franchise."
-														],
-														[
-															"6\u201310",
-															"The cause shows no real improvement, and people are slow to accept the franchise's claims of wanting to help."
-														],
-														[
-															"11\u201315",
-															"The franchise is praised for its help in improving the chosen cause. Donations to the cause pour in, allowing the franchise to skim an honorarium of 200 gp."
-														],
-														[
-															"16\u201320",
-															"The cause shows serious improvement, and the franchise is heralded for its actions. Donations to the cause pour in, allowing the franchise to skim a management fee of 500 gp."
-														],
-														[
-															"21+",
-															"The cause shows remarkable improvement, and the franchise is credited for all but fully resolving the issue. Local officials provide a tax break, reducing the franchise's monthly costs by 20 percent for 2 months."
-														]
-													]
-												}
-											],
-											"id": "0c3"
-										},
-										{
-											"type": "entries",
-											"name": "Complications",
-											"page": 41,
-											"entries": [
-												"A result of 1\u20135 on the Philanthropic Enterprise table automatically generates a complication. But the DM can decide that even success might have drawbacks, either choosing or rolling for a complication on the Philanthropic Enterprise Complications table.",
-												{
-													"type": "quote",
-													"entries": [
-														"People give away their money? For no reason? But how will they buy ale and arrows?"
-													],
-													"by": "{@creature Môrgæn|AI}"
-												},
-												{
-													"type": "table",
-													"caption": "Philanthropic Enterprise Complications",
-													"colLabels": [
-														"d6",
-														"Complication"
-													],
-													"colStyles": [
-														"text-center col-2",
-														"col-10"
-													],
-													"rows": [
-														[
-															"1",
-															"The selected cause is secretly the purview of a thieves' guild or other criminal organization. The organization resents the franchise's efforts and decides to undermine the characters' future endeavors.*"
-														],
-														[
-															"2",
-															"A local reporter or official becomes convinced that the franchise's efforts are all about the characters' personal gain. The individual begins to monitor the franchise, and reports on any missteps.*"
-														],
-														[
-															"3",
-															"A group of individuals objects to the franchise's efforts, believing that the problem underlying the selected cause is part of the natural order. The group actively tries to convince others of the terrible side effects (real or otherwise) of the franchise's philanthropy.*"
-														],
-														[
-															"4",
-															"Another philanthropic group is already involved in the franchise's cause. That group tries to cast the franchise's efforts as ineffective and insincere.*"
-														],
-														[
-															"5",
-															"Hearing of the franchise's good works, people who are affected by some other issue requiring philanthropic assistance show up at franchise headquarters in huge numbers."
-														],
-														[
-															"6",
-															"Members of the franchise work with an established group to perform the philanthropic enterprise. But it soon becomes clear that the group is a sham\u2014and that local officials are looking into their activities. The characters need to fix the situation, or risk being implicated in scandal by association.*"
-														]
-													],
-													"footnotes": [
-														"*Might involve a rival"
-													]
-												}
-											],
-											"id": "0c4"
-										}
-									],
-									"id": "0c1"
-								},
-								{
-									"type": "entries",
-									"name": "Running a Franchise",
-									"page": 42,
-									"entries": [
-										"Running a business is one of the {@book downtime activities|DMG|6|Downtime Activities} presented in the {@book Dungeon Master's Guide|DMG}, but an Acquisitions Incorporated franchise is no mere business. This new downtime and franchise activity covers the many and varied duties necessary to keep a franchise running smoothly, and determines how well the characters and their staff manage those duties.",
-										{
-											"type": "entries",
-											"name": "Resources",
-											"page": 42,
-											"entries": [
-												"Unless the DM decides otherwise, this franchise task must be run at the end of each month of game time. Unlike other activities, results are determined for running a franchise even if specific characters and staff members are not allocated to the activity. However, allocating characters or staff members to running the franchise greatly improves the chances for a favorable outcome.",
-												"During any given month, the players decide how many days their characters and the franchise staff can dedicate to this activity. Characters and staff members cannot perform other activities while focused on this activity (as normal), and any days spent adventuring or engaged in other activities cannot be used for this activity."
-											],
-											"id": "0c6"
-										},
-										{
-											"type": "entries",
-											"name": "Resolution",
-											"page": 42,
-											"entries": [
-												"Percentile dice are rolled by a player nominated for this task by the group. The number of total days spent by all characters and staff members on this activity are added to the roll. That total is then compared to the Running a Franchise table to determine what happens for the month.",
-												{
-													"type": "table",
-													"caption": "Running a Franchise",
-													"colLabels": [
-														"d100 + Days",
-														"Result"
-													],
-													"colStyles": [
-														"text-center col-2",
-														"col-10"
-													],
-													"rows": [
-														[
-															"01\u201310",
-															"The franchise has a ruinous month. Declining sales and rising expenditures increase the franchise's monthly cost by 150 percent."
-														],
-														[
-															"11\u201320",
-															"The franchise suffers severe setbacks. Monthly cost increases by 125 percent."
-														],
-														[
-															"21\u201330",
-															"The franchise struggles. Monthly cost increases by 100 percent."
-														],
-														[
-															"31\u201340",
-															"The franchise performs poorly. Monthly cost increases by 50 percent."
-														],
-														[
-															"41\u201350",
-															"The franchise operates normally. Monthly cost does not change."
-														],
-														[
-															"51\u201360",
-															"The franchise sees strong sales and trims expenses. Monthly cost decreases by 50 percent."
-														],
-														[
-															"61\u201370",
-															"The franchise improves operations and sales. Monthly cost decreases by 100 percent."
-														],
-														[
-															"71\u201380",
-															"The franchise has an excellent month. Monthly cost decreases by 110 percent."
-														],
-														[
-															"81\u201390",
-															"The franchise has a fantastic month. Monthly cost decreases by 125 percent."
-														],
-														[
-															"91+",
-															"The franchise is a shining example to other Acquisitions Incorporated franchises. Monthly cost decreases by 150 percent."
-														]
-													]
-												}
-											],
-											"id": "0c7"
-										},
-										{
-											"type": "entries",
-											"name": "Determining Monthly Cost",
-											"page": 42,
-											"entries": [
-												"A franchise's base monthly cost is a combination of the cost for the franchise's headquarters and a multiplier for franchise rank. The fancier the headquarters, the more the upkeep. And the bigger the franchise, the more overhead it has. The \"{@book Franchise Advancement|AI|1|Franchise Advancement}\" section earlier in this chapter has more information on determining a franchise's base monthly cost.",
-												"Whenever a downtime or franchise activity modifies a franchise's costs for a given month, that increase or decrease is totaled up with all other increases and decreases. For example, a successful marketeering campaign might decrease the franchise's monthly costs by 25 percent, but then a major threat as a result of exploring franchise territory increases monthly costs by 50 percent\u2014a net increase of 25 percent.",
-												"Whenever the final result indicates that the franchise's monthly costs have decreased 100 percent, profits and expenses exactly balance each other out, so that the franchise has no payment to make for that month. Whenever the final total is a decrease in monthly costs of more than 100 percent, this means the franchise has paid its expenses and earned a profit to boot. Calculate the profit based on the amount of the decrease above 100 percent. For example, a franchise whose monthly costs come out at a decrease of 150 percent earns a profit equal to 50 percent of the franchise's base monthly cost."
-											],
-											"id": "0c8"
-										},
-										{
-											"type": "entries",
-											"name": "Nonpayment Penalties",
-											"page": 42,
-											"entries": [
-												"At the end of this activity, the franchise makes a payment to Head Office to cover its monthly costs. If it does not do so, the franchise begins to fail. See the rules for defaulting in the \"Franchise Costs\" section, earlier in this chapter. Regardless of what action Head Office takes, a franchise's inability to pay its expenses should result in complications and story ramifications. Local folk and businesses start to demand that accounts be cleared. The general public might begin to reject the franchise's products and services, worried about dealing with dodgy businesspeople."
-											],
-											"id": "0c9"
-										},
-										{
-											"type": "entries",
-											"name": "Complications",
-											"page": 43,
-											"entries": [
-												"A franchise automatically suffers a complication if the check for this activity was 30 or less. The DM might also impose a complication even when a franchise is doing well. The DM can choose a complication or roll on the Running a Franchise Complications table.",
-												{
-													"type": "table",
-													"caption": "Running a Franchise Complications",
-													"colLabels": [
-														"d6",
-														"Complication"
-													],
-													"colStyles": [
-														"text-center col-2",
-														"col-10"
-													],
-													"rows": [
-														[
-															"1",
-															"The franchise's sales of products and services have attracted competition from a rival.*"
-														],
-														[
-															"2",
-															"Regardless of its success month to month, the franchise's long-term planning is called into question. Head Office demands that the characters engage in either the franchise restructuring activity or the team building activity."
-														],
-														[
-															"3",
-															"A person who insists they are in no way from Head Office suggests that the franchise should run the shady business practice activity. It really feels more like a demand than a suggestion."
-														],
-														[
-															"4",
-															"Customers are turning away from the franchise. Until the characters can determine the cause, each subsequent check for the running a franchise activity takes a \u22125 penalty.*"
-														],
-														[
-															"5",
-															"A staff member finds signs of sabotage impacting the franchise's operations.*"
-														],
-														[
-															"6",
-															"Staff members start demanding higher pay and threaten to go on strike.*"
-														]
-													],
-													"footnotes": [
-														"*Might involve a rival"
-													]
-												}
-											],
-											"id": "0ca"
-										}
-									],
-									"id": "0c5"
-								},
-								{
-									"type": "entries",
-									"name": "Scrutineering",
-									"page": 43,
-									"entries": [
-										"As a member of an Acquisitions Incorporated franchise, you scoff at those who limit their intelligence-gathering activities to mere research or sagery. The scrutineering activity covers basic research easily enough (finding a new profitable venture, learning what pleases Head Office, amassing lore about a site or monster, and so forth). But it can also expand across a much broader range of activities. You might engage (\"kidnap\" is such a harsh word) members of a rival group, learn the secrets of a stronghold known only to those who built it, assess an organization's business model to determine its weaknesses, or lay rightful claim to any information that might benefit your franchise in some way.",
-										{
-											"type": "entries",
-											"name": "Resources",
-											"page": 43,
-											"entries": [
-												"The DM determines what resources are required for any particular scrutineering goal, including access to specific people or places. Once that access has been gained, this activity requires at least one workweek of effort and 100 gp per franchise rank spent on bribes, materials, and other expenses. Spending more money increases the chance for successful scrutineering."
-											],
-											"id": "0cc"
-										},
-										{
-											"type": "entries",
-											"name": "Resolution",
-											"page": 43,
-											"entries": [
-												"The character or staff member overseeing the activity makes an Intelligence check, and can make use of a skill appropriate to the scrutineering activity at the DM's discretion. This check gains a +1 bonus per 100 gp spent beyond the baseline expenses. A character with the documancer position gains a +1 bonus to the check. A maximum bonus of +10 can be applied to this check. The total of the check determines the outcome, as shown on the Scrutineering table.",
-												{
-													"type": "table",
-													"caption": "Scrutineering",
-													"colStyles": [
-														"col-2 text-center",
-														"col-10"
-													],
-													"colLabels": [
-														"Check Total",
-														"Outcome"
-													],
-													"rows": [
-														[
-															"1\u20135",
-															"No effect."
-														],
-														[
-															"6\u201310",
-															"You learn one piece of lore."
-														],
-														[
-															"11\u201320",
-															"You learn two pieces of lore."
-														],
-														[
-															"21+",
-															"You learn three pieces of lore."
-														]
-													]
-												},
-												"Each piece of lore you uncover through scrutineering might cover specific details about a creature or NPC, how to thwart the defenses of a stronghold or office, the rituals or magic items employed by a mystical order, and so forth. The DM makes the final decision regarding what information is revealed by scrutineering."
-											],
-											"id": "0cd"
-										},
-										{
-											"type": "entries",
-											"name": "Complications",
-											"page": 43,
-											"entries": [
-												"Whenever this activity is undertaken, the DM determines whether a complication is warranted. Even if the information you uncover with scrutineering is accurate, additional things you didn't learn might complicate your understanding. Your attempts to uncover secret information might also be thwarted by those intent on keeping those secrets. The DM can choose a complication or roll on the Scrutineering Complications table.",
-												{
-													"type": "table",
-													"caption": "Scrutineering Complications",
-													"colLabels": [
-														"d6",
-														"Complication"
-													],
-													"colStyles": [
-														"text-center col-2",
-														"col-10"
-													],
-													"rows": [
-														[
-															"1",
-															"One of the pieces of information is false and was planted by a rival.*"
-														],
-														[
-															"2",
-															"A source of information decides to join a rival organization, becoming an asset for them.*"
-														],
-														[
-															"3",
-															"A source was a greedy information broker, who decides to also sell information about the franchise or Head Office to a rival organization.*"
-														],
-														[
-															"4",
-															"The target of the information becomes aware of the franchise's scrutineering efforts, and resents them.*"
-														],
-														[
-															"5",
-															"Scrutineering attempts attract the attention of officials, nobles, or another faction or rival who were previously unaware of the franchise.*"
-														],
-														[
-															"6",
-															"The character or staff member leading the activity comes into contact with a magical effect whose removal might require a side trek adventure."
-														]
-													],
-													"footnotes": [
-														"*Might involve a rival"
-													]
-												}
-											],
-											"id": "0ce"
-										}
-									],
-									"id": "0cb"
-								},
-								{
-									"type": "entries",
-									"name": "Shady Business Practice",
-									"page": 43,
-									"entries": [
-										"The quickest path to success often runs straight through the thickets of questionable legality. Franchises that can overcome the morally dubious aspects of certain enterprises\u2014and can deal with the risk of being caught engaging in those enterprises\u2014might wish to consider such time-honored practices as back-of-the-wagon discount sales, fly-by-night gambling halls, highway robbery, racketeering, and pyramid schemes. Shady business practices can also include corporate espionage against rivals and other Acq Inc franchises, including stealing goods or sabotaging commercial efforts.",
-										{
-											"type": "image",
-											"href": {
-												"type": "internal",
-												"path": "book/AI/023-02-22.png"
-											},
-											"title": "A SUITABLY SHADY BUSINESS PRACTICE",
-											"width": 792,
-											"height": 1000
-										},
-										{
-											"type": "entries",
-											"name": "Resources",
-											"page": 44,
-											"entries": [
-												"An intended shady business practice is detailed by the players and approved by the DM. Any shady business practice requires at least two workweeks of effort, plus 50 gp per franchise rank in expenses to set up the scheme."
-											],
-											"id": "0d0"
-										},
-										{
-											"type": "entries",
-											"name": "Resolution",
-											"page": 44,
-											"entries": [
-												"A shady business practice requires three ability checks, reflecting the ongoing progress of the chosen scheme. Any of the characters or staff members involved in the shady business practice can make a check. The abilities and skills applicable for each check are determined by the DM, reflecting the selected scheme and the ongoing narrative. For example, an attempt to set up a fly-by-night casino might require an Intelligence ({@skill Investigation}) check to case a town for a suitable location, a Wisdom or Charisma check making use of gaming set proficiency to run the operation, and a Dexterity ({@skill Sleight of Hand}) check to get away with the profits. At the DM's determination, each check gains a +1 bonus if the character making the check has a background appropriate to the shady activity.",
-												"The DC of each check is determined randomly, reflecting the risky nature of criminal enterprises. The DM rolls {@dice 2d10 + 5} for the DC, generating a separate result for each check. The total number of successes determines the outcome of the activity, as noted on the Shady Business Practice table.",
-												"Some outcomes of shady business provide an additional benefit, chosen by the DM and relating to the characters' chosen enterprise. For example, a franchise engaged in corporate espionage might gain insight into a rival, while a franchise selling black-market goods might learn the name of a corrupt government official.",
-												{
-													"type": "quote",
-													"entries": [
-														"Why would I know anything about shady business practices? Why are you asking me? I'm sure I don't know what you mean. Plausible deniability certainly is not an important business tip I'd recommend."
-													],
-													"by": "{@creature Rosie Beestinger|AI}"
-												},
-												{
-													"type": "table",
-													"caption": "Shady Business Practice",
-													"colStyles": [
-														"col-2 text-center",
-														"col-10"
-													],
-													"colLabels": [
-														"Successes",
-														"Benefit"
-													],
-													"rows": [
-														[
-															"0",
-															"All participants in the shady business practice are arrested, and the franchise is fined 250 gp per franchise rank."
-														],
-														[
-															"1",
-															"The shady business practice is a borderline success, providing 50 gp in profits per franchise rank."
-														],
-														[
-															"2",
-															"The shady business practice is a moderate success, providing 100 gp in profits per franchise rank. Additionally, the franchise gains a minor benefit related to the enterprise."
-														],
-														[
-															"3",
-															"The shady business practice is a full success, providing 150 gp in profits per franchise rank. Additionally, the franchise gains a major benefit related to the enterprise."
-														]
-													]
-												}
-											],
-											"id": "0d1"
-										},
-										{
-											"type": "entries",
-											"name": "Complications",
-											"page": 44,
-											"entries": [
-												"Achieving 0 successes automatically generates a complication, but the DM might decide that any illicit enterprise runs the risk of unforeseen circumstances. The DM can choose a complication or roll on the Shady Business Practice Complications table.",
-												{
-													"type": "table",
-													"caption": "Shady Business Practice Complications",
-													"colLabels": [
-														"d6",
-														"Complication"
-													],
-													"colStyles": [
-														"text-center col-2",
-														"col-10"
-													],
-													"rows": [
-														[
-															"1",
-															"One of the franchise's staff members is arrested in connection with the scheme\u2014and is set to be interrogated about all the franchise's activities.*"
-														],
-														[
-															"2",
-															"Characters or staff members meet a corrupt official or noble as a result of the scheme. This brash and flamboyant individual threatens to draw attention to any future shady enterprises."
-														],
-														[
-															"3",
-															"A rival uncovers the shady scheme and threatens to expose it.*"
-														],
-														[
-															"4",
-															"A citizens group hears rumors about the franchise's involvement in the shady scheme, and forms a watch organization to monitor the characters."
-														],
-														[
-															"5",
-															"An NPC who participated in the scheme tries to blackmail the franchise, asking for payment or a favor to keep quiet."
-														],
-														[
-															"6",
-															"A thieves' guild or other criminal organization takes an interest in the scheme. They order the franchise to run this activity every month, and demand a 10 percent cut. While the franchise does so, all checks for shady business practice activities are made with advantage.*"
-														]
-													],
-													"footnotes": [
-														"*Might involve a rival"
-													]
-												}
-											],
-											"id": "0d2"
-										}
-									],
-									"id": "0cf"
-								},
-								{
-									"type": "entries",
-									"name": "Schmoozing",
-									"page": 45,
-									"entries": [
-										"The schmoozing activity is more than just random carousing, chatting people up at society parties, or pumping strangers for information over copious drinks. (Full disclosure: copious drinks are often still a part of the bigger schmoozing picture.) For characters in an Acquisitions Incorporated campaign, schmoozing is a carefully focused engagement of bargaining and influence, designed to harvest contacts important to a franchise's interests.",
-										{
-											"type": "entries",
-											"name": "Resources",
-											"page": 45,
-											"entries": [
-												"Schmoozing covers at least one workweek of interactions. Characters or staff members undertaking this activity must look and play the part of the confident franchisee\u2014dressing well, spending money, giving gifts to new friends, and so forth. Schmoozing with laborers and other working-class folk might incur expenses of 10 gp per franchise rank, with expenses escalating to 100 gp or more per franchise rank for schmoozing professionals and business rivals. Schmoozing at the highest level with nobles or ranking members of a faction might incur expenses of 250 gp or more per franchise rank as the character or staff member attempts to put on an impressive social display."
-											],
-											"id": "0d4"
-										},
-										{
-											"type": "entries",
-											"name": "Resolution",
-											"page": 45,
-											"entries": [
-												"The character or staff member engaging in schmoozing determines whether they want to establish relations with specific NPCs or with any general representative of a group. The character makes a Charisma ({@skill Persuasion}) check to determine the effectiveness of their schmoozing, as noted on the Schmoozing table. A character with the obviator position gains a +1 bonus to the check. A character with a background related to those they attempt to schmooze gains a +1 bonus to the check (a criminal schmoozing other criminals, a guild artisan schmoozing a guild master, and so forth).",
-												{
-													"type": "table",
-													"caption": "Schmoozing",
-													"colStyles": [
-														"col-2 text-center",
-														"col-10"
-													],
-													"colLabels": [
-														"Check Total",
-														"Result"
-													],
-													"rows": [
-														[
-															"1\u20135",
-															"The character's failed schmoozing brings the franchise into disrepute. Any further checks made for the franchise to schmooze NPCs from the same group or organization are made with disadvantage."
-														],
-														[
-															"6\u201310",
-															"The character becomes known to those they schmooze, but gains no immediate benefit. If the character undertakes this activity again within the same group or social circle, the next check to schmooze is made with advantage."
-														],
-														[
-															"11\u201315",
-															"The character successfully establishes the desired contacts, and is treated as a confidante of those they schmoozed."
-														],
-														[
-															"16\u201320",
-															"The character establishes the desired contacts and is treated as a trusted friend."
-														],
-														[
-															"21+",
-															"The character establishes the desired contacts and gains a favor as a result of their schmoozing skill."
-														]
-													]
-												},
-												"If contacts are successfully made, the DM determines which NPCs the franchise is able to ingratiate itself with, how long those relationships last, and what kinds of benefits the franchise might gain. Some schmoozed NPCs might provide only a single minor benefit to the franchise before realizing the one-sided nature of the relationship. Others might hang around wanting to help the franchise for years\u2014whether the characters want them to or not."
-											],
-											"id": "0d5"
-										},
-										{
-											"type": "entries",
-											"name": "Complications",
-											"page": 45,
-											"entries": [
-												"A check of 5 or lower made to schmooze automatically triggers a complication. Because the stakes of schmoozing are often high, the DM might decide to have any successful schmooze attempt come with a potential downside. The DM can choose a complication or roll on the Schmoozing Complications table.",
-												{
-													"type": "table",
-													"caption": "Schmoozing Complications",
-													"colLabels": [
-														"d6",
-														"Complication"
-													],
-													"colStyles": [
-														"text-center col-2",
-														"col-10"
-													],
-													"rows": [
-														[
-															"1",
-															"A different group notices the character's schmoozing attempts. Agents threaten to expose the franchise's ulterior motives unless the characters perform a favor or pay a bribe.*"
-														],
-														[
-															"2",
-															"To win over a potential contact, the schmoozing character or staff member swore to participate in an initiation ritual from the contact's group... without first learning the nature of that ritual."
-														],
-														[
-															"3",
-															"A contact becomes convinced that the schmoozing character or staff member intends to leave the franchise and join the contact's organization. It's clear that they'll become hurt or angry when they learn the truth."
-														],
-														[
-															"4",
-															"In the attempt to win over a contact, it was necessary to reveal one of the franchise's secrets.*"
-														],
-														[
-															"5",
-															"The character or staff member regrets giving a contact a personal item, a drop of blood, or a lock of hair. It seemed like a great idea at the time.*"
-														],
-														[
-															"6",
-															"Shortly after schmoozing, the character or staff member receives a love letter from a contact\u2014whether that interest is reciprocated or not.*"
-														]
-													],
-													"footnotes": [
-														"*Might involve a rival"
-													]
-												}
-											],
-											"id": "0d6"
-										}
-									],
-									"id": "0d3"
-								},
-								{
-									"type": "entries",
-									"name": "Team Building",
-									"page": 45,
-									"entries": [
-										"The frenetic pace of adventuring and running a franchise sometimes covers up underlying issues. Has the party's cleric accidentally started worshiping a dark god? Is the majordomo at odds with the occultant's habit of displaying entrails in the great hall? Is the fighter questioning their life choices? The team building activity can help characters work through problems, settle differences, and adjust the work-life balance. In the end, everyone ends up with a healthier working relationship. Or at least that's the plan.",
-										"At the DM's determination, characters might be directed by Head Office to run this activity each time a new franchise rank is gained, or during times of exceptional chaos or uncertainty.",
-										{
-											"type": "entries",
-											"name": "Resources",
-											"page": 45,
-											"entries": [
-												"Team building requires the involvement of at least two characters, or a character and a staff member. Those individuals must dedicate at least one workweek to this activity, whose particulars are worked out by participating players and the DM. The team building exercise might be a trust-inspiring ropes course, an emotional \"resolve your issues\" workshop, a meeting with an NPC spiritual guide, or any other suitable endeavor. Setting up the exercise incurs expenses of from 50 gp to 250 gp per franchise rank, as determined by the DM."
-											],
-											"id": "0d8"
-										},
-										{
-											"type": "entries",
-											"name": "Resolution",
-											"page": 46,
-											"entries": [
-												"Each character or staff member participating in team building chooses another participant, then creates a negative story connection to a bond, ideal, or similar element of that participant's backstory. The players come up with such connections for their own characters. The DM creates connections for franchise staff, either on their own or in consultation with the players. (Characters and staff members do not need to pair up. If everyone else in the franchise has a particular problem with one character, so be it.)",
-												"Each character and staff member then makes a Wisdom ({@skill Insight}) check. With the DM's approval, different ability checks and skills might be allowed if they relate to the specifics of the team building exercise. A participant has advantage on their check if the DM decides the story connection was particularly clever or well roleplayed. All checks gain a +1 bonus if one of the characters taking part in the activity is a decisionist.",
-												"Each check is compared to the Team Building table. The outcome of the check can help redefine the relationships between individual characters, and can establish the tone of roleplaying between characters and franchise staff. Some outcomes also involve a team building memory that provides a potent benefit (see below).",
-												{
-													"type": "table",
-													"caption": "Team Building",
-													"colStyles": [
-														"col-2 text-center",
-														"col-10"
-													],
-													"colLabels": [
-														"Check Total",
-														"Benefit"
-													],
-													"rows": [
-														[
-															"1\u20135",
-															"The participant uncovers deep-seated issues between themself and their chosen partner. If this is a character, they have disadvantage on ability checks made in the presence of the partner until the character undertakes this activity again. If this is a staff member, they are traumatized and leave the franchise unless the characters can convince them to stay."
-														],
-														[
-															"6\u201310",
-															"The participant did not benefit from the team building exercise, but avoided serious trauma."
-														],
-														[
-															"11\u201315",
-															"The participant was able to work through one or more issues. If this is a character, they have advantage on the next check they make during a franchise or downtime activity."
-														],
-														[
-															"16\u201320",
-															"The participant sees themself and their connection to the other participant in a whole new way. If this is a character, they have advantage on the next check they make during a franchise or downtime activity, and they gain a team building memory (see below)."
-														],
-														[
-															"21+",
-															"The participant has had an awakening, gaining a deep sense of who they can become and their connection to their partner. The character has advantage on the next check they make during a franchise or downtime activity, and gains two team building memories."
-														]
-													]
-												}
-											],
-											"id": "0d9"
-										},
-										{
-											"type": "entries",
-											"name": "Team Building Memories",
-											"page": 46,
-											"entries": [
-												"The most potent personal changes inspired by team building can last a lifetime. Or at least an encounter. A character who earns a team building memory gains an extraordinary ability that can be used once. As a bonus action, the character gains one effect of the {@spell enhance ability} spell for 10 minutes (no concentration required).",
-												"A character can retain team building memories only from the most recent instance of this activity. If a character has unused team building memories and undertakes this activity again, those memories are lost.",
-												{
-													"type": "quote",
-													"entries": [
-														"Wait, we're a team? I thought we were independent entities with temporarily aligned goals."
-													],
-													"by": "{@creature Môrgæn|AI}"
-												}
-											],
-											"id": "0da"
-										},
-										{
-											"type": "entries",
-											"name": "Complications",
-											"page": 46,
-											"entries": [
-												"At the DM's determination, every team building exercise has a chance of creating a complication as things get real, yo. The DM can choose a complication or roll on the Team Building Complications table.",
-												{
-													"type": "table",
-													"caption": "Team Building Complications",
-													"colLabels": [
-														"d6",
-														"Complication"
-													],
-													"colStyles": [
-														"text-center col-2",
-														"col-10"
-													],
-													"rows": [
-														[
-															"1",
-															"The team building activity is revealed to actually be a death trap, an island of doom, or a similar challenge. The DM determines whether this was an honest mix-up, the act of a disgruntled staff member, or the actions of a rival.*"
-														],
-														[
-															"2",
-															"Upon hearing what took place during the team building exercise, uninvolved staff members decide that the franchise is subjecting them to too much trauma. Some staff members might threaten to quit, or decide they want more benefits."
-														],
-														[
-															"3",
-															"It's revealed that the team building exercise was set up by a rival as an opportunity to ambush the participants, or to attack the franchise headquarters while the characters were away.*"
-														],
-														[
-															"4",
-															"The participants learn way too much about each other. Each character participating in the activity must select a bond, ideal, or similar background aspect from their partner and come up with a story explaining how this becomes a conflict for them."
-														],
-														[
-															"5",
-															"Staff members who did not participate in the team building exercise feel left out, and morale drops at the franchise. The characters must find a way to raise staff spirits that does not involve running this activity again."
-														],
-														[
-															"6",
-															"A staff member involved in the activity is secretly a member of a rival organization, or has been duped into doing that organization's bidding. During the team building exercise, the rival organization plans to steal franchise secrets or destroy the participants' morale.*"
-														]
-													],
-													"footnotes": [
-														"*Might involve a rival"
-													]
-												}
-											],
-											"id": "0db"
-										}
-									],
-									"id": "0d7"
+									"type": "list",
+									"columns": 2,
+									"items": [
+										"{@variantrule Downtime and Franchise Activity: Explore Territory|AI|Explore Territory|AI}",
+										"{@variantrule Downtime and Franchise Activity: Franchise Restructuring|AI|Franchise Restructuring|AI}",
+										"{@variantrule Downtime and Franchise Activity: Headquarters Modification|AI|Headquarters Modification|AI}",
+										"{@variantrule Downtime and Franchise Activity: Marketeering|AI|Marketeering|AI}",
+										"{@variantrule Downtime and Franchise Activity: Philanthropic Enterprise|AI|Philanthropic Enterprise|AI}",
+										"{@variantrule Downtime and Franchise Activity: Running a Franchise|AI|Running a Franchise|AI}",
+										"{@variantrule Downtime and Franchise Activity: Scrutineering|AI|Scrutineering|AI}",
+										"{@variantrule Downtime and Franchise Activity: Shady Business Practice|AI|Shady Business Practice|AI}",
+										"{@variantrule Downtime and Franchise Activity: Schmoozing|AI|Schmoozing|AI}",
+										"{@variantrule Downtime and Franchise Activity: Team Building|AI|Team Building|AI}"
+									]
 								}
 							],
 							"id": "0aa"
@@ -4722,10 +3493,11 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "book/AI/024-03-01.png"
+						"path": "book/AI/024-03-01.webp"
 					},
 					"width": 1500,
-					"height": 1000
+					"height": 1000,
+					"credit": "Kris Straub"
 				},
 				"At Acquisitions Incorporated, no one ever asks, \"Should it be done?\" Instead they ask, \"How can it be done\u2014and then how do we turn what we've done into cold, hard cash?\" It's this kind of forward thinking that brings new power and magical understanding to the world\u2014and which keeps the Acq Inc humanoid resources team constantly on the lookout for new talent.",
 				"Were you kicked out of your village for experimenting with powers no mortal should dare trifle with? Acquisitions Incorporated has a place for you on its team. Those pesky, gibbering voices that plague your sleep? Acq Inc allows employees to work all night if that fits their skill set. And if it was ordained at your birth by the seers and mystics that your destiny would one day see you bathe in the blood of your enemies, Acq Inc has no opinion on personal hygiene as long as the job gets done.",
@@ -4796,11 +3568,12 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/027-03-04.png"
+										"path": "book/AI/027-03-04.webp"
 									},
-									"title": "THE CORPORATE BARBARIAN",
+									"title": "The Corporate Barbarian",
 									"width": 773,
-									"height": 1000
+									"height": 1000,
+									"credit": "Kris Straub"
 								},
 								{
 									"type": "entries",
@@ -6080,11 +4853,12 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/028-03-05.png"
+										"path": "book/AI/028-03-05.webp"
 									},
-									"title": "THE BUSINESS OF APPLIED KI",
+									"title": "The Business Of Applied Ki",
 									"width": 773,
-									"height": 1000
+									"height": 1000,
+									"credit": "Kris Straub"
 								},
 								"Ki is a magical energy that fills the space between all things in the multiverse. Monks tap into that energy through spiritual and martial training, meditation, and contemplation. And punching and kicking. And more punching and kicking. And maybe a head-butt for good measure.",
 								"Monks in an Acquisitions Incorporated campaign find a way to integrate a typical ascetic life with the grandeur, majesty, and over-the-top business focus of their franchise. History (real and fantasy) has shown that monasteries don't always shy away from engaging in profitable enterprises. As such, your Acquisitions Incorporated monk likely brings their old monastery's entrepreneurial spirit with them\u2014along with new ideas to energize that spirit even more.",
@@ -6361,11 +5135,12 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/029-03-06.png"
+										"path": "book/AI/029-03-06.webp"
 									},
-									"title": "THE PALADIN AS FIXER",
+									"title": "The Paladin as Fixer",
 									"width": 773,
-									"height": 1000
+									"height": 1000,
+									"credit": "Kris Straub"
 								},
 								{
 									"type": "entries",
@@ -7317,11 +6092,12 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "book/AI/030-03-07.png"
+												"path": "book/AI/030-03-07.webp"
 											},
-											"title": "A WARLOCK'S OTHERWORLDY OFFICE",
+											"title": "A Warlock's Otherworldy Office",
 											"width": 2125,
-											"height": 1000
+											"height": 1000,
+											"credit": "Kris Straub"
 										}
 									],
 									"id": "14c"
@@ -7422,11 +6198,12 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/031-03-08.png"
+										"path": "book/AI/031-03-08.webp"
 									},
-									"title": "THE MAGIC OF MONEY",
+									"title": "The Magic of Money",
 									"width": 773,
-									"height": 1000
+									"height": 1000,
+									"credit": "Kris Straub"
 								},
 								{
 									"type": "entries",
@@ -7654,10 +6431,11 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "book/AI/033-03-10.png"
+								"path": "book/AI/033-03-10.webp"
 							},
 							"width": 773,
-							"height": 1000
+							"height": 1000,
+							"credit": "Kris Straub"
 						},
 						"Magic is power and power is profit\u2014which makes spellcasting just another part of the expansive business model of Acquisitions Incorporated. Magical research and development is a big part of day-to-day operations at Head Office, whose spellcasting staff toil day in and day out to come up with the very latest in eldritch improvements.",
 						"Many of their developments remain closely guarded secrets, known only to the company's highest-ranking employees, and ready to be whipped out at a suitably dramatic moment. But every once in a while, a unique spell makes its way through the ranks of the company's casters and into the world at large. Some of these spells are alterations of old classics, while others bend the magical energy of the multiverse in new and exciting ways.",
@@ -7718,11 +6496,12 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/034-glyph-ai.png"
+										"path": "book/AI/034-glyph-ai.webp"
 									},
 									"maxWidth": 160,
 									"width": 679,
-									"height": 1000
+									"height": 1000,
+									"credit": "Francisco Villasenor"
 								},
 								"The brainchild of company founder Ominifis Hereward Dran, Acq Inc has consistently maintained a position at the bleeding edge of adventuring technology, processes, and marketing. The staff of Acquisitions Incorporated, including the company's highly varied roster of inexpensive interns, engage in all aspects of adventuring. Salvage, infiltration, legally sanctioned life shortening, property redistribution, protection, removing protection, merchandising\u2014Acq Inc does it all.",
 								"As Acquisitions Incorporated has grown, so too have the opportunities provided by that organization to neophyte adventurers looking for an advantage in the rough-and-tumble world of professional dungeoneering. From its humble beginnings in the basement of the Silver Unicorn Inn in Fallcrest, Acq Inc has become the only place to intern, boasting franchise opportunities that can propel struggling adventurers into the big leagues."
@@ -7738,11 +6517,12 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/035-glyph-dran.png"
+										"path": "book/AI/035-glyph-dran.webp"
 									},
 									"maxWidth": 160,
 									"width": 772,
-									"height": 1000
+									"height": 1000,
+									"credit": "Dora Litterell"
 								},
 								"Dran Enterprises is the biggest rival of Acquisitions Incorporated\u2014and has the strongest possible connection to that august organization. Founded by a false version of {@creature Auspicia Dran|AI} ({@creature Omin Dran|AI|Omin Dran's} sister, claimed by the creature known as the Wandering Crypt), Dran Enterprises has a well-established goal of wanting to take over Acquisitions Incorporated at any cost, even as the organization profits from the endeavors of Acq Inc employees and associates. Dran Enterprises' strategy for accomplishing this goal is built around providing adventuring services even more ruthlessly and efficiently than Acq Inc. Hostile takeovers, brutal rounds of downsizing, corporate espionage, and highly unethical behavior are just the most obvious of the company's many tools.",
 								"With the death of the false Auspicia, Dran Enterprises was taken over by Omin's other sister, {@creature Portentia Dran|AI|Portentia}, who had operated in the shadows of the organization for some time beforehand. Certain personal secrets no doubt drive Portentia's single-minded focus for Dran Enterprises, but those have yet to be revealed. (To most people, at least. DMs can check out appendix A for more information.) In the meantime, the organization focuses on besting Acquisitions Incorporated at its own game while growing ever more powerful\u2014and eventually reaching the point where a corporate takeover of Acq Inc can no longer be thwarted.",
@@ -7765,11 +6545,12 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/036-glyph-noble-knife.png"
+										"path": "book/AI/036-glyph-noble-knife.webp"
 									},
 									"maxWidth": 160,
 									"width": 481,
-									"height": 1000
+									"height": 1000,
+									"credit": "Gavin Greco"
 								},
 								"The Noble Knife is a somewhat mysterious organization known for its high level of engagement with the cultures and societies within which its members work. Having made such engagements, the loyalists of the Noble Knife are watchful for signs of leaders and power brokers making the first transition to tyranny\u2014at which point, those newly minted tyrants are quickly assassinated for the greater good. The organization doesn't \"take jobs\" as such. Rather, its leadership assesses the moral and political landscape of the realm and selects targets thusly.",
 								"The Noble Knife is named for its members' weapon of choice for their trademark deed. Similar to an {@item arrow of slaying}, a {@i noble knife} is a weapon whose magic is focused on killing a specific individual. The crafting of a {@i noble knife} is undertaken by a collective of artisans, and requires a range of exotic materials and components. Additionally, the act of creation takes twenty or more years off the lead artisan's life. It goes without saying that the Noble Knife is chock full of true believers.",
@@ -7792,11 +6573,12 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/037-glyph-silver-sliver.png"
+										"path": "book/AI/037-glyph-silver-sliver.webp"
 									},
 									"maxWidth": 160,
 									"width": 987,
-									"height": 1000
+									"height": 1000,
+									"credit": "Dora Litterell"
 								},
 								"In a world driven by gold, magic, and power, organizations that fly in the face of all three of those things are hard to understand. Doing good and seeking justice is all well and fine. But if there's no money changing hands, how do you measure the value of the work?",
 								"The Silver Sliver exemplifies what goes wrong when good people fail to grasp the complexities of the world. They go around wearing masks, acting all heroically willy-nilly, righting wrongs and defending the weak... for no profit whatsoever! That brand of zealotry is dangerous, because you can't trust anyone who won't sometimes do a dishonest day's work for an honest day's wage.",
@@ -7819,11 +6601,12 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/038-glyph-the-six.png"
+										"path": "book/AI/038-glyph-the-six.webp"
 									},
 									"maxWidth": 160,
 									"width": 690,
-									"height": 1000
+									"height": 1000,
+									"credit": "Francisco Villasenor"
 								},
 								"Any successful adventuring party makes enemies along the way. Defeated foes, unhappy or jealous allies, disillusioned associates or hirelings\u2014it's a long list. And a group as storied and reckless as Acquisitions Incorporated was always destined to break more than a few eggs while making their delicious brand of adventuring omelet.",
 								"The Six is a group of just such enemies\u2014characters who were left hurt, underappreciated, or even dead in the wake of Acq Inc's magnificent achievements. Whether the Six are really six, or fewer, or more, remains to be seen. The organization's primary public goal appears to be revenge in the form of the downfall of {@creature Omin Dran|AI} and Acquisitions Incorporated, but who or what is truly behind the group\u2014and what other sinister vendettas they might cling to\u2014remains a mystery. Still, there's a good chance it's got something to do with destroying the world by unleashing the power of the Far Realm. (Sorry; \"Spoilers!\")",
@@ -7842,6 +6625,24 @@
 				}
 			],
 			"id": "0dc"
+		},
+		{
+			"type": "section",
+			"name": "Chapter 4: The Orrery of the Wanderer",
+			"page": 79,
+			"entries": [
+				{
+					"type": "inset",
+					"name": "No Players Allowed",
+					"page": 79,
+					"entries": [
+						"This part of the book is for the DM only. If you're planning to run through the adventure as a player, stop reading now! Unless you want to keep going, that is. Because seriously, it's not like anyone's going to stop you. After all, information is power\u2014in an Acquisitions Incorporated campaign, and in life. Maybe you having a bit of an inside track is just what this adventure needs to make it really pop, and to keep the DM from getting all, \"Ooh, look at me! I'm the one with the secrets!\" I mean, can you believe how smug they are? It's like they're just begging you to turn the page..."
+					],
+					"id": "0ac"
+				},
+				"{@note See {@adventure The Orrery of the Wanderer|OOW} adventure.}"
+			],
+			"id": "0ab"
 		},
 		{
 			"type": "section",
@@ -7866,10 +6667,11 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "book/AI/099-636953233676878157.png"
+								"path": "book/AI/099-636953233676878157.webp"
 							},
 							"width": 350,
-							"height": 413
+							"height": 413,
+							"credit": "Mike Krahulik"
 						}
 					],
 					"id": "16c"
@@ -7891,10 +6693,11 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "book/AI/100-636953234295220419.png"
+								"path": "book/AI/100-636953234295220419.webp"
 							},
 							"width": 349,
-							"height": 452
+							"height": 452,
+							"credit": "Mike Krahulik"
 						}
 					],
 					"id": "16d"
@@ -7917,10 +6720,11 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "book/AI/101-636953234689653377.png"
+								"path": "book/AI/101-636953234689653377.webp"
 							},
 							"width": 400,
-							"height": 517
+							"height": 517,
+							"credit": "Mike Krahulik"
 						}
 					],
 					"id": "16e"
@@ -7942,10 +6746,11 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "book/AI/102-636953235030230409.png"
+								"path": "book/AI/102-636953235030230409.webp"
 							},
 							"width": 380,
-							"height": 491
+							"height": 491,
+							"credit": "Nurse Normal"
 						}
 					],
 					"id": "16f"
@@ -7962,10 +6767,11 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "book/AI/103-636953235648001537.png"
+								"path": "book/AI/103-636953235648001537.webp"
 							},
 							"width": 400,
-							"height": 517
+							"height": 517,
+							"credit": "Nurse Normal"
 						}
 					],
 					"id": "170"
@@ -7997,10 +6803,11 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/104-636953236705926018.png"
+										"path": "book/AI/104-636953236705926018.webp"
 									},
 									"width": 400,
-									"height": 517
+									"height": 517,
+									"credit": "Nurse Normal"
 								}
 							],
 							"id": "172"
@@ -8023,7 +6830,7 @@
 								{
 									"type": "list",
 									"items": [
-										"It has an Intelligence score of 12 (+2).",
+										"It has an Intelligence score of {@ability int 12}.",
 										"It has telepathy out to a range of 30 feet."
 									]
 								},
@@ -8031,10 +6838,11 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/105-636953237219335109.png"
+										"path": "book/AI/105-636953237219335109.webp"
 									},
 									"width": 400,
-									"height": 517
+									"height": 517,
+									"credit": "Nurse Normal"
 								}
 							],
 							"id": "173"
@@ -8056,10 +6864,11 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/106-636953238397675166.png"
+										"path": "book/AI/106-636953238397675166.webp"
 									},
 									"width": 319,
-									"height": 413
+									"height": 413,
+									"credit": "Nurse Normal"
 								}
 							],
 							"id": "174"
@@ -8082,10 +6891,11 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/107-636953238721182878.png"
+										"path": "book/AI/107-636953238721182878.webp"
 									},
 									"width": 400,
-									"height": 517
+									"height": 517,
+									"credit": "Nurse Normal"
 								}
 							],
 							"id": "175"
@@ -8103,11 +6913,12 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "book/AI/108-appendix-a-10.png"
+								"path": "book/AI/108-appendix-a-10.webp"
 							},
-							"title": "{@creature PHOENIX ANVIL|AI}, {@creature OAK TRUESTRIKE|AI}, {@creature BRAHMA LUTIER|AI}, AND {@creature PENDRAGON BEESTINGER|AI}",
+							"title": "{@creature Phoenix Anvil|AI}, {@creature Oak Truestrike|AI}, {@creature Brahma Lutier|AI}, And {@creature Pendragon Beestinger|AI}",
 							"width": 1545,
-							"height": 1000
+							"height": 1000,
+							"credit": "Chris Walton"
 						},
 						{
 							"type": "entries",
@@ -8162,11 +6973,12 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "book/AI/109-appendix-a-11.png"
+								"path": "book/AI/109-appendix-a-11.webp"
 							},
-							"title": "PORTENTIA, PROPHETESS, AND {@creature AUSPICIA DRAN|AI}",
+							"title": "Portentia, Prophetess, And {@creature Auspicia Dran|AI}",
 							"width": 2333,
-							"height": 1000
+							"height": 1000,
+							"credit": "Nurse Normal"
 						},
 						{
 							"type": "entries",
@@ -8184,7 +6996,7 @@
 							"page": 207,
 							"entries": [
 								"Now the owner and driving force behind Dran Enterprises\u2014perhaps Acquisitions Incorporated's most notable rival in the adventuring-for-profit-and-power biz\u2014{@creature Portentia Dran|AI} is more than she appears to be. Quite literally. The person known as Portentia is actually a changeling, who took the place of the real Portentia before her fifth year.",
-								"The changeling Portentia can affect a range of disguises, and has spent long years engaged in a mission of manipulating the members of the Dran family. Years ago, it was Portentia who tricked her sister Auspicia into exploring the depths of the Wandering Crypt. And she would have been successful in arranging for Omin to be claimed by that creature as well if he hadn't fled immediately in search of a weapon to aid his captured sister.    ",
+								"The changeling Portentia can affect a range of disguises, and has spent long years engaged in a mission of manipulating the members of the Dran family. Years ago, it was Portentia who tricked her sister Auspicia into exploring the depths of the Wandering Crypt. And she would have been successful in arranging for Omin to be claimed by that creature as well if he hadn't fled immediately in search of a weapon to aid his captured sister.",
 								"Whether in combat or social encounters, Portentia shifts frequently between different forms and mindsets, only some of which are fully humanoid. She fights to maim, with a cruel combat style that emphasizes surprise and painful instruction. She is willing to affect any appearance or attitude to achieve her goals. But what those goals are\u2014for herself and Dran Enterprises alike\u2014remain a secret known only to her."
 							],
 							"id": "17d"
@@ -8295,11 +7107,12 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/113-appendix-b-04.png"
+										"path": "book/AI/113-appendix-b-04.webp"
 									},
-									"title": "AGENT OF THE NOBLE KNIFE",
+									"title": "Agent Of The Noble Knife",
 									"width": 647,
-									"height": 1000
+									"height": 1000,
+									"credit": "Chris Walton"
 								},
 								"The iconic Noble Knife agent sees Acquisitions Incorporated as just another power-hungry group inevitably getting in the way of their own order's principled stand against tyranny. And maybe a few of the higher-ups in Acq Inc need to be looked at a little more closely in that regard.",
 								{
@@ -8326,7 +7139,7 @@
 											"name": "Ready to Fight",
 											"page": 214,
 											"entries": [
-												"This creature has advantage on attack rolls against any creature that is surprised."
+												"This creature has advantage on attack rolls against any creature that is {@quickref Surprise|PHB|3|0|surprised}."
 											],
 											"id": "189"
 										},
@@ -8354,11 +7167,12 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "book/AI/114-appendix-b-05.png"
+										"path": "book/AI/114-appendix-b-05.webp"
 									},
-									"title": "SILVER SLIVER ZEALOT",
+									"title": "Silver Sliver Zealot",
 									"width": 726,
-									"height": 1000
+									"height": 1000,
+									"credit": "Chris Walton"
 								},
 								"The iconic zealot of the Silver Sliver is guided by a desire for justice and good, but appears to have no grasp of business or market forces. Zealots hide behind their masks as they carry out their pro bono heroics, and chastise other hard-working adventurers at every opportunity.",
 								{
@@ -8464,7 +7278,7 @@
 						"The line between competitors and enemies can be razor thin in an Acquisitions Incorporated campaign, and franchise members will often find themselves bumping heads with the members of other Acq Inc franchises. Things might even get rough sometimes. It's just business.",
 						"The following iconic features can be added to NPC or monster stat blocks to represent company positions similar to those of the characters. These features are inspired by the company positions in chapter 2 but are intended only for quick use in combat encounters, and thus do not recreate all of a position's features in NPC form. DMs creating NPCs who have company positions can use additional position features from chapter 2 for those NPCs as desired.",
 						"Other factions such as the Six or Dran Enterprises have employees that take on company positions similar to those adopted by members of Acq Inc. These features can be used for members of those factions as well, either on their own or added to the faction features from the previous section.",
-						"A monster or NPC that has a company position always carries the special items granted by that position (a cartographer's {@item Spyglass of Clairvoyance|AI|spyglass of clairvoyance} and {@item cartographer's map case|AI}, a hoardsperson's {@item living loot satchel|AI}, and so forth). As normal, these items do not function for anyone else, and will be actively sought out by the organization that owns them if they are lost or stolen.",
+						"A monster or NPC that has a company position always carries the special items granted by that position (a cartographer's {@item spyglass of clairvoyance|AI} and {@item cartographer's map case|AI}, a hoardsperson's {@item living loot satchel|AI}, and so forth). As normal, these items do not function for anyone else, and will be actively sought out by the organization that owns them if they are lost or stolen.",
 						{
 							"type": "entries",
 							"name": "Iconic Cartographer",
@@ -8579,7 +7393,7 @@
 											"name": "That Thing You Need (3/Day)",
 											"page": 216,
 											"entries": [
-												"The hoardsperson pulls one item of its choice from the {@item living loot satchel|AI}. This can be any item found on the {@book Adventuring Gear table|PHB|5|Adventuring Gear} in chapter 5, \"{@book Equipment|PHB|-1},\" of the {@i {@book Player's Handbook|PHB}.} The item must be worth no more than 15 gp."
+												"The hoardsperson pulls one item of its choice from the {@item living loot satchel|AI}. This can be any item found on the {@book Adventuring Gear table|PHB|5|Adventuring Gear} in chapter 5, \"{@book Equipment|PHB|5},\" of the {@book Player's Handbook|PHB}. The item must be worth no more than 15 gp."
 											],
 											"id": "1a1"
 										}

@@ -1,6 +1,102 @@
 "use strict";
 
 class LootGenUi extends BaseComponent {
+	static _CHALLENGE_RATING_RANGES = {
+		0: "0\u20134",
+		5: "5\u201310",
+		11: "11\u201316",
+		17: "17+",
+	};
+	static _PARTY_LOOT_LEVEL_RANGES = {
+		4: "1\u20134",
+		10: "5\u201310",
+		16: "11\u201316",
+		20: "17+",
+	};
+	static _PARTY_LOOT_ITEMS_PER_LEVEL = {
+		1: {
+			"major": {
+				"uncommon": 0,
+				"rare": 0,
+				"very rare": 0,
+				"legendary": 0,
+			},
+			"minor": {
+				"common": 0,
+				"uncommon": 0,
+				"rare": 0,
+				"very rare": 0,
+				"legendary": 0,
+			},
+		},
+		4: {
+			"major": {
+				"uncommon": 2,
+				"rare": 0,
+				"very rare": 0,
+				"legendary": 0,
+			},
+			"minor": {
+				"common": 6,
+				"uncommon": 2,
+				"rare": 1,
+				"very rare": 0,
+				"legendary": 0,
+			},
+		},
+		10: {
+			"major": {
+				"uncommon": 5,
+				"rare": 1,
+				"very rare": 0,
+				"legendary": 0,
+			},
+			"minor": {
+				"common": 10,
+				"uncommon": 12,
+				"rare": 5,
+				"very rare": 1,
+				"legendary": 0,
+			},
+		},
+		16: {
+			"major": {
+				"uncommon": 1,
+				"rare": 2,
+				"very rare": 2,
+				"legendary": 1,
+			},
+			"minor": {
+				"common": 3,
+				"uncommon": 6,
+				"rare": 9,
+				"very rare": 5,
+				"legendary": 1,
+			},
+		},
+		20: {
+			"major": {
+				"uncommon": 0,
+				"rare": 1,
+				"very rare": 2,
+				"legendary": 3,
+			},
+			"minor": {
+				"common": 0,
+				"uncommon": 0,
+				"rare": 4,
+				"very rare": 9,
+				"legendary": 6,
+			},
+		},
+	};
+	static _DRAGON_AGES = [
+		"Wyrmling",
+		"Young",
+		"Adult",
+		"Ancient",
+	];
+
 	constructor ({spells, items, ClsLootGenOutput}) {
 		super();
 
@@ -12,13 +108,6 @@ class LootGenUi extends BaseComponent {
 		this._modalFilterItems = new ModalFilterItems({
 			namespace: "LootGenUi.items",
 			allData: items,
-			pageFilterOpts: {
-				filterOpts: {
-					"Category": {
-						deselFn: (it) => it === "Generic Variant",
-					},
-				},
-			},
 		});
 
 		this._data = null;
@@ -69,7 +158,7 @@ class LootGenUi extends BaseComponent {
 			.pMap(async letter => {
 				return {
 					letter,
-					tableEntry: await Renderer.hover.pCacheAndGet(UrlUtil.PG_TABLES, SRC_DMG, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TABLES]({name: `Magic Item Table ${letter}`, source: SRC_DMG})),
+					tableEntry: await DataLoader.pCacheAndGet(UrlUtil.PG_TABLES, Parser.SRC_DMG, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_TABLES]({name: `Magic Item Table ${letter}`, source: Parser.SRC_DMG})),
 				};
 			});
 
@@ -153,7 +242,7 @@ class LootGenUi extends BaseComponent {
 									"Item",
 								],
 								colStyles: [
-									"col-2 text-center",
+									"col-2 ve-text-center",
 									"col-10",
 								],
 								rows: items.map((it, i) => ([i + 1, `{@item ${it.name}|${it.source}}`])),
@@ -161,7 +250,7 @@ class LootGenUi extends BaseComponent {
 
 							table: {
 								name: caption,
-								source: SRC_XGE,
+								source: Parser.SRC_XGE,
 								page: 135,
 								diceType: items.length,
 								table: items.map((it, i) => ({min: i + 1, max: i + 1, item: `{@item ${it.name}|${it.source}}`})),
@@ -600,7 +689,7 @@ class LootGenUi extends BaseComponent {
 		const lootOutput = new this._ClsLootGenOutput({
 			type: `Treasure Table Roll: ${tableMeta.type === "DMG" ? tableMeta.tableEntry.caption : `${tableMeta.tier} ${tableMeta.rarity}`}`,
 			name: tableMeta.type === "DMG"
-				? `Rolled against {@b {@table ${tableMeta.tableEntry.caption}|${SRC_DMG}}}`
+				? `Rolled against {@b {@table ${tableMeta.tableEntry.caption}|${Parser.SRC_DMG}}}`
 				: `Rolled on the table for {@b ${tableMeta.tier} ${tableMeta.rarity}} items`,
 			magicItemsByTable: await this._lt_pDoHandleClickRollLoot_pGetMagicItemMetas({tableMeta}),
 		});
@@ -1218,103 +1307,12 @@ class LootGenUi extends BaseComponent {
 		};
 	}
 }
-LootGenUi._CHALLENGE_RATING_RANGES = {
-	0: "0\u20134",
-	5: "5\u201310",
-	11: "11\u201316",
-	17: "17+",
-};
-LootGenUi._PARTY_LOOT_LEVEL_RANGES = {
-	4: "1\u20134",
-	10: "5\u201310",
-	16: "11\u201316",
-	20: "17+",
-};
-LootGenUi._PARTY_LOOT_ITEMS_PER_LEVEL = {
-	1: {
-		"major": {
-			"uncommon": 0,
-			"rare": 0,
-			"very rare": 0,
-			"legendary": 0,
-		},
-		"minor": {
-			"common": 0,
-			"uncommon": 0,
-			"rare": 0,
-			"very rare": 0,
-			"legendary": 0,
-		},
-	},
-	4: {
-		"major": {
-			"uncommon": 2,
-			"rare": 0,
-			"very rare": 0,
-			"legendary": 0,
-		},
-		"minor": {
-			"common": 6,
-			"uncommon": 2,
-			"rare": 1,
-			"very rare": 0,
-			"legendary": 0,
-		},
-	},
-	10: {
-		"major": {
-			"uncommon": 5,
-			"rare": 1,
-			"very rare": 0,
-			"legendary": 0,
-		},
-		"minor": {
-			"common": 10,
-			"uncommon": 12,
-			"rare": 5,
-			"very rare": 1,
-			"legendary": 0,
-		},
-	},
-	16: {
-		"major": {
-			"uncommon": 1,
-			"rare": 2,
-			"very rare": 2,
-			"legendary": 1,
-		},
-		"minor": {
-			"common": 3,
-			"uncommon": 6,
-			"rare": 9,
-			"very rare": 5,
-			"legendary": 1,
-		},
-	},
-	20: {
-		"major": {
-			"uncommon": 0,
-			"rare": 1,
-			"very rare": 2,
-			"legendary": 3,
-		},
-		"minor": {
-			"common": 0,
-			"uncommon": 0,
-			"rare": 4,
-			"very rare": 9,
-			"legendary": 6,
-		},
-	},
-};
-LootGenUi._DRAGON_AGES = [
-	"Wyrmling",
-	"Young",
-	"Adult",
-	"Ancient",
-];
+
+globalThis.LootGenUi = LootGenUi;
 
 class LootGenOutput {
+	static _TIERS = ["other", "minor", "major"];
+
 	constructor (
 		{
 			type,
@@ -1434,7 +1432,7 @@ class LootGenOutput {
 					page: UrlUtil.PG_ITEMS,
 					entity: {
 						name: Renderer.stripTags(str).uppercaseFirst(),
-						source: SRC_FTD,
+						source: Parser.SRC_FTD,
 						type: "OTH",
 						rarity: "unknown",
 					},
@@ -1458,7 +1456,7 @@ class LootGenOutput {
 					entry.replace(/{@item ([^}]+)}/g, (...m) => {
 						cntFound++;
 						const [name, source] = m[1].toLowerCase().split("|").map(it => it.trim()).filter(Boolean);
-						const uid = `${name}|${source || SRC_DMG}`.toLowerCase();
+						const uid = `${name}|${source || Parser.SRC_DMG}`.toLowerCase();
 						uidToCount[uid] = (uidToCount[uid] || 0) + count;
 						return "";
 					});
@@ -1472,7 +1470,7 @@ class LootGenOutput {
 						count: 0,
 						item: {
 							name: Renderer.stripTags(entry).uppercaseFirst(),
-							source: SRC_DMG,
+							source: Parser.SRC_DMG,
 							type: "OTH",
 							rarity: "unknown",
 						},
@@ -1485,7 +1483,7 @@ class LootGenOutput {
 		const out = [];
 		for (const [uid, count] of Object.entries(uidToCount)) {
 			const [name, source] = uid.split("|");
-			const item = await Renderer.hover.pCacheAndGet(UrlUtil.PG_ITEMS, source, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS]({name, source}));
+			const item = await DataLoader.pCacheAndGet(UrlUtil.PG_ITEMS, source, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS]({name, source}));
 			out.push({
 				page: UrlUtil.PG_ITEMS,
 				entity: item,
@@ -1611,7 +1609,8 @@ class LootGenOutput {
 
 	static _ascSortTier (a, b) { return LootGenOutput._TIERS.indexOf(a) - LootGenOutput._TIERS.indexOf(b); }
 }
-LootGenOutput._TIERS = ["other", "minor", "major"];
+
+globalThis.LootGenOutput = LootGenOutput;
 
 class LootGenOutputGemsArtObjects {
 	constructor (
@@ -1683,25 +1682,8 @@ class LootGenMagicItem extends BaseComponent {
 		if (isItemsAltChooseRoll) {
 			const item = RollerUtil.rollOnArray(itemsAltChoose);
 
-			const baseEntry = item ? `{@item ${item.name}|${item.source}}` : `<span class="help-subtle" title="${LootGenMagicItemNull.TOOLTIP_NOTHING.qq()}">(no item)</span>`;
-
-			if (item?.spellScrollLevel != null) {
-				return new LootGenMagicItemSpellScroll({
-					lootGenMagicItems,
-					spells,
-					magicItemTable,
-					itemsAltChoose,
-					itemsAltChooseDisplayText,
-					isItemsAltChooseRoll,
-					fnGetIsPreferAltChoose,
-					baseEntry,
-					item,
-					spellLevel: item.spellScrollLevel,
-					spell: RollerUtil.rollOnArray(spells.filter(it => it.level === item.spellScrollLevel)),
-				});
-			}
-
-			return new LootGenMagicItem({
+			return this._pGetMagicItemRoll_singleItem({
+				item,
 				lootGenMagicItems,
 				spells,
 				magicItemTable,
@@ -1709,8 +1691,6 @@ class LootGenMagicItem extends BaseComponent {
 				itemsAltChooseDisplayText,
 				isItemsAltChooseRoll,
 				fnGetIsPreferAltChoose,
-				baseEntry,
-				item,
 			});
 		}
 
@@ -1833,7 +1813,8 @@ class LootGenMagicItem extends BaseComponent {
 			});
 		}
 
-		return new LootGenMagicItem({
+		return this._pGetMagicItemRoll_singleItem({
+			item: await this._pGetMagicItemRoll_pGetItem({nameOrUid: row.item}),
 			lootGenMagicItems,
 			spells,
 			magicItemTable,
@@ -1842,16 +1823,82 @@ class LootGenMagicItem extends BaseComponent {
 			isItemsAltChooseRoll,
 			fnGetIsPreferAltChoose,
 			baseEntry: row.item,
-			item: await this._pGetMagicItemRoll_pGetItem({nameOrUid: row.item}),
 			roll: rowRoll,
+		});
+	}
+
+	static async _pGetMagicItemRoll_singleItem (
+		{
+			item,
+			lootGenMagicItems,
+			spells,
+			magicItemTable,
+			itemsAltChoose,
+			itemsAltChooseDisplayText,
+			isItemsAltChooseRoll = false,
+			fnGetIsPreferAltChoose = null,
+			baseEntry,
+			roll,
+		},
+	) {
+		baseEntry = baseEntry || item
+			? `{@item ${item.name}|${item.source}}`
+			: `<span class="help-subtle" title="${LootGenMagicItemNull.TOOLTIP_NOTHING.qq()}">(no item)</span>`;
+
+		if (item?.spellScrollLevel != null) {
+			return new LootGenMagicItemSpellScroll({
+				lootGenMagicItems,
+				spells,
+				magicItemTable,
+				itemsAltChoose,
+				itemsAltChooseDisplayText,
+				isItemsAltChooseRoll,
+				fnGetIsPreferAltChoose,
+				baseEntry,
+				item,
+				spellLevel: item.spellScrollLevel,
+				spell: RollerUtil.rollOnArray(spells.filter(it => it.level === item.spellScrollLevel)),
+				roll,
+			});
+		}
+
+		if (item?.variants?.length) {
+			const subItems = item.variants.map(({specificVariant}) => specificVariant);
+
+			return new LootGenMagicItemSubItems({
+				lootGenMagicItems,
+				spells,
+				magicItemTable,
+				itemsAltChoose,
+				itemsAltChooseDisplayText,
+				isItemsAltChooseRoll,
+				fnGetIsPreferAltChoose,
+				baseEntry: baseEntry,
+				item: RollerUtil.rollOnArray(subItems),
+				roll,
+				subItems,
+			});
+		}
+
+		return new LootGenMagicItem({
+			lootGenMagicItems,
+			spells,
+			magicItemTable,
+			itemsAltChoose,
+			itemsAltChooseDisplayText,
+			isItemsAltChooseRoll,
+			fnGetIsPreferAltChoose,
+			baseEntry,
+			item,
+			roll,
 		});
 	}
 
 	static async _pGetMagicItemRoll_pGetItem ({nameOrUid}) {
 		nameOrUid = nameOrUid.replace(/{@item ([^}]+)}/g, (...m) => m[1]);
-		const uid = (nameOrUid.includes("|") ? nameOrUid : `${nameOrUid}|${SRC_DMG}`).toLowerCase();
+		const uid = (nameOrUid.includes("|") ? nameOrUid : `${nameOrUid}|${Parser.SRC_DMG}`).toLowerCase();
 		const [name, source] = uid.split("|");
-		return Renderer.hover.pCacheAndGet(UrlUtil.PG_ITEMS, source, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS]({name, source}));
+		return DataLoader.pCacheAndGet(UrlUtil.PG_ITEMS, source, UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_ITEMS]({name, source}));
 	}
 
 	/**
@@ -2029,7 +2076,7 @@ class LootGenMagicItemSpellScroll extends LootGenMagicItem {
 				this._state.spell = RollerUtil.rollOnArray(this._spells.filter(it => it.level === this._state.spellLevel));
 			});
 
-		const $dispSpell = $(`<div></div>`);
+		const $dispSpell = $(`<div class="no-wrap"></div>`);
 		const hkSpell = () => {
 			if (!this._state.spell) return $dispSpell.html(`<span class="help-subtle" title="${LootGenMagicItemNull.TOOLTIP_NOTHING.qq()}">(no spell)</span>`);
 			$dispSpell.html(Renderer.get().render(`{@spell ${this._state.spell.name}|${this._state.spell.source}}`));
@@ -2046,8 +2093,8 @@ class LootGenMagicItemSpellScroll extends LootGenMagicItem {
 					<span>(</span>
 					${$btnRerollSpell}
 					${$dispSpell}
-					<span class="ve-muted mx-2">-or-</span>
-					${Renderer.get().render(`{@filter see all ${Parser.spLevelToFullLevelText(this._state.spellLevel, true)} spells|spells|level=${this._state.spellLevel}}`)}
+					<span class="ve-muted mx-2 no-wrap">-or-</span>
+					<div class="no-wrap">${Renderer.get().render(`{@filter see all ${Parser.spLevelToFullLevelText(this._state.spellLevel, {isDash: true})} spells|spells|level=${this._state.spellLevel}}`)}</div>
 					<span>)</span>
 				</div>
 				${$dispRoll}

@@ -109,6 +109,12 @@
 			"name": "Cult of the Dragon Infiltrator",
 			"source": "HotDQ",
 			"page": 87,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 176
+				}
+			],
 			"optionType": [
 				"RF:B"
 			],
@@ -143,6 +149,12 @@
 			"name": "Dragon Scholar",
 			"source": "HotDQ",
 			"page": 87,
+			"otherSources": [
+				{
+					"source": "ToD",
+					"page": 176
+				}
+			],
 			"optionType": [
 				"RF:B"
 			],
@@ -514,7 +526,8 @@
 						}
 					]
 				}
-			]
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Iconoclast",
@@ -1127,7 +1140,7 @@
 					"entries": [
 						"{@i Piety 25+ Oracle trait}",
 						"You can cast {@spell commune} as a ritual with this trait. Once you do so, you can't cast it in this way again until you finish a long rest.",
-						"You also can't be surprised, provided you aren't {@condition incapacitated}."
+						"You also can't be {@quickref Surprise|PHB|3|0|surprised}, provided you aren't {@condition incapacitated}."
 					]
 				},
 				{
@@ -1488,7 +1501,7 @@
 				"RF:B"
 			],
 			"entries": [
-				"After a fateful experience, you believe you're aligned with spirits and can serve as a conduit for their insights and goals. You have advantage on any {@skill Arcana} or {@skill Religion} check you make to remember or research information about spirits and the afterlife. Additionally, you begin your adventuring career with a custom-made device for communing with otherworldly forces, perhaps a spirit board, a tarokka deck, an automatic writing planchette, dowsing rods, a cup for tea leaves, or a device of your own design. Add your proficiency bonus to any ability check you make using this type of divining tool."
+				"After a fateful experience, you believe you're aligned with spirits and can serve as a conduit for their insights and goals. You have advantage on any {@skill Arcana} or {@skill Religion} check you make to remember or research information about spirits and the afterlife. Additionally, you begin your adventuring career with a custom-made device for communing with otherworldly forces, perhaps a spirit board, a {@deck tarokka deck|CoS}, an automatic writing planchette, dowsing rods, a cup for tea leaves, or a device of your own design. Add your proficiency bonus to any ability check you make using this type of divining tool."
 			]
 		},
 		{

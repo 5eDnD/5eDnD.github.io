@@ -13,14 +13,15 @@ class PageFilterCharCreationOptions extends PageFilter {
 			displayFn: Parser.charCreationOptionTypeToFull,
 			itemSortFn: PageFilterCharCreationOptions._filterFeatureTypeSort,
 		});
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD", "Has Images", "Has Info"], isMiscFilter: true});
+		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD", "Legacy", "Has Images", "Has Info"], isMiscFilter: true});
 	}
 
 	static mutateForFilters (it) {
 		it._fOptionType = Parser.charCreationOptionTypeToFull(it.optionType);
 		it._fMisc = it.srd ? ["SRD"] : [];
-		if (it.hasFluff) it._fMisc.push("Has Info");
-		if (it.hasFluffImages) it._fMisc.push("Has Images");
+		if (SourceUtil.isLegacySourceWotc(it.source)) it._fMisc.push("Legacy");
+		if (it.hasFluff || it.fluff?.entries) it._fMisc.push("Has Info");
+		if (it.hasFluffImages || it.fluff?.images) it._fMisc.push("Has Images");
 	}
 
 	addToFilters (it, isExcluded) {
@@ -47,3 +48,5 @@ class PageFilterCharCreationOptions extends PageFilter {
 		);
 	}
 }
+
+globalThis.PageFilterCharCreationOptions = PageFilterCharCreationOptions;

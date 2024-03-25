@@ -140,6 +140,9 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"savingThrowForced": [
+				"strength"
+			],
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -147,6 +150,7 @@
 		{
 			"name": "Ashdra",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 158,
 			"_copy": {
@@ -181,6 +185,7 @@
 		{
 			"name": "Bandagh",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 159,
 			"_copy": {
@@ -192,6 +197,7 @@
 		{
 			"name": "Belak the Outcast",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 9,
 			"size": [
@@ -279,6 +285,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
 			"languageTags": [
 				"DU",
 				"X"
@@ -295,7 +304,13 @@
 				"CD"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"strength"
 			],
 			"hasToken": true
 		},
@@ -366,6 +381,7 @@
 		{
 			"name": "Calcryx",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 23,
 			"size": [
@@ -454,8 +470,12 @@
 				"AOE",
 				"MW"
 			],
+			"savingThrowForced": [
+				"constitution"
+			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Centaur Mummy",
@@ -561,6 +581,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"pike|phb"
+			],
 			"traitTags": [
 				"Charge"
 			],
@@ -579,12 +602,17 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RCH"
 			],
 			"conditionInflict": [
 				"frightened",
 				"paralyzed"
+			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true,
@@ -593,6 +621,7 @@
 		{
 			"name": "Chief Nosnra",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 170,
 			"_copy": {
@@ -640,6 +669,7 @@
 		{
 			"name": "Curran Corvalin",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 158,
 			"_copy": {
@@ -660,6 +690,7 @@
 		{
 			"name": "Dragonpriest",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 16,
 			"_copy": {
@@ -691,6 +722,14 @@
 			"hp": {
 				"average": 30,
 				"formula": "8d10 + 40"
+			},
+			"languages": [
+				"Elvish",
+				"Draconic"
+			],
+			"cr": {
+				"cr": "5",
+				"xp": 450
 			},
 			"actionTags": [],
 			"hasToken": true
@@ -779,6 +818,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"battleaxe|phb",
+				"javelin|phb"
+			],
 			"traitTags": [
 				"Undead Fortitude"
 			],
@@ -796,6 +839,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RW",
 				"THW"
@@ -806,6 +850,7 @@
 		{
 			"name": "Drevin",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 126,
 			"_copy": {
@@ -999,9 +1044,13 @@
 				{
 					"name": "Invisibility (Recharges after a Short or Long Rest)",
 					"entries": [
-						"The spy magically turns {@condition invisible} until it attacks, deals damage, casts a spell, or uses its Enlarge, or until its concentration is broken, up to 1 hour (as if concentrating on a spell). Any equipment the spy wears or carries is {@condition invisible} with it."
+						"The spy magically turns {@condition invisible} until it attacks, deals damage, casts a spell, or uses its Enlarge, or until its {@status concentration} is broken, up to 1 hour (as if {@status concentration||concentrating} on a spell). Any equipment the spy wears or carries is {@condition invisible} with it."
 					]
 				}
+			],
+			"attachedItems": [
+				"hand crossbow|phb",
+				"shortsword|phb"
 			],
 			"traitTags": [
 				"Sneak Attack",
@@ -1021,6 +1070,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
@@ -1034,6 +1084,7 @@
 		{
 			"name": "Durnn",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 25,
 			"size": [
@@ -1102,6 +1153,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"longbow|phb",
+				"longsword|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -1114,6 +1169,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
@@ -1124,6 +1180,7 @@
 		{
 			"name": "Eira",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 159,
 			"_copy": {
@@ -1195,6 +1252,7 @@
 		{
 			"name": "Erky Timbers",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 22,
 			"size": [
@@ -1281,6 +1339,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"club|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -1300,14 +1361,24 @@
 				"CC"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
+			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Estia",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 189,
 			"_copy": {
@@ -1850,6 +1921,9 @@
 			"conditionInflict": [
 				"stunned"
 			],
+			"savingThrowForced": [
+				"constitution"
+			],
 			"hasToken": true
 		},
 		{
@@ -1948,6 +2022,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"scimitar|phb"
+			],
 			"traitTags": [
 				"Magic Resistance",
 				"Turn Immunity"
@@ -1966,6 +2043,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RCH"
 			],
@@ -2055,6 +2133,9 @@
 				"prone",
 				"restrained"
 			],
+			"savingThrowForced": [
+				"strength"
+			],
 			"hasToken": true
 		},
 		{
@@ -2082,6 +2163,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"club|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -2090,11 +2174,15 @@
 				"GO",
 				"X"
 			],
+			"miscTags": [
+				"MLW"
+			],
 			"hasToken": true
 		},
 		{
 			"name": "Gorvan Ironheart",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 151,
 			"_copy": {
@@ -2118,6 +2206,7 @@
 		{
 			"name": "Great Ulfe",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 42,
 			"_copy": {
@@ -2146,7 +2235,8 @@
 				"P",
 				"S"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Greater Zombie",
@@ -2272,6 +2362,7 @@
 		{
 			"name": "Grenl",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 25,
 			"size": [
@@ -2367,6 +2458,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"scimitar|phb",
+				"shortbow|phb"
+			],
 			"senseTags": [
 				"D"
 			],
@@ -2385,9 +2480,14 @@
 				"CC"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"constitution"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -2395,6 +2495,7 @@
 		{
 			"name": "Grutha",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 170,
 			"_copy": {
@@ -2414,6 +2515,7 @@
 		{
 			"name": "Guthash",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 21,
 			"size": [
@@ -2461,12 +2563,16 @@
 			"miscTags": [
 				"MW"
 			],
+			"savingThrowForced": [
+				"constitution"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Hedrun Arnsfirth",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 160,
 			"_copy": {
@@ -2661,6 +2767,7 @@
 		{
 			"name": "Irisoth",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 157,
 			"_copy": {
@@ -2687,6 +2794,7 @@
 		{
 			"name": "Jarl Grugnur",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 189,
 			"_copy": {
@@ -2748,11 +2856,13 @@
 				"S"
 			],
 			"spellcastingTags": [],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Jot",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 15,
 			"_copy": {
@@ -2772,6 +2882,7 @@
 		{
 			"name": "Kaarghaz",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 45,
 			"size": [
@@ -2930,12 +3041,20 @@
 				"invisible",
 				"unconscious"
 			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Kalka-Kylla",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 238,
 			"size": [
@@ -3132,7 +3251,7 @@
 				{
 					"name": "Drowning Hypnosis",
 					"entries": [
-						"The kelpie chooses one humanoid it can see within 150 feet of it. If the target can see the kelpie, the target must succeed on a {@dc 11} Wisdom saving throw or be magically {@condition charmed} while the kelpie maintains concentration, up to 10 minutes (as if concentrating on a spell). The {@condition charmed} target is {@condition incapacitated}, and instead of holding its breath underwater, it tries to breathe normally and immediately runs out of breath, unless it can breathe water. If the {@condition charmed} target is more than 5 feet away from the kelpie, the target must move on its turn toward the kelpie by the most direct route, trying to get within 5 feet. It doesn't avoid opportunity attacks.",
+						"The kelpie chooses one humanoid it can see within 150 feet of it. If the target can see the kelpie, the target must succeed on a {@dc 11} Wisdom saving throw or be magically {@condition charmed} while the kelpie maintains {@status concentration}, up to 10 minutes (as if {@status concentration||concentrating} on a spell). The {@condition charmed} target is {@condition incapacitated}, and instead of holding its breath underwater, it tries to breathe normally and immediately runs out of breath, unless it can breathe water. If the {@condition charmed} target is more than 5 feet away from the kelpie, the target must move on its turn toward the kelpie by the most direct route, trying to get within 5 feet. It doesn't avoid opportunity attacks.",
 						"Before moving into damaging terrain, such as lava or a pit, and whenever it takes damage from a source other than the kelpie or drowning, the target can repeat the saving throw. A {@condition charmed} target can also repeat the saving throw at the end of each of its turns. If the saving throw is successful, the effect ends on it.",
 						"A target that successfully saves is immune to this kelpie's hypnosis for the next 24 hours."
 					]
@@ -3164,11 +3283,15 @@
 				"grappled",
 				"incapacitated"
 			],
+			"savingThrowForced": [
+				"wisdom"
+			],
 			"hasToken": true
 		},
 		{
 			"name": "Kelson Darktreader",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 132,
 			"_copy": {
@@ -3190,11 +3313,13 @@
 				"E",
 				"X"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Kieren",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 157,
 			"_copy": {
@@ -3212,6 +3337,7 @@
 		{
 			"name": "King Snurre",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 193,
 			"_copy": {
@@ -3257,7 +3383,8 @@
 				"F",
 				"S"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Kobold Commoner",
@@ -3283,6 +3410,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"club|phb"
+			],
 			"traitTags": [
 				"Pack Tactics",
 				"Sunlight Sensitivity"
@@ -3294,6 +3424,9 @@
 				"C",
 				"DR",
 				"X"
+			],
+			"miscTags": [
+				"MLW"
 			],
 			"hasToken": true
 		},
@@ -3341,6 +3474,7 @@
 		{
 			"name": "Lahnis",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 131,
 			"_copy": {
@@ -3355,7 +3489,8 @@
 					}
 				}
 			},
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Lesser Mummy Lord",
@@ -3393,6 +3528,7 @@
 		{
 			"name": "Lumalia",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 153,
 			"_copy": {
@@ -3407,7 +3543,8 @@
 					}
 				}
 			},
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Malformed Kraken",
@@ -3553,12 +3690,16 @@
 				"prone",
 				"restrained"
 			],
+			"savingThrowForced": [
+				"dexterity"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Mennek Ariz",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 157,
 			"_copy": {
@@ -3579,11 +3720,13 @@
 					"human"
 				]
 			},
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Nahual",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 91,
 			"size": [
@@ -3640,7 +3783,7 @@
 				{
 					"name": "Ambusher",
 					"entries": [
-						"In the first round of a combat, the doppelganger has advantage on attack rolls against any creature it has surprised."
+						"In the first round of a combat, the doppelganger has advantage on attack rolls against any creature it has {@quickref Surprise|PHB|3|0|surprised}."
 					]
 				},
 				{
@@ -3666,7 +3809,7 @@
 				{
 					"name": "Read Thoughts",
 					"entries": [
-						"The doppelganger magically reads the surface thoughts of one creature within 60 feet of it. The effect can penetrate barriers, but 3 feet of wood or dirt, 2 feet of stone, 2 inches of metal, or a thin sheet of lead blocks it. While the target is in range, the doppelganger can continue reading its thoughts, as long as the doppelganger's concentration isn't broken (as if concentrating on a spell). While reading the target's mind, the doppelganger has advantage on Wisdom ({@skill Insight}) and Charisma ({@skill Deception}, {@skill Intimidation}, and {@skill Persuasion}) checks against the target."
+						"The doppelganger magically reads the surface thoughts of one creature within 60 feet of it. The effect can penetrate barriers, but 3 feet of wood or dirt, 2 feet of stone, 2 inches of metal, or a thin sheet of lead blocks it. While the target is in range, the doppelganger can continue reading its thoughts, as long as the doppelganger's {@status concentration} isn't broken (as if {@status concentration||concentrating} on a spell). While reading the target's mind, the doppelganger has advantage on Wisdom ({@skill Insight}) and Charisma ({@skill Deception}, {@skill Intimidation}, and {@skill Persuasion}) checks against the target."
 					]
 				}
 			],
@@ -3694,6 +3837,7 @@
 		{
 			"name": "Nedylene",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 209,
 			"_copy": {
@@ -3852,12 +3996,17 @@
 				"blinded",
 				"prone"
 			],
+			"savingThrowForced": [
+				"constitution",
+				"strength"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Nimira",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 54,
 			"_copy": {
@@ -3915,6 +4064,7 @@
 		{
 			"name": "Obmi",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 196,
 			"_copy": {
@@ -3945,7 +4095,8 @@
 			},
 			"str": 16,
 			"cha": 16,
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Ogre Skeleton",
@@ -4175,6 +4326,14 @@
 				"poisoned",
 				"restrained"
 			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
 			"hasToken": true
 		},
 		{
@@ -4205,6 +4364,7 @@
 		{
 			"name": "Oussa",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 157,
 			"_copy": {
@@ -4224,6 +4384,7 @@
 		{
 			"name": "Phaia",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 132,
 			"_copy": {
@@ -4244,7 +4405,8 @@
 					"human"
 				]
 			},
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Reduced-Threat Aboleth",
@@ -4870,6 +5032,7 @@
 		{
 			"name": "Shalendra Floshin",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 119,
 			"_copy": {
@@ -4888,6 +5051,7 @@
 		{
 			"name": "Sharwyn Hucrele",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 242,
 			"size": [
@@ -4991,6 +5155,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"languageTags": [
 				"C",
 				"DR",
@@ -5007,13 +5174,18 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
 			],
 			"hasToken": true
 		},
 		{
 			"name": "Sir Braford",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 243,
 			"size": [
@@ -5096,6 +5268,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"longsword|phb"
+			],
 			"languageTags": [
 				"C"
 			],
@@ -5103,6 +5278,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true,
@@ -5111,6 +5287,7 @@
 		{
 			"name": "Siren",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 243,
 			"otherSources": [
@@ -5204,6 +5381,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"shortsword|phb"
+			],
 			"traitTags": [
 				"Amphibious",
 				"Magic Resistance"
@@ -5224,6 +5404,7 @@
 				"I"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflict": [
@@ -5232,6 +5413,12 @@
 			"conditionInflictSpell": [
 				"charmed",
 				"invisible"
+			],
+			"savingThrowForced": [
+				"intelligence"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -5242,6 +5429,7 @@
 				"Lycanthropes"
 			],
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 102,
 			"size": [
@@ -5389,6 +5577,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"spear|phb"
+			],
 			"traitTags": [
 				"Keen Senses",
 				"Shapechanger"
@@ -5414,9 +5605,18 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RW",
 				"THW"
+			],
+			"savingThrowForced": [
+				"constitution"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -5442,6 +5642,7 @@
 		{
 			"name": "Snurrevin",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 53,
 			"size": [
@@ -5561,9 +5762,13 @@
 				{
 					"name": "Invisibility (Recharges after a Short or Long Rest)",
 					"entries": [
-						"The duergar magically turns {@condition invisible} until it attacks, casts a spell, or uses its Enlarge, or until its concentration is broken, up to 1 hour (as if concentrating on a spell). Any equipment the duergar wears or carries is {@condition invisible} with it."
+						"The duergar magically turns {@condition invisible} until it attacks, casts a spell, or uses its Enlarge, or until its {@status concentration} is broken, up to 1 hour (as if {@status concentration||concentrating} on a spell). Any equipment the duergar wears or carries is {@condition invisible} with it."
 					]
 				}
+			],
+			"attachedItems": [
+				"javelin|phb",
+				"war pick|phb"
 			],
 			"traitTags": [
 				"Sunlight Sensitivity"
@@ -5587,6 +5792,7 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RW",
 				"THW"
@@ -5597,6 +5803,10 @@
 			"conditionInflictSpell": [
 				"blinded",
 				"paralyzed"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -5632,7 +5842,11 @@
 				"F"
 			],
 			"miscTags": [],
-			"hasToken": true
+			"savingThrowForced": [
+				"constitution"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Tarul Var",
@@ -5787,7 +6001,7 @@
 				{
 					"name": "Focused Conjuration",
 					"entries": [
-						"While Var is concentrating on a conjuration spell, his concentration can't be broken as a result of taking damage."
+						"While Var is {@status concentration||concentrating} on a conjuration spell, his {@status concentration} can't be broken as a result of taking damage."
 					]
 				},
 				{
@@ -5879,6 +6093,15 @@
 			"conditionInflictSpell": [
 				"restrained"
 			],
+			"savingThrowForced": [
+				"constitution",
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"constitution",
+				"dexterity",
+				"wisdom"
+			],
 			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
@@ -5886,6 +6109,7 @@
 		{
 			"name": "Tecuziztecatl",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 245,
 			"size": [
@@ -6011,6 +6235,9 @@
 				"MW",
 				"RCH"
 			],
+			"savingThrowForced": [
+				"dexterity"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
@@ -6115,6 +6342,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"languageTags": [
 				"C",
 				"OTH"
@@ -6130,11 +6360,16 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RW",
 				"THW"
 			],
-			"hasToken": true
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Thayan Warrior",
@@ -6221,6 +6456,10 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"javelin|phb",
+				"longsword|phb"
+			],
 			"traitTags": [
 				"Pack Tactics"
 			],
@@ -6236,6 +6475,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RW",
 				"THW"
@@ -6245,6 +6485,7 @@
 		{
 			"name": "The Keeper",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 173,
 			"_copy": {
@@ -6294,11 +6535,13 @@
 				"B",
 				"S"
 			],
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Therzt",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 158,
 			"_copy": {
@@ -6408,6 +6651,7 @@
 		{
 			"name": "Tloques-Popolocas",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 68,
 			"size": [
@@ -6570,12 +6814,16 @@
 			"conditionInflictSpell": [
 				"paralyzed"
 			],
+			"savingThrowForcedSpell": [
+				"wisdom"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Torlin Silvershield",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 159,
 			"_copy": {
@@ -6632,6 +6880,7 @@
 		{
 			"name": "White Maw",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 248,
 			"size": [
@@ -6741,6 +6990,7 @@
 		{
 			"name": "Xilonen",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 83,
 			"_copy": {
@@ -6756,7 +7006,8 @@
 				}
 			},
 			"int": 2,
-			"hasToken": true
+			"hasToken": true,
+			"hasFluffImages": true
 		},
 		{
 			"name": "Yeti Leader",
@@ -6909,6 +7160,7 @@
 		{
 			"name": "Yusdrayl",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "TftYP",
 			"page": 248,
 			"size": [
@@ -7008,6 +7260,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb"
+			],
 			"traitTags": [
 				"Pack Tactics",
 				"Sunlight Sensitivity"
@@ -7034,10 +7289,15 @@
 				"CS"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
 			"hasToken": true,
-			"hasFluff": true
+			"hasFluff": true,
+			"hasFluffImages": true
 		}
 	]
 }

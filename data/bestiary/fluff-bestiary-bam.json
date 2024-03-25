@@ -1,4 +1,9 @@
 {
+	"_meta": {
+		"internalCopies": [
+			"monsterFluff"
+		]
+	},
 	"monsterFluff": [
 		{
 			"name": "Aartuk Elder",
@@ -11,9 +16,7 @@
 						"Aartuk cells can be found throughout Wildspace, including aboard spelljamming ships whose former crews were either murdered or forcibly ejected by a band of aartuks.",
 						"An aartuk's body is shaped like a five-pointed star and is covered with thick, flexible bark. The tips of its branch-like extremities end in suction cups that allow the creature to climb on vertical surfaces and along ceilings. Each suction cup houses three retractable pseudopods that are used to manipulate small objects.",
 						"The head of an aartuk surmounts a 6-foot-tall stalk that can be extruded from the center of the star. The head contains the aartuk's sensory organs, including a long tongue that the creature uses as a weapon.",
-						"An aartuk continues to grow throughout its long life. Aartuk elders can be as large as 12 feet in diameter.",
 						"An aartuk's preferred method of attack is to shoot forth its gooey tongue and use it to drag enemies toward the center of its body so that it can batter them with its powerful branches. It can also spit pellets of radiant energy.",
-						"Aartuks have no deities of their own, but certain groups have adopted various gods of war and vengeance, including Gruumsh, Hextor, and Sargonnas.",
 						"The Aartuk language is made up of rustling sounds, snaps, pops, and hisses. It has no written form."
 					]
 				}
@@ -24,12 +27,13 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Aartuk Elder.webp"
-					}
+					},
+					"credit": "Christopher Burdett"
 				}
 			]
 		},
 		{
-			"name": "Aartuk Priest",
+			"name": "Aartuk Starhorror",
 			"source": "BAM",
 			"entries": [
 				{
@@ -39,9 +43,7 @@
 						"Aartuk cells can be found throughout Wildspace, including aboard spelljamming ships whose former crews were either murdered or forcibly ejected by a band of aartuks.",
 						"An aartuk's body is shaped like a five-pointed star and is covered with thick, flexible bark. The tips of its branch-like extremities end in suction cups that allow the creature to climb on vertical surfaces and along ceilings. Each suction cup houses three retractable pseudopods that are used to manipulate small objects.",
 						"The head of an aartuk surmounts a 6-foot-tall stalk that can be extruded from the center of the star. The head contains the aartuk's sensory organs, including a long tongue that the creature uses as a weapon.",
-						"An aartuk continues to grow throughout its long life. Aartuk elders can be as large as 12 feet in diameter.",
 						"An aartuk's preferred method of attack is to shoot forth its gooey tongue and use it to drag enemies toward the center of its body so that it can batter them with its powerful branches. It can also spit pellets of radiant energy.",
-						"Aartuks have no deities of their own, but certain groups have adopted various gods of war and vengeance, including Gruumsh, Hextor, and Sargonnas.",
 						"The Aartuk language is made up of rustling sounds, snaps, pops, and hisses. It has no written form."
 					]
 				}
@@ -51,13 +53,14 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/BAM/Aartuk Priest.webp"
-					}
+						"path": "bestiary/BAM/Aartuk Starhorror.webp"
+					},
+					"credit": "Matt Stewart"
 				}
 			]
 		},
 		{
-			"name": "Aartuk Warrior",
+			"name": "Aartuk Weedling",
 			"source": "BAM",
 			"entries": [
 				{
@@ -67,9 +70,7 @@
 						"Aartuk cells can be found throughout Wildspace, including aboard spelljamming ships whose former crews were either murdered or forcibly ejected by a band of aartuks.",
 						"An aartuk's body is shaped like a five-pointed star and is covered with thick, flexible bark. The tips of its branch-like extremities end in suction cups that allow the creature to climb on vertical surfaces and along ceilings. Each suction cup houses three retractable pseudopods that are used to manipulate small objects.",
 						"The head of an aartuk surmounts a 6-foot-tall stalk that can be extruded from the center of the star. The head contains the aartuk's sensory organs, including a long tongue that the creature uses as a weapon.",
-						"An aartuk continues to grow throughout its long life. Aartuk elders can be as large as 12 feet in diameter.",
 						"An aartuk's preferred method of attack is to shoot forth its gooey tongue and use it to drag enemies toward the center of its body so that it can batter them with its powerful branches. It can also spit pellets of radiant energy.",
-						"Aartuks have no deities of their own, but certain groups have adopted various gods of war and vengeance, including Gruumsh, Hextor, and Sargonnas.",
 						"The Aartuk language is made up of rustling sounds, snaps, pops, and hisses. It has no written form."
 					]
 				}
@@ -79,8 +80,9 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/BAM/Aartuk Warrior.webp"
-					}
+						"path": "bestiary/BAM/Aartuk Weedling.webp"
+					},
+					"credit": "Christopher Burdett"
 				}
 			]
 		},
@@ -114,45 +116,10 @@
 		{
 			"name": "Adult Solar Dragon",
 			"source": "BAM",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"A solar dragon (also known as a radiant dragon or a sun dragon) is born in the heart of a star. It divides its time outside its lair between patrolling its territory and hunting for food. The dragon has a serpentine body, a pair of ventral limbs ending in long fins, nebulous wings that give off light, and gleaming, multicolored scales. It can see clearly even in blindingly bright light.",
-						"Solar dragons are fond of treasure just as all dragons are, but in the airless void of Wildspace, they value food even more. Solar dragons typically feed on kindori, scavvers, and other forms of space-dwelling wildlife. A solar dragon might mistake a distant spelljamming ship for possible prey and come within range of the vessel's weapons before realizing its error and veering away. A wise or experienced captain won't take the dragon's approach as a sign of hostility. Solar dragons that are fired upon have been known to batter the offending ships to flinders.",
-						"Solar dragons are territorial carnivores, and they behave accordingly. A young solar dragon might lay claim to an asteroid belt, where food is relatively plentiful, while an ancient solar dragon might consider an entire Wildspace system its hunting ground. They tend to give a wide berth to Humanoid folk, whom they find violent and tiresome. Trespassers who are detected in a solar dragon's lair can expect to be met with resistance, followed by hostility, especially if the lair contains eggs.",
-						"A solar dragon egg has an obsidian shell, shiny black and opaque. When an egg is close to hatching, the shell becomes translucent, allowing the light from the unborn wyrmling's wings to shine through."
-					]
-				},
-				{
-					"type": "section",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "A Solar Dragon's Lair",
-							"entries": [
-								"A solar dragon customarily lairs in a star's radiant core or nests in a gigantic, hollowed-out rock engulfed by the star's blinding radiance. A star in which a solar dragon makes its lair has the following effects on creatures:",
-								{
-									"type": "list",
-									"style": "list-hang-notitle",
-									"items": [
-										{
-											"type": "item",
-											"name": "Blinding Radiance.",
-											"entry": "A creature that is within 10 miles of the star or inside it is blinded by its intense light unless the creature has protective gear to shield its eyes, such as goggles of night or a similar form of eyewear."
-										},
-										{
-											"type": "item",
-											"name": "Stellar Incineration.",
-											"entry": "Any creature that enters the star or starts its turn inside it takes 132 ({@dice 24d10}) radiant damage."
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			]
+			"_copy": {
+				"name": "Solar Dragon",
+				"source": "BAM"
+			}
 		},
 		{
 			"name": "Ancient Lunar Dragon",
@@ -186,61 +153,33 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Ancient Lunar Dragon.webp"
-					}
+					},
+					"credit": "Svetlin Velinov"
 				}
 			]
 		},
 		{
 			"name": "Ancient Solar Dragon",
 			"source": "BAM",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"A solar dragon (also known as a radiant dragon or a sun dragon) is born in the heart of a star. It divides its time outside its lair between patrolling its territory and hunting for food. The dragon has a serpentine body, a pair of ventral limbs ending in long fins, nebulous wings that give off light, and gleaming, multicolored scales. It can see clearly even in blindingly bright light.",
-						"Solar dragons are fond of treasure just as all dragons are, but in the airless void of Wildspace, they value food even more. Solar dragons typically feed on kindori, scavvers, and other forms of space-dwelling wildlife. A solar dragon might mistake a distant spelljamming ship for possible prey and come within range of the vessel's weapons before realizing its error and veering away. A wise or experienced captain won't take the dragon's approach as a sign of hostility. Solar dragons that are fired upon have been known to batter the offending ships to flinders.",
-						"Solar dragons are territorial carnivores, and they behave accordingly. A young solar dragon might lay claim to an asteroid belt, where food is relatively plentiful, while an ancient solar dragon might consider an entire Wildspace system its hunting ground. They tend to give a wide berth to Humanoid folk, whom they find violent and tiresome. Trespassers who are detected in a solar dragon's lair can expect to be met with resistance, followed by hostility, especially if the lair contains eggs.",
-						"A solar dragon egg has an obsidian shell, shiny black and opaque. When an egg is close to hatching, the shell becomes translucent, allowing the light from the unborn wyrmling's wings to shine through."
-					]
-				},
-				{
-					"type": "section",
-					"entries": [
-						{
-							"type": "entries",
-							"name": "A Solar Dragon's Lair",
-							"entries": [
-								"A solar dragon customarily lairs in a star's radiant core or nests in a gigantic, hollowed-out rock engulfed by the star's blinding radiance. A star in which a solar dragon makes its lair has the following effects on creatures:",
-								{
-									"type": "list",
-									"style": "list-hang-notitle",
-									"items": [
-										{
-											"type": "item",
-											"name": "Blinding Radiance.",
-											"entry": "A creature that is within 10 miles of the star or inside it is blinded by its intense light unless the creature has protective gear to shield its eyes, such as goggles of night or a similar form of eyewear."
-										},
-										{
-											"type": "item",
-											"name": "Stellar Incineration.",
-											"entry": "Any creature that enters the star or starts its turn inside it takes 132 ({@dice 24d10}) radiant damage."
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			],
-			"images": [
-				{
-					"type": "image",
-					"href": {
-						"type": "internal",
-						"path": "bestiary/BAM/Ancient Solar Dragon.webp"
+			"_copy": {
+				"name": "Solar Dragon",
+				"source": "BAM",
+				"_mod": {
+					"images": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "image",
+								"href": {
+									"type": "internal",
+									"path": "bestiary/BAM/Ancient Solar Dragon.webp"
+								},
+								"credit": "Zoltan Boros"
+							}
+						]
 					}
 				}
-			]
+			}
 		},
 		{
 			"name": "Astral Elf Aristocrat",
@@ -282,7 +221,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Astral Elf Aristocrat.webp"
-					}
+					},
+					"credit": "Randy Vargas"
 				}
 			]
 		},
@@ -326,7 +266,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Astral Elf Commander.webp"
-					}
+					},
+					"credit": "Julio Reyna"
 				}
 			]
 		},
@@ -370,7 +311,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Astral Elf Honor Guard.webp"
-					}
+					},
+					"credit": "Marta Nael"
 				}
 			]
 		},
@@ -414,7 +356,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Astral Elf Star Priest.webp"
-					}
+					},
+					"credit": "Merlin G. G."
 				}
 			]
 		},
@@ -458,7 +401,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Astral Elf Warrior.webp"
-					}
+					},
+					"credit": "Zuzanna Wuzyk"
 				}
 			]
 		},
@@ -481,7 +425,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Autognome.webp"
-					}
+					},
+					"credit": "Zuzanna Wuzyk"
 				}
 			]
 		},
@@ -504,7 +449,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Brohg.webp"
-					}
+					},
+					"credit": "Kai Carpenter"
 				}
 			]
 		},
@@ -527,7 +473,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Braxat.webp"
-					}
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -549,7 +496,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Brown Scavver.webp"
-					}
+					},
+					"credit": "Jessica Nguyen"
 				}
 			]
 		},
@@ -577,7 +525,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Chwinga Astronaut.webp"
-					}
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -599,7 +548,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Cosmic Horror.webp"
-					}
+					},
+					"credit": "Simon Dominic"
 				}
 			]
 		},
@@ -610,10 +560,9 @@
 				{
 					"type": "entries",
 					"entries": [
-						"Dohwars are short, pudgy, flightless avians that look and move like penguins. They are inveterate merchants, always looking for an opportunity to turn a profit. Dohwars conduct their dealings in secrecy, preferring to do business in dark alleys and out-of-the-way places even when the items being bought or sold aren't illegal or dangerous. They tend to dress in a garish mishmash of clothing, but many of them also shroud themselves in hooded cloaks. A group of dohwars is called a cartel.",
-						"The average dohwar stands 3 feet tall and has bright plumage. Instead of wings, it has arms and tiny hands.",
-						"Dohwars prefer to communicate through a form of telepathy they call merging, in which two dohwars stay in mental contact while both are telepathically linked with a third creature.",
-						"Dohwars have their own pantheon of deities, made up entirely of gods of commerce and wealth. These deities include Waukeen, Abbathor, and Zilchus. By focusing on the worship of such deities, the dohwars hope to become the best merchants in the multiverse without alienating or offending any god in particular."
+						"Dohwars are short, pudgy, flightless avians that look and move like penguins. Dohwars migrate from the Feywild to Wildspace, where they are typically encountered. They conduct their affairs in secrecy, preferring to meet in dark alleys and out-of-the-way places even when their business isn't illegal or dangerous. They tend to dress in a garish mishmash of clothing, but many of them also shroud themselves in hooded cloaks.",
+						"The average dohwar stands 3 feet tall and has bright plumage matching a particular color in the rainbow spectrum. This color can change at unpredictable times in the dohwar's life, often in response to the dohwar experiencing an overwhelming emotion. Instead of wings, it has arms and tiny hands.",
+						"Dohwars prefer to communicate through a form of telepathy they call merging, in which two dohwars stay in mental contact while both are telepathically linked with a third creature."
 					]
 				}
 			],
@@ -623,7 +572,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Dohwar.webp"
-					}
+					},
+					"credit": "Brynn Metheney"
 				}
 			]
 		},
@@ -648,7 +598,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Esthetic.webp"
-					}
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -671,7 +622,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Eye Monger.webp"
-					}
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -693,7 +645,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Feyr.webp"
-					}
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -715,7 +668,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Gaj.webp"
-					}
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -736,7 +690,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Giant Space Hamster.webp"
-					}
+					},
+					"credit": "Zoltan Boros"
 				}
 			]
 		},
@@ -769,7 +724,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Giff Shock Trooper.webp"
-					}
+					},
+					"credit": "Robson Michel"
 				}
 			]
 		},
@@ -791,7 +747,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Giff Warlord.webp"
-					}
+					},
+					"credit": "Robson Michel"
 				}
 			]
 		},
@@ -812,7 +769,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Githyanki Buccaneer.webp"
-					}
+					},
+					"credit": "Andrew Mar"
 				}
 			]
 		},
@@ -834,7 +792,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Githyanki Star Seer.webp"
-					}
+					},
+					"credit": "Andrew Mar"
 				}
 			]
 		},
@@ -856,7 +815,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Githyanki Xenomancer.webp"
-					}
+					},
+					"credit": "Andrew Mar"
 				}
 			]
 		},
@@ -877,7 +837,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Gray Scavver.webp"
-					}
+					},
+					"credit": "Jessica Nguyen"
 				}
 			]
 		},
@@ -898,7 +859,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Hadozee Explorer.webp"
-					}
+					},
+					"credit": "Zuzanna Wuzyk"
 				}
 			]
 		},
@@ -919,7 +881,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Hadozee Shipmate.webp"
-					}
+					},
+					"credit": "Claudio Pozas"
 				}
 			]
 		},
@@ -940,7 +903,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Hadozee Warrior.webp"
-					}
+					},
+					"credit": "David Auden Nash"
 				}
 			]
 		},
@@ -963,7 +927,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Jammer Leech.webp"
-					}
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -987,7 +952,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Kindori.webp"
-					}
+					},
+					"credit": "Jessica Nguyen"
 				}
 			]
 		},
@@ -1011,7 +977,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Lunar Dragon Wyrmling.webp"
-					}
+					},
+					"credit": "Lars Grant-West"
 				}
 			]
 		},
@@ -1034,7 +1001,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Megapede.webp"
-					}
+					},
+					"credit": "Craig J Spearing"
 				}
 			]
 		},
@@ -1045,7 +1013,8 @@
 				{
 					"type": "entries",
 					"entries": [
-						"Mercanes are merchants who trade primarily in magic items and advanced technology, including artifacts and spelljamming helms. These 12-foot-tall, lanky, blue giants dress in elegant robes and have elongated heads and long, spindly fingers. They use spelljamming ships to cross the Astral Sea and travel from world to world within Wildspace systems, where they conduct most of their business. It's rare to see more than one mercane at a time, though it's common for a mercane to be accompanied by underlings or bodyguards.",
+						"Mercanes are the mysterious, magical creations of one or more deities whose portfolios revolve around fair commerce. Standing 12 feet tall, they are lanky blue beings who dress in elegant robes and have elongated heads and long, spindly fingers.",
+						"Mercanes conduct most of their business in Wildspace and the Astral Sea. To a mercane, commerce can take many forms, from the trading of goods and services to the trading of ideas and information. Mercanes are best known, however, for procuring and selling magic items, including artifacts and spelljamming helms. It's rare to see more than one mercane at a time, though it's common for a mercane to be accompanied by underlings or bodyguards.",
 						"Mercanes will conduct business with anyone, fairly and reliably, provided the other party has neither harmed nor swindled another mercane in the past. Mercanes have a special form of telepathy that enables them to communicate with one another across the multiverse. A mercane often uses this ability to warn another mercanes about individuals who are dangerous or unreliable. Once a mercane has been offended by someone, getting back into their good graces is next to impossible."
 					]
 				}
@@ -1056,7 +1025,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Mercane.webp"
-					}
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -1085,7 +1055,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Murder Comet.webp"
-					}
+					},
+					"credit": "Titus Lunter"
 				}
 			]
 		},
@@ -1109,7 +1080,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Neh-thalggu.webp"
-					}
+					},
+					"credit": "April Prime"
 				}
 			]
 		},
@@ -1169,7 +1141,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Night Scavver.webp"
-					}
+					},
+					"credit": "Jessica Nguyen"
 				}
 			]
 		},
@@ -1190,7 +1163,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Plasmoid Boss.webp"
-					}
+					},
+					"credit": "Cory Trego-Erdner"
 				}
 			]
 		},
@@ -1211,7 +1185,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Plasmoid Explorer.webp"
-					}
+					},
+					"credit": "Brian Valeza"
 				}
 			]
 		},
@@ -1232,7 +1207,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Plasmoid Warrior.webp"
-					}
+					},
+					"credit": "Irina Nordsol"
 				}
 			]
 		},
@@ -1256,7 +1232,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Psurlon.webp"
-					}
+					},
+					"credit": "Brynn Metheney"
 				}
 			]
 		},
@@ -1277,7 +1254,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Psurlon Leader.webp"
-					}
+					},
+					"credit": "Brynn Metheney"
 				}
 			]
 		},
@@ -1300,8 +1278,8 @@
 				{
 					"type": "entries",
 					"entries": [
-						"Reigar are androgynous folk who evolved into a humanoid shape from a species of cephalopods similar to octopi. They have bioluminescent freckles and the ability to change the coloration of their skin. A glory (or halo) surrounds each of them. This magical display is a cloud of twinkling, glittering motes that changes color randomly and repels attacks.",
-						"Reigar don't trust one another, which has been the case ever since they destroyed their home world in a war that ended with a cataclysmic event called the Master Stroke. The planet's destruction was the culmination of a plot to create the most beautiful display of carnage the multiverse had ever seen. Reigar exist solely to make art and wage war. They consider warfare to be the highest form of artistic endeavor, and every act of violence they commit is done with the intent of creating something beautiful.",
+						"Reigar were once cephalopods similar to octopi. They inhabited the stormy seas of Ysgard until the gods of that plane transformed them. Reigar have bioluminescent freckles and the ability to change the coloration of their skin. A glory (or halo) surrounds each of them. This magical display is a cloud of twinkling, glittering motes that changes color randomly and repels attacks.",
+						"Gifted with audacious hearts, reigar emerged from the Ysgardian seas to test their mettle on land. When the endless battles there grew tiresome, some reigar ventured to the Astral Sea and Wildspace in search of glory. Many are driven by artistic pursuits, but each reigar has their own notion of what constitutes art. For some, warfare is the highest form of artistic endeavor. Other reigar create art of a more benign nature.",
 						"Reigar wander Wildspace and the Astral Sea in search of artistic inspiration, traveling in symbiotic organic ships that they create (see \" Esthetic \"). Each reigar possesses a magic item called a talarith, which it created and to which it alone can attune. If this object is lost or destroyed, it takes {@dice 1d20 + 20} days for the reigar to craft another one."
 					]
 				}
@@ -1312,12 +1290,21 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Reigar.webp"
-					}
+					},
+					"credit": "Shawn Wood"
+				},
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/BAM/Reigar-2.webp"
+					},
+					"credit": "Simon Dominic"
 				}
 			]
 		},
 		{
-			"name": "Solar Dragon Wyrmling",
+			"name": "Solar Dragon",
 			"source": "BAM",
 			"entries": [
 				{
@@ -1335,10 +1322,34 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/BAM/Solar Dragon Wyrmling.webp"
-					}
+						"path": "bestiary/BAM/Solar Dragon Eggs.webp"
+					},
+					"credit": "Olga Drebas"
 				}
 			]
+		},
+		{
+			"name": "Solar Dragon Wyrmling",
+			"source": "BAM",
+			"_copy": {
+				"name": "Solar Dragon",
+				"source": "BAM",
+				"_mod": {
+					"images": {
+						"mode": "prependArr",
+						"items": [
+							{
+								"type": "image",
+								"href": {
+									"type": "internal",
+									"path": "bestiary/BAM/Solar Dragon Wyrmling.webp"
+								},
+								"credit": "Lars Grant-West"
+							}
+						]
+					}
+				}
+			}
 		},
 		{
 			"name": "Space Clown",
@@ -1359,7 +1370,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Space Clown.webp"
-					}
+					},
+					"credit": "Scott Murphy"
 				}
 			]
 		},
@@ -1380,7 +1392,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Space Eel.webp"
-					}
+					},
+					"credit": "Matt Stewart"
 				}
 			]
 		},
@@ -1401,7 +1414,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Space Guppy.webp"
-					}
+					},
+					"credit": "Alayna Danner"
 				}
 			]
 		},
@@ -1436,7 +1450,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Space Mollymawk.webp"
-					}
+					},
+					"credit": "Olga Drebas"
 				}
 			]
 		},
@@ -1458,7 +1473,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Space Swine.webp"
-					}
+					},
+					"credit": "Brynn Metheney"
 				}
 			]
 		},
@@ -1479,7 +1495,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Ssurran Defiler.webp"
-					}
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -1500,7 +1517,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Ssurran Poisoner.webp"
-					}
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		},
@@ -1522,7 +1540,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Starlight Apparition.webp"
-					}
+					},
+					"credit": "Nikki Dawes"
 				}
 			]
 		},
@@ -1543,7 +1562,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Thri-kreen Gladiator.webp"
-					}
+					},
+					"credit": "Cory Trego-Erdner"
 				}
 			]
 		},
@@ -1564,7 +1584,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Thri-kreen Hunter.webp"
-					}
+					},
+					"credit": "Brian Valeza"
 				}
 			]
 		},
@@ -1585,7 +1606,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Thri-kreen Mystic.webp"
-					}
+					},
+					"credit": "Claudio Pozas"
 				}
 			]
 		},
@@ -1609,7 +1631,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Vampirate.webp"
-					}
+					},
+					"credit": "Julio Reyna"
 				}
 			]
 		},
@@ -1678,17 +1701,10 @@
 		{
 			"name": "Young Solar Dragon",
 			"source": "BAM",
-			"entries": [
-				{
-					"type": "entries",
-					"entries": [
-						"A solar dragon (also known as a radiant dragon or a sun dragon) is born in the heart of a star. It divides its time outside its lair between patrolling its territory and hunting for food. The dragon has a serpentine body, a pair of ventral limbs ending in long fins, nebulous wings that give off light, and gleaming, multicolored scales. It can see clearly even in blindingly bright light.",
-						"Solar dragons are fond of treasure just as all dragons are, but in the airless void of Wildspace, they value food even more. Solar dragons typically feed on kindori, scavvers, and other forms of space-dwelling wildlife. A solar dragon might mistake a distant spelljamming ship for possible prey and come within range of the vessel's weapons before realizing its error and veering away. A wise or experienced captain won't take the dragon's approach as a sign of hostility. Solar dragons that are fired upon have been known to batter the offending ships to flinders.",
-						"Solar dragons are territorial carnivores, and they behave accordingly. A young solar dragon might lay claim to an asteroid belt, where food is relatively plentiful, while an ancient solar dragon might consider an entire Wildspace system its hunting ground. They tend to give a wide berth to Humanoid folk, whom they find violent and tiresome. Trespassers who are detected in a solar dragon's lair can expect to be met with resistance, followed by hostility, especially if the lair contains eggs.",
-						"A solar dragon egg has an obsidian shell, shiny black and opaque. When an egg is close to hatching, the shell becomes translucent, allowing the light from the unborn wyrmling's wings to shine through."
-					]
-				}
-			]
+			"_copy": {
+				"name": "Solar Dragon",
+				"source": "BAM"
+			}
 		},
 		{
 			"name": "Zodar",
@@ -1710,7 +1726,8 @@
 					"href": {
 						"type": "internal",
 						"path": "bestiary/BAM/Zodar.webp"
-					}
+					},
+					"credit": "Shawn Wood"
 				}
 			]
 		}

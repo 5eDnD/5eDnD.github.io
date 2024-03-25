@@ -2,6 +2,12 @@
 
 class PageFilterFeats extends PageFilter {
 	// region static
+	static _PREREQ_KEY_TO_FULL = {
+		"other": "Special",
+		"spellcasting2020": "Spellcasting",
+		"spellcastingFeature": "Spellcasting",
+		"spellcastingPrepared": "Spellcasting",
+	};
 	// endregion
 
 	constructor () {
@@ -19,6 +25,10 @@ class PageFilterFeats extends PageFilter {
 			],
 			displayFn: Parser.attAbvToFull,
 			itemSortFn: null,
+		});
+		this._categoryFilter = new Filter({
+			header: "Category",
+			displayFn: StrUtil.toTitleCase,
 		});
 		this._otherPrereqFilter = new Filter({
 			header: "Other",
@@ -45,18 +55,17 @@ class PageFilterFeats extends PageFilter {
 		this._immuneFilter = FilterCommon.getDamageImmuneFilter();
 		this._defenceFilter = new MultiFilter({header: "Damage", filters: [this._vulnerableFilter, this._resistFilter, this._immuneFilter]});
 		this._conditionImmuneFilter = FilterCommon.getConditionImmuneFilter();
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD"], isMiscFilter: true});
+		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Has Info", "Has Images", "SRD", "Basic Rules", "Legacy"], isMiscFilter: true});
 	}
 
 	static mutateForFilters (feat) {
 		const ability = Renderer.getAbilityData(feat.ability);
 		feat._fAbility = ability.asCollection.filter(a => !ability.areNegative.includes(a)); // used for filtering
 
-		const prereqText = Renderer.utils.getPrerequisiteHtml(feat.prerequisite, {isListMode: true}) || VeCt.STR_NONE;
+		const prereqText = Renderer.utils.prerequisite.getHtml(feat.prerequisite, {isListMode: true}) || VeCt.STR_NONE;
 
-		const preSet = new Set();
-		(feat.prerequisite || []).forEach(it => preSet.add(...Object.keys(it)));
-		feat._fPrereqOther = [...preSet].map(it => (it === "other" ? "special" : it === "spellcasting2020" ? "spellcasting" : it).uppercaseFirst());
+		feat._fPrereqOther = [...new Set((feat.prerequisite || []).flatMap(it => Object.keys(it)))]
+			.map(it => (this._PREREQ_KEY_TO_FULL[it] || it).uppercaseFirst());
 		if (feat.prerequisite) feat._fPrereqLevel = feat.prerequisite.filter(it => it.level != null).map(it => `Level ${it.level.level ?? it.level}`);
 		feat._fBenifits = [
 			feat.resist ? "Damage Resistance" : null,
@@ -75,6 +84,11 @@ class PageFilterFeats extends PageFilter {
 			if (feat.skillToolLanguageProficiencies.some(it => (it.choose || []).some(x => x.from || [].includes("anyLanguage")))) feat._fBenifits.push("Language Proficiency");
 		}
 		feat._fMisc = feat.srd ? ["SRD"] : [];
+		if (feat.basicRules) feat._fMisc.push("Basic Rules");
+		if (SourceUtil.isLegacySourceWotc(feat.source)) feat._fMisc.push("Legacy");
+		if (feat.hasFluff || feat.fluff?.entries) feat._fMisc.push("Has Info");
+		if (feat.hasFluffImages || feat.fluff?.images) feat._fMisc.push("Has Images");
+		if (feat.repeatable != null) feat._fMisc.push(feat.repeatable ? "Repeatable" : "Not Repeatable");
 
 		feat._slAbility = ability.asText || VeCt.STR_NONE;
 		feat._slPrereq = prereqText;
@@ -87,18 +101,21 @@ class PageFilterFeats extends PageFilter {
 		if (isExcluded) return;
 
 		this._sourceFilter.addItem(feat.source);
+		this._categoryFilter.addItem(feat.category);
 		if (feat.prerequisite) this._levelFilter.addItem(feat._fPrereqLevel);
 		this._vulnerableFilter.addItem(feat._fVuln);
 		this._resistFilter.addItem(feat._fRes);
 		this._immuneFilter.addItem(feat._fImm);
 		this._conditionImmuneFilter.addItem(feat._fCondImm);
 		this._benefitsFilter.addItem(feat._fBenifits);
+		this._miscFilter.addItem(feat._fMisc);
 	}
 
 	async _pPopulateBoxOptions (opts) {
 		opts.filters = [
 			this._sourceFilter,
 			this._asiFilter,
+			this._categoryFilter,
 			this._prerequisiteFilter,
 			this._benefitsFilter,
 			this._defenceFilter,
@@ -112,6 +129,7 @@ class PageFilterFeats extends PageFilter {
 			values,
 			ft.source,
 			ft._fAbility,
+			ft.category,
 			[
 				ft._fPrereqOther,
 				ft._fPrereqLevel,
@@ -127,6 +145,8 @@ class PageFilterFeats extends PageFilter {
 		);
 	}
 }
+
+globalThis.PageFilterFeats = PageFilterFeats;
 
 class ModalFilterFeats extends ModalFilter {
 	/**
@@ -155,10 +175,11 @@ class ModalFilterFeats extends ModalFilter {
 	}
 
 	async _pLoadAllData () {
-		const brew = await BrewUtil2.pGetBrewProcessed();
-		const fromData = (await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/feats.json`)).feat;
-		const fromBrew = brew.feat || [];
-		return [...fromData, ...fromBrew];
+		return [
+			...(await DataUtil.loadJSON(`${Renderer.get().baseUrl}data/feats.json`)).feat,
+			...((await PrereleaseUtil.pGetBrewProcessed()).feat || []),
+			...((await BrewUtil2.pGetBrewProcessed()).feat || []),
+		];
 	}
 
 	_getListItem (pageFilter, feat, ftI) {
@@ -168,17 +189,17 @@ class ModalFilterFeats extends ModalFilter {
 		const hash = UrlUtil.URL_TO_HASH_BUILDER[UrlUtil.PG_FEATS](feat);
 		const source = Parser.sourceJsonToAbv(feat.source);
 
-		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst--border no-select lst__wrp-cells">
+		eleRow.innerHTML = `<div class="w-100 ve-flex-vh-center lst--border veapp__list-row no-select lst__wrp-cells">
 			<div class="col-0-5 pl-0 ve-flex-vh-center">${this._isRadio ? `<input type="radio" name="radio" class="no-events">` : `<input type="checkbox" class="no-events">`}</div>
 
 			<div class="col-0-5 px-1 ve-flex-vh-center">
 				<div class="ui-list__btn-inline px-2" title="Toggle Preview (SHIFT to Toggle Info Preview)">[+]</div>
 			</div>
 
-			<div class="col-4 ${this._getNameStyle()}">${feat.name}</div>
+			<div class="col-4 ${feat._versionBase_isVersion ? "italic" : ""} ${this._getNameStyle()}">${feat._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${feat.name}</div>
 			<span class="col-3 ${feat._slAbility === VeCt.STR_NONE ? "italic" : ""}">${feat._slAbility}</span>
 				<span class="col-3 ${feat._slPrereq === VeCt.STR_NONE ? "italic" : ""}">${feat._slPrereq}</span>
-			<div class="col-1 pr-0 text-center ${Parser.sourceJsonToColor(feat.source)}" title="${Parser.sourceJsonToFull(feat.source)}" ${BrewUtil2.sourceJsonToStyle(feat.source)}>${source}</div>
+			<div class="col-1 pr-0 ve-flex-h-center ${Parser.sourceJsonToColor(feat.source)}" title="${Parser.sourceJsonToFull(feat.source)}" ${Parser.sourceJsonToStyle(feat.source)}>${source}${Parser.sourceJsonToMarkerHtml(feat.source)}</div>
 		</div>`;
 
 		const btnShowHidePreview = eleRow.firstElementChild.children[1].firstElementChild;
@@ -205,3 +226,5 @@ class ModalFilterFeats extends ModalFilter {
 		return listItem;
 	}
 }
+
+globalThis.ModalFilterFeats = ModalFilterFeats;

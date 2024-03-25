@@ -188,7 +188,7 @@ class PageUi {
 
 		const prevMode = this._settings.activeBuilder;
 
-		const $wrpMode = $(`<div class="sidemenu__row split-v-center"><div class="sidemenu__row__label mr-2">Mode</div></div>`).appendTo($mnu);
+		const $wrpMode = $(`<div class="w-100 split-v-center"><div class="sidemenu__row__label mr-2">Mode</div></div>`).appendTo($mnu);
 		this._$selBuilderMode = $(`
 			<select class="form-control input-xs">
 				<option value="creatureBuilder">Creature</option>
@@ -214,7 +214,7 @@ class PageUi {
 
 		$mnu.append(PageUi.__$getSideMenuDivider(true));
 
-		const $wrpSource = $(`<div class="sidemenu__row split-v-center"><div class="sidemenu__row__label mr-2">Source</div></div>`).appendTo($mnu);
+		const $wrpSource = $(`<div class="w-100 mb-2 split-v-center"><div class="sidemenu__row__label mr-2">Source</div></div>`).appendTo($mnu);
 		this._allSources = BrewUtil2.getSources().sort((a, b) => SortUtil.ascSortLower(a.full, b.full))
 			.map(it => it.json);
 		this._$selSource = $$`
@@ -238,13 +238,13 @@ class PageUi {
 				this._doRebuildStageSource({mode: "edit", source: MiscUtil.copy(curSource)});
 				this.__setStageSource();
 			});
-		$$`<div class="sidemenu__row">${$btnSourceEdit}</div>`.appendTo($mnu);
+		$$`<div class="w-100 mb-2">${$btnSourceEdit}</div>`.appendTo($mnu);
 
 		const $btnSourceAdd = $(`<button class="btn btn-default btn-xs">Add New Source</button>`).click(() => {
 			this._doRebuildStageSource({mode: "add"});
 			this.__setStageSource();
 		});
-		$$`<div class="sidemenu__row">${$btnSourceAdd}</div>`.appendTo($mnu);
+		$$`<div class="w-100">${$btnSourceAdd}</div>`.appendTo($mnu);
 
 		$mnu.append(PageUi.__$getSideMenuDivider(true));
 		this._$menuInner = $(`<div/>`).appendTo($mnu);
@@ -255,7 +255,7 @@ class PageUi {
 	set _sideMenuEnabled (val) { $(`.sidemenu__toggle`).toggle(!!val); }
 
 	static __$getSideMenuDivider (heavy) {
-		return $(`<hr class="sidemenu__row__divider ${heavy ? "sidemenu__row__divider--heavy" : ""}">`);
+		return $(`<hr class="w-100 hr-2 sidemenu__row__divider ${heavy ? "sidemenu__row__divider--heavy" : ""}">`);
 	}
 
 	_doRenderActiveBuilder () {
@@ -316,7 +316,6 @@ class Builder extends ProxyBase {
 	 * @param opts.titleSidebarDownloadJson Text for "Download JSON" sidebar button.
 	 * @param opts.metaSidebarDownloadMarkdown Meta for a "Download Markdown" sidebar button.
 	 * @param opts.prop Homebrew prop.
-	 * @param opts.typeRenderData Renderer "dataX" entry type.
 	 */
 	constructor (opts) {
 		super();
@@ -325,7 +324,6 @@ class Builder extends ProxyBase {
 		this._titleSidebarDownloadJson = opts.titleSidebarDownloadJson;
 		this._metaSidebarDownloadMarkdown = opts.metaSidebarDownloadMarkdown;
 		this._prop = opts.prop;
-		this._typeRenderData = opts.typeRenderData;
 
 		Builder._BUILDERS.push(this);
 		TabUiUtil.decorate(this);
@@ -404,7 +402,10 @@ class Builder extends ProxyBase {
 	}
 
 	async _pHashChange_pHandleSubHashes (sub, toLoad) {
-		return toLoad;
+		return {
+			isAllowEditExisting: true,
+			toLoad,
+		};
 	}
 
 	$getSourceInput (cb) {
@@ -437,7 +438,7 @@ class Builder extends ProxyBase {
 		if (!this._$sideMenuStageSaved) {
 			const $btnLoadExisting = $(`<button class="btn btn-xs btn-default">${this._titleSidebarLoadExisting}</button>`)
 				.click(() => this.pHandleSidebarLoadExistingClick());
-			this._$wrpBtnLoadExisting = $$`<div class="sidemenu__row">${$btnLoadExisting}</div>`;
+			this._$wrpBtnLoadExisting = $$`<div class="w-100 mb-2">${$btnLoadExisting}</div>`;
 
 			const $btnDownloadJson = $(`<button class="btn btn-default btn-xs mb-2">${this._titleSidebarDownloadJson}</button>`)
 				.click(() => this.pHandleSidebarDownloadJsonClick());
@@ -458,7 +459,7 @@ class Builder extends ProxyBase {
 				return $$`<div class="ve-flex-v-center btn-group">${$btnDownload}${$btnSettings}</div>`;
 			})();
 
-			this._$sideMenuWrpList = this._$sideMenuWrpList || $(`<div class="sidemenu__row ve-flex-col">`);
+			this._$sideMenuWrpList = this._$sideMenuWrpList || $(`<div class="w-100 ve-flex-col">`);
 			this._$sideMenuStageSaved = $$`<div>
 				${PageUi.__$getSideMenuDivider().hide()}
 				<div class="ve-flex-v-center">${$btnDownloadJson}</div>
@@ -481,7 +482,7 @@ class Builder extends ProxyBase {
 	}
 
 	getOnNavMessage () {
-		if (!this._meta.isPersisted && this._meta.isModified) return "You have unsaved changes! Are you sure you want to leave?";
+		if (this._meta.isModified) return "You have unsaved changes! Are you sure you want to leave?";
 		else return null;
 	}
 
@@ -521,18 +522,11 @@ class Builder extends ProxyBase {
 
 			const $btnEdit = $(`<button class="btn btn-xs btn-default mr-2" title="Edit"><span class="glyphicon glyphicon-pencil"/></button>`)
 				.click(async () => {
-					if (this.getOnNavMessage() && !confirm("You have unsaved changes. Are you sure?")) return;
-					const entEditable = await BrewUtil2.pGetEditableBrewEntity(this._prop, ent.uniqueId);
-					this.setStateFromLoaded({
-						s: MiscUtil.copy(entEditable),
-						m: this._getInitialMetaState({
-							isModified: false,
-							isPersisted: true,
-						}),
-					});
-					this.renderInput();
-					this.renderOutput();
-					this.doUiSave();
+					if (
+						this.getOnNavMessage()
+						&& !await InputUiUtil.pGetUserBoolean({title: "Discard Unsaved Changes", htmlDescription: "You have unsaved changes. Are you sure?", textYes: "Yes", textNo: "Cancel"})
+					) return;
+					await this.pHandleSidebarEditUniqueId(ent.uniqueId);
 				});
 
 			const menu = ContextUtil.getMenu([
@@ -590,7 +584,15 @@ class Builder extends ProxyBase {
 					async (evt) => {
 						const entry = MiscUtil.copy(await BrewUtil2.pGetEditableBrewEntity(this._prop, ent.uniqueId));
 						const name = `${entry._displayName || entry.name} \u2014 Markdown`;
-						const mdText = RendererMarkdown.get().render({entries: [{type: this._typeRenderData, [this._typeRenderData]: entry}]});
+						const mdText = RendererMarkdown.get().render({
+							entries: [
+								{
+									type: "statblockInline",
+									dataType: this._prop,
+									data: entry,
+								},
+							],
+						});
 						const $content = Renderer.hover.$getHoverContent_miscCode(name, mdText);
 
 						Renderer.hover.getShowWindow(
@@ -619,14 +621,12 @@ class Builder extends ProxyBase {
 
 			const $btnDelete = $(`<button class="btn btn-xs btn-danger" title="Delete"><span class="glyphicon glyphicon-trash"/></button>`)
 				.click(async () => {
-					if (confirm("Are you sure?")) {
-						if (this._state.uniqueId === ent.uniqueId) {
-							this.reset();
-						}
-						await BrewUtil2.pRemoveEditableBrewEntity(this._prop, ent.uniqueId);
-						await this._pDoUpdateSidemenu();
-						await this.pDoPostDelete();
-					}
+					if (!await InputUiUtil.pGetUserBoolean({title: "Delete Entity", htmlDescription: "Are you sure?", textYes: "Yes", textNo: "Cancel"})) return;
+
+					if (this._state.uniqueId === ent.uniqueId) this.reset();
+					await BrewUtil2.pRemoveEditableBrewEntity(this._prop, ent.uniqueId);
+					await this._pDoUpdateSidemenu();
+					await this.pDoPostDelete();
 				});
 
 			const $dispName = $$`<span class="py-1">${ent.name}</span>`;
@@ -647,6 +647,20 @@ class Builder extends ProxyBase {
 		Object.entries(this._sidemenuListRenderCache)
 			.filter(([uniqueId]) => !metasVisible.has(uniqueId))
 			.forEach(([, meta]) => meta.$row.hideVe());
+	}
+
+	async pHandleSidebarEditUniqueId (uniqueId) {
+		const entEditable = await BrewUtil2.pGetEditableBrewEntity(this._prop, uniqueId);
+		this.setStateFromLoaded({
+			s: MiscUtil.copy(entEditable),
+			m: this._getInitialMetaState({
+				isModified: false,
+				isPersisted: false,
+			}),
+		});
+		this.renderInput();
+		this.renderOutput();
+		this.doUiSave();
 	}
 
 	async pHandleSidebarDownloadJsonClick () {
@@ -732,6 +746,7 @@ class Builder extends ProxyBase {
 
 			await BrewUtil2.pPersistEditableBrewEntity(this._prop, clean);
 			this._meta.isPersisted = true;
+			this._meta.isModified = false;
 			await SearchWidget.P_LOADING_CONTENT;
 			await SearchWidget.pAddToIndexes(this._prop, clean);
 		}
@@ -752,7 +767,7 @@ class Builder extends ProxyBase {
 	 * @param [opts] Options object.
 	 * @param [opts.isProtectLast]
 	 * @param [opts.isExtraSmall]
-	 * @return {JQuery}
+	 * @return {jQuery}
 	 */
 	static $getBtnRemoveRow (doUpdateState, rowArr, row, $wrpRow, title, opts) {
 		opts = opts || {};
@@ -909,7 +924,7 @@ class Builder extends ProxyBase {
 		};
 	}
 
-	_getInitialMetaState ({isModified = true, isPersisted = false} = {}) {
+	_getInitialMetaState ({isModified = false, isPersisted = false} = {}) {
 		return {
 			isModified,
 			isPersisted,
@@ -964,7 +979,7 @@ class BuilderUi {
 		const eleType = options.eleType || "div";
 
 		const $rowInner = $(`<div class="${options.isRow ? "ve-flex" : "ve-flex-col"} w-100"/>`);
-		const $row = $$`<div class="mb-2 mkbru__row stripe-even"><${eleType} class="mkbru__wrp-row ve-flex-v-center"><span class="mr-2 mkbru__row-name ${options.isMarked ? `mkbru__row-name--marked` : ""} ${options.title ? "help" : ""}" ${options.title ? `title="${options.title}"` : ""}>${name}</span>${options.isMarked ? `<div class="mkbru__row-mark mr-2"/>` : ""}${$rowInner}</${eleType}></div>`;
+		const $row = $$`<div class="mb-2 mkbru__row stripe-even"><${eleType} class="mkbru__wrp-row ve-flex-v-center"><span class="mr-2 mkbru__row-name ve-shrink-10 ${options.isMarked ? `mkbru__row-name--marked` : ""} ${options.title ? "help" : ""}" ${options.title ? `title="${options.title}"` : ""}>${name}</span>${options.isMarked ? `<div class="mkbru__row-mark mr-2"/>` : ""}${$rowInner}</${eleType}></div>`;
 		return [$row, $rowInner];
 	}
 
@@ -1026,6 +1041,7 @@ class BuilderUi {
 				if (options.withHeader && out) {
 					out = [
 						{
+							type: "entries",
 							name: options.withHeader,
 							entries: out,
 						},
@@ -1306,15 +1322,19 @@ class Makebrew {
 		Makebrew._LOCK = new VeLock();
 
 		// generic init
-		await BrewUtil2.pInit();
+		await Promise.all([
+			PrereleaseUtil.pInit(),
+			BrewUtil2.pInit(),
+		]);
 		ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
 		await this.pPrepareExistingEditableBrew();
-		await BrewUtil2.pGetBrewProcessed();
+		const brew = await BrewUtil2.pGetBrewProcessed();
 		await SearchUiUtil.pDoGlobalInit();
 		// Do this asynchronously, to avoid blocking the load
 		SearchWidget.pDoGlobalInit();
 
 		TaggerUtils.init({legendaryGroups: await DataUtil.legendaryGroup.pLoadAll(), spells: await DataUtil.spell.pLoadAll()});
+		TagCondition.init({conditionsBrew: brew.condition});
 
 		// page-specific init
 		await Builder.pInitAll();
@@ -1372,11 +1392,17 @@ class Makebrew {
 		if (!initialLoadMeta.statemeta) return;
 
 		const [page, source, hash] = initialLoadMeta.statemeta;
-		let toLoad = await Renderer.hover.pCacheAndGet(page, source, hash, {isCopy: true});
+		const toLoadOriginal = await DataLoader.pCacheAndGet(page, source, hash, {isCopy: true});
 
-		toLoad = await builder._pHashChange_pHandleSubHashes(sub, toLoad);
+		const {toLoad, isAllowEditExisting} = await builder._pHashChange_pHandleSubHashes(sub, toLoadOriginal);
 
-		return builder.pHandleSidebarLoadExistingData(toLoad, {isForce: true});
+		if (
+			!isAllowEditExisting
+			|| !BrewUtil2.hasSourceJson(toLoad.source)
+			|| !toLoad.uniqueId
+		) return builder.pHandleSidebarLoadExistingData(toLoad, {isForce: true});
+
+		return builder.pHandleSidebarEditUniqueId(toLoad.uniqueId);
 	}
 }
 Makebrew._LOCK = null;

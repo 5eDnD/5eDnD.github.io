@@ -3,7 +3,6 @@
 class ItemsSublistManager extends SublistManager {
 	constructor () {
 		super({
-			sublistClass: "subitems",
 			sublistListOptions: {
 				fnSort: PageFilterItems.sortItems,
 			},
@@ -27,13 +26,42 @@ class ItemsSublistManager extends SublistManager {
 		return super.pCreateSublist();
 	}
 
+	static get _ROW_TEMPLATE () {
+		return [
+			new SublistCellTemplate({
+				name: "Name",
+				css: "bold col-6 pl-0",
+				colStyle: "",
+			}),
+			new SublistCellTemplate({
+				name: "Weight",
+				css: "ve-text-center col-2",
+				colStyle: "text-center",
+			}),
+			new SublistCellTemplate({
+				name: "Cost",
+				css: "ve-text-center col-2",
+				colStyle: "text-center",
+			}),
+			new SublistCellTemplate({
+				name: "Number",
+				css: "ve-text-center col-2 pr-0",
+				colStyle: "text-center",
+			}),
+		];
+	}
+
 	pGetSublistItem (item, hash, {count = 1} = {}) {
-		const $dispCount = $(`<span class="text-center col-2 pr-0">${count}</span>`);
+		const cellsText = [
+			item.name,
+			Parser.itemWeightToFull(item, true) || "\u2014",
+			item.value || item.valueMult ? Parser.itemValueToFullMultiCurrency(item, {isShortForm: true}).replace(/ +/g, "\u00A0") : "\u2014",
+		];
+
+		const $dispCount = $(`<span class="ve-text-center col-2 pr-0">${count}</span>`);
 		const $ele = $$`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
-				<span class="bold col-6 pl-0">${item.name}</span>
-				<span class="text-center col-2">${Parser.itemWeightToFull(item, true) || "\u2014"}</span>
-				<span class="text-center col-2">${item.value || item.valueMult ? Parser.itemValueToFullMultiCurrency(item, {isShortForm: true}).replace(/ +/g, "\u00A0") : "\u2014"}</span>
+				${this.constructor._getRowCellsHtml({values: cellsText, templates: this.constructor._ROW_TEMPLATE.slice(0, 3)})}
 				${$dispCount}
 			</a>
 		</div>`
@@ -54,6 +82,7 @@ class ItemsSublistManager extends SublistManager {
 				count,
 				$elesCount: [$dispCount],
 				entity: item,
+				mdRow: [...cellsText, ({listItem}) => listItem.data.count],
 			},
 		);
 		return listItem;
@@ -150,19 +179,23 @@ class ItemsSublistManager extends SublistManager {
 
 class ItemsPage extends ListPage {
 	constructor () {
+		const pFnGetFluff = Renderer.item.pGetFluff.bind(Renderer.item);
+
 		super({
-			dataSource: DataUtil.item.loadJson,
-			brewDataSource: DataUtil.item.loadBrew,
+			dataSource: DataUtil.item.loadJSON.bind(DataUtil.item),
+			prereleaseDataSource: DataUtil.item.loadPrerelease.bind(DataUtil.item),
+			brewDataSource: DataUtil.item.loadBrew.bind(DataUtil.item),
+
+			pFnGetFluff,
 
 			pageFilter: new PageFilterItems(),
 
 			dataProps: ["item"],
 
 			bookViewOptions: {
-				$btnOpen: $(`#btn-book`),
-				$eleNoneVisible: $(`<span class="initial-message">If you wish to view multiple items, please first make a list</span>`),
+				namePlural: "items",
 				pageTitle: "Items Book View",
-				fnGetMd: it => RendererMarkdown.get().render({type: "dataItem", dataItem: it}).trim(),
+				propMarkdown: "item",
 			},
 
 			tableViewOptions: {
@@ -181,11 +214,21 @@ class ItemsPage extends ListPage {
 			},
 
 			isMarkdownPopout: true,
-			propEntryData: "dataItem",
+			propEntryData: "item",
+
+			listSyntax: new ListSyntaxItems({fnGetDataList: () => this._dataList, pFnGetFluff}),
 		});
 
 		this._mundaneList = null;
 		this._magicList = null;
+	}
+
+	get _bindOtherButtonsOptions () {
+		return {
+			other: [
+				this._bindOtherButtonsOptions_openAsSinglePage({slugPage: "items", fnGetHash: () => Hist.getHashParts()[0]}),
+			].filter(Boolean),
+		};
 	}
 
 	get primaryLists () { return [this._mundaneList, this._magicList]; }
@@ -205,7 +248,7 @@ class ItemsPage extends ListPage {
 		if (item._fIsMundane) {
 			const eleLi = e_({
 				tag: "div",
-				clazz: `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`,
+				clazz: `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`,
 				click: (evt) => this._mundaneList.doSelect(listItem, evt),
 				contextmenu: (evt) => this._openContextMenu(evt, this._mundaneList, listItem),
 				children: [
@@ -216,12 +259,12 @@ class ItemsPage extends ListPage {
 						children: [
 							e_({tag: "span", clazz: `col-3-5 pl-0 bold`, text: item.name}),
 							e_({tag: "span", clazz: `col-4-5`, text: type}),
-							e_({tag: "span", clazz: `col-1-5 text-center`, text: `${item.value || item.valueMult ? Parser.itemValueToFullMultiCurrency(item, {isShortForm: true}).replace(/ +/g, "\u00A0") : "\u2014"}`}),
-							e_({tag: "span", clazz: `col-1-5 text-center`, text: Parser.itemWeightToFull(item, true) || "\u2014"}),
+							e_({tag: "span", clazz: `col-1-5 ve-text-center`, text: `${item.value || item.valueMult ? Parser.itemValueToFullMultiCurrency(item, {isShortForm: true}).replace(/ +/g, "\u00A0") : "\u2014"}`}),
+							e_({tag: "span", clazz: `col-1-5 ve-text-center`, text: Parser.itemWeightToFull(item, true) || "\u2014"}),
 							e_({
 								tag: "span",
-								clazz: `col-1 text-center ${Parser.sourceJsonToColor(item.source)} pr-0`,
-								style: BrewUtil2.sourceJsonToStylePart(item.source),
+								clazz: `col-1 ve-text-center ${Parser.sourceJsonToColor(item.source)} pr-0`,
+								style: Parser.sourceJsonToStylePart(item.source),
 								title: `${Parser.sourceJsonToFull(item.source)}${Renderer.utils.getSourceSubText(item)}`,
 								text: source,
 							}),
@@ -250,7 +293,7 @@ class ItemsPage extends ListPage {
 		} else {
 			const eleLi = e_({
 				tag: "div",
-				clazz: `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`,
+				clazz: `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`,
 				click: (evt) => this._magicList.doSelect(listItem, evt),
 				contextmenu: (evt) => this._openContextMenu(evt, this._magicList, listItem),
 				children: [
@@ -261,13 +304,13 @@ class ItemsPage extends ListPage {
 						children: [
 							e_({tag: "span", clazz: `col-3-5 pl-0 bold`, text: item.name}),
 							e_({tag: "span", clazz: `col-4`, text: type}),
-							e_({tag: "span", clazz: `col-1-5 text-center`, text: Parser.itemWeightToFull(item, true) || "\u2014"}),
-							e_({tag: "span", clazz: `col-0-6 text-center`, text: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT ? "×" : ""}),
-							e_({tag: "span", clazz: `col-1-4 text-center`, text: (item.rarity || "").toTitleCase()}),
+							e_({tag: "span", clazz: `col-1-5 ve-text-center`, text: Parser.itemWeightToFull(item, true) || "\u2014"}),
+							e_({tag: "span", clazz: `col-0-6 ve-text-center`, text: item._attunementCategory !== VeCt.STR_NO_ATTUNEMENT ? "×" : ""}),
+							e_({tag: "span", clazz: `col-1-4 ve-text-center`, text: (item.rarity || "").toTitleCase()}),
 							e_({
 								tag: "span",
-								clazz: `col-1 text-center ${Parser.sourceJsonToColor(item.source)} pr-0`,
-								style: BrewUtil2.sourceJsonToStylePart(item.source),
+								clazz: `col-1 ve-text-center ${Parser.sourceJsonToColor(item.source)} pr-0`,
+								style: Parser.sourceJsonToStylePart(item.source),
 								title: `${Parser.sourceJsonToFull(item.source)}${Renderer.utils.getSourceSubText(item)}`,
 								text: source,
 							}),
@@ -296,62 +339,16 @@ class ItemsPage extends ListPage {
 
 	handleFilterChange () {
 		const f = this._pageFilter.filterBox.getValues();
-		const listFilter = li => {
-			const it = this._dataList[li.ix];
-			return this._pageFilter.toDisplay(f, it);
-		};
+		const listFilter = li => this._pageFilter.toDisplay(f, this._dataList[li.ix]);
 		this._mundaneList.filter(listFilter);
 		this._magicList.filter(listFilter);
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
-	_doLoadHash (id) {
-		Renderer.get().setFirstSection(true);
-		this._$pgContent.empty();
-		const item = this._dataList[id];
+	_tabTitleStats = "Item";
 
-		const buildStatsTab = () => {
-			this._$pgContent.append(RenderItems.$getRenderedItem(item));
-		};
-
-		const buildFluffTab = (isImageTab) => {
-			return Renderer.utils.pBuildFluffTab({
-				isImageTab,
-				$content: this._$pgContent,
-				entity: item,
-				pFnGetFluff: Renderer.item.pGetFluff,
-			});
-		};
-
-		const tabMetas = [
-			new Renderer.utils.TabButton({
-				label: "Item",
-				fnPopulate: buildStatsTab,
-				isVisible: true,
-			}),
-			new Renderer.utils.TabButton({
-				label: "Info",
-				fnPopulate: buildFluffTab,
-				isVisible: Renderer.utils.hasFluffText(item, "itemFluff"),
-			}),
-			new Renderer.utils.TabButton({
-				label: "Images",
-				fnPopulate: buildFluffTab.bind(null, true),
-				isVisible: Renderer.utils.hasFluffImages(item, "itemFluff"),
-			}),
-		];
-
-		Renderer.utils.bindTabButtons({
-			tabButtons: tabMetas.filter(it => it.isVisible),
-			tabLabelReference: tabMetas.map(it => it.label),
-		});
-
-		this._updateSelected();
-	}
-
-	async pDoLoadSubHash (sub) {
-		sub = await super.pDoLoadSubHash(sub);
-		await this._bookView.pHandleSub(sub);
+	_renderStats_doBuildStatsTab ({ent}) {
+		this._$pgContent.empty().append(RenderItems.$getRenderedItem(ent));
 	}
 
 	async _pOnLoad_pInitPrimaryLists () {
@@ -364,7 +361,7 @@ class ItemsPage extends ListPage {
 			$btnClear,
 			dispPageTagline: document.getElementById(`page__subtitle`),
 			$wrpList: $(`.list.mundane`),
-			syntax: this._listSyntax,
+			syntax: this._listSyntax.build(),
 			isBindFindHotkey: true,
 			optsList: {
 				fnSort: PageFilterItems.sortItems,
@@ -375,7 +372,7 @@ class ItemsPage extends ListPage {
 			$btnReset,
 			$btnClear,
 			$wrpList: $(`.list.magic`),
-			syntax: this._listSyntax,
+			syntax: this._listSyntax.build(),
 			optsList: {
 				fnSort: PageFilterItems.sortItems,
 			},
@@ -399,14 +396,22 @@ class ItemsPage extends ListPage {
 		$(`.side-label--mundane`).click(() => {
 			const filterValues = this._pageFilter.filterBox.getValues();
 			const curValue = MiscUtil.get(filterValues, "Miscellaneous", "Mundane");
-			this._pageFilter.filterBox.setFromValues({Miscellaneous: {Mundane: curValue === 1 ? 0 : 1}});
-			this.handleFilterChange();
+			this._pageFilter.filterBox.setFromValues({
+				Miscellaneous: {
+					...(filterValues?.Miscellaneous || {}),
+					Mundane: curValue === 1 ? 0 : 1,
+				},
+			});
 		});
 		$(`.side-label--magic`).click(() => {
 			const filterValues = this._pageFilter.filterBox.getValues();
 			const curValue = MiscUtil.get(filterValues, "Miscellaneous", "Magic");
-			this._pageFilter.filterBox.setFromValues({Miscellaneous: {Magic: curValue === 1 ? 0 : 1}});
-			this.handleFilterChange();
+			this._pageFilter.filterBox.setFromValues({
+				Miscellaneous: {
+					...(filterValues?.Miscellaneous || {}),
+					Magic: curValue === 1 ? 0 : 1,
+				},
+			});
 		});
 		const $outVisibleResults = $(`.lst__wrp-search-visible`);
 		const $wrpListMundane = $(`.itm__wrp-list--mundane`);

@@ -15,7 +15,8 @@
 						"path": "adventure/AitFR-ISF/image-007.webp"
 					},
 					"width": 1242,
-					"height": 1296
+					"height": 1296,
+					"credit": "Kasia 'Kafis' Zielińska"
 				},
 				{
 					"type": "entries",
@@ -113,7 +114,7 @@
 									"type": "list",
 									"items": [
 										"\"Those Red Wizards are called Morwena and {@creature Malivar|AitFR-ISF}. He used to be her apprentice and she still puts him in his place, you know? He doesn't like it.\"",
-										"\"Morwena, she said the barrow they were looking for might contain great treasure. She seemed to doubt it was a barrow at all, though. She called it a ‘sanctum.'\"",
+										"\"Morwena, she said the barrow they were looking for might contain great treasure. She seemed to doubt it was a barrow at all, though. She called it a 'sanctum.'\"",
 										"\"She maybe meant the Wizard's Barrow, which was used for strange rites for decades\u2014thunder, lightning\u2014but apparently never opened.\"",
 										"\"Anyway, them Red Wizards, they're chasing someone. Another wizard, from a rival group, maybe? Sounded like they wanted him alive.\"",
 										"\"We made good time, crossing the hills. I know good trails. But one night, Morwena told {@creature Malivar|AitFR-ISF} she didn't think they needed guides anymore. So we left, before they could kill us.\""
@@ -624,7 +625,8 @@
 								"path": "adventure/AitFR-ISF/image-064.webp"
 							},
 							"width": 1243,
-							"height": 1636
+							"height": 1636,
+							"credit": "Bram Sels"
 						},
 						"This was the heart of the site, when the wizards used it so many years ago. Many texts were gradually removed as the sect's power dwindled, but most of it remains here. The last of the wizards didn't know they were never coming back when they left for the last time.",
 						"Tyreus and Morwena left hours ago after ordering the fiery humanoid elemental, named {@creature Exul|AitFR-ISF}, the destroy the library's collection. (Tyreus is simply covering his tracks.) This order is part of a geas Tyreus cast upon {@creature Exul|AitFR-ISF}.",
@@ -786,7 +788,8 @@
 								"path": "adventure/AitFR-ISF/image-075.webp"
 							},
 							"width": 656,
-							"height": 699
+							"height": 699,
+							"credit": "Alayna Danner"
 						}
 					],
 					"id": "04c"
@@ -866,7 +869,8 @@
 						"path": "adventure/AitFR-ISF/image-090.webp"
 					},
 					"width": 1129,
-					"height": 458
+					"height": 458,
+					"credit": "Will Hindmarch"
 				},
 				{
 					"type": "image",
@@ -1173,11 +1177,19 @@
 						}
 					],
 					"imageType": "map",
+					"grid": {
+						"type": "square",
+						"size": 64,
+						"offsetX": 9,
+						"offsetY": 8,
+						"scale": 4
+					},
 					"hrefThumbnail": {
 						"type": "internal",
 						"path": "adventure/AitFR-ISF/thumbnail/image-093.webp"
 					},
-					"id": "056"
+					"id": "056",
+					"credit": "Will Hindmarch"
 				},
 				{
 					"type": "image",
@@ -1295,11 +1307,19 @@
 						}
 					],
 					"imageType": "map",
+					"grid": {
+						"type": "square",
+						"size": 64,
+						"offsetX": 6,
+						"offsetY": 6,
+						"scale": 4
+					},
 					"hrefThumbnail": {
 						"type": "internal",
 						"path": "adventure/AitFR-ISF/thumbnail/image-095.webp"
 					},
-					"id": "057"
+					"id": "057",
+					"credit": "Will Hindmarch"
 				},
 				{
 					"type": "image",
@@ -1420,11 +1440,19 @@
 						}
 					],
 					"imageType": "map",
+					"grid": {
+						"type": "square",
+						"size": 64,
+						"offsetX": 7,
+						"offsetY": 6,
+						"scale": 4
+					},
 					"hrefThumbnail": {
 						"type": "internal",
 						"path": "adventure/AitFR-ISF/thumbnail/image-097.webp"
 					},
-					"id": "058"
+					"id": "058",
+					"credit": "Will Hindmarch"
 				}
 			],
 			"id": "055"

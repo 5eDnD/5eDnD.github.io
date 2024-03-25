@@ -282,32 +282,8 @@ class BookUtil {
 				.toggle(!showPrev)
 				.appendTo($wrpControls));
 
-		if (isTop) {
-			const href = ~BookUtil.curRender.chapter
-				? this._getHrefShowAll(bookId)
-				: `#${UrlUtil.encodeForHash(bookId)}`;
-			const $btnEntireBook = $(`<a href="${href}" class="btn btn-xs btn-default no-print ${~BookUtil.curRender.chapter ? "" : "active"}" title="Warning: Slow">View Entire ${BookUtil.contentType.uppercaseFirst()}</a>`);
-
-			if (BookUtil._isNarrow == null) {
-				const saved = StorageUtil.syncGetForPage("narrowMode");
-				if (saved != null) BookUtil._isNarrow = saved;
-				else BookUtil._isNarrow = false;
-			}
-
-			const hdlNarrowUpdate = () => {
-				$btnToggleNarrow.toggleClass("active", BookUtil._isNarrow);
-				$(`#pagecontent`).toggleClass(`bk__stats--narrow`, BookUtil._isNarrow);
-			};
-			const $btnToggleNarrow = $(`<button class="btn btn-xs btn-default" title="Toggle Narrow Reading Width"><span class="glyphicon glyphicon-resize-small"/></button>`)
-				.click(() => {
-					BookUtil._isNarrow = !BookUtil._isNarrow;
-					hdlNarrowUpdate();
-					StorageUtil.syncSetForPage("narrowMode", BookUtil._isNarrow);
-				});
-			hdlNarrowUpdate();
-
-			$$`<div class="no-print ve-flex-v-center btn-group">${$btnEntireBook}${$btnToggleNarrow}</div>`.appendTo($wrpControls);
-		} else $(`<button class="btn btn-xs btn-default no-print">Back to Top</button>`).click(() => MiscUtil.scrollPageTop()).appendTo($wrpControls);
+		if (isTop) this._showBookContent_renderNavButtons_top({bookId, $wrpControls});
+		else this._showBookContent_renderNavButtons_bottom({bookId, $wrpControls});
 
 		const showNxt = ~ixChapter && ixChapter < data.length - 1;
 		BookUtil.curRender.controls.$btnsNxt = BookUtil.curRender.controls.$btnsNxt || [];
@@ -363,6 +339,74 @@ class BookUtil {
 			BookUtil.$wrpFloatControls.toggleClass("btn-group", showPrev && showNxt);
 			BookUtil.$wrpFloatControls.toggleClass("hidden", !~ixChapter);
 		}
+	}
+
+	static _TOP_MENU = null;
+
+	static _showBookContent_renderNavButtons_top ({bookId, $wrpControls}) {
+		const href = ~this.curRender.chapter
+			? this._getHrefShowAll(bookId)
+			: `#${UrlUtil.encodeForHash(bookId)}`;
+		const $btnEntireBook = $(`<a href="${href}" class="btn btn-xs btn-default no-print ${~this.curRender.chapter ? "" : "active"}" title="Warning: Slow">View Entire ${this.contentType.uppercaseFirst()}</a>`);
+
+		if (this._isNarrow == null) {
+			const saved = StorageUtil.syncGetForPage("narrowMode");
+			if (saved != null) this._isNarrow = saved;
+			else this._isNarrow = false;
+		}
+
+		const hdlNarrowUpdate = () => {
+			$btnToggleNarrow.toggleClass("active", this._isNarrow);
+			$(`#pagecontent`).toggleClass(`bk__stats--narrow`, this._isNarrow);
+		};
+		const $btnToggleNarrow = $(`<button class="btn btn-xs btn-default" title="Toggle Narrow Reading Width"><span class="glyphicon glyphicon-resize-small"/></button>`)
+			.click(() => {
+				this._isNarrow = !this._isNarrow;
+				hdlNarrowUpdate();
+				StorageUtil.syncSetForPage("narrowMode", this._isNarrow);
+			});
+		hdlNarrowUpdate();
+
+		if (!this._TOP_MENU) {
+			const doDownloadFullText = () => {
+				DataUtil.userDownloadText(
+					`${this.curRender.fromIndex.name}.md`,
+					this.curRender.data
+						.map(chapter => RendererMarkdown.get().render(chapter))
+						.join("\n\n------\n\n"),
+				);
+			};
+
+			this._TOP_MENU = ContextUtil.getMenu([
+				new ContextUtil.Action(
+					"Download Chapter as Markdown",
+					() => {
+						if (!~BookUtil.curRender.chapter) return doDownloadFullText();
+
+						const contentsInfo = this.curRender.fromIndex.contents[this.curRender.chapter];
+						DataUtil.userDownloadText(
+							`${this.curRender.fromIndex.name} - ${Parser.bookOrdinalToAbv(contentsInfo.ordinal).replace(/:/g, "")}${contentsInfo.name}.md`,
+							RendererMarkdown.get().render(this.curRender.data[this.curRender.chapter]),
+						);
+					},
+				),
+				new ContextUtil.Action(
+					`Download ${this.typeTitle} as Markdown`,
+					() => {
+						doDownloadFullText();
+					},
+				),
+			]);
+		}
+
+		const $btnMenu = $(`<button class="btn btn-xs btn-default" title="Other Options"><span class="glyphicon glyphicon-option-vertical"/></button>`)
+			.click(evt => ContextUtil.pOpenMenu(evt, this._TOP_MENU));
+
+		$$`<div class="no-print ve-flex-v-center btn-group">${$btnEntireBook}${$btnToggleNarrow}${$btnMenu}</div>`.appendTo($wrpControls);
+	}
+
+	static _showBookContent_renderNavButtons_bottom ({bookId, $wrpControls}) {
+		$(`<button class="btn btn-xs btn-default no-print">Back to Top</button>`).click(() => MiscUtil.scrollPageTop()).appendTo($wrpControls);
 	}
 
 	static _showBookContent_updateSidebar ({ixChapter, ixChapterPrev, bookIdPrev, bookId}) {
@@ -457,8 +501,13 @@ class BookUtil {
 	static async booksHashChange () {
 		const $contents = $(".contents");
 
-		const [bookIdRaw, ...hashParts] = window.location.hash.slice(1).split(HASH_PART_SEP);
+		const [bookIdRaw, ...hashParts] = Hist.util.getHashParts(window.location.hash, {isReturnEncoded: true});
 		const bookId = decodeURIComponent(bookIdRaw);
+
+		if (!bookId) {
+			this._booksHashChange_noContent({$contents});
+			return;
+		}
 
 		const isNewBook = BookUtil.curRender.curBookId !== bookId;
 
@@ -512,19 +561,38 @@ class BookUtil {
 			return this._booksHashChange_pHandleFound({fromIndex, bookId, hashParts, $contents, isNewBook});
 		}
 
-		// if it's homebrew
-		const fromIndexBrew = BookUtil.bookIndexBrew.find(bk => UrlUtil.encodeForHash(bk.id) === UrlUtil.encodeForHash(bookId));
-		if (fromIndexBrew) {
-			const brew = await BrewUtil2.pGetBrewProcessed();
-			if (!brew[BookUtil.propHomebrewData]) return this._booksHashChange_handleNotFound({$contents, bookId});
-
-			const bookData = (brew[BookUtil.propHomebrewData] || []).find(bk => UrlUtil.encodeForHash(bk.id) === UrlUtil.encodeForHash(bookId));
-
-			if (!bookData) return this._booksHashChange_handleNotFound({$contents, bookId});
-			return this._booksHashChange_pHandleFound({fromIndex: fromIndexBrew, homebrewData: bookData, bookId, hashParts, $contents, isNewBook});
-		}
+		// if it's prerelease/homebrew
+		if (await this._booksHashChange_pDoLoadPrerelease({bookId, $contents, hashParts, isNewBook})) return;
+		if (await this._booksHashChange_pDoLoadBrew({bookId, $contents, hashParts, isNewBook})) return;
 
 		return this._booksHashChange_handleNotFound({$contents, bookId});
+	}
+
+	static async _booksHashChange_pDoLoadPrerelease ({bookId, $contents, hashParts, isNewBook}) {
+		return this._booksHashChange_pDoLoadPrereleaseBrew({bookId, $contents, hashParts, isNewBook, brewUtil: PrereleaseUtil, propIndex: "bookIndexPrerelease"});
+	}
+
+	static async _booksHashChange_pDoLoadBrew ({bookId, $contents, hashParts, isNewBook}) {
+		return this._booksHashChange_pDoLoadPrereleaseBrew({bookId, $contents, hashParts, isNewBook, brewUtil: BrewUtil2, propIndex: "bookIndexBrew"});
+	}
+
+	static async _booksHashChange_pDoLoadPrereleaseBrew ({bookId, $contents, hashParts, isNewBook, brewUtil, propIndex}) {
+		const fromIndexBrew = BookUtil[propIndex].find(bk => UrlUtil.encodeForHash(bk.id) === UrlUtil.encodeForHash(bookId));
+		if (!fromIndexBrew) return false;
+
+		const brew = await brewUtil.pGetBrewProcessed();
+		if (!brew[BookUtil.propHomebrewData]) return false;
+
+		const bookData = (brew[BookUtil.propHomebrewData] || [])
+			.find(bk => UrlUtil.encodeForHash(bk.id) === UrlUtil.encodeForHash(bookId));
+
+		if (!bookData) {
+			this._booksHashChange_handleNotFound({$contents, bookId});
+			return true; // We found the book, just not its data
+		}
+
+		await this._booksHashChange_pHandleFound({fromIndex: fromIndexBrew, homebrewData: bookData, bookId, hashParts, $contents, isNewBook});
+		return true;
 	}
 
 	static _booksHashChange_getCleanName (fromIndex) {
@@ -542,6 +610,15 @@ class BookUtil {
 		await this._pLoadChapter(fromIndex, bookId, hashParts, homebrewData, $contents);
 		NavBar.highlightCurrentPage();
 		if (isNewBook) MiscUtil.scrollPageTop();
+	}
+
+	static _booksHashChange_noContent ({$contents}) {
+		this._doPopulateContents({$contents});
+
+		BookUtil.$dispBook.empty().html(`<tr><th class="border" colspan="6"></th></tr>
+			<tr><td colspan="6" class="initial-message book-loading-message">Please select ${Parser.getArticle(BookUtil.contentType)} ${BookUtil.contentType} to view!</td></tr><tr><th class="border" colspan="6"></th></tr>`);
+
+		$(`.bk__overlay-loading`).remove();
 	}
 
 	static _booksHashChange_handleNotFound ({$contents, bookId}) {
@@ -584,7 +661,7 @@ class BookUtil {
 	static _doPopulateContents ({$contents, book}) {
 		$contents.html(BookUtil.allPageUrl ? `<div><a href="${BookUtil.allPageUrl}" class="lst--border lst__row-inner"><span class="bold">\u21FD ${this._getAllTitle()}</span></a></div>` : "");
 
-		BookUtil._$getRenderedContents({book}).appendTo($contents);
+		if (book) BookUtil._$getRenderedContents({book}).appendTo($contents);
 	}
 
 	static _getAllTitle () {
@@ -619,20 +696,26 @@ class BookUtil {
 			});
 
 		// region Mobile only "open find bar" buttons
-		const $btnOpenFind = $(`<button class="btn btn-default btn-sm bk__btn-find no-print" title="Find">F</button>`)
+		const $btnToTop = $(`<button class="btn btn-default btn-sm no-print bbl-0" title="To Top"><span class="glyphicon glyphicon-arrow-up"></span></button>`)
+			.click(evt => {
+				evt.stopPropagation();
+				MiscUtil.scrollPageTop();
+			});
+
+		const $btnOpenFind = $(`<button class="btn btn-default btn-sm no-print" title="Find"><kbd>F</kbd></button>`)
 			.click(evt => {
 				evt.stopPropagation();
 				BookUtil._showSearchBox(indexData, bookId, false);
 			});
 
-		const $btnOpenGoto = $(`<button class="btn btn-default btn-sm bk__btn-goto no-print" title="Go to Page">G</button>`)
+		const $btnOpenGoto = $(`<button class="btn btn-default btn-sm no-print bbr-0" title="Go to Page"><kbd>G</kbd></button>`)
 			.click(evt => {
 				evt.stopPropagation();
 				BookUtil._showSearchBox(indexData, bookId, true);
 			});
 
 		$$`<div class="mobile__visible bk__wrp-btns-open-find btn-group">
-			${$btnOpenFind}${$btnOpenGoto}
+			${$btnToTop}${$btnOpenFind}${$btnOpenGoto}
 		</div>`.appendTo(document.body);
 	}
 
@@ -864,13 +947,16 @@ BookUtil.curRender = {
 };
 BookUtil._$LAST_CLICKED_LINK = null;
 BookUtil._isNarrow = null;
+BookUtil._$CACHE_HEADER_BLOCKS = {};
 // endregion
 
 // region Hashchange
 BookUtil.baseDataUrl = "";
 BookUtil.bookIndex = [];
+BookUtil.bookIndexPrerelease = [];
 BookUtil.bookIndexBrew = [];
 BookUtil.propHomebrewData = null;
+BookUtil.typeTitle = null;
 BookUtil.$dispBook = null;
 BookUtil.referenceId = false;
 BookUtil.isHashReload = false;
@@ -1058,7 +1144,7 @@ BookUtil.Search = class {
 		let closestBelow = Number.MIN_SAFE_INTEGER;
 		let closestAbove = Number.MAX_SAFE_INTEGER;
 
-		const walker = MiscUtil.getWalker({keyBlacklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLACKLIST});
+		const walker = MiscUtil.getWalker({keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST});
 		walker.walk(
 			toSearch,
 			{
@@ -1077,12 +1163,10 @@ BookUtil.Search = class {
 };
 BookUtil.Search._EXTRA_WORDS = 2;
 
+globalThis.BookUtil = BookUtil;
+
 if (typeof window !== "undefined") {
 	window.addEventListener("load", () => $("body").on("click", "a", (evt) => {
 		BookUtil._handleCheckReNav(evt);
 	}));
-}
-
-if (typeof module !== "undefined") {
-	module.exports = BookUtil;
 }

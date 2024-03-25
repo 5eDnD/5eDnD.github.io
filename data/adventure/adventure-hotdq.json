@@ -533,7 +533,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/000-tod-00-01.png"
+												"path": "adventure/HotDQ/000-tod-00-01.webp"
 											},
 											"title": "Severin",
 											"width": 685,
@@ -682,7 +682,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/001-symbol-harpers.png"
+										"path": "adventure/HotDQ/001-symbol-harpers.webp"
 									},
 									"width": 579,
 									"height": 1000
@@ -727,7 +727,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/002-ooa08-03.png"
+										"path": "adventure/HotDQ/002-ooa08-03.webp"
 									},
 									"width": 579,
 									"height": 1000
@@ -773,7 +773,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/003-ooa08-05a.png"
+										"path": "adventure/HotDQ/003-ooa08-05a.webp"
 									},
 									"width": 577,
 									"height": 1000
@@ -819,7 +819,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/004-symbol-alliance.png"
+										"path": "adventure/HotDQ/004-symbol-alliance.webp"
 									},
 									"width": 579,
 									"height": 1000
@@ -964,7 +964,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/005-symbol-zhentarim.png"
+										"path": "adventure/HotDQ/005-symbol-zhentarim.webp"
 									},
 									"width": 579,
 									"height": 1000
@@ -1055,7 +1055,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/HotDQ/006-tod-01-01.png"
+						"path": "adventure/HotDQ/006-tod-01-01.webp"
 					},
 					"width": 1000,
 					"height": 651
@@ -1143,6 +1143,11 @@
 															"width": 4050,
 															"height": 3000,
 															"imageType": "map",
+															"grid": {
+																"type": "none",
+																"size": 379,
+																"distance": 100
+															},
 															"id": "219",
 															"mapRegions": [
 																{
@@ -1329,10 +1334,15 @@
 																"type": "internal",
 																"path": "adventure/HotDQ/008-map-1-1-greenest-player.jpg"
 															},
-															"title": "(Player Version)",
+															"title": "Player Version",
 															"width": 3375,
 															"height": 2500,
 															"imageType": "mapPlayer",
+															"grid": {
+																"type": "none",
+																"size": 317,
+																"distance": 100
+															},
 															"mapParent": {
 																"id": "219",
 																"autoScale": true
@@ -1362,7 +1372,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/009-tod-01-02.png"
+												"path": "adventure/HotDQ/009-tod-01-02.webp"
 											},
 											"title": "Tarbaw Nighthill",
 											"width": 736,
@@ -1470,12 +1480,12 @@
 							"page": 23,
 							"id": "070",
 							"entries": [
-								"Characters have random encounters with raiders when they enter Greenest, but this one should be their first mission of the chapter. It begins when a terrified human family (father, mother, and three young children) dash across their path, hounded by Seven {@creature Kobold||kobolds}.",
+								"Characters have random encounters with raiders when they enter Greenest, but this one should be their first mission of the chapter. It begins when a terrified human family (father, mother, and three young children) dash across their path, hounded by seven {@creature Kobold||kobolds}.",
 								{
 									"type": "insetReadaloud",
 									"id": "071",
 									"entries": [
-										"Without warning, five humans dash out from between two buildings on your left. A limping man and three young children race across the street into more shadows, and a woman carrying a round shield and a broken spear turns and faces back in the direction from which they came. Eight kobolds stream out of the alley on the family's heels and fan out around the woman, who looks determined to delay the creatures for as long as possible."
+										"Without warning, five humans dash out from between two buildings on your left. A limping man and three young children race across the street into more shadows, and a woman carrying a round shield and a broken spear turns and faces back in the direction from which they came. Seven kobolds stream out of the alley on the family's heels and fan out around the woman, who looks determined to delay the creatures for as long as possible."
 									]
 								},
 								"The woman is {@creature Linan Swift|HotDQ}, and her husband is Cuth. Linan is a {@creature commoner} but with 8 hit points. Her attack with the spear is +2 to hit for {@dice 1d6} piercing damage. Her husband is down to 2 hit points from an earlier fight. The children move at speed 20. They can be carried, but a character carrying a child has disadvantage on attack rolls and cannot wield a two-handed weapon.",
@@ -1760,7 +1770,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/HotDQ/010-tod-02-01.png"
+						"path": "adventure/HotDQ/010-tod-02-01.webp"
 					},
 					"width": 1600,
 					"height": 1023
@@ -1839,7 +1849,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/011-tod-02-02.png"
+										"path": "adventure/HotDQ/011-tod-02-02.webp"
 									},
 									"title": "{@creature Frulam Mondath|HotDQ}",
 									"width": 674,
@@ -1900,6 +1910,11 @@
 									"width": 4050,
 									"height": 3000,
 									"imageType": "map",
+									"grid": {
+										"type": "none",
+										"size": 375,
+										"distance": 100
+									},
 									"id": "276",
 									"mapRegions": [
 										{
@@ -2098,10 +2113,15 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/013-map-2-1-raider-camp-player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 3375,
 									"height": 2500,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "none",
+										"size": 312,
+										"distance": 100
+									},
 									"mapParent": {
 										"id": "276",
 										"autoScale": true
@@ -2198,7 +2218,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/014-tod-02-03.png"
+										"path": "adventure/HotDQ/014-tod-02-03.webp"
 									},
 									"title": "{@creature Langdedrosa Cyanwrath|HotDQ}",
 									"width": 909,
@@ -2267,7 +2287,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/015-tod-02-04.png"
+										"path": "adventure/HotDQ/015-tod-02-04.webp"
 									},
 									"title": "{@creature Leosin Erlanthar|HotDQ}",
 									"width": 841,
@@ -2316,7 +2336,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/HotDQ/016-tod-03-01.png"
+						"path": "adventure/HotDQ/016-tod-03-01.webp"
 					},
 					"width": 1600,
 					"height": 1070
@@ -2377,7 +2397,7 @@
 											"page": 37,
 											"id": "0ab",
 											"entries": [
-												"During daytime, areas {@area 1|0af|x} and {@area 2|0b0|x} are brightly lit, and areas{@area  3|0b1|x} and {@area 4|0b4|x} are dimly lit by outside light. All other areas are in darkness unless the area notes otherwise."
+												"During daytime, areas {@area 1|0af|x} and {@area 2|0b0|x} are brightly lit, and areas {@area 3|0b1|x} and {@area 4|0b4|x} are dimly lit by outside light. All other areas are in darkness unless the area notes otherwise."
 											]
 										},
 										{
@@ -2456,6 +2476,12 @@
 													"width": 4050,
 													"height": 3000,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 66,
+														"offsetX": -13,
+														"offsetY": 11
+													},
 													"id": "277",
 													"mapRegions": [
 														{
@@ -3405,10 +3431,16 @@
 														"type": "internal",
 														"path": "adventure/HotDQ/018-map-3-1-dragon-hatchery-player.jpg"
 													},
-													"title": "(Player Version)",
+													"title": "Player Version",
 													"width": 3375,
 													"height": 2500,
 													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 55,
+														"offsetX": -10,
+														"offsetY": 10
+													},
 													"mapParent": {
 														"id": "277",
 														"autoScale": true
@@ -3529,7 +3561,7 @@
 									"id": "0ba",
 									"entries": [
 										"Hidden amid the leather strips of the curtain are hundreds of metal barbs coated with poison. Anyone who brushes through the curtain must succeed on a DC 10 Dexterity saving throw or take 5 ({@dice 1d10}) poison damage, and the target's hit point maximum is reduced by 5 This reduction lasts until the target finishes a long rest.",
-										"A careful inspection of the leather strips coupled with a successful DC 10 Wisdom ({@skill Perception}) check finds barbs; they can't be noticed otherwise. When kobolds use this stairway, they bring the ruined spear that's kept in {@area  area 4|0b4|x}. With it, they sweep the leather strips to the left side of the corridor and wedge the end of the spear shaft into an angled socket in the floor just inside area 6. This holds the leather strips safely out of the way while they move in and out of the chamber."
+										"A careful inspection of the leather strips coupled with a successful DC 10 Wisdom ({@skill Perception}) check finds barbs; they can't be noticed otherwise. When kobolds use this stairway, they bring the ruined spear that's kept in {@area area 4|0b4|x}. With it, they sweep the leather strips to the left side of the corridor and wedge the end of the spear shaft into an angled socket in the floor just inside area 6. This holds the leather strips safely out of the way while they move in and out of the chamber."
 									]
 								}
 							]
@@ -3683,7 +3715,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/019-tod-03-02.png"
+												"path": "adventure/HotDQ/019-tod-03-02.webp"
 											},
 											"title": "Guard Drake",
 											"width": 1000,
@@ -3814,7 +3846,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/HotDQ/020-tod-04-01.png"
+						"path": "adventure/HotDQ/020-tod-04-01.webp"
 					},
 					"width": 1600,
 					"height": 1016
@@ -3851,7 +3883,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/021-tod-04-02.png"
+										"path": "adventure/HotDQ/021-tod-04-02.webp"
 									},
 									"title": "{@creature Ontharr Frume|HotDQ}",
 									"width": 819,
@@ -3963,7 +3995,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/022-tod-04-03.png"
+										"path": "adventure/HotDQ/022-tod-04-03.webp"
 									},
 									"title": "{@creature Azbara Jos|HotDQ}",
 									"width": 776,
@@ -4308,7 +4340,7 @@
 							"page": 50,
 							"id": "0fb",
 							"entries": [
-								"High above, two {@creature Peryton||perytons} are watching the road for fresh hearts they can consume before laying their eggs. They circle at an altitude where they are easily mistaken for eagles. Each character can make a DC 15 Intelligence ({@skill Nature}) check upon seeing the creatures. Success means they recognize the perytons for what they are before the first dive attack. Failure means the character is surprised."
+								"High above, two {@creature Peryton||perytons} are watching the road for fresh hearts they can consume before laying their eggs. They circle at an altitude where they are easily mistaken for eagles. Each character can make a DC 15 Intelligence ({@skill Nature}) check upon seeing the creatures. Success means they recognize the perytons for what they are before the first dive attack. Failure means the character is {@quickref Surprise|PHB|3|0|surprised}."
 							]
 						},
 						{
@@ -4486,7 +4518,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/023-tod-04-04.png"
+										"path": "adventure/HotDQ/023-tod-04-04.webp"
 									},
 									"title": "{@creature Jamna Gleamsilver|HotDQ}",
 									"width": 627,
@@ -4525,7 +4557,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/HotDQ/024-tod-05-01.png"
+						"path": "adventure/HotDQ/024-tod-05-01.webp"
 					},
 					"width": 1600,
 					"height": 1035
@@ -4653,6 +4685,12 @@
 											"width": 4050,
 											"height": 3000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 93,
+												"offsetX": -39,
+												"offsetY": -56
+											},
 											"id": "278",
 											"mapRegions": [
 												{
@@ -5186,10 +5224,16 @@
 												"type": "internal",
 												"path": "adventure/HotDQ/026-map-5-1-carnath-roadhouse-player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 4050,
 											"height": 3000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 93,
+												"offsetX": -37,
+												"offsetY": -55
+											},
 											"mapParent": {
 												"id": "278"
 											}
@@ -5322,7 +5366,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/HotDQ/027-tod-06-01.png"
+						"path": "adventure/HotDQ/027-tod-06-01.webp"
 					},
 					"width": 1600,
 					"height": 1025
@@ -5366,7 +5410,7 @@
 											]
 										},
 										"Each canoe has three paddles and is large enough to hold five humans without much gear, or two or three with packs and other gear. Inside the lean-tos are a few baskets containing smoked fish (edible) along with some lizards and birds that have been smashed flat and dried in the sun (very unappetizing to humans but edible).",
-										"If characters arrive before dusk, the camp is empty and they can explore it safely. No random encounters bother characters while they're in the campsite. As the sun begins to set, nine {@creature lizardfolk} paddle up in three canoes. They are traveling from Castle Naerytar to the roadhouse to pick up a load of contraband. The lizardfolk expect no trouble near their camp, so if characters posted a watch, then those characters who are actively on watch notice the approaching lizardfolk automatically and the lizardfolk are surprised. If characters lit a fire, however, then the lizardfolk smell the smoke from quite a distance away and know someone is in the camp. They assume it's more of their own kind returning from the work camp with treasure bound for Castle Naerytar, but the mere is filled with potential enemies and one never knows for sure, so their approach is more cautious if they smell smoke. In that case, characters with passive Wisdom ({@skill Perception}) scores of 10 or higher notice the approaching lizardfolk canoes before the lizardfolk spot the strangers in their camp.",
+										"If characters arrive before dusk, the camp is empty and they can explore it safely. No random encounters bother characters while they're in the campsite. As the sun begins to set, nine {@creature lizardfolk} paddle up in three canoes. They are traveling from Castle Naerytar to the roadhouse to pick up a load of contraband. The lizardfolk expect no trouble near their camp, so if characters posted a watch, then those characters who are actively on watch notice the approaching lizardfolk automatically and the lizardfolk are {@quickref Surprise|PHB|3|0|surprised}. If characters lit a fire, however, then the lizardfolk smell the smoke from quite a distance away and know someone is in the camp. They assume it's more of their own kind returning from the work camp with treasure bound for Castle Naerytar, but the mere is filled with potential enemies and one never knows for sure, so their approach is more cautious if they smell smoke. In that case, characters with passive Wisdom ({@skill Perception}) scores of 10 or higher notice the approaching lizardfolk canoes before the lizardfolk spot the strangers in their camp.",
 										"These lizardfolk won't negotiate or converse with characters. They've been told by the elf who commands operations at Castle Naerytar that strangers in the mere are to be killed or captured but never engaged in conversation. If they are captured and tied up, a successful DC 10 Charisma ({@skill Intimidation}) or DC 15 Charisma ({@skill Persuasion}) check loosens their tongues. If the lizardfolk aren't tied up, characters have disadvantage on these rolls because the lizardfolk think them soft-hearted.",
 										"Lizardfolk know that they're transporting treasure to the castle. The \"dragon kneelers\" take it into the castle, and the lizardfolk never see it again. They are paid in steel blades (they have no ability to manufacture with metal) and magic talismans. All the lizardfolk wear necklaces and bracelets made of bone, teeth, feathers, carved soft stone, and leather. On close inspection, characters see mixed in among these things traces of civilization: glass beads, coins, costume jewelry, tiny mirrors, and stamped copper and tin amulets of the sort that can be bought for a few pennies at any trinket shop or souvenir stand. None of it is magical.",
 										"During the questioning, have every character make a Charisma check. Whichever character scores highest makes a strong impression on a lizardfolk captive. This lizardfolk, whose name is Snapjaw, is unhappy about the situation in the mere, and he develops the notion that these strangers could be the key to driving out the cultists and to slaughtering their cruel bullywug allies. Snapjaw tries to communicate with the chosen character, but he doesn't want any of his comrades to know. He speaks enough pidgin Common to converse in simple terms, in case no one in the party speaks Draconic.",
@@ -5589,7 +5633,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/028-tod-06-02.png"
+												"path": "adventure/HotDQ/028-tod-06-02.webp"
 											},
 											"title": "{@creature Pharblex Spattergoo|HotDQ}",
 											"width": 949,
@@ -5701,10 +5745,17 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/029-map-6-1-castle-naerytar.jpg"
 									},
-									"title": "Map 6.1: Castle Naerytar - Ground Level",
+									"title": "Map 6.1: Castle Naerytar\u2014Ground Level",
 									"width": 4050,
 									"height": 3000,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 128,
+										"offsetX": 47,
+										"offsetY": 33,
+										"distance": 20
+									},
 									"id": "280",
 									"mapRegions": [
 										{
@@ -6620,10 +6671,17 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/030-map-6-1-castle-naerytar-player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 4050,
 									"height": 3000,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 128,
+										"offsetX": 47,
+										"offsetY": 33,
+										"distance": 20
+									},
 									"mapParent": {
 										"id": "280"
 									}
@@ -6712,7 +6770,7 @@
 					"id": "142",
 					"entries": [
 						"The castle's exterior walls average 10 feet thick. Interior walls are also stone but only about 1 or 2 feet thick.",
-						"Most of the structures inside the castle are more than one story tall. In the descriptions, areas are identified by floor, then letter, so {@area area 1L|152|x} is on the ground floor,{@area  2L|168|x} the second floor, and so on. If an area doesn't have an entry for a floor, then it doesn't exist on that floor."
+						"Most of the structures inside the castle are more than one story tall. In the descriptions, areas are identified by floor, then letter, so {@area area 1L|152|x} is on the ground floor, {@area 2L|168|x} the second floor, and so on. If an area doesn't have an entry for a floor, then it doesn't exist on that floor."
 					]
 				},
 				{
@@ -6993,10 +7051,17 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/031-map-6-2-castle-naerytar.jpg"
 									},
-									"title": "Map 6.2: Castle Naerytar - Level 2",
+									"title": "Map 6.2: Castle Naerytar\u2014Level 2",
 									"width": 2100,
 									"height": 2700,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 129,
+										"offsetX": 8,
+										"offsetY": -3,
+										"distance": 20
+									},
 									"id": "281",
 									"mapRegions": [
 										{
@@ -7452,10 +7517,17 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/032-map-6-2-castle-naerytar-player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 2100,
 									"height": 2700,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 129,
+										"offsetX": 8,
+										"offsetY": -3,
+										"distance": 20
+									},
 									"mapParent": {
 										"id": "281"
 									}
@@ -7646,10 +7718,16 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/033-map-6-3-castle-naerytar.jpg"
 									},
-									"title": "Map 6.3: Castle Naerytar - Level 3",
+									"title": "Map 6.3: Castle Naerytar\u2014Level 3",
 									"width": 2100,
 									"height": 2700,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 129,
+										"offsetX": 6,
+										"distance": 20
+									},
 									"id": "282",
 									"mapRegions": [
 										{
@@ -8004,10 +8082,16 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/034-map-6-3-castle-naerytar-player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 2022,
 									"height": 2600,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 125,
+										"offsetY": -7,
+										"distance": 20
+									},
 									"mapParent": {
 										"id": "282",
 										"autoScale": true
@@ -8215,10 +8299,17 @@
 																"type": "internal",
 																"path": "adventure/HotDQ/035-map-6-4-castle-naerytar.jpg"
 															},
-															"title": "Map 6.4: Castle Naerytar - Dungeon",
+															"title": "Map 6.4: Castle Naerytar\u2014Dungeon",
 															"width": 4050,
 															"height": 3000,
 															"imageType": "map",
+															"grid": {
+																"type": "square",
+																"size": 96,
+																"offsetX": 3,
+																"offsetY": 6,
+																"distance": 10
+															},
 															"id": "283",
 															"mapRegions": [
 																{
@@ -9066,10 +9157,17 @@
 																"type": "internal",
 																"path": "adventure/HotDQ/036-map-6-4-castle-naerytar-player.jpg"
 															},
-															"title": "(Player Version)",
+															"title": "Player Version",
 															"width": 3375,
 															"height": 2500,
 															"imageType": "mapPlayer",
+															"grid": {
+																"type": "square",
+																"size": 80,
+																"offsetX": 1,
+																"offsetY": 5,
+																"distance": 10
+															},
 															"mapParent": {
 																"id": "283",
 																"autoScale": true
@@ -9247,7 +9345,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/HotDQ/037-tod-07-01.png"
+						"path": "adventure/HotDQ/037-tod-07-01.webp"
 					},
 					"width": 1600,
 					"height": 1008
@@ -9382,7 +9480,7 @@
 							"page": 79,
 							"id": "1a5",
 							"entries": [
-								"If the party lingers outside the lodge or explores the woods nearby, it finds company. Those with a passive Wisdom ({@skill Perception}) score of 12 or higher are not surprised by the rush of a group of two {@creature Troll||trolls} and three {@creature Ambush Drake|HotDQ|ambush drakes} (see {@adventure appendix D|HotDQ|12} for Statistics) that has been wandering the area. The combat alerts Talis that she has company. The trolls serve as the lodge's bouncers, and anyone who is not expected is eaten."
+								"If the party lingers outside the lodge or explores the woods nearby, it finds company. Those with a passive Wisdom ({@skill Perception}) score of 12 or higher are not {@quickref Surprise|PHB|3|0|surprised} by the rush of a group of two {@creature Troll||trolls} and three {@creature Ambush Drake|HotDQ|ambush drakes} (see {@adventure appendix D|HotDQ|12} for Statistics) that has been wandering the area. The combat alerts Talis that she has company. The trolls serve as the lodge's bouncers, and anyone who is not expected is eaten."
 							]
 						},
 						{
@@ -9430,14 +9528,14 @@
 									"type": "insetReadaloud",
 									"id": "1ab",
 									"entries": [
-										"The door opens and the smell of rotting flesh wafts out. The creature just inside the door is a four-armed troll in a muddy cloak, holding the leash of a small dragon. \"What you want?\" it asks. \"Show the sign.\""
+										"The door opens and the smell of rotting flesh wafts out. The creature just inside the door is a {@creature four-armed troll|HotDQ} in a muddy cloak, holding the leash of a small dragon. \"What you want?\" it asks. \"Show the sign.\""
 									]
 								},
 								{
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/038-tod-07-02.png"
+										"path": "adventure/HotDQ/038-tod-07-02.webp"
 									},
 									"title": "{@creature Trepsin|HotDQ}",
 									"width": 758,
@@ -9512,10 +9610,16 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/039-map-7-1-hunting-lodge.jpg"
 									},
-									"title": "Map 7.1: Hunting Lodge - Ground Floor",
+									"title": "Map 7.1: Hunting Lodge\u2014Ground Floor",
 									"width": 2700,
 									"height": 2000,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 77,
+										"offsetX": -13,
+										"offsetY": -3
+									},
 									"id": "284",
 									"mapRegions": [
 										{
@@ -9861,10 +9965,16 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/040-map-7-1-hunting-lodge-player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 2700,
 									"height": 2000,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 77,
+										"offsetX": -14,
+										"offsetY": -5
+									},
 									"mapParent": {
 										"id": "284"
 									}
@@ -10146,10 +10256,16 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/041-map-7-2-hunting-lodge.jpg"
 									},
-									"title": "Map 7.2: Hunting Lodge - Upper Floor",
+									"title": "Map 7.2: Hunting Lodge\u2014Upper Floor",
 									"width": 2700,
 									"height": 2000,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 91,
+										"offsetX": -33,
+										"offsetY": 39
+									},
 									"id": "285",
 									"mapRegions": [
 										{
@@ -10401,10 +10517,16 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/042-map-7-2-hunting-lodge-player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 2700,
 									"height": 2000,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 91,
+										"offsetX": -33,
+										"offsetY": 39
+									},
 									"mapParent": {
 										"id": "285"
 									}
@@ -10438,7 +10560,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/043-tod-07-03.png"
+												"path": "adventure/HotDQ/043-tod-07-03.webp"
 											},
 											"title": "{@creature Talis the White|HotDQ}",
 											"width": 840,
@@ -10493,7 +10615,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/044-tod-07-04.png"
+												"path": "adventure/HotDQ/044-tod-07-04.webp"
 											},
 											"title": "Dragonclaw",
 											"width": 561,
@@ -10665,7 +10787,7 @@
 									]
 								},
 								"The nest abuts a chimney that leads down to Talis's bedchamber ({@area area 18|1dc|x}) and belongs to a mated pair of {@creature Peryton||perytons}. Several times during the day, the perytons leave their nest to hunt for food. There's a {@chance 50|50 percent} chance that the nest is empty during the day; at night, both perytons are roosting here.",
-								"The perytons are allies of the cult and have a clear view of the portals in front of the lodge ({@area area 1|1a7|x}). They cannot see the stables or kennels ({@area areas 2|1a9|x} and{@area  3|1b0|x}) from the nest.",
+								"The perytons are allies of the cult and have a clear view of the portals in front of the lodge ({@area area 1|1a7|x}). They cannot see the stables or kennels ({@area areas 2|1a9|x} and {@area 3|1b0|x}) from the nest.",
 								{
 									"type": "entries",
 									"name": "Combat on the Rooftop",
@@ -10733,7 +10855,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/HotDQ/045-tod-08-01.png"
+						"path": "adventure/HotDQ/045-tod-08-01.webp"
 					},
 					"width": 1600,
 					"height": 1005
@@ -10761,6 +10883,14 @@
 									"width": 1400,
 									"height": 1800,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 88,
+										"offsetX": 14,
+										"offsetY": -9,
+										"scale": 2,
+										"distance": 10
+									},
 									"id": "286",
 									"mapRegions": [
 										{
@@ -10859,10 +10989,18 @@
 										"type": "internal",
 										"path": "adventure/HotDQ/047-map-8-1-parnast-player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 1400,
 									"height": 1800,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 89,
+										"offsetX": -3,
+										"offsetY": -28,
+										"scale": 2,
+										"distance": 10
+									},
 									"mapParent": {
 										"id": "286"
 									}
@@ -10943,7 +11081,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/048-tod-08-02.png"
+										"path": "adventure/HotDQ/048-tod-08-02.webp"
 									},
 									"title": "{@creature Captain Othelstan|HotDQ}",
 									"width": 790,
@@ -11121,6 +11259,13 @@
 															"width": 3975,
 															"height": 5700,
 															"imageType": "map",
+															"grid": {
+																"type": "square",
+																"size": 59,
+																"offsetX": 8,
+																"offsetY": 51,
+																"scale": 2
+															},
 															"id": "287",
 															"mapRegions": [
 																{
@@ -11962,10 +12107,17 @@
 																"type": "internal",
 																"path": "adventure/HotDQ/050-map-8-2-skyreach-player.jpg"
 															},
-															"title": "(Player Version)",
+															"title": "Player Version",
 															"width": 3314,
 															"height": 4750,
 															"imageType": "mapPlayer",
+															"grid": {
+																"type": "square",
+																"size": 74,
+																"offsetX": -11,
+																"offsetY": -11,
+																"scale": 3
+															},
 															"mapParent": {
 																"id": "287",
 																"autoScale": true
@@ -12136,7 +12288,7 @@
 										"Hidden in the shadows of the overhanging courtyard, across from the main gate, is an opening in one wall that leads to a spiral staircase made of sculpted ice."
 									]
 								},
-								"Combat here alerts the ogres in area 6, the cultists in {@area area 9|223|x}, the stone giants in {@area area 10|224|x}, and the kobolds in {@area  area 15|235|x}. One of the cultists runs to {@area area 11|229|x} and alerts {@creature Rezmir|HotDQ}, who arrives with her {@creature Guard Drake|HotDQ|guard drakes} three rounds later.",
+								"Combat here alerts the ogres in area 6, the cultists in {@area area 9|223|x}, the stone giants in {@area area 10|224|x}, and the kobolds in {@area area 15|235|x}. One of the cultists runs to {@area area 11|229|x} and alerts {@creature Rezmir|HotDQ}, who arrives with her {@creature Guard Drake|HotDQ|guard drakes} three rounds later.",
 								{
 									"type": "entries",
 									"name": "Spiral Staircase",
@@ -12249,7 +12401,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/051-tod-08-03.png"
+										"path": "adventure/HotDQ/051-tod-08-03.webp"
 									},
 									"title": "{@creature Rezmir|HotDQ}",
 									"width": 959,
@@ -12298,7 +12450,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/052-tod-08-04.png"
+										"path": "adventure/HotDQ/052-tod-08-04.webp"
 									},
 									"title": "{@creature Rath Modar|HotDQ}",
 									"width": 1161,
@@ -12472,7 +12624,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/053-tod-08-05.png"
+										"path": "adventure/HotDQ/053-tod-08-05.webp"
 									},
 									"title": "{@creature Sandesyl Morgia|HotDQ}",
 									"width": 636,
@@ -12816,7 +12968,7 @@
 									"page": 100,
 									"id": "264",
 									"entries": [
-										"If the ogres above or below him sound the alarm, {@creature Blagothkus|HotDQ} cannot be surprised.",
+										"If the ogres above or below him sound the alarm, {@creature Blagothkus|HotDQ} cannot be {@quickref Surprise|PHB|3|0|surprised}.",
 										{
 											"type": "insetReadaloud",
 											"id": "265",
@@ -12830,7 +12982,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/054-tod-08-06.png"
+												"path": "adventure/HotDQ/054-tod-08-06.webp"
 											},
 											"title": "{@creature Blagothkus|HotDQ}",
 											"width": 788,
@@ -12959,7 +13111,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/HotDQ/055-tod-08-07.png"
+								"path": "adventure/HotDQ/055-tod-08-07.webp"
 							},
 							"title": "Mask of the Dragon Queen",
 							"width": 506,
@@ -13718,7 +13870,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/HotDQ/082-tod-e-01.jpg"
+						"path": "adventure/HotDQ/082-tod-e-01.webp"
 					},
 					"width": 2560,
 					"height": 1701
@@ -13738,7 +13890,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/HotDQ/083-tod-e-02.jpg"
+								"path": "adventure/HotDQ/083-tod-e-02.webp"
 							},
 							"width": 2560,
 							"height": 1701
@@ -13755,7 +13907,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/HotDQ/084-tod-e-03.jpg"
+								"path": "adventure/HotDQ/084-tod-e-03.webp"
 							},
 							"width": 2560,
 							"height": 1701
@@ -13772,7 +13924,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/HotDQ/085-tod-e-04.jpg"
+								"path": "adventure/HotDQ/085-tod-e-04.webp"
 							},
 							"width": 2560,
 							"height": 1701
@@ -13789,7 +13941,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/HotDQ/086-tod-e-05.jpg"
+								"path": "adventure/HotDQ/086-tod-e-05.webp"
 							},
 							"width": 2560,
 							"height": 1701
@@ -13806,7 +13958,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/HotDQ/087-tod-e-06.png"
+								"path": "adventure/HotDQ/087-tod-e-06.webp"
 							},
 							"width": 2560,
 							"height": 1701
@@ -13823,7 +13975,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/HotDQ/088-tod-e-07.png"
+								"path": "adventure/HotDQ/088-tod-e-07.webp"
 							},
 							"width": 2560,
 							"height": 1810
@@ -13849,7 +14001,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/089-tod-e-08a.png"
+												"path": "adventure/HotDQ/089-tod-e-08a.webp"
 											},
 											"title": "Red Wizards of Thay Stronghold",
 											"width": 1905,
@@ -13859,7 +14011,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/090-tod-e-08b.png"
+												"path": "adventure/HotDQ/090-tod-e-08b.webp"
 											},
 											"title": "Red Wizards",
 											"width": 1446,
@@ -13869,7 +14021,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/091-tod-e-08c.png"
+												"path": "adventure/HotDQ/091-tod-e-08c.webp"
 											},
 											"title": "{@creature Rath Modar|HotDQ} (Formal)",
 											"width": 741,
@@ -13904,7 +14056,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/092-tod-e-09a.jpg"
+												"path": "adventure/HotDQ/092-tod-e-09a.webp"
 											},
 											"title": "Dread Warriors make up the terrifying undead army of the Red Wizards",
 											"width": 1438,
@@ -13914,7 +14066,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/093-tod-e-09b.png"
+												"path": "adventure/HotDQ/093-tod-e-09b.webp"
 											},
 											"title": "Zhentarim, also known as the Black Network, and winged snake",
 											"width": 547,
@@ -13924,7 +14076,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/094-tod-e-09c.png"
+												"path": "adventure/HotDQ/094-tod-e-09c.webp"
 											},
 											"title": "Dread Warrior",
 											"width": 500,
@@ -13947,7 +14099,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/095-tod-e-10a.png"
+												"path": "adventure/HotDQ/095-tod-e-10a.webp"
 											},
 											"width": 705,
 											"height": 1000
@@ -13956,7 +14108,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/096-tod-e-10b.png"
+												"path": "adventure/HotDQ/096-tod-e-10b.webp"
 											},
 											"width": 798,
 											"height": 1000
@@ -13985,7 +14137,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/097-tod-e-11a.png"
+										"path": "adventure/HotDQ/097-tod-e-11a.webp"
 									},
 									"title": "Mask of Tiamat",
 									"width": 1000,
@@ -14000,7 +14152,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/098-tod-e-11c.jpg"
+										"path": "adventure/HotDQ/098-tod-e-11c.webp"
 									},
 									"title": "The Five Dragon Masks (with Wyrmspeaker Regalia)",
 									"width": 2000,
@@ -14018,7 +14170,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/099-tod-e-12a.png"
+										"path": "adventure/HotDQ/099-tod-e-12a.webp"
 									},
 									"width": 1600,
 									"height": 798
@@ -14038,7 +14190,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/100-tod-e-12b.png"
+												"path": "adventure/HotDQ/100-tod-e-12b.webp"
 											},
 											"title": "Dragon Cultist Assassin/Thief Elite Tier",
 											"width": 1200,
@@ -14048,7 +14200,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/101-tod-e-12c.jpg"
+												"path": "adventure/HotDQ/101-tod-e-12c.webp"
 											},
 											"title": "Dragon Cultist: Rogue Ideations",
 											"width": 1376,
@@ -14058,7 +14210,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/102-tod-e-12d.jpg"
+												"path": "adventure/HotDQ/102-tod-e-12d.webp"
 											},
 											"title": "Cult of the Dragon Masks/Headgear",
 											"width": 1600,
@@ -14068,7 +14220,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/103-tod-e-12e.png"
+												"path": "adventure/HotDQ/103-tod-e-12e.webp"
 											},
 											"title": "Cult of the Dragon Decorative Regalia",
 											"width": 669,
@@ -14078,7 +14230,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/104-tod-e-12i.png"
+												"path": "adventure/HotDQ/104-tod-e-12i.webp"
 											},
 											"title": "Dragon Fang (Dagger)",
 											"width": 897,
@@ -14088,7 +14240,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/105-tod-e-12j.png"
+												"path": "adventure/HotDQ/105-tod-e-12j.webp"
 											},
 											"title": "Glove and Hand Tattooing Details Dragon Loyalty",
 											"width": 1000,
@@ -14098,7 +14250,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/106-tod-e-12k.jpg"
+												"path": "adventure/HotDQ/106-tod-e-12k.webp"
 											},
 											"title": "2nd Rank & 4th Rank",
 											"width": 1000,
@@ -14108,7 +14260,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/107-tod-e-12f1.png"
+												"path": "adventure/HotDQ/107-tod-e-12f1.webp"
 											},
 											"title": "Cult Initiate",
 											"width": 680,
@@ -14118,7 +14270,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/108-tod-e-12f2.png"
+												"path": "adventure/HotDQ/108-tod-e-12f2.webp"
 											},
 											"title": "1st Rank: Dragonclaw",
 											"width": 680,
@@ -14128,7 +14280,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/109-tod-e-12f3.png"
+												"path": "adventure/HotDQ/109-tod-e-12f3.webp"
 											},
 											"title": "2nd Rank: Dragonwing",
 											"width": 680,
@@ -14138,7 +14290,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/110-tod-e-12f4.png"
+												"path": "adventure/HotDQ/110-tod-e-12f4.webp"
 											},
 											"title": "3rd Rank: Dragonfang",
 											"width": 680,
@@ -14148,7 +14300,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/111-tod-e-12f5.png"
+												"path": "adventure/HotDQ/111-tod-e-12f5.webp"
 											},
 											"title": "4th Rank: Dragonsoul",
 											"width": 680,
@@ -14158,7 +14310,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/112-tod-e-12g.jpg"
+												"path": "adventure/HotDQ/112-tod-e-12g.webp"
 											},
 											"title": "Dragon Cult Recruiter Formal Wear",
 											"width": 1311,
@@ -14168,7 +14320,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/113-tod-e-12h.png"
+												"path": "adventure/HotDQ/113-tod-e-12h.webp"
 											},
 											"title": "Dragon Cult Recruiter Street Clothes",
 											"width": 484,
@@ -14197,7 +14349,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/114-tod-e-13a.jpg"
+										"path": "adventure/HotDQ/114-tod-e-13a.webp"
 									},
 									"width": 1483,
 									"height": 1000
@@ -14214,7 +14366,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/115-tod-e-13d.jpg"
+										"path": "adventure/HotDQ/115-tod-e-13d.webp"
 									},
 									"title": "Drizzt Do'Urden",
 									"width": 1223,
@@ -14226,7 +14378,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/116-tod-e-13c.jpg"
+										"path": "adventure/HotDQ/116-tod-e-13c.webp"
 									},
 									"title": "The Savage North",
 									"width": 1500,
@@ -14245,7 +14397,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/117-tod-e-13b.jpg"
+										"path": "adventure/HotDQ/117-tod-e-13b.webp"
 									},
 									"width": 1500,
 									"height": 730
@@ -14265,7 +14417,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/118-tod-e-14a.png"
+												"path": "adventure/HotDQ/118-tod-e-14a.webp"
 											},
 											"title": "Remi Haventree, Military Commander Uniform",
 											"width": 1211,
@@ -14275,7 +14427,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/119-tod-e-14b.png"
+												"path": "adventure/HotDQ/119-tod-e-14b.webp"
 											},
 											"title": "Remi Haventree, Waterdhavian Formal Wear",
 											"width": 483,
@@ -14285,7 +14437,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/120-tod-e-14c.png"
+												"path": "adventure/HotDQ/120-tod-e-14c.webp"
 											},
 											"title": "Mei, Female Human Rogue",
 											"width": 1500,
@@ -14295,7 +14447,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/121-tod-e-14d.png"
+												"path": "adventure/HotDQ/121-tod-e-14d.webp"
 											},
 											"title": "Calia, Female Human Ranger",
 											"width": 1001,
@@ -14305,7 +14457,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/122-tod-e-14e.png"
+												"path": "adventure/HotDQ/122-tod-e-14e.webp"
 											},
 											"title": "Tilo, Male Human Wizard",
 											"width": 571,
@@ -14315,7 +14467,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/123-tod-e-14f.png"
+												"path": "adventure/HotDQ/123-tod-e-14f.webp"
 											},
 											"title": "Finan, Male Human Cleric",
 											"width": 982,
@@ -14345,7 +14497,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/124-tod-e-15b.jpg"
+										"path": "adventure/HotDQ/124-tod-e-15b.webp"
 									},
 									"title": "Red Dragon Identifiers",
 									"width": 1500,
@@ -14360,7 +14512,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/125-tod-e-15a.jpg"
+										"path": "adventure/HotDQ/125-tod-e-15a.webp"
 									},
 									"width": 1600,
 									"height": 1107
@@ -14377,7 +14529,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/126-tod-e-15d.jpg"
+										"path": "adventure/HotDQ/126-tod-e-15d.webp"
 									},
 									"title": "Blue Dragon Identifiers",
 									"width": 1600,
@@ -14391,7 +14543,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/127-tod-e-15c.jpg"
+										"path": "adventure/HotDQ/127-tod-e-15c.webp"
 									},
 									"width": 1600,
 									"height": 1230
@@ -14411,7 +14563,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/128-tod-e-16a.jpg"
+												"path": "adventure/HotDQ/128-tod-e-16a.webp"
 											},
 											"title": "Green Dragons at various ages",
 											"width": 1500,
@@ -14421,7 +14573,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/HotDQ/129-tod-e-16b.jpg"
+												"path": "adventure/HotDQ/129-tod-e-16b.webp"
 											},
 											"width": 1500,
 											"height": 1141
@@ -14440,7 +14592,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/130-tod-e-16c.jpg"
+										"path": "adventure/HotDQ/130-tod-e-16c.webp"
 									},
 									"title": "Black Dragons at various ages",
 									"width": 1500,
@@ -14452,7 +14604,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/131-tod-e-16d.jpg"
+										"path": "adventure/HotDQ/131-tod-e-16d.webp"
 									},
 									"title": "Black Dragon Identifiers",
 									"width": 1500,
@@ -14470,7 +14622,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/132-tod-e-17b.jpg"
+										"path": "adventure/HotDQ/132-tod-e-17b.webp"
 									},
 									"title": "White Dragon (old)",
 									"width": 1500,
@@ -14484,7 +14636,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/HotDQ/133-tod-e-17a.jpg"
+										"path": "adventure/HotDQ/133-tod-e-17a.webp"
 									},
 									"title": "White Dragon Identifiers",
 									"width": 1500,

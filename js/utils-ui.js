@@ -45,6 +45,10 @@ class Prx {
 	}
 }
 
+/**
+ * @mixin
+ * @param {Class} Cls
+ */
 function MixinProxyBase (Cls) {
 	class MixedProxyBase extends Cls {
 		constructor (...args) {
@@ -115,6 +119,7 @@ function MixinProxyBase (Cls) {
 		_addHook (hookProp, prop, hook) {
 			ProxyBase._addHook_to(this.__hooks, hookProp, prop, hook);
 			if (this.__hooksTmp) ProxyBase._addHook_to(this.__hooksTmp, hookProp, prop, hook);
+			return hook;
 		}
 
 		static _addHook_to (obj, hookProp, prop, hook) {
@@ -124,6 +129,7 @@ function MixinProxyBase (Cls) {
 		_addHookAll (hookProp, hook) {
 			ProxyBase._addHookAll_to(this.__hooksAll, hookProp, hook);
 			if (this.__hooksAllTmp) ProxyBase._addHookAll_to(this.__hooksAllTmp, hookProp, hook);
+			return hook;
 		}
 
 		static _addHookAll_to (obj, hookProp, hook) {
@@ -220,6 +226,8 @@ function MixinProxyBase (Cls) {
 }
 
 class ProxyBase extends MixinProxyBase(class {}) {}
+
+globalThis.ProxyBase = ProxyBase;
 
 class UiUtil {
 	/**
@@ -332,12 +340,13 @@ class UiUtil {
 	 * @param [opts.isHeight100] {boolean}
 	 * @param [opts.isWidth100] {boolean}
 	 * @param [opts.isMinHeight0] {boolean}
+	 * @param [opts.isMinWidth0] {boolean}
 	 * @param [opts.isMaxWidth640p] {boolean}
 	 * @param [opts.isFullscreenModal] {boolean} An alternate mode.
 	 * @param [opts.isHeaderBorder] {boolean}
 	 *
 	 * @param {function} [opts.cbClose] Callback run when the modal is closed.
-	 * @param {JQuery} [opts.$titleSplit] Element to have split alongside the title.
+	 * @param {jQuery} [opts.$titleSplit] Element to have split alongside the title.
 	 * @param {int} [opts.zIndex] Z-index of the modal.
 	 * @param {number} [opts.overlayColor] Overlay color.
 	 * @param {boolean} [opts.isPermanent] If the modal should be impossible to close.
@@ -366,6 +375,8 @@ class UiUtil {
 
 			if (opts.isIndestructible) wrpOverlay.detach();
 			else wrpOverlay.remove();
+
+			ContextUtil.closeAllMenus();
 
 			doTeardown();
 		};
@@ -403,6 +414,7 @@ class UiUtil {
 			opts.isUncappedHeight ? "ui-modal__inner--uncap-height" : "",
 			opts.isUncappedWidth ? "ui-modal__inner--uncap-width" : "",
 			opts.isMinHeight0 ? `ui-modal__inner--no-min-height` : "",
+			opts.isMinWidth0 ? `ui-modal__inner--no-min-width` : "",
 			opts.isMaxWidth640p ? `ui-modal__inner--max-width-640p` : "",
 			opts.isFullscreenModal ? `ui-modal__inner--mode-fullscreen my-0 pt-0` : "",
 			opts.hasFooter ? `pb-0` : "",
@@ -418,7 +430,7 @@ class UiUtil {
 		const modalFooter = opts.hasFooter
 			? e_({
 				tag: "div",
-				clazz: `"no-shrink w-100 ve-flex-col ui-modal__footer ${opts.isFullscreenModal ? `ui-modal__footer--fullscreen mt-1` : ""}`,
+				clazz: `no-shrink w-100 ve-flex-col ui-modal__footer ${opts.isFullscreenModal ? `ui-modal__footer--fullscreen mt-1` : "mt-auto"}`,
 			})
 			: null;
 
@@ -453,7 +465,7 @@ class UiUtil {
 		}).appendTo(opts.isFullscreenModal ? overlayBlind : wrpOverlay);
 
 		wrpOverlay
-			.addEventListener("mouseup", evt => {
+			.addEventListener("mouseup", async evt => {
 				if (evt.target !== wrpOverlay) return;
 				if (evt.target !== UiUtil._MODAL_LAST_MOUSEDOWN) return;
 				if (opts.isPermanent) return;
@@ -530,8 +542,12 @@ class UiUtil {
 		});
 	}
 
+	static isAnyModalOpen () {
+		return !!UiUtil._MODAL_STACK?.length;
+	}
+
 	static addModalSep ($modalInner) {
-		$modalInner.append(`<hr class="ui-modal__row-sep">`);
+		$modalInner.append(`<hr class="hr-2">`);
 	}
 
 	static $getAddModalRow ($modalInner, tag = "div") {
@@ -564,6 +580,28 @@ class UiUtil {
 			})
 			.prop("checked", objectWithProp[propName])
 			.on("change", () => objectWithProp[propName] = $cb.prop("checked"));
+		return $cb;
+	}
+
+	/**
+	 *
+	 * @param $wrp
+	 * @param comp
+	 * @param prop
+	 * @param text
+	 * @param {?string} title
+	 * @return {jQuery}
+	 */
+	static $getAddModalRowCb2 ({$wrp, comp, prop, text, title = null }) {
+		const $cb = ComponentUiUtil.$getCbBool(comp, prop);
+
+		const $row = $$`<label class="split-v-center py-1 veapp__ele-hoverable">
+			<span>${text}</span>
+			${$cb}
+		</label>`
+			.appendTo($wrp);
+		if (title) $row.title(title);
+
 		return $cb;
 	}
 
@@ -603,11 +641,15 @@ class UiUtil {
 	static bindTypingEnd ({$ipt, fnKeyup, fnKeypress, fnKeydown, fnClick} = {}) {
 		let timerTyping;
 		$ipt
-			// Trigger on blur, as tabbing out of a field triggers the keyup on the element which was tabbed into. Our
-			//   intent. however, is to trigger on any keyup which began in this field.
-			.on("keyup search paste blur", evt => {
+			.on("keyup search paste", evt => {
 				clearTimeout(timerTyping);
 				timerTyping = setTimeout(() => { fnKeyup(evt); }, UiUtil.TYPE_TIMEOUT_MS);
+			})
+			// Trigger on blur, as tabbing out of a field triggers the keyup on the element which was tabbed into. Our
+			//   intent. however, is to trigger on any keyup which began in this field.
+			.on("blur", evt => {
+				clearTimeout(timerTyping);
+				fnKeyup(evt);
 			})
 			.on("keypress", evt => {
 				if (fnKeypress) fnKeypress(evt);
@@ -643,14 +685,41 @@ UiUtil.TYPE_TIMEOUT_MS = 100; // auto-search after 100ms
 UiUtil._MODAL_STACK = null;
 UiUtil._MODAL_LAST_MOUSEDOWN = null;
 
-class ListUiUtil {
+class ListSelectClickHandlerBase {
 	static _EVT_PASS_THOUGH_TAGS = new Set(["A", "BUTTON"]);
+
+	constructor () {
+		this._firstSelection = null;
+		this._lastSelection = null;
+
+		this._selectionInitialValue = null;
+	}
+
+	/**
+	 * @abstract
+	 * @return {Array}
+	 */
+	get _visibleItems () { throw new Error("Unimplemented!"); }
+
+	/**
+	 * @abstract
+	 * @return {Array}
+	 */
+	get _allItems () { throw new Error("Unimplemented!"); }
+
+	/** @abstract */
+	_getCb (item, opts) { throw new Error("Unimplemented!"); }
+
+	/** @abstract */
+	_setCheckbox (item, opts) { throw new Error("Unimplemented!"); }
+
+	/** @abstract */
+	_setHighlighted (item, opts) { throw new Error("Unimplemented!"); }
 
 	/**
 	 * (Public method for Plutonium use)
 	 * Handle doing a checkbox-based selection toggle on a list.
-	 * @param list
-	 * @param item List item. Must have a "data" property with a "cbSel" (the checkbox).
+	 * @param item List item.
 	 * @param evt Click event.
 	 * @param [opts] Options object.
 	 * @param [opts.isNoHighlightSelection] If highlighting selected rows should be skipped.
@@ -658,12 +727,13 @@ class ListUiUtil {
 	 * @param [opts.fnGetCb] Function which gets the checkbox from a list item.
 	 * @param [opts.isPassThroughEvents] If e.g. click events to links/buttons in the list item should be allowed/ignored.
 	 */
-	static handleSelectClick (list, item, evt, opts) {
+	handleSelectClick (item, evt, opts) {
 		opts = opts || {};
 
 		if (opts.isPassThroughEvents) {
-			const subEles = evt.path.slice(0, evt.path.indexOf(evt.currentTarget));
-			if (subEles.some(ele => ListUiUtil._EVT_PASS_THOUGH_TAGS.has(ele?.tagName))) return;
+			const evtPath = evt.composedPath();
+			const subEles = evtPath.slice(0, evtPath.indexOf(evt.currentTarget));
+			if (subEles.some(ele => this.constructor._EVT_PASS_THOUGH_TAGS.has(ele?.tagName))) return;
 		}
 
 		evt.preventDefault();
@@ -672,56 +742,58 @@ class ListUiUtil {
 		const cb = this._getCb(item, opts);
 		if (cb.disabled) return true;
 
-		if (evt && evt.shiftKey && list.__firstListSelection) {
-			if (list.__lastListSelection === item) {
+		if (evt && evt.shiftKey && this._firstSelection) {
+			if (this._lastSelection === item) {
 				// on double-tapping the end of the selection, toggle it on/off
 
-				this.setCheckbox(item, {...opts, toVal: !cb.checked});
-			} else if (list.__firstListSelection === item && list.__lastListSelection) {
+				this._setCheckbox(item, {...opts, toVal: !cb.checked});
+			} else if (this._firstSelection === item && this._lastSelection) {
 				// If the item matches the last clicked, clear all checkboxes from our last selection
 
-				const ix1 = list.visibleItems.indexOf(list.__firstListSelection);
-				const ix2 = list.visibleItems.indexOf(list.__lastListSelection);
+				const ix1 = this._visibleItems.indexOf(this._firstSelection);
+				const ix2 = this._visibleItems.indexOf(this._lastSelection);
 
 				const [ixStart, ixEnd] = [ix1, ix2].sort(SortUtil.ascSort);
 				for (let i = ixStart; i <= ixEnd; ++i) {
-					const it = list.visibleItems[i];
-					this.setCheckbox(it, {...opts, toVal: false});
+					const it = this._visibleItems[i];
+					this._setCheckbox(it, {...opts, toVal: false});
 				}
 
-				this.setCheckbox(item, opts);
+				this._setCheckbox(item, opts);
 			} else {
-				// on a shift-click, toggle all the checkboxes to true...
+				// on a shift-click, toggle all the checkboxes to the value of the initial item...
+				this._selectionInitialValue = this._getCb(this._firstSelection, opts).checked;
 
-				const ix1 = list.visibleItems.indexOf(list.__firstListSelection);
-				const ix2 = list.visibleItems.indexOf(item);
-				const ix2Prev = list.__lastListSelection ? list.visibleItems.indexOf(list.__lastListSelection) : null;
+				const ix1 = this._visibleItems.indexOf(this._firstSelection);
+				const ix2 = this._visibleItems.indexOf(item);
+				const ix2Prev = this._lastSelection ? this._visibleItems.indexOf(this._lastSelection) : null;
 
 				const [ixStart, ixEnd] = [ix1, ix2].sort(SortUtil.ascSort);
+				const nxtOpts = {...opts, toVal: this._selectionInitialValue};
 				for (let i = ixStart; i <= ixEnd; ++i) {
-					const it = list.visibleItems[i];
-					this.setCheckbox(it, opts);
+					const it = this._visibleItems[i];
+					this._setCheckbox(it, nxtOpts);
 				}
 
-				// ...except those between the last selection and this selection, set those to false
-				if (ix2Prev != null) {
+				// ...except when selecting; for those between the last selection and this selection, those to unchecked
+				if (this._selectionInitialValue && ix2Prev != null) {
 					if (ix2Prev > ixEnd) {
-						const nxtOpts = {...opts, toVal: false};
+						const nxtOpts = {...opts, toVal: !this._selectionInitialValue};
 						for (let i = ixEnd + 1; i <= ix2Prev; ++i) {
-							const it = list.visibleItems[i];
-							this.setCheckbox(it, nxtOpts);
+							const it = this._visibleItems[i];
+							this._setCheckbox(it, nxtOpts);
 						}
 					} else if (ix2Prev < ixStart) {
-						const nxtOpts = {...opts, toVal: false};
+						const nxtOpts = {...opts, toVal: !this._selectionInitialValue};
 						for (let i = ix2Prev; i < ixStart; ++i) {
-							const it = list.visibleItems[i];
-							this.setCheckbox(it, nxtOpts);
+							const it = this._visibleItems[i];
+							this._setCheckbox(it, nxtOpts);
 						}
 					}
 				}
 			}
 
-			list.__lastListSelection = item;
+			this._lastSelection = item;
 		} else {
 			// on a normal click, or if there's been no initial selection, just toggle the checkbox
 
@@ -732,48 +804,74 @@ class ListUiUtil {
 				if (opts.fnOnSelectionChange) opts.fnOnSelectionChange(item, cbMaster.checked);
 
 				if (!opts.isNoHighlightSelection) {
-					if (cbMaster.checked) item.ele instanceof $ ? item.ele.addClass("list-multi-selected") : item.ele.classList.add("list-multi-selected");
-					else item.ele instanceof $ ? item.ele.removeClass("list-multi-selected") : item.ele.classList.remove("list-multi-selected");
+					this._setHighlighted(item, cbMaster.checked);
 				}
 			} else {
 				if (!opts.isNoHighlightSelection) {
-					item.ele instanceof $ ? item.ele.removeClass("list-multi-selected") : item.ele.classList.remove("list-multi-selected");
+					this._setHighlighted(item, false);
 				}
 			}
 
-			list.__firstListSelection = item;
-			list.__lastListSelection = null;
+			this._firstSelection = item;
+			this._lastSelection = null;
+			this._selectionInitialValue = null;
 		}
 	}
 
 	/**
 	 * Handle doing a radio-based selection toggle on a list.
-	 * @param list
-	 * @param item List item. Must have a "data" property with a "cbSel" (the radio input).
+	 * @param item List item.
 	 * @param evt Click event.
 	 */
-	static handleSelectClickRadio (list, item, evt) {
+	handleSelectClickRadio (item, evt) {
 		evt.preventDefault();
 		evt.stopPropagation();
 
-		list.items.forEach(it => {
-			if (it === item) {
+		this._allItems.forEach(itemOther => {
+			const cb = this._getCb(itemOther);
+
+			if (itemOther === item) {
 				// Setting this to true *should* cause the browser to update the rest for us, but since list items can
 				//   be filtered/hidden, the browser won't necessarily update them all. Therefore, forcibly set
 				//   `checked = false` below.
-				it.data.cbSel.checked = true;
-				it.ele.classList.add("list-multi-selected");
+				cb.checked = true;
+				this._setHighlighted(itemOther, true);
 			} else {
-				it.data.cbSel.checked = false;
-				it.ele.classList.remove("list-multi-selected");
+				cb.checked = false;
+				this._setHighlighted(itemOther, false);
 			}
 		});
 	}
+}
 
-	static _getCb (item, opts) { return opts.fnGetCb ? opts.fnGetCb(item) : item.data.cbSel; }
+globalThis.ListSelectClickHandlerBase = ListSelectClickHandlerBase;
 
-	static setCheckbox (item, {fnGetCb, fnOnSelectionChange, isNoHighlightSelection, toVal = true} = {}) {
+class ListSelectClickHandler extends ListSelectClickHandlerBase {
+	constructor ({list}) {
+		super();
+		this._list = list;
+	}
+
+	get _visibleItems () { return this._list.visibleItems; }
+
+	get _allItems () { return this._list.items; }
+
+	_getCb (item, opts = {}) { return opts.fnGetCb ? opts.fnGetCb(item) : item.data.cbSel; }
+
+	_setCheckbox (item, opts = {}) { return this.setCheckbox(item, opts); }
+
+	_setHighlighted (item, isHighlighted) {
+		if (isHighlighted) item.ele instanceof $ ? item.ele.addClass("list-multi-selected") : item.ele.classList.add("list-multi-selected");
+		else item.ele instanceof $ ? item.ele.removeClass("list-multi-selected") : item.ele.classList.remove("list-multi-selected");
+	}
+
+	/* -------------------------------------------- */
+
+	setCheckbox (item, {fnGetCb, fnOnSelectionChange, isNoHighlightSelection, toVal = true} = {}) {
 		const cbSlave = this._getCb(item, {fnGetCb, fnOnSelectionChange, isNoHighlightSelection});
+
+		if (cbSlave?.disabled) return;
+
 		if (cbSlave) {
 			cbSlave.checked = toVal;
 			if (fnOnSelectionChange) fnOnSelectionChange(item, toVal);
@@ -781,29 +879,34 @@ class ListUiUtil {
 
 		if (isNoHighlightSelection) return;
 
-		if (toVal) item.ele instanceof $ ? item.ele.addClass("list-multi-selected") : item.ele.classList.add("list-multi-selected");
-		else item.ele instanceof $ ? item.ele.removeClass("list-multi-selected") : item.ele.classList.remove("list-multi-selected");
+		this._setHighlighted(item, toVal);
 	}
 
 	/**
 	 * (Public method for Plutonium use)
 	 */
-	static bindSelectAllCheckbox ($cbAll, list) {
+	bindSelectAllCheckbox ($cbAll) {
 		$cbAll.change(() => {
 			const isChecked = $cbAll.prop("checked");
-			this.setCheckboxes({isChecked, list});
+			this.setCheckboxes({isChecked});
 		});
 	}
 
-	static setCheckboxes ({isChecked, isIncludeHidden, list}) {
-		(isIncludeHidden ? list.items : list.visibleItems).forEach(item => {
-			if (item.data.cbSel) item.data.cbSel.checked = isChecked;
+	setCheckboxes ({isChecked, isIncludeHidden}) {
+		(isIncludeHidden ? this._list.items : this._list.visibleItems)
+			.forEach(item => {
+				if (item.data.cbSel?.disabled) return;
 
-			if (isChecked) item.ele instanceof $ ? item.ele.addClass("list-multi-selected") : item.ele.classList.add("list-multi-selected");
-			else item.ele instanceof $ ? item.ele.removeClass("list-multi-selected") : item.ele.classList.remove("list-multi-selected");
-		});
+				if (item.data.cbSel) item.data.cbSel.checked = isChecked;
+
+				this._setHighlighted(item, isChecked);
+			});
 	}
+}
 
+globalThis.ListSelectClickHandler = ListSelectClickHandler;
+
+class ListUiUtil {
 	static bindPreviewButton (page, allData, item, btnShowHidePreview, {$fnGetPreviewStats} = {}) {
 		btnShowHidePreview.addEventListener("click", evt => {
 			const entity = allData[item.ix];
@@ -893,9 +996,122 @@ class ListUiUtil {
 				});
 			});
 	}
+
+	// ==================
+
+	static ListSyntax = class {
+		static _READONLY_WALKER = null;
+
+		constructor (
+			{
+				fnGetDataList,
+				pFnGetFluff,
+			},
+		) {
+			this._fnGetDataList = fnGetDataList;
+			this._pFnGetFluff = pFnGetFluff;
+		}
+
+		get _dataList () { return this._fnGetDataList(); }
+
+		build () {
+			return {
+				stats: {
+					help: `"stats:<text>" ("/text/" for regex) to search within stat blocks.`,
+					fn: (listItem, searchTerm) => {
+						if (listItem.data._textCacheStats == null) listItem.data._textCacheStats = this._getSearchCacheStats(this._dataList[listItem.ix]);
+						return this._listSyntax_isTextMatch(listItem.data._textCacheStats, searchTerm);
+					},
+				},
+				info: {
+					help: `"info:<text>" ("/text/" for regex) to search within info.`,
+					fn: async (listItem, searchTerm) => {
+						if (listItem.data._textCacheFluff == null) listItem.data._textCacheFluff = await this._pGetSearchCacheFluff(this._dataList[listItem.ix]);
+						return this._listSyntax_isTextMatch(listItem.data._textCacheFluff, searchTerm);
+					},
+					isAsync: true,
+				},
+				text: {
+					help: `"text:<text>" ("/text/" for regex) to search within stat blocks plus info.`,
+					fn: async (listItem, searchTerm) => {
+						if (listItem.data._textCacheAll == null) {
+							const {textCacheStats, textCacheFluff, textCacheAll} = await this._pGetSearchCacheAll(this._dataList[listItem.ix], {textCacheStats: listItem.data._textCacheStats, textCacheFluff: listItem.data._textCacheFluff});
+							listItem.data._textCacheStats = listItem.data._textCacheStats || textCacheStats;
+							listItem.data._textCacheFluff = listItem.data._textCacheFluff || textCacheFluff;
+							listItem.data._textCacheAll = textCacheAll;
+						}
+						return this._listSyntax_isTextMatch(listItem.data._textCacheAll, searchTerm);
+					},
+					isAsync: true,
+				},
+			};
+		}
+
+		_listSyntax_isTextMatch (str, searchTerm) {
+			if (!str) return false;
+			if (searchTerm instanceof RegExp) return searchTerm.test(str);
+			return str.includes(searchTerm);
+		}
+
+		// TODO(Future) the ideal solution to this is to render every entity to plain text (or failing that, Markdown) and
+		//   indexing that text with e.g. elasticlunr.
+		_getSearchCacheStats (entity) {
+			return this._getSearchCache_entries(entity);
+		}
+
+		static _INDEXABLE_PROPS_ENTRIES = [
+			"entries",
+		];
+
+		_getSearchCache_entries (entity, {indexableProps = null} = {}) {
+			if ((indexableProps || this.constructor._INDEXABLE_PROPS_ENTRIES).every(it => !entity[it])) return "";
+			const ptrOut = {_: ""};
+			(indexableProps || this.constructor._INDEXABLE_PROPS_ENTRIES).forEach(it => this._getSearchCache_handleEntryProp(entity, it, ptrOut));
+			return ptrOut._;
+		}
+
+		_getSearchCache_handleEntryProp (entity, prop, ptrOut) {
+			if (!entity[prop]) return;
+
+			this.constructor._READONLY_WALKER = this.constructor._READONLY_WALKER || MiscUtil.getWalker({
+				keyBlocklist: new Set(["type", "colStyles", "style"]),
+				isNoModification: true,
+			});
+
+			this.constructor._READONLY_WALKER.walk(
+				entity[prop],
+				{
+					string: (str) => this._getSearchCache_handleString(ptrOut, str),
+				},
+			);
+		}
+
+		_getSearchCache_handleString (ptrOut, str) {
+			ptrOut._ += `${Renderer.stripTags(str).toLowerCase()} -- `;
+		}
+
+		async _pGetSearchCacheFluff (entity) {
+			const fluff = this._pFnGetFluff ? await this._pFnGetFluff(entity) : null;
+			return fluff ? this._getSearchCache_entries(fluff, {indexableProps: ["entries"]}) : "";
+		}
+
+		async _pGetSearchCacheAll (entity, {textCacheStats = null, textCacheFluff = null}) {
+			textCacheStats = textCacheStats || this._getSearchCacheStats(entity);
+			textCacheFluff = textCacheFluff || await this._pGetSearchCacheFluff(entity);
+			return {
+				textCacheStats,
+				textCacheFluff,
+				textCacheAll: [textCacheStats, textCacheFluff].filter(Boolean).join(" -- "),
+			};
+		}
+	};
+
+	// ==================
 }
 ListUiUtil.HTML_GLYPHICON_EXPAND = `[+]`;
 ListUiUtil.HTML_GLYPHICON_CONTRACT = `[\u2012]`;
+
+globalThis.ListUiUtil = ListUiUtil;
 
 class ProfUiUtil {
 	/**
@@ -1171,6 +1387,9 @@ class TabUiUtil extends TabUiUtilBase {
 		obj.__$getDispTabTitle = function () { return null; };
 	}
 }
+
+globalThis.TabUiUtil = TabUiUtil;
+
 TabUiUtil.TabMeta = class extends TabUiUtilBase.TabMeta {
 	constructor (opts) {
 		super(opts);
@@ -1186,7 +1405,7 @@ class TabUiUtilSide extends TabUiUtilBase {
 		super.decorate(obj, {isInitMeta});
 
 		obj.__$getBtnTab = function ({isSingleTab, tabMeta, _propProxy, propActive, ixTab}) {
-			return isSingleTab ? null : $(`<button class="btn btn-default btn-sm ui-tab-side__btn-tab mb-2 br-0 btr-0 bbr-0 text-left ve-flex-v-center" title="${tabMeta.name.qq()}"><div class="${tabMeta.icon} ui-tab-side__icon-tab mr-2 mobile-ish__mr-0 text-center"></div><div class="mobile-ish__hidden">${tabMeta.name.qq()}</div></button>`)
+			return isSingleTab ? null : $(`<button class="btn btn-default btn-sm ui-tab-side__btn-tab mb-2 br-0 btr-0 bbr-0 text-left ve-flex-v-center" title="${tabMeta.name.qq()}"><div class="${tabMeta.icon} ui-tab-side__icon-tab mr-2 mobile-ish__mr-0 ve-text-center"></div><div class="mobile-ish__hidden">${tabMeta.name.qq()}</div></button>`)
 				.click(() => this[_propProxy][propActive] = ixTab);
 		};
 
@@ -1236,11 +1455,13 @@ class TabUiUtilSide extends TabUiUtilBase {
 	}
 }
 
-// TODO have this respect the blacklist?
+globalThis.TabUiUtilSide = TabUiUtilSide;
+
+// TODO have this respect the blocklist?
 class SearchUiUtil {
 	static async pDoGlobalInit () {
 		elasticlunr.clearStopWords();
-		await Renderer.item.populatePropertyAndTypeReference();
+		await Renderer.item.pPopulatePropertyAndTypeReference();
 	}
 
 	static _isNoHoverCat (cat) {
@@ -1264,6 +1485,10 @@ class SearchUiUtil {
 			await Promise.all(options.additionalIndices.map(async add => {
 				additionalData[add] = Omnidexer.decompressIndex(await DataUtil.loadJSON(`${Renderer.get().baseUrl}search/index-${add}.json`));
 				const maxId = additionalData[add].last().id;
+
+				const prereleaseIndex = await PrereleaseUtil.pGetAdditionalSearchIndices(maxId, add);
+				if (prereleaseIndex.length) additionalData[add] = additionalData[add].concat(prereleaseIndex);
+
 				const brewIndex = await BrewUtil2.pGetAdditionalSearchIndices(maxId, add);
 				if (brewIndex.length) additionalData[add] = additionalData[add].concat(brewIndex);
 			}));
@@ -1274,6 +1499,10 @@ class SearchUiUtil {
 			await Promise.all(options.alternateIndices.map(async alt => {
 				alternateData[alt] = Omnidexer.decompressIndex(await DataUtil.loadJSON(`${Renderer.get().baseUrl}search/index-alt-${alt}.json`));
 				const maxId = alternateData[alt].last().id;
+
+				const prereleaseIndex = await BrewUtil2.pGetAlternateSearchIndices(maxId, alt);
+				if (prereleaseIndex.length) alternateData[alt] = alternateData[alt].concat(prereleaseIndex);
+
 				const brewIndex = await BrewUtil2.pGetAlternateSearchIndices(maxId, alt);
 				if (brewIndex.length) alternateData[alt] = alternateData[alt].concat(brewIndex);
 			}));
@@ -1320,16 +1549,21 @@ class SearchUiUtil {
 		Object.values(additionalData).forEach(arr => arr.forEach(d => handleDataItem(d)));
 		Object.values(alternateData).forEach(arr => arr.forEach(d => handleDataItem(d, true)));
 
-		const brewIndex = await BrewUtil2.pGetSearchIndex({id: availContent.ALL.documentStore.length});
+		const pAddPrereleaseBrewIndex = async ({brewUtil}) => {
+			const brewIndex = await brewUtil.pGetSearchIndex({id: availContent.ALL.documentStore.length});
 
-		brewIndex.forEach(d => {
-			if (SearchUiUtil._isNoHoverCat(d.c) || fromDeepIndex(d)) return;
-			d.cf = Parser.pageCategoryToFull(d.c);
-			d.cf = d.c === Parser.CAT_ID_CREATURE ? "Creature" : Parser.pageCategoryToFull(d.c);
-			initIndexForFullCat(d);
-			availContent.ALL.addDoc(d);
-			availContent[d.cf].addDoc(d);
-		});
+			brewIndex.forEach(d => {
+				if (SearchUiUtil._isNoHoverCat(d.c) || fromDeepIndex(d)) return;
+				d.cf = Parser.pageCategoryToFull(d.c);
+				d.cf = d.c === Parser.CAT_ID_CREATURE ? "Creature" : Parser.pageCategoryToFull(d.c);
+				initIndexForFullCat(d);
+				availContent.ALL.addDoc(d);
+				availContent[d.cf].addDoc(d);
+			});
+		};
+
+		await pAddPrereleaseBrewIndex({brewUtil: PrereleaseUtil});
+		await pAddPrereleaseBrewIndex({brewUtil: BrewUtil2});
 
 		return availContent;
 	}
@@ -1339,7 +1573,6 @@ SearchUiUtil.NO_HOVER_CATEGORIES = new Set([
 	Parser.CAT_ID_BOOK,
 	Parser.CAT_ID_QUICKREF,
 	Parser.CAT_ID_PAGE,
-	Parser.CAT_ID_LEGENDARY_GROUP,
 ]);
 
 // based on DM screen's AddMenuSearchTab
@@ -1370,35 +1603,54 @@ class SearchWidget {
 	static bindAutoSearch ($iptSearch, opts) {
 		UiUtil.bindTypingEnd({
 			$ipt: $iptSearch,
-			fnKeyup: () => {
+			fnKeyup: evt => {
+				if (evt.type === "blur") return;
+
+				// Handled in `fnKeydown`
+				switch (evt.key) {
+					case "ArrowDown": {
+						evt.preventDefault();
+						return;
+					}
+					case "Enter": return;
+				}
+
 				opts.fnSearch && opts.fnSearch();
 			},
 			fnKeypress: evt => {
-				if (evt.which === 13) {
-					opts.flags.doClickFirst = true;
-					opts.fnSearch && opts.fnSearch();
+				switch (evt.key) {
+					case "ArrowDown": {
+						evt.preventDefault();
+						return;
+					}
+					case "Enter": {
+						opts.flags.doClickFirst = true;
+						opts.fnSearch && opts.fnSearch();
+					}
 				}
 			},
 			fnKeydown: evt => {
 				if (opts.flags.isWait) {
 					opts.flags.isWait = false;
 					opts.fnShowWait && opts.fnShowWait();
-				} else {
-					switch (evt.which) {
-						case 40: { // down
-							if (opts.$ptrRows && opts.$ptrRows._[0]) {
-								evt.preventDefault();
-								opts.$ptrRows._[0].focus();
-							}
-							break;
+					return;
+				}
+
+				switch (evt.key) {
+					case "ArrowDown": {
+						if (opts.$ptrRows && opts.$ptrRows._[0]) {
+							evt.stopPropagation();
+							evt.preventDefault();
+							opts.$ptrRows._[0][0].focus();
 						}
-						case 13: { // enter
-							if (opts.$ptrRows && opts.$ptrRows._[0]) {
-								evt.preventDefault();
-								opts.$ptrRows._[0].click();
-							}
-							break;
+						break;
+					}
+					case "Enter": {
+						if (opts.$ptrRows && opts.$ptrRows._[0]) {
+							evt.preventDefault();
+							opts.$ptrRows._[0].click();
 						}
+						break;
 					}
 				}
 			},
@@ -1408,7 +1660,7 @@ class SearchWidget {
 		});
 	}
 
-	static bindRowHandlers ({result, $row, $ptrRows, fnHandleClick}) {
+	static bindRowHandlers ({result, $row, $ptrRows, fnHandleClick, $iptSearch}) {
 		return $row
 			.keydown(evt => {
 				switch (evt.which) {
@@ -1420,7 +1672,7 @@ class SearchWidget {
 						const ixRow = $ptrRows._.indexOf($row);
 						const $prev = $ptrRows._[ixRow - 1];
 						if ($prev) $prev.focus();
-						else $ptrRows.focus();
+						else $iptSearch.focus();
 						break;
 					}
 					case 40: { // down
@@ -1593,7 +1845,7 @@ class SearchWidget {
 
 			res.forEach(r => {
 				const $row = this.__$getRow(r).appendTo(this._$wrpResults);
-				SearchWidget.bindRowHandlers({result: r, $row, $ptrRows: this._$ptrRows, fnHandleClick: handleClick});
+				SearchWidget.bindRowHandlers({result: r, $row, $ptrRows: this._$ptrRows, fnHandleClick: handleClick, $iptSearch: this._$iptSearch});
 				this._$ptrRows._.push($row);
 			});
 
@@ -1679,9 +1931,17 @@ class SearchWidget {
 
 		const nxtOpts = {
 			fnTransform: doc => {
-				const cpy = MiscUtil.copy(doc);
+				const cpy = MiscUtil.copyFast(doc);
 				Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-				cpy.tag = `{@spell ${doc.n.toSpellCase()}${doc.s !== SRC_PHB ? `|${doc.s}` : ""}}`;
+				const hashName = UrlUtil.decodeHash(cpy.u)[0].toTitleCase();
+				const isRename = hashName.toLowerCase() !== cpy.n.toLowerCase();
+				const pts = [
+					isRename ? hashName : cpy.n.toSpellCase(),
+					doc.s !== Parser.SRC_PHB ? doc.s : "",
+					isRename ? cpy.n.toSpellCase() : "",
+				];
+				while (pts.at(-1) === "") pts.pop();
+				cpy.tag = `{@spell ${pts.join("|")}}`;
 				return cpy;
 			},
 		};
@@ -1714,7 +1974,7 @@ class SearchWidget {
 			"entity_LegendaryGroups",
 			{
 				fnTransform: doc => {
-					const cpy = MiscUtil.copy(doc);
+					const cpy = MiscUtil.copyFast(doc);
 					Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
 					cpy.page = "legendaryGroup";
 					return cpy;
@@ -1743,9 +2003,9 @@ class SearchWidget {
 			"entity_Feats",
 			{
 				fnTransform: doc => {
-					const cpy = MiscUtil.copy(doc);
+					const cpy = MiscUtil.copyFast(doc);
 					Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-					cpy.tag = `{@feat ${doc.n}${doc.s !== SRC_PHB ? `|${doc.s}` : ""}}`;
+					cpy.tag = `{@feat ${doc.n}${doc.s !== Parser.SRC_PHB ? `|${doc.s}` : ""}}`;
 					return cpy;
 				},
 			},
@@ -1772,9 +2032,9 @@ class SearchWidget {
 			"entity_Backgrounds",
 			{
 				fnTransform: doc => {
-					const cpy = MiscUtil.copy(doc);
+					const cpy = MiscUtil.copyFast(doc);
 					Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-					cpy.tag = `{@background ${doc.n}${doc.s !== SRC_PHB ? `|${doc.s}` : ""}}`;
+					cpy.tag = `{@background ${doc.n}${doc.s !== Parser.SRC_PHB ? `|${doc.s}` : ""}}`;
 					return cpy;
 				},
 			},
@@ -1804,9 +2064,9 @@ class SearchWidget {
 			"entity_Races",
 			{
 				fnTransform: doc => {
-					const cpy = MiscUtil.copy(doc);
+					const cpy = MiscUtil.copyFast(doc);
 					Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-					cpy.tag = `{@race ${doc.n}${doc.s !== SRC_PHB ? `|${doc.s}` : ""}}`;
+					cpy.tag = `{@race ${doc.n}${doc.s !== Parser.SRC_PHB ? `|${doc.s}` : ""}}`;
 					return cpy;
 				},
 			},
@@ -1833,9 +2093,9 @@ class SearchWidget {
 			"entity_OptionalFeatures",
 			{
 				fnTransform: doc => {
-					const cpy = MiscUtil.copy(doc);
+					const cpy = MiscUtil.copyFast(doc);
 					Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-					cpy.tag = `{@optfeature ${doc.n}${doc.s !== SRC_PHB ? `|${doc.s}` : ""}}`;
+					cpy.tag = `{@optfeature ${doc.n}${doc.s !== Parser.SRC_PHB ? `|${doc.s}` : ""}}`;
 					return cpy;
 				},
 			},
@@ -1904,9 +2164,9 @@ class SearchWidget {
 
 		const nxtOpts = {
 			fnTransform: doc => {
-				const cpy = MiscUtil.copy(doc);
+				const cpy = MiscUtil.copyFast(doc);
 				Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-				cpy.tag = `{@creature ${doc.n}${doc.s !== SRC_MM ? `|${doc.s}` : ""}}`;
+				cpy.tag = `{@creature ${doc.n}${doc.s !== Parser.SRC_MM ? `|${doc.s}` : ""}}`;
 				return cpy;
 			},
 		};
@@ -1920,7 +2180,7 @@ class SearchWidget {
 
 	static async __pLoadItemIndex (isBasicIndex) {
 		const dataSource = async () => {
-			const allItems = await Renderer.item.pBuildList();
+			const allItems = (await Renderer.item.pBuildList()).filter(it => !it._isItemGroup);
 			return {
 				item: allItems.filter(it => {
 					if (it.type === "GV") return false;
@@ -1953,9 +2213,9 @@ class SearchWidget {
 			indexName,
 			{
 				fnTransform: doc => {
-					const cpy = MiscUtil.copy(doc);
+					const cpy = MiscUtil.copyFast(doc);
 					Object.assign(cpy, SearchWidget.docToPageSourceHash(cpy));
-					cpy.tag = `{@item ${doc.n}${doc.s !== SRC_DMG ? `|${doc.s}` : ""}}`;
+					cpy.tag = `{@item ${doc.n}${doc.s !== Parser.SRC_DMG ? `|${doc.s}` : ""}}`;
 					return cpy;
 				},
 			},
@@ -2051,14 +2311,19 @@ class SearchWidget {
 
 		let id = 0;
 		for (const subSpec of customIndexSubSpecs) {
-			const [json, homebrew] = await Promise.all([
+			const [json, prerelease, brew] = await Promise.all([
 				typeof subSpec.dataSource === "string"
 					? DataUtil.loadJSON(subSpec.dataSource)
 					: subSpec.dataSource(),
+				PrereleaseUtil.pGetBrewProcessed(),
 				BrewUtil2.pGetBrewProcessed(),
 			]);
 
-			await [...json[subSpec.prop], ...(homebrew[subSpec.prop] || [])]
+			await [
+				...json[subSpec.prop],
+				...(prerelease[subSpec.prop] || []),
+				...(brew[subSpec.prop] || []),
+			]
 				.pSerialAwaitMap(async ent => {
 					const doc = {
 						id: id++,
@@ -2205,6 +2470,7 @@ class InputUiUtil {
 	 * @param [opts.textNo] Text for "no" button.
 	 * @param [opts.textSkip] Text for "skip" button.
 	 * @param [opts.htmlDescription] Description HTML for the modal.
+	 * @param [opts.$eleDescription] Description element for the modal.
 	 * @param [opts.storageKey] Storage key to use when "remember" options are passed.
 	 * @param [opts.isGlobal] If the stored setting is global when "remember" options are passed.
 	 * @param [opts.fnRemember] Custom function to run when saving the "yes and remember" option.
@@ -2255,7 +2521,8 @@ class InputUiUtil {
 			isMinHeight0: true,
 		});
 
-		if (opts.htmlDescription && opts.htmlDescription.trim()) $$`<div class="ve-flex w-100 mb-1">${opts.htmlDescription}</div>`.appendTo($modalInner);
+		if (opts.$eleDescription?.length) $$`<div class="ve-flex w-100 mb-1">${opts.$eleDescription}</div>`.appendTo($modalInner);
+		else if (opts.htmlDescription && opts.htmlDescription.trim()) $$`<div class="ve-flex w-100 mb-1">${opts.htmlDescription}</div>`.appendTo($modalInner);
 		$$`<div class="ve-flex-v-center ve-flex-h-right py-1 px-1">${$btnTrueRemember}${$btnTrue}${$btnFalse}${$btnSkip}</div>`.appendTo($modalInner);
 
 		if (doAutoResizeModal) doAutoResizeModal();
@@ -2496,6 +2763,8 @@ class InputUiUtil {
 	/**
 	 * @param [opts] Options.
 	 * @param [opts.title] Prompt title.
+	 * @param [opts.htmlDescription] Description HTML for the modal.
+	 * @param [opts.$eleDescription] Description element for the modal.
 	 * @param [opts.default] Default value.
 	 * @param [opts.autocomplete] Array of autocomplete strings. REQUIRES INCLUSION OF THE TYPEAHEAD LIBRARY.
 	 * @param [opts.isCode] If the text is code.
@@ -2554,6 +2823,7 @@ class InputUiUtil {
 		const {$modalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
 			title: opts.title || "Enter Text",
 			isMinHeight0: true,
+			isWidth100: true,
 		});
 
 		const $btnOk = this._$getBtnOk({comp, opts, doClose});
@@ -2561,6 +2831,8 @@ class InputUiUtil {
 		const $btnSkip = this._$getBtnSkip({comp, opts, doClose});
 
 		if (opts.$elePre) opts.$elePre.appendTo($modalInner);
+		if (opts.$eleDescription?.length) $$`<div class="ve-flex w-100 mb-1">${opts.$eleDescription}</div>`.appendTo($modalInner);
+		else if (opts.htmlDescription && opts.htmlDescription.trim()) $$`<div class="ve-flex w-100 mb-1">${opts.htmlDescription}</div>`.appendTo($modalInner);
 		$iptStr.appendTo($modalInner);
 		if (opts.$elePost) opts.$elePost.appendTo($modalInner);
 		$$`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${$btnOk}${$btnCancel}${$btnSkip}</div>`.appendTo($modalInner);
@@ -2818,7 +3090,7 @@ class InputUiUtil {
 		comp.render = function ($parent) {
 			$parent.empty();
 
-			const $iptNum = ComponentUiUtil.$getIptInt(this, "num", 0, {$ele: $(`<input class="form-control input-xs form-control--minimal text-center mr-1">`)})
+			const $iptNum = ComponentUiUtil.$getIptInt(this, "num", 0, {$ele: $(`<input class="form-control input-xs form-control--minimal ve-text-center mr-1">`)})
 				.appendTo($parent)
 				.keydown(evt => {
 					if (evt.key === "Escape") { $iptNum.blur(); return; }
@@ -2827,9 +3099,9 @@ class InputUiUtil {
 					evt.stopPropagation();
 				});
 			const $selFaces = ComponentUiUtil.$getSelEnum(this, "faces", {values: Renderer.dice.DICE})
-				.addClass("mr-2").addClass("text-center").css("textAlignLast", "center");
+				.addClass("mr-2").addClass("ve-text-center").css("textAlignLast", "center");
 
-			const $iptBonus = $(`<input class="form-control input-xs form-control--minimal text-center">`)
+			const $iptBonus = $(`<input class="form-control input-xs form-control--minimal ve-text-center">`)
 				.change(() => this._state.bonus = UiUtil.strToInt($iptBonus.val(), null, {fallbackOnNaN: null}))
 				.keydown(evt => {
 					if (evt.key === "Escape") { $iptBonus.blur(); return; }
@@ -2869,6 +3141,63 @@ class InputUiUtil {
 		if (typeof isDataEntered === "symbol") return isDataEntered;
 		if (!isDataEntered) return null;
 		return comp.getAsString();
+		// endregion
+	}
+
+	/**
+	 * @param [opts] Options.
+	 * @param [opts.title] Prompt title.
+	 * @param [opts.buttonText] Prompt title.
+	 * @param [opts.default] Default value.
+	 * @param [opts.disabled] If the text area is disabled.
+	 * @param [opts.isSkippable] If the prompt is skippable.
+	 * @return {Promise<String>} A promise which resolves to the CR string if the user entered one, or null otherwise.
+	 */
+	static async pGetUserScaleCr (opts = {}) {
+		const crDefault = opts.default || "1";
+
+		let slider;
+
+		const {$modalInner, doClose, pGetResolved, doAutoResize: doAutoResizeModal} = await InputUiUtil._pGetShowModal({
+			title: opts.title || "Select Challenge Rating",
+			isMinHeight0: true,
+			cbClose: () => {
+				slider.destroy();
+			},
+		});
+
+		const cur = Parser.CRS.indexOf(crDefault);
+		if (!~cur) throw new Error(`Initial CR ${crDefault} was not valid!`);
+
+		const comp = BaseComponent.fromObject({
+			min: 0,
+			max: Parser.CRS.length - 1,
+			cur,
+		});
+		slider = new ComponentUiUtil.RangeSlider({
+			comp,
+			propMin: "min",
+			propMax: "max",
+			propCurMin: "cur",
+			fnDisplay: ix => Parser.CRS[ix],
+		});
+		$$`<div class="ve-flex-col w-640p">${slider.$get()}</div>`.appendTo($modalInner);
+
+		const $btnOk = this._$getBtnOk({opts, doClose});
+		const $btnCancel = this._$getBtnCancel({opts, doClose});
+		const $btnSkip = this._$getBtnSkip({opts, doClose});
+
+		$$`<div class="ve-flex-v-center ve-flex-h-right pb-1 px-1">${$btnOk}${$btnCancel}${$btnSkip}</div>`.appendTo($modalInner);
+
+		if (doAutoResizeModal) doAutoResizeModal();
+
+		// region Output
+		const [isDataEntered] = await pGetResolved();
+
+		if (typeof isDataEntered === "symbol") return isDataEntered;
+		if (!isDataEntered) return null;
+
+		return Parser.CRS[comp._state.cur];
 		// endregion
 	}
 }
@@ -2948,6 +3277,7 @@ class DragReorderUiUtil {
 	 * @param opts.swapRowPositions
 	 * @param [opts.$children] An array of row elements.
 	 * @param [opts.$getChildren] Should return an array as described in the "$children" option.
+	 * @param [opts.fnOnDragComplete] A function to run when dragging is completed.
 	 */
 	static $getDragPadOpts ($fnGetRow, opts) {
 		if (!opts.$parent || !opts.swapRowPositions || (!opts.$children && !opts.$getChildren)) throw new Error("Missing required option(s)!");
@@ -2958,6 +3288,7 @@ class DragReorderUiUtil {
 			dragMeta.$wrap.remove();
 			dragMeta.$dummies.forEach($d => $d.remove());
 			$(document.body).off(`mouseup.drag__stop`);
+			if (opts.fnOnDragComplete) opts.fnOnDragComplete();
 		};
 
 		const doDragRender = () => {
@@ -2976,7 +3307,7 @@ class DragReorderUiUtil {
 
 			$children.forEach(($child, i) => {
 				const dimensions = {w: $child.outerWidth(true), h: $child.outerHeight(true)};
-				const $dummy = $(`<div class="${i === ixRow ? "ui-drag__wrp-drag-dummy--highlight" : "ui-drag__wrp-drag-dummy--lowlight"}"></div>`)
+				const $dummy = $(`<div class="no-shrink ${i === ixRow ? "ui-drag__wrp-drag-dummy--highlight" : "ui-drag__wrp-drag-dummy--lowlight"}"></div>`)
 					.width(dimensions.w).height(dimensions.h)
 					.mouseup(() => {
 						if (dragMeta.on) doDragCleanup();
@@ -3041,7 +3372,7 @@ class SourceUiUtil {
 		const $iptName = $(`<input class="form-control ui-source__ipt-named">`)
 			.keydown(evt => { if (evt.key === "Escape") $iptName.blur(); })
 			.change(() => {
-				if (!jsonDirty && !isEditMode) $iptJson.val($iptName.val().replace(/[^-_a-zA-Z]/g, ""));
+				if (!jsonDirty && !isEditMode) $iptJson.val($iptName.val().replace(/[^-0-9a-zA-Z]/g, ""));
 				$iptName.removeClass("form-control--error");
 			});
 		if (options.source) $iptName.val(options.source.full);
@@ -3058,6 +3389,11 @@ class SourceUiUtil {
 				$iptJson.removeClass("form-control--error");
 			});
 		if (options.source) $iptJson.val(options.source.json);
+		let hasColor = false;
+		const $iptColor = $(`<input type="color" class="w-100 b-0">`)
+			.keydown(evt => { if (evt.key === "Escape") $iptColor.blur(); })
+			.change(() => hasColor = true);
+		if (options.source?.color != null) { hasColor = true; $iptColor.val(options.source.color); }
 		const $iptUrl = $(`<input class="form-control ui-source__ipt-named">`)
 			.keydown(evt => { if (evt.key === "Escape") $iptUrl.blur(); });
 		if (options.source) $iptUrl.val(options.source.url);
@@ -3073,7 +3409,7 @@ class SourceUiUtil {
 				let incomplete = false;
 				[$iptName, $iptAbv, $iptJson].forEach($ipt => {
 					const val = $ipt.val();
-					if (!val || !val.trim()) (incomplete = true) && $ipt.addClass("form-control--error");
+					if (!val || !val.trim()) { incomplete = true; $ipt.addClass("form-control--error"); }
 				});
 				if (incomplete) return;
 
@@ -3092,6 +3428,7 @@ class SourceUiUtil {
 					authors: $iptAuthors.val().trim().split(",").map(it => it.trim()).filter(Boolean),
 					convertedBy: $iptConverters.val().trim().split(",").map(it => it.trim()).filter(Boolean),
 				};
+				if (hasColor) source.color = $iptColor.val().trim();
 
 				await options.cbConfirm(source, options.mode !== "edit");
 			});
@@ -3110,18 +3447,22 @@ class SourceUiUtil {
 			});
 
 		const $stageInitial = $$`<div class="h-100 w-100 ve-flex-vh-center"><div class="ve-flex-col">
-			<h3 class="text-center">${isEditMode ? "Edit Homebrew Source" : "Add a Homebrew Source"}</h3>
+			<h3 class="ve-text-center">${isEditMode ? "Edit Homebrew Source" : "Add a Homebrew Source"}</h3>
 			<div class="ui-source__row mb-2"><div class="col-12 ve-flex-v-center">
 				<span class="mr-2 ui-source__name help" title="The name or title for the homebrew you wish to create. This could be the name of a book or PDF; for example, 'Monster Manual'">Title</span>
 				${$iptName}
 			</div></div>
 			<div class="ui-source__row mb-2"><div class="col-12 ve-flex-v-center">
-				<span class="mr-2 ui-source__name help" title="An abbreviated form of the title. This will be shown in lists on the site, and in the top-right corner of statblocks or data entries; for example, 'MM'">Abbreviation</span>
+				<span class="mr-2 ui-source__name help" title="An abbreviated form of the title. This will be shown in lists on the site, and in the top-right corner of stat blocks or data entries; for example, 'MM'">Abbreviation</span>
 				${$iptAbv}
 			</div></div>
 			<div class="ui-source__row mb-2"><div class="col-12 ve-flex-v-center">
 				<span class="mr-2 ui-source__name help" title="This will be used to identify your homebrew universally, so should be unique to you and you alone">JSON Identifier</span>
 				${$iptJson}
+			</div></div>
+			<div class="ui-source__row mb-2"><div class="col-12 ve-flex-v-center">
+				<span class="mr-2 ui-source__name help" title="A color which should be used when displaying the source abbreviation">Color</span>
+				${$iptColor}
 			</div></div>
 			<div class="ui-source__row mb-2"><div class="col-12 ve-flex-v-center">
 				<span class="mr-2 ui-source__name help" title="A link to the original homebrew, e.g. a GM Binder page">Source URL</span>
@@ -3135,7 +3476,7 @@ class SourceUiUtil {
 				<span class="mr-2 ui-source__name help" title="A comma-separated list of people who converted the homebrew to 5etools' format, e.g. 'John Doe, Joe Bloggs'">Converted By</span>
 				${$iptConverters}
 			</div></div>
-			<div class="text-center mb-2">${$btnOk}${$btnCancel}</div>
+			<div class="ve-text-center mb-2">${$btnOk}${$btnCancel}</div>
 
 			${!isEditMode && BrewUtil2.getMetaLookup("sources")?.length ? $$`<div class="ve-flex-vh-center mb-3 mt-3"><span class="ui-source__divider"></span>or<span class="ui-source__divider"></span></div>
 			<div class="ve-flex-vh-center">${$btnUseExisting}</div>` : ""}
@@ -3172,13 +3513,17 @@ class SourceUiUtil {
 			});
 
 		const $stageExisting = $$`<div class="h-100 w-100 ve-flex-vh-center ve-hidden"><div>
-			<h3 class="text-center">Select a Homebrew Source</h3>
+			<h3 class="ve-text-center">Select a Homebrew Source</h3>
 			<div class="mb-2"><div class="col-12 ve-flex-vh-center">${$selExisting}</div></div>
 			<div class="col-12 ve-flex-vh-center">${$btnBackExisting}${$btnConfirmExisting}</div>
 		</div></div>`.appendTo(options.$parent);
 	}
 }
 
+/**
+ * @mixin
+ * @param {typeof ProxyBase} Cls
+ */
 function MixinBaseComponent (Cls) {
 	class MixedBaseComponent extends Cls {
 		constructor (...args) {
@@ -3226,7 +3571,7 @@ function MixinBaseComponent (Cls) {
 			return value;
 		}
 
-		_getState () { return MiscUtil.copy(this.__state); }
+		_getState () { return MiscUtil.copyFast(this.__state); }
 
 		getPod () {
 			this.__pod = this.__pod || {
@@ -3253,7 +3598,7 @@ function MixinBaseComponent (Cls) {
 
 		getBaseSaveableState () {
 			return {
-				state: MiscUtil.copy(this.__state),
+				state: MiscUtil.copyFast(this.__state),
 			};
 		}
 
@@ -3288,20 +3633,28 @@ function MixinBaseComponent (Cls) {
 			opts = opts || {};
 
 			const rendered = this._getRenderedCollection(opts);
+			const entities = this._state[opts.prop] || [];
+			return this._renderCollection_doRender(rendered, entities, opts);
+		}
+
+		_renderCollection_doRender (rendered, entities, opts) {
+			opts = opts || {};
+
 			const toDelete = new Set(Object.keys(rendered));
 
-			(this._state[opts.prop] || []).forEach((it, i) => {
+			for (let i = 0; i < entities.length; ++i) {
+				const it = entities[i];
+
 				if (it.id == null) throw new Error(`Collection item did not have an ID!`);
+				// N.B.: Meta can be an array, if one item maps to multiple renders (e.g. the same is shown in two places)
 				const meta = rendered[it.id];
 
 				toDelete.delete(it.id);
 				if (meta) {
 					if (opts.isDiffMode) {
-						// Hashing the stringified JSON relies on the property order remaining consistent, but this is fine
-						const nxtHash = CryptUtil.md5(JSON.stringify(it));
-						if (nxtHash !== meta.__hash) {
-							meta.__hash = nxtHash;
-						} else return;
+						const nxtHash = this._getCollectionEntityHash(it);
+						if (nxtHash !== meta.__hash) meta.__hash = nxtHash;
+						else continue;
 					}
 
 					meta.data = it; // update any existing pointers
@@ -3310,27 +3663,31 @@ function MixinBaseComponent (Cls) {
 					const meta = opts.fnGetNew(it, i);
 
 					// If the "get new" function returns null, skip rendering this entity
-					if (meta == null) return;
+					if (meta == null) continue;
 
-					meta.data = it;
-					if (!meta.$wrpRow && !meta.fmRemoveEles) throw new Error(`A "$wrpRow" or a "fmRemoveEles" property is required for deletes!`);
+					meta.data = it; // update any existing pointers
+					if (!meta.$wrpRow && !meta.fnRemoveEles) throw new Error(`A "$wrpRow" or a "fnRemoveEles" property is required for deletes!`);
 
-					if (opts.isDiffMode) meta.hash = CryptUtil.md5(JSON.stringify(it));
+					if (opts.isDiffMode) meta.__hash = this._getCollectionEntityHash(it);
 
 					rendered[it.id] = meta;
 				}
-			});
+			}
+
+			const doRemoveElements = meta => {
+				if (meta.$wrpRow) meta.$wrpRow.remove();
+				if (meta.fnRemoveEles) meta.fnRemoveEles();
+			};
 
 			toDelete.forEach(id => {
 				const meta = rendered[id];
-				if (meta.$wrpRow) meta.$wrpRow.remove();
-				if (meta.fmRemoveEles) meta.fmRemoveEles();
+				doRemoveElements(meta);
 				delete rendered[id];
 				if (opts.fnDeleteExisting) opts.fnDeleteExisting(meta);
 			});
 
 			if (opts.fnReorderExisting) {
-				(this._state[opts.prop] || []).forEach((it, i) => {
+				entities.forEach((it, i) => {
 					const meta = rendered[it.id];
 					opts.fnReorderExisting(meta, it, i);
 				});
@@ -3355,7 +3712,7 @@ function MixinBaseComponent (Cls) {
 			opts = opts || {};
 
 			const rendered = this._getRenderedCollection(opts);
-			const entities = this._state[opts.prop];
+			const entities = this._state[opts.prop] || [];
 			return this._pRenderCollection_doRender(rendered, entities, opts);
 		}
 
@@ -3375,8 +3732,7 @@ function MixinBaseComponent (Cls) {
 				toDelete.delete(it.id);
 				if (meta) {
 					if (opts.isDiffMode) {
-						// Hashing the stringified JSON relies on the property order remaining consistent, but this is fine
-						const nxtHash = CryptUtil.md5(JSON.stringify(it));
+						const nxtHash = this._getCollectionEntityHash(it);
 						if (nxtHash !== meta.__hash) meta.__hash = nxtHash;
 						else continue;
 					}
@@ -3387,30 +3743,38 @@ function MixinBaseComponent (Cls) {
 					if (opts.isMultiRender) rendered[it.id] = nxtMeta;
 				} else {
 					const meta = await opts.pFnGetNew(it);
-					// If the generator decides there's nothing to render, skip this item
+
+					// If the "get new" function returns null, skip rendering this entity
 					if (meta == null) continue;
 
-					if (opts.isMultiRender && meta.some(it => !it.$wrpRow && !it.fmRemoveEles)) throw new Error(`A "$wrpRow" or a "fmRemoveEles" property is required for deletes!`);
-					if (!opts.isMultiRender && !meta.$wrpRow && !meta.fmRemoveEles) throw new Error(`A "$wrpRow" or a "fmRemoveEles" property is required for deletes!`);
+					if (!opts.isMultiRender && !meta.$wrpRow && !meta.fnRemoveEles) throw new Error(`A "$wrpRow" or a "fnRemoveEles" property is required for deletes!`);
+					if (opts.isMultiRender && meta.some(it => !it.$wrpRow && !it.fnRemoveEles)) throw new Error(`A "$wrpRow" or a "fnRemoveEles" property is required for deletes!`);
 
-					if (opts.isDiffMode) meta.__hash = CryptUtil.md5(JSON.stringify(it));
+					if (opts.isDiffMode) meta.__hash = this._getCollectionEntityHash(it);
 
 					rendered[it.id] = meta;
 				}
 			}
 
-			const doRemoveELements = meta => {
+			const doRemoveElements = meta => {
 				if (meta.$wrpRow) meta.$wrpRow.remove();
-				if (meta.fmRemoveEles) meta.fmRemoveEles();
+				if (meta.fnRemoveEles) meta.fnRemoveEles();
 			};
 
 			for (const id of toDelete) {
 				const meta = rendered[id];
-				if (opts.isMultiRender) meta.forEach(it => doRemoveELements(it));
-				else doRemoveELements(meta);
+				if (opts.isMultiRender) meta.forEach(it => doRemoveElements(it));
+				else doRemoveElements(meta);
 				if (opts.additionalCaches) opts.additionalCaches.forEach(it => delete it[id]);
 				delete rendered[id];
 				if (opts.pFnDeleteExisting) await opts.pFnDeleteExisting(meta);
+			}
+
+			if (opts.pFnReorderExisting) {
+				await entities.pSerialAwaitMap(async (it, i) => {
+					const meta = rendered[it.id];
+					await opts.pFnReorderExisting(meta, it, i);
+				});
 			}
 		}
 
@@ -3437,6 +3801,11 @@ function MixinBaseComponent (Cls) {
 			const rendered = (this.__rendered[renderedLookupProp] = this.__rendered[renderedLookupProp] || {});
 			Object.values(rendered).forEach(it => it.$wrpRow.remove());
 			delete this.__rendered[renderedLookupProp];
+		}
+
+		_getCollectionEntityHash (ent) {
+			// Hashing the stringified JSON relies on the property order remaining consistent, but this is fine
+			return CryptUtil.md5(JSON.stringify(ent));
 		}
 
 		render () { throw new Error("Unimplemented!"); }
@@ -3484,7 +3853,7 @@ function MixinBaseComponent (Cls) {
 
 		static fromObject (obj, ...noModCollections) {
 			const comp = new this();
-			Object.entries(MiscUtil.copy(obj)).forEach(([k, v]) => {
+			Object.entries(MiscUtil.copyFast(obj)).forEach(([k, v]) => {
 				if (v == null) comp.__state[k] = v;
 				else if (noModCollections.includes(k) || noModCollections.includes("*")) comp.__state[k] = v;
 				else if (typeof v === "object" && v instanceof Array) comp.__state[k] = BaseComponent._toCollection(v);
@@ -3496,7 +3865,7 @@ function MixinBaseComponent (Cls) {
 		static fromObjectNoMod (obj) { return this.fromObject(obj, "*"); }
 
 		toObject (...noModCollections) {
-			const cpy = MiscUtil.copy(this.__state);
+			const cpy = MiscUtil.copyFast(this.__state);
 			Object.entries(cpy).forEach(([k, v]) => {
 				if (v == null) return;
 
@@ -3514,6 +3883,9 @@ function MixinBaseComponent (Cls) {
 
 class BaseComponent extends MixinBaseComponent(ProxyBase) {}
 
+globalThis.BaseComponent = BaseComponent;
+
+/** @abstract */
 class RenderableCollectionBase {
 	/**
 	 * @param comp
@@ -3530,10 +3902,12 @@ class RenderableCollectionBase {
 		this._isDiffMode = opts.isDiffMode;
 	}
 
+	/** @abstract */
 	getNewRender (entity, i) {
 		throw new Error(`Unimplemented!`);
 	}
 
+	/** @abstract */
 	doUpdateExistingRender (renderedMeta, entity, i) {
 		throw new Error(`Unimplemented!`);
 	}
@@ -3568,6 +3942,158 @@ class RenderableCollectionBase {
 	}
 }
 
+globalThis.RenderableCollectionBase = RenderableCollectionBase;
+
+class _RenderableCollectionGenericRowsSyncAsyncUtils {
+	constructor ({comp, prop, $wrpRows, namespace}) {
+		this._comp = comp;
+		this._prop = prop;
+		this._$wrpRows = $wrpRows;
+		this._namespace = namespace;
+	}
+
+	/* -------------------------------------------- */
+
+	_getCollectionItem (id) {
+		return this._comp._state[this._prop].find(it => it.id === id);
+	}
+
+	getNewRenderComp (entity, i) {
+		const comp = BaseComponent.fromObject(entity.entity, "*");
+		comp._addHookAll("state", () => {
+			this._getCollectionItem(entity.id).entity = comp.toObject("*");
+			this._comp._triggerCollectionUpdate(this._prop);
+		});
+		return comp;
+	}
+
+	doUpdateExistingRender (renderedMeta, entity, i) {
+		renderedMeta.comp._proxyAssignSimple("state", entity.entity, true);
+		if (!renderedMeta.$wrpRow.parent().is(this._$wrpRows)) renderedMeta.$wrpRow.appendTo(this._$wrpRows);
+	}
+
+	static _doSwapJqueryElements ($eles, ixA, ixB) {
+		if (ixA > ixB) [ixA, ixB] = [ixB, ixA];
+
+		const eleA = $eles.get(ixA);
+		const eleB = $eles.get(ixB);
+
+		const eleActive = document.activeElement;
+
+		$(eleA).insertAfter(eleB);
+		$(eleB).insertBefore($eles.get(ixA + 1));
+
+		if (eleActive) eleActive.focus();
+	}
+
+	doReorderExistingComponent (renderedMeta, entity, i) {
+		const ix = this._comp._state[this._prop].map(it => it.id).indexOf(entity.id);
+		const $rows = this._$wrpRows.find(`> *`);
+		const curIx = $rows.index(renderedMeta.$wrpRow);
+
+		const isMove = !this._$wrpRows.length || curIx !== ix;
+		if (!isMove) return;
+
+		this.constructor._doSwapJqueryElements($rows, curIx, ix);
+	}
+
+	/* -------------------------------------------- */
+
+	$getBtnDelete ({entity, title = "Delete"}) {
+		return $(`<button class="btn btn-xxs btn-danger" title="${title.qq()}"><span class="glyphicon glyphicon-trash"></span></button>`)
+			.click(() => this.doDelete({entity}));
+	}
+
+	doDelete ({entity}) {
+		this._comp._state[this._prop] = this._comp._state[this._prop].filter(it => it?.id !== entity.id);
+	}
+
+	doDeleteMultiple ({entities}) {
+		const ids = new Set(entities.map(it => it.id));
+		this._comp._state[this._prop] = this._comp._state[this._prop].filter(it => !ids.has(it?.id));
+	}
+
+	/* -------------------------------------------- */
+
+	$getPadDrag ({$wrpRow}) {
+		return DragReorderUiUtil.$getDragPadOpts(
+			() => $wrpRow,
+			{
+				swapRowPositions: (ixA, ixB) => {
+					[this._comp._state[this._prop][ixA], this._comp._state[this._prop][ixB]] = [this._comp._state[this._prop][ixB], this._comp._state[this._prop][ixA]];
+					this._comp._triggerCollectionUpdate(this._prop);
+				},
+				$getChildren: () => {
+					const rendered = this._comp._getRenderedCollection({prop: this._prop, namespace: this._namespace});
+					return this._comp._state[this._prop]
+						.map(it => rendered[it.id].$wrpRow);
+				},
+				$parent: this._$wrpRows,
+			},
+		);
+	}
+}
+
+class RenderableCollectionGenericRows extends RenderableCollectionBase {
+	/**
+	 * @param comp
+	 * @param prop
+	 * @param $wrpRows
+	 * @param [opts]
+	 * @param [opts.namespace]
+	 * @param [opts.isDiffMode]
+	 */
+	constructor (comp, prop, $wrpRows, opts) {
+		super(comp, prop, opts);
+		this._$wrpRows = $wrpRows;
+
+		this._utils = new _RenderableCollectionGenericRowsSyncAsyncUtils({
+			comp,
+			prop,
+			$wrpRows,
+			namespace: opts?.namespace,
+		});
+	}
+
+	doUpdateExistingRender (renderedMeta, entity, i) {
+		return this._utils.doUpdateExistingRender(renderedMeta, entity, i);
+	}
+
+	doReorderExistingComponent (renderedMeta, entity, i) {
+		return this._utils.doReorderExistingComponent(renderedMeta, entity, i);
+	}
+
+	getNewRender (entity, i) {
+		const comp = this._utils.getNewRenderComp(entity, i);
+
+		const $wrpRow = this._$getWrpRow()
+			.appendTo(this._$wrpRows);
+
+		const renderAdditional = this._populateRow({comp, $wrpRow, entity});
+
+		return {
+			...(renderAdditional || {}),
+			id: entity.id,
+			comp,
+			$wrpRow,
+		};
+	}
+
+	_$getWrpRow () {
+		return $(`<div class="ve-flex-v-center w-100"></div>`);
+	}
+
+	/**
+	 * @return {?object}
+	 */
+	_populateRow ({comp, $wrpRow, entity}) {
+		throw new Error(`Unimplemented!`);
+	}
+}
+
+globalThis.RenderableCollectionGenericRows = RenderableCollectionGenericRows;
+
+/** @abstract */
 class RenderableCollectionAsyncBase {
 	/**
 	 * @param comp
@@ -3588,29 +4114,100 @@ class RenderableCollectionAsyncBase {
 		this._additionalCaches = opts.additionalCaches;
 	}
 
-	pGetNewRender (entity, i) {
+	/** @abstract */
+	async pGetNewRender (entity, i) {
 		throw new Error(`Unimplemented!`);
 	}
 
-	pDoUpdateExistingRender (renderedMeta, entity, i) {
+	/** @abstract */
+	async pDoUpdateExistingRender (renderedMeta, entity, i) {
 		throw new Error(`Unimplemented!`);
+	}
+
+	async pDoDeleteExistingRender (renderedMeta) {
+		// No-op
+	}
+
+	async pDoReorderExistingComponent (renderedMeta, entity, i) {
+		// No-op
 	}
 
 	/**
 	 * @param [opts] Temporary override options.
 	 * @param [opts.isDiffMode]
 	 */
-	render (opts) {
+	async pRender (opts) {
 		opts = opts || {};
-		this._comp._pRenderCollection({
+		return this._comp._pRenderCollection({
 			prop: this._prop,
-			fnUpdateExisting: (rendered, source, i) => this.pDoUpdateExistingRender(rendered, source, i),
-			fnGetNew: (entity, i) => this.pGetNewRender(entity, i),
+			pFnUpdateExisting: (rendered, source, i) => this.pDoUpdateExistingRender(rendered, source, i),
+			pFnGetNew: (entity, i) => this.pGetNewRender(entity, i),
+			pFnDeleteExisting: (rendered) => this.pDoDeleteExistingRender(rendered),
+			pFnReorderExisting: (rendered, ent, i) => this.pDoReorderExistingComponent(rendered, ent, i),
 			namespace: this._namespace,
 			isDiffMode: opts.isDiffMode != null ? opts.isDiffMode : this._isDiffMode,
 			isMultiRender: this._isMultiRender,
 			additionalCaches: this._additionalCaches,
 		});
+	}
+}
+
+globalThis.RenderableCollectionAsyncBase = RenderableCollectionAsyncBase;
+
+class RenderableCollectionAsyncGenericRows extends RenderableCollectionAsyncBase {
+	/**
+	 * @param comp
+	 * @param prop
+	 * @param $wrpRows
+	 * @param [opts]
+	 * @param [opts.namespace]
+	 * @param [opts.isDiffMode]
+	 */
+	constructor (comp, prop, $wrpRows, opts) {
+		super(comp, prop, opts);
+		this._$wrpRows = $wrpRows;
+
+		this._utils = new _RenderableCollectionGenericRowsSyncAsyncUtils({
+			comp,
+			prop,
+			$wrpRows,
+			namespace: opts?.namespace,
+		});
+	}
+
+	pDoUpdateExistingRender (renderedMeta, entity, i) {
+		return this._utils.doUpdateExistingRender(renderedMeta, entity, i);
+	}
+
+	pDoReorderExistingComponent (renderedMeta, entity, i) {
+		return this._utils.doReorderExistingComponent(renderedMeta, entity, i);
+	}
+
+	async pGetNewRender (entity, i) {
+		const comp = this._utils.getNewRenderComp(entity, i);
+
+		const $wrpRow = this._$getWrpRow()
+			.appendTo(this._$wrpRows);
+
+		const renderAdditional = await this._pPopulateRow({comp, $wrpRow, entity});
+
+		return {
+			...(renderAdditional || {}),
+			id: entity.id,
+			comp,
+			$wrpRow,
+		};
+	}
+
+	_$getWrpRow () {
+		return $(`<div class="ve-flex-v-center w-100"></div>`);
+	}
+
+	/**
+	 * @return {?object}
+	 */
+	async _pPopulateRow ({comp, $wrpRow, entity}) {
+		throw new Error(`Unimplemented!`);
 	}
 }
 
@@ -3677,8 +4274,8 @@ class BaseLayeredComponent extends BaseComponent {
 
 	getBaseSaveableState () {
 		return {
-			state: MiscUtil.copy(this.__state),
-			layers: MiscUtil.copy(this._layers.map(l => l.getSaveableState())),
+			state: MiscUtil.copyFast(this.__state),
+			layers: MiscUtil.copyFast(this._layers.map(l => l.getSaveableState())),
 		};
 	}
 
@@ -3729,7 +4326,7 @@ class CompLayer extends ProxyBase {
 	getSaveableState () {
 		return {
 			name: this._name,
-			data: MiscUtil.copy(this.__data),
+			data: MiscUtil.copyFast(this.__data),
 		};
 	}
 
@@ -3743,17 +4340,17 @@ function MixinComponentHistory (Cls) {
 			this._histStackUndo = [];
 			this._histStackRedo = [];
 			this._isHistDisabled = true;
-			this._histPropBlacklist = new Set();
-			this._histPropWhitelist = null;
+			this._histPropBlocklist = new Set();
+			this._histPropAllowlist = null;
 
 			this._histInitialState = null;
 		}
 
 		set isHistDisabled (val) { this._isHistDisabled = val; }
-		addBlacklistProps (...props) { props.forEach(p => this._histPropBlacklist.add(p)); }
-		addWhitelistProps (...props) {
-			this._histPropWhitelist = this._histPropWhitelist || new Set();
-			props.forEach(p => this._histPropWhitelist.add(p));
+		addBlocklistProps (...props) { props.forEach(p => this._histPropBlocklist.add(p)); }
+		addAllowlistProps (...props) {
+			this._histPropAllowlist = this._histPropAllowlist || new Set();
+			props.forEach(p => this._histPropAllowlist.add(p));
 		}
 
 		/**
@@ -3761,24 +4358,24 @@ function MixinComponentHistory (Cls) {
 		 */
 		initHistory () {
 			// Track the initial state, and watch for further modifications
-			this._histInitialState = MiscUtil.copy(this._state);
+			this._histInitialState = MiscUtil.copyFast(this._state);
 			this._isHistDisabled = false;
 
 			this._addHookAll("state", prop => {
 				if (this._isHistDisabled) return;
-				if (this._histPropBlacklist.has(prop)) return;
-				if (this._histPropWhitelist && !this._histPropWhitelist.has(prop)) return;
+				if (this._histPropBlocklist.has(prop)) return;
+				if (this._histPropAllowlist && !this._histPropAllowlist.has(prop)) return;
 
 				this.recordHistory();
 			});
 		}
 
 		recordHistory () {
-			const stateCopy = MiscUtil.copy(this._state);
+			const stateCopy = MiscUtil.copyFast(this._state);
 
 			// remove any un-tracked properties
-			this._histPropBlacklist.forEach(prop => delete stateCopy[prop]);
-			if (this._histPropWhitelist) Object.keys(stateCopy).filter(k => !this._histPropWhitelist.has(k)).forEach(k => delete stateCopy[k]);
+			this._histPropBlocklist.forEach(prop => delete stateCopy[prop]);
+			if (this._histPropAllowlist) Object.keys(stateCopy).filter(k => !this._histPropAllowlist.has(k)).forEach(k => delete stateCopy[k]);
 
 			this._histStackUndo.push(stateCopy);
 			this._histStackRedo = [];
@@ -3786,8 +4383,8 @@ function MixinComponentHistory (Cls) {
 
 		_histAddExcludedProperties (stateCopy) {
 			Object.entries(this._state).forEach(([k, v]) => {
-				if (this._histPropBlacklist.has(k)) return stateCopy[k] = v;
-				if (this._histPropWhitelist && !this._histPropWhitelist.has(k)) stateCopy[k] = v;
+				if (this._histPropBlocklist.has(k)) return stateCopy[k] = v;
+				if (this._histPropAllowlist && !this._histPropAllowlist.has(k)) stateCopy[k] = v;
 			});
 		}
 
@@ -3798,7 +4395,7 @@ function MixinComponentHistory (Cls) {
 
 				const curState = this._histStackUndo.pop();
 				this._histStackRedo.push(curState);
-				const toApply = MiscUtil.copy(this._histStackUndo.last() || this._histInitialState);
+				const toApply = MiscUtil.copyFast(this._histStackUndo.last() || this._histInitialState);
 				this._histAddExcludedProperties(toApply);
 				this._setState(toApply);
 
@@ -3807,7 +4404,7 @@ function MixinComponentHistory (Cls) {
 				const lastHistDisabled = this._isHistDisabled;
 				this._isHistDisabled = true;
 
-				const toApply = MiscUtil.copy(this._histInitialState);
+				const toApply = MiscUtil.copyFast(this._histInitialState);
 				this._histAddExcludedProperties(toApply);
 				this._setState(toApply);
 
@@ -3823,7 +4420,7 @@ function MixinComponentHistory (Cls) {
 
 			const toApplyRaw = this._histStackRedo.pop();
 			this._histStackUndo.push(toApplyRaw);
-			const toApply = MiscUtil.copy(toApplyRaw);
+			const toApply = MiscUtil.copyFast(toApplyRaw);
 			this._histAddExcludedProperties(toApply);
 			this._setState(toApply);
 
@@ -3862,7 +4459,7 @@ function MixinComponentGlobalState (Cls) {
 
 MixinComponentGlobalState._Singleton = class {
 	static async _pSaveState () {
-		return StorageUtil.pSet(VeCt.STORAGE_GLOBAL_COMPONENT_STATE, MiscUtil.copy(MixinComponentGlobalState._Singleton.__stateGlobal));
+		return StorageUtil.pSet(VeCt.STORAGE_GLOBAL_COMPONENT_STATE, MiscUtil.copyFast(MixinComponentGlobalState._Singleton.__stateGlobal));
 	}
 
 	static async _pLoadState () {
@@ -3919,7 +4516,7 @@ class ComponentUiUtil {
 	 * @param [opts.hookTracker] Object in which to track hook.
 	 * @param [opts.decorationLeft] Decoration to be added to the left-hand-side of the input. Can be `"ticker"` or `"clear"`. REQUIRES `asMeta` TO BE SET.
 	 * @param [opts.decorationRight] Decoration to be added to the right-hand-side of the input. Can be `"ticker"` or `"clear"`. REQUIRES `asMeta` TO BE SET.
-	 * @return {JQuery}
+	 * @return {jQuery}
 	 */
 	static $getIptInt (component, prop, fallbackEmpty = 0, opts) {
 		return ComponentUiUtil._$getIptNumeric(component, prop, UiUtil.strToInt, fallbackEmpty, opts);
@@ -3941,7 +4538,7 @@ class ComponentUiUtil {
 	 * @param [opts.asMeta] If a meta-object should be returned containing the hook and the checkbox.
 	 * @param [opts.decorationLeft] Decoration to be added to the left-hand-side of the input. Can be `"ticker"` or `"clear"`. REQUIRES `asMeta` TO BE SET.
 	 * @param [opts.decorationRight] Decoration to be added to the right-hand-side of the input. Can be `"ticker"` or `"clear"`. REQUIRES `asMeta` TO BE SET.
-	 * @return {JQuery}
+	 * @return {jQuery}
 	 */
 	static $getIptNumber (component, prop, fallbackEmpty = 0, opts) {
 		return ComponentUiUtil._$getIptNumeric(component, prop, UiUtil.strToNumber, fallbackEmpty, opts);
@@ -4145,12 +4742,13 @@ class ComponentUiUtil {
 	 * @param prop Component to hook on.
 	 * @param [opts] Options Object.
 	 * @param [opts.$ele] Element to use.
-	 * @return {JQuery}
+	 * @param [opts.html] HTML to convert to element to use.
+	 * @return {jQuery}
 	 */
 	static $getIptColor (component, prop, opts) {
 		opts = opts || {};
 
-		const $ipt = (opts.$ele || $(`<input class="form-control input-xs form-control--minimal ui__ipt-color" type="color">`))
+		const $ipt = (opts.$ele || $(opts.html || `<input class="form-control input-xs form-control--minimal ui__ipt-color" type="color">`))
 			.change(() => component._state[prop] = $ipt.val());
 		const hook = () => $ipt.val(component._state[prop]);
 		component._addHookBase(prop, hook);
@@ -4223,7 +4821,7 @@ class ComponentUiUtil {
 	 * @param [opts.title]
 	 * @param [opts.activeTitle] Title to use when setting the button as "active."
 	 * @param [opts.inactiveTitle] Title to use when setting the button as "active."
-	 * @return {JQuery}
+	 * @return {jQuery}
 	 */
 	static $getBtnBool (component, prop, opts) {
 		const nxtOpts = {...opts};
@@ -4240,10 +4838,11 @@ class ComponentUiUtil {
 	 * @param [opts] Options Object.
 	 * @param [opts.$ele] Element to use.
 	 * @param [opts.asMeta] If a meta-object should be returned containing the hook and the input.
-	 * @param [opts.displayNullAsIndeterminate]
+	 * @param [opts.isDisplayNullAsIndeterminate]
+	 * @param [opts.isTreatIndeterminateNullAsPositive]
 	 * @param [opts.stateName] State name.
 	 * @param [opts.stateProp] State prop.
-	 * @return {JQuery}
+	 * @return {jQuery}
 	 */
 	static $getCbBool (component, prop, opts) {
 		opts = opts || {};
@@ -4258,13 +4857,18 @@ class ComponentUiUtil {
 				if (evt.key === "Escape") cb.blur();
 			},
 			change: () => {
+				if (opts.isTreatIndeterminateNullAsPositive && component[stateProp][prop] == null) {
+					component[stateProp][prop] = false;
+					return;
+				}
+
 				component[stateProp][prop] = cb.checked;
 			},
 		});
 
 		const hook = () => {
 			cb.checked = !!component[stateProp][prop];
-			if (opts.displayNullAsIndeterminate) cb.indeterminate = component[stateProp][prop] == null;
+			if (opts.isDisplayNullAsIndeterminate) cb.indeterminate = component[stateProp][prop] == null;
 		};
 		component._addHook(stateName, prop, hook);
 		hook();
@@ -4286,9 +4890,10 @@ class ComponentUiUtil {
 	 * @param [opts.isAllowNull] If null is allowed.
 	 * @param [opts.fnDisplay] Value display function.
 	 * @param [opts.displayNullAs] If null values are allowed, display them as this string.
+	 * @param [opts.fnGetAdditionalStyleClasses] Function which converts an item into CSS classes.
 	 * @param [opts.asMeta] If a meta-object should be returned containing the hook and the select.
 	 * @param [opts.isDisabled] If the selector should be display-only
-	 * @return {JQuery}
+	 * @return {jQuery}
 	 */
 	static $getSelSearchable (comp, prop, opts) {
 		opts = opts || {};
@@ -4328,7 +4933,8 @@ class ComponentUiUtil {
 						break;
 					}
 
-					case "Enter": {
+					case "Enter":
+					case "Tab": {
 						const visibleMetaOptions = metaOptions.filter(it => it.isVisible && !it.isForceHidden);
 						if (!visibleMetaOptions.length) return;
 						comp._state[prop] = visibleMetaOptions[0].value;
@@ -4359,8 +4965,9 @@ class ComponentUiUtil {
 		const procValues = opts.isAllowNull ? [null, ...opts.values] : opts.values;
 		const metaOptions = procValues.map((v, i) => {
 			const display = v == null ? (opts.displayNullAs || "\u2014") : opts.fnDisplay ? opts.fnDisplay(v) : v;
+			const additionalStyleClasses = opts.fnGetAdditionalStyleClasses ? opts.fnGetAdditionalStyleClasses(v) : null;
 
-			const $ele = $(`<div class="ve-flex-v-center py-1 px-1 clickable ui-sel2__disp-option ${v == null ? `italic` : ""}" tabindex="${i}">${display}</div>`)
+			const $ele = $(`<div class="ve-flex-v-center py-1 px-1 clickable ui-sel2__disp-option ${v == null ? `italic` : ""} ${additionalStyleClasses ? additionalStyleClasses.join(" ") : ""}" tabindex="0">${display}</div>`)
 				.click(() => {
 					if (opts.isDisabled) return;
 
@@ -4455,7 +5062,7 @@ class ComponentUiUtil {
 
 	static _$getSelSearchable_getSearchString (str) {
 		if (str == null) return "";
-		return str.trim().toLowerCase().replace(/\s+/g, " ");
+		return CleanUtil.getCleanString(str.trim().toLowerCase().replace(/\s+/g, " "));
 	}
 
 	/**
@@ -4510,8 +5117,8 @@ class ComponentUiUtil {
 			}
 		};
 
-		const setValues = (nxtValues, {isResetOnMissing = false} = {}) => {
-			if (CollectionUtil.deepEquals(values_, nxtValues)) return;
+		const setValues = (nxtValues, {isResetOnMissing = false, isForce = false} = {}) => {
+			if (!isForce && CollectionUtil.deepEquals(values_, nxtValues)) return;
 			values_ = nxtValues;
 			$sel.empty();
 			// Use native API for performance
@@ -4583,7 +5190,7 @@ class ComponentUiUtil {
 		opts = opts || {};
 
 		const getSubcompValues = () => {
-			const initialValuesArray = (opts.values || []).concat(opts.isFreeText ? MiscUtil.copy((component._state[prop] || [])) : []);
+			const initialValuesArray = (opts.values || []).concat(opts.isFreeText ? MiscUtil.copyFast((component._state[prop] || [])) : []);
 			const initialValsCompWith = opts.isCaseInsensitive ? component._state[prop].map(it => it.toLowerCase()) : component._state[prop];
 			return initialValuesArray
 				.map(v => opts.isCaseInsensitive ? v.toLowerCase() : v)
@@ -4618,7 +5225,7 @@ class ComponentUiUtil {
 			Object.entries(this._state).forEach(([k, v]) => {
 				if (v === false) return;
 
-				const $btnRemove = $(`<button class="btn btn-danger ui-pick__btn-remove text-center">×</button>`)
+				const $btnRemove = $(`<button class="btn btn-danger ui-pick__btn-remove ve-text-center">×</button>`)
 					.click(() => this._state[k] = false);
 				const txt = `${opts.fnDisplay ? opts.fnDisplay(k) : k}`;
 				$$`<div class="ve-flex mx-1 mb-1 ui-pick__disp-pill max-w-100 min-w-0"><div class="px-1 ui-pick__disp-text ve-flex-v-center text-clip-ellipsis" title="${txt.qq()}">${txt}</div>${$btnRemove}</div>`.appendTo($parent);
@@ -4648,7 +5255,7 @@ class ComponentUiUtil {
 	 * @param [opts.isDisallowNull] True if null is not an allowed value.
 	 * @param [opts.asMeta] If a meta-object should be returned containing the hook and the wrapper.
 	 * @param [opts.isIndent] If the checkboxes should be indented.
-	 * @return {JQuery}
+	 * @return {jQuery}
 	 */
 	static $getCbsEnum (component, prop, opts) {
 		opts = opts || {};
@@ -4720,6 +5327,7 @@ class ComponentUiUtil {
 
 		const cntRequired = ((opts.required || []).length) + ((opts.ixsRequired || []).length);
 		const count = opts.count != null ? opts.count - cntRequired : null;
+		const countIncludingRequired = opts.count != null ? count + cntRequired : null;
 		const min = opts.min != null ? opts.min - cntRequired : null;
 		const max = opts.max != null ? opts.max - cntRequired : null;
 
@@ -4772,7 +5380,7 @@ class ComponentUiUtil {
 
 						if (count != null) {
 							// If we're above the max allowed count, deselect a checkbox in FIFO order
-							if (activeRows.length > count) {
+							if (activeRows.length > countIncludingRequired) {
 								// FIFO (`.shift`) makes logical sense, but FILO (`.splice` second-from-last) _feels_ better
 								const ixFirstSelected = ixsSelectionOrder.splice(ixsSelectionOrder.length - 2, 1)[0];
 								if (ixFirstSelected != null) {
@@ -4787,7 +5395,7 @@ class ComponentUiUtil {
 
 						let isAcceptable = false;
 						if (count != null) {
-							if (activeRows.length === count) isAcceptable = true;
+							if (activeRows.length === countIncludingRequired) isAcceptable = true;
 						} else {
 							if (activeRows.length >= (min || 0) && activeRows.length <= (max || Number.MAX_SAFE_INTEGER)) isAcceptable = true;
 						}
@@ -5393,21 +6001,50 @@ ComponentUiUtil.RangeSlider._W_THUMB_PX = 16;
 ComponentUiUtil.RangeSlider._W_LABEL_PX = 24;
 ComponentUiUtil.RangeSlider._MAX_PIPS = 40;
 
-// Expose classes for Node/VTTs as appropriate
-const utilsUiExports = {
-	ProxyBase,
-	UiUtil,
-	ListUiUtil,
-	ProfUiUtil,
-	TabUiUtil,
-	SearchUiUtil,
-	SearchWidget,
-	InputUiUtil,
-	DragReorderUiUtil,
-	SourceUiUtil,
-	BaseComponent,
-	ComponentUiUtil,
-	RenderableCollectionBase,
-};
-if (typeof module !== "undefined") module.exports = utilsUiExports;
-else Object.assign(window, utilsUiExports);
+class SettingsUtil {
+	static Setting = class {
+		constructor (
+			{
+				type,
+				name,
+				help,
+				defaultVal,
+			},
+		) {
+			this.type = type;
+			this.name = name;
+			this.help = help;
+			this.defaultVal = defaultVal;
+		}
+	};
+
+	static EnumSetting = class extends SettingsUtil.Setting {
+		constructor (
+			{
+				enumVals,
+				...rest
+			},
+		) {
+			super(rest);
+			this.enumVals = enumVals;
+		}
+	};
+
+	static getDefaultSettings (settings) {
+		return Object.entries(settings)
+			.mergeMap(([prop, {defaultVal}]) => ({[prop]: defaultVal}));
+	}
+}
+
+globalThis.ProxyBase = ProxyBase;
+globalThis.UiUtil = UiUtil;
+globalThis.ListUiUtil = ListUiUtil;
+globalThis.ProfUiUtil = ProfUiUtil;
+globalThis.TabUiUtil = TabUiUtil;
+globalThis.SearchUiUtil = SearchUiUtil;
+globalThis.SearchWidget = SearchWidget;
+globalThis.InputUiUtil = InputUiUtil;
+globalThis.DragReorderUiUtil = DragReorderUiUtil;
+globalThis.SourceUiUtil = SourceUiUtil;
+globalThis.BaseComponent = BaseComponent;
+globalThis.ComponentUiUtil = ComponentUiUtil;

@@ -12,7 +12,8 @@
 						"path": "adventure/RtG/001.webp"
 					},
 					"width": 1242,
-					"height": 919
+					"height": 919,
+					"credit": "Lars Grant-West"
 				},
 				"This adventure is designed for four to six ORC characters, levels 6 to 8, and is optimized for five characters with an average party level (APL) of 6. Characters outside this level range shouldn't participate in this adventure without heavy modification to the difficulty of the encounters. This adventure takes place in the Forgotten Realms near Turmish, in the western Orsraun Mountains just north of the Flooded Forest. To run this adventure, you need the fifth edition Player's Handbook, Dungeon Master's Guide, and Monster Manual. Stat Blocks. The Monster Manual contains stat blocks for most of the monsters and nonplayer characters (NPCs) found in this adventure. Whenever this adventure presents a new monster or NPC, you'll find its stat block near the encounter in which it appears, or in appendix A. When a creature's name appears in bold type, that's a visual cue pointing you to the creature's stat block in the Monster Manual.",
 				{
@@ -140,7 +141,7 @@
 									"name": "False Hope, Dark Promises (APL 9)",
 									"page": 3,
 									"entries": [
-										"As you're preparing to play this adventure, you'll want to ask each of the players about their characters hopes and dreams for this expedition. This should occur before they even begin wandering around the dungeon, and can happen as part of a ‘sending-off' ritual held by the elders that set them on this task. You will need this information to effectively utilize the reality warping ability of the balhannoth that makes its lair in this area."
+										"As you're preparing to play this adventure, you'll want to ask each of the players about their characters hopes and dreams for this expedition. This should occur before they even begin wandering around the dungeon, and can happen as part of a 'sending-off' ritual held by the elders that set them on this task. You will need this information to effectively utilize the reality warping ability of the balhannoth that makes its lair in this area."
 									],
 									"id": "00f"
 								}
@@ -174,7 +175,8 @@
 								"path": "adventure/RtG/002.webp"
 							},
 							"width": 1226,
-							"height": 559
+							"height": 559,
+							"credit": "Tom Babbey"
 						},
 						{
 							"type": "entries",
@@ -265,6 +267,13 @@
 									},
 									"title": "Map 1",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 75,
+										"offsetX": 53,
+										"offsetY": 43,
+										"scale": 2
+									},
 									"width": 578,
 									"height": 816,
 									"mapRegions": [
@@ -459,7 +468,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/003.webp"
 									},
-									"id": "15a"
+									"id": "15a",
+									"credit": "Dyson Logos"
 								},
 								"The following locations are keyed to map 1.",
 								{
@@ -854,6 +864,13 @@
 									},
 									"title": "Map 2",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 62,
+										"offsetX": -25,
+										"offsetY": 2,
+										"scale": 2
+									},
 									"width": 1188,
 									"height": 459,
 									"mapRegions": [
@@ -1126,7 +1143,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/004.webp"
 									},
-									"id": "15b"
+									"id": "15b",
+									"credit": "Dyson Logos"
 								},
 								{
 									"type": "entries",
@@ -1306,6 +1324,13 @@
 									},
 									"title": "Map 3",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 81,
+										"offsetX": -21,
+										"offsetY": 5,
+										"scale": 2
+									},
 									"width": 1084,
 									"height": 636,
 									"mapRegions": [
@@ -1565,7 +1590,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/005.webp"
 									},
-									"id": "15c"
+									"id": "15c",
+									"credit": "Dyson Logos"
 								},
 								{
 									"type": "entries",
@@ -2025,6 +2051,13 @@
 									},
 									"title": "Map 4",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 50,
+										"offsetX": -24,
+										"offsetY": 21,
+										"scale": 2
+									},
 									"width": 530,
 									"height": 895,
 									"mapRegions": [
@@ -2232,7 +2265,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/006.webp"
 									},
-									"id": "15d"
+									"id": "15d",
+									"credit": "Dyson Logos"
 								},
 								{
 									"type": "entries",
@@ -2376,6 +2410,13 @@
 									},
 									"title": "Map 4",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 50,
+										"offsetX": -24,
+										"offsetY": 21,
+										"scale": 2
+									},
 									"width": 530,
 									"height": 895,
 									"mapRegions": [
@@ -2583,7 +2624,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/006.webp"
 									},
-									"id": "15e"
+									"id": "15e",
+									"credit": "Dyson Logos"
 								},
 								{
 									"type": "entries",
@@ -2782,6 +2824,13 @@
 									},
 									"title": "Map 5",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 66,
+										"offsetX": 17,
+										"offsetY": 9,
+										"scale": 2
+									},
 									"width": 579,
 									"height": 664,
 									"mapRegions": [
@@ -3143,7 +3192,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/007.webp"
 									},
-									"id": "15f"
+									"id": "15f",
+									"credit": "Dyson Logos"
 								},
 								{
 									"type": "entries",
@@ -3654,6 +3704,13 @@
 									},
 									"title": "Map 6",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 66,
+										"offsetX": 17,
+										"offsetY": 9,
+										"scale": 2
+									},
 									"width": 1127,
 									"height": 555,
 									"mapRegions": [
@@ -3859,7 +3916,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/008.webp"
 									},
-									"id": "160"
+									"id": "160",
+									"credit": "Dyson Logos"
 								},
 								{
 									"type": "entries",
@@ -3996,7 +4054,8 @@
 										"path": "adventure/RtG/009.webp"
 									},
 									"width": 1242,
-									"height": 593
+									"height": 593,
+									"credit": "Bryan Syme"
 								},
 								{
 									"type": "entries",
@@ -4167,6 +4226,13 @@
 									},
 									"title": "Map 7",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 80,
+										"offsetX": 10,
+										"offsetY": 26,
+										"scale": 2
+									},
 									"width": 564,
 									"height": 797,
 									"mapRegions": [
@@ -4301,7 +4367,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/010.webp"
 									},
-									"id": "161"
+									"id": "161",
+									"credit": "Dyson Logos"
 								},
 								{
 									"type": "entries",
@@ -4492,6 +4559,12 @@
 									},
 									"title": "Map 8",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 70,
+										"offsetY": 27,
+										"scale": 2
+									},
 									"width": 707,
 									"height": 861,
 									"mapRegions": [
@@ -4668,7 +4741,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/011.webp"
 									},
-									"id": "162"
+									"id": "162",
+									"credit": "Dyson Logos"
 								},
 								{
 									"type": "entries",
@@ -4785,7 +4859,8 @@
 										"path": "adventure/RtG/012.webp"
 									},
 									"width": 1242,
-									"height": 769
+									"height": 769,
+									"credit": "Ilich Henriquez"
 								},
 								{
 									"type": "entries",
@@ -4911,6 +4986,13 @@
 									},
 									"title": "Map 9",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 72,
+										"offsetX": -22,
+										"offsetY": -10,
+										"scale": 2
+									},
 									"width": 995,
 									"height": 774,
 									"mapRegions": [
@@ -5129,7 +5211,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/013.webp"
 									},
-									"id": "163"
+									"id": "163",
+									"credit": "Dyson Logos"
 								},
 								{
 									"type": "entries",
@@ -5295,7 +5378,7 @@
 									"page": 27,
 									"entries": [
 										"Upon entering the cavern, the stream's flow widens to the trickle of a shallow pool before narrowing again on the other side. Several boulders lie scattered around the chamber, though the floor looks remarkably smooth and bare between them.",
-										"Two {@creature galeb duhr} hide among the boulders, making the most of their False Appearance and {@sense tremorsense|MM}. Once the party is entirely within the chamber, they spring an attack. The galeb duhr can't be identified except by magical means, so the players will likely be surprised during the first round of combat."
+										"Two {@creature galeb duhr} hide among the boulders, making the most of their False Appearance and {@sense tremorsense|MM}. Once the party is entirely within the chamber, they spring an attack. The galeb duhr can't be identified except by magical means, so the players will likely be {@quickref Surprise|PHB|3|0|surprised} during the first round of combat."
 									],
 									"id": "131"
 								}
@@ -5345,6 +5428,13 @@
 							},
 							"title": "Map 10",
 							"imageType": "map",
+							"grid": {
+								"type": "square",
+								"size": 67,
+								"offsetX": -9,
+								"offsetY": 25,
+								"scale": 2
+							},
 							"width": 571,
 							"height": 957,
 							"mapRegions": [
@@ -5592,7 +5682,8 @@
 								"type": "internal",
 								"path": "adventure/RtG/thumbnail/014.webp"
 							},
-							"id": "164"
+							"id": "164",
+							"credit": "Dyson Logos"
 						},
 						{
 							"type": "entries",
@@ -5759,6 +5850,13 @@
 									},
 									"title": "Map 10",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 67,
+										"offsetX": -9,
+										"offsetY": 25,
+										"scale": 2
+									},
 									"width": 571,
 									"height": 957,
 									"mapRegions": [
@@ -6006,7 +6104,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/014.webp"
 									},
-									"id": "165"
+									"id": "165",
+									"credit": "Dyson Logos"
 								},
 								{
 									"type": "entries",
@@ -6176,6 +6275,12 @@
 									},
 									"title": "Map 11",
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 61,
+										"offsetY": 33,
+										"scale": 2
+									},
 									"width": 520,
 									"height": 1293,
 									"mapRegions": [
@@ -6205,7 +6310,8 @@
 										"type": "internal",
 										"path": "adventure/RtG/thumbnail/015.webp"
 									},
-									"id": "166"
+									"id": "166",
+									"credit": "Dyson Logos"
 								},
 								{
 									"type": "entries",
@@ -6219,7 +6325,7 @@
 											"name": "Preparatory Note",
 											"page": 30,
 											"entries": [
-												"As you're preparing to play this adventure, you'll want to ask each of the players about their characters hopes and dreams for this expedition. This is also a good time to ask players about lines and veils as well. It's important to avoid personal triggers in an encounter like this. If they're uncomfortable speaking of these things in front of the group, provide them with a note card or other private means to communicate these with you. This should occur before they even begin wandering around the dungeon, and it can happen as part of a ‘sending-off' ritual held by the elders that set them on this task.",
+												"As you're preparing to play this adventure, you'll want to ask each of the players about their characters hopes and dreams for this expedition. This is also a good time to ask players about lines and veils as well. It's important to avoid personal triggers in an encounter like this. If they're uncomfortable speaking of these things in front of the group, provide them with a note card or other private means to communicate these with you. This should occur before they even begin wandering around the dungeon, and it can happen as part of a 'sending-off' ritual held by the elders that set them on this task.",
 												"Once the characters enter, it will be up to you to improvise the description of the areas as the balhannoth hunts them down and attempts to pick them off, one-by-one. If that weren't enough, there is a trio of gelatinous cubes wandering these halls, taking advantage of the confusion caused by the balhannoth to feed."
 											],
 											"id": "156"
@@ -6279,6 +6385,7 @@
 								"type": "internal",
 								"path": "adventure/RtG/016.webp"
 							},
+							"title": "Full Map\u2014North-East",
 							"width": 1632,
 							"height": 1238,
 							"mapRegions": [
@@ -7558,11 +7665,19 @@
 								}
 							],
 							"imageType": "map",
+							"grid": {
+								"type": "square",
+								"size": 69,
+								"offsetX": 32,
+								"offsetY": -6,
+								"scale": 3
+							},
 							"hrefThumbnail": {
 								"type": "internal",
 								"path": "adventure/RtG/thumbnail/016.webp"
 							},
-							"id": "167"
+							"id": "167",
+							"credit": "Dyson Logos"
 						},
 						{
 							"type": "image",
@@ -7570,6 +7685,7 @@
 								"type": "internal",
 								"path": "adventure/RtG/017.webp"
 							},
+							"title": "Full Map\u2014South-West",
 							"width": 1615,
 							"height": 1221,
 							"mapRegions": [
@@ -8494,11 +8610,19 @@
 								}
 							],
 							"imageType": "map",
+							"grid": {
+								"type": "square",
+								"size": 69,
+								"offsetX": 30,
+								"offsetY": 26,
+								"scale": 3
+							},
 							"hrefThumbnail": {
 								"type": "internal",
 								"path": "adventure/RtG/thumbnail/017.webp"
 							},
-							"id": "168"
+							"id": "168",
+							"credit": "Dyson Logos"
 						}
 					]
 				}

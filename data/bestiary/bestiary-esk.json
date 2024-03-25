@@ -8,7 +8,11 @@
 			"size": [
 				"M"
 			],
-			"type": "humanoid",
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "expert",
+				"sidekickHidden": true
+			},
 			"ac": [
 				{
 					"ac": 14,
@@ -79,6 +83,11 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"dagger|phb",
+				"shortbow|phb",
+				"shortsword|phb"
+			],
 			"languageTags": [
 				"C"
 			],
@@ -86,6 +95,7 @@
 				"P"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW",
@@ -101,7 +111,11 @@
 			"size": [
 				"M"
 			],
-			"type": "humanoid",
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "spellcaster",
+				"sidekickHidden": true
+			},
 			"ac": [
 				{
 					"ac": 12,
@@ -202,6 +216,9 @@
 					"source": "ESK"
 				}
 			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
 			"languageTags": [
 				"C"
 			],
@@ -217,7 +234,11 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity"
 			],
 			"hasToken": true
 		},
@@ -229,7 +250,11 @@
 			"size": [
 				"M"
 			],
-			"type": "humanoid",
+			"type": {
+				"type": "humanoid",
+				"sidekickType": "warrior",
+				"sidekickHidden": true
+			},
 			"ac": [
 				{
 					"ac": 16,
@@ -317,6 +342,10 @@
 					"source": "ESK"
 				}
 			],
+			"attachedItems": [
+				"longbow|phb",
+				"longsword|phb"
+			],
 			"languageTags": [
 				"C"
 			],
@@ -325,6 +354,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW",
 				"RNG",
 				"RW"

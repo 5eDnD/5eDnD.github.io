@@ -3,10 +3,11 @@
 		{
 			"name": "Dragonborn",
 			"source": "XGE",
+			"page": 175,
 			"tables": [
 				{
 					"option": "Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -262,7 +263,7 @@
 				},
 				{
 					"option": "Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -518,7 +519,7 @@
 				},
 				{
 					"option": "Clan",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -772,16 +773,16 @@
 						}
 					]
 				}
-			],
-			"page": 175
+			]
 		},
 		{
 			"name": "Dwarf",
 			"source": "XGE",
+			"page": 176,
 			"tables": [
 				{
 					"option": "Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -1037,7 +1038,7 @@
 				},
 				{
 					"option": "Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -1293,7 +1294,7 @@
 				},
 				{
 					"option": "Clan",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -1549,7 +1550,7 @@
 				},
 				{
 					"option": "Duergar Clan",
-					"diceType": 12,
+					"diceExpression": "d12",
 					"table": [
 						{
 							"min": 1,
@@ -1613,16 +1614,16 @@
 						}
 					]
 				}
-			],
-			"page": 176
+			]
 		},
 		{
 			"name": "Elf",
 			"source": "XGE",
+			"page": 176,
 			"tables": [
 				{
 					"option": "Child",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -1878,7 +1879,7 @@
 				},
 				{
 					"option": "Female Adult",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -2134,7 +2135,7 @@
 				},
 				{
 					"option": "Male Adult",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -2390,7 +2391,7 @@
 				},
 				{
 					"option": "Family",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -2644,16 +2645,247 @@
 						}
 					]
 				}
-			],
-			"page": 176
+			]
+		},
+		{
+			"name": "Gith",
+			"source": "MTF",
+			"page": 97,
+			"tables": [
+				{
+					"option": "Githyanki, Male",
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "Elirdain"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "Gaath"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "Ja'adoc"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "Kar'i'nas"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "Lykus"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "Quith"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "Ris'a'an"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "Tropos"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "Viran"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "Xamados"
+						}
+					]
+				},
+				{
+					"option": "Githyanki, Female",
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "Aaryl"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "B'noor"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "Fenelzi'ir"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "Jen'lig"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "Pah'zel"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "Quorstyl"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "Sirruth"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "Vaira"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "Yessune"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "Zar'ryth"
+						}
+					]
+				},
+				{
+					"option": "Githzerai, Male",
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "Dak"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "Duurth"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "Ferzth"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "Greth"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "Hurm"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "Kalla"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "Muurg"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "Nurm"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "Shrakk"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "Xorm"
+						}
+					]
+				},
+				{
+					"option": "Githzerai, Female",
+					"diceExpression": "d10",
+					"table": [
+						{
+							"min": 1,
+							"max": 1,
+							"result": "Adaka"
+						},
+						{
+							"min": 2,
+							"max": 2,
+							"result": "Adeya"
+						},
+						{
+							"min": 3,
+							"max": 3,
+							"result": "Ella"
+						},
+						{
+							"min": 4,
+							"max": 4,
+							"result": "Ezhelya"
+						},
+						{
+							"min": 5,
+							"max": 5,
+							"result": "Immilzin"
+						},
+						{
+							"min": 6,
+							"max": 6,
+							"result": "Izera"
+						},
+						{
+							"min": 7,
+							"max": 7,
+							"result": "Janara"
+						},
+						{
+							"min": 8,
+							"max": 8,
+							"result": "Loraya"
+						},
+						{
+							"min": 9,
+							"max": 9,
+							"result": "Uweya"
+						},
+						{
+							"min": 10,
+							"max": 10,
+							"result": "Vithka"
+						}
+					]
+				}
+			]
 		},
 		{
 			"name": "Gnome",
 			"source": "XGE",
+			"page": 178,
 			"tables": [
 				{
 					"option": "Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -2909,7 +3141,7 @@
 				},
 				{
 					"option": "Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -3165,7 +3397,7 @@
 				},
 				{
 					"option": "Clan",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -3419,791 +3651,16 @@
 						}
 					]
 				}
-			],
-			"page": 178
-		},
-		{
-			"name": "Halfling",
-			"source": "XGE",
-			"tables": [
-				{
-					"option": "Female",
-					"diceType": 100,
-					"table": [
-						{
-							"min": 1,
-							"max": 2,
-							"result": "Alain"
-						},
-						{
-							"min": 3,
-							"max": 4,
-							"result": "Andry"
-						},
-						{
-							"min": 5,
-							"max": 6,
-							"result": "Anne"
-						},
-						{
-							"min": 7,
-							"max": 8,
-							"result": "Bella"
-						},
-						{
-							"min": 9,
-							"max": 10,
-							"result": "Blossom"
-						},
-						{
-							"min": 11,
-							"max": 12,
-							"result": "Bree"
-						},
-						{
-							"min": 13,
-							"max": 14,
-							"result": "Callie"
-						},
-						{
-							"min": 15,
-							"max": 16,
-							"result": "Chenna"
-						},
-						{
-							"min": 17,
-							"max": 18,
-							"result": "Cora"
-						},
-						{
-							"min": 19,
-							"max": 20,
-							"result": "Dee"
-						},
-						{
-							"min": 21,
-							"max": 22,
-							"result": "Dell"
-						},
-						{
-							"min": 23,
-							"max": 24,
-							"result": "Eida"
-						},
-						{
-							"min": 25,
-							"max": 26,
-							"result": "Eran"
-						},
-						{
-							"min": 27,
-							"max": 28,
-							"result": "Euphemia"
-						},
-						{
-							"min": 29,
-							"max": 30,
-							"result": "Georgina"
-						},
-						{
-							"min": 31,
-							"max": 32,
-							"result": "Gynnie"
-						},
-						{
-							"min": 33,
-							"max": 34,
-							"result": "Harriet"
-						},
-						{
-							"min": 35,
-							"max": 36,
-							"result": "Jasmine"
-						},
-						{
-							"min": 37,
-							"max": 38,
-							"result": "Jillian"
-						},
-						{
-							"min": 39,
-							"max": 40,
-							"result": "Jo"
-						},
-						{
-							"min": 41,
-							"max": 42,
-							"result": "Kithri"
-						},
-						{
-							"min": 43,
-							"max": 44,
-							"result": "Lavinia"
-						},
-						{
-							"min": 45,
-							"max": 46,
-							"result": "Lidda"
-						},
-						{
-							"min": 47,
-							"max": 48,
-							"result": "Maegan"
-						},
-						{
-							"min": 49,
-							"max": 50,
-							"result": "Marigold"
-						},
-						{
-							"min": 51,
-							"max": 52,
-							"result": "Merla"
-						},
-						{
-							"min": 53,
-							"max": 54,
-							"result": "Myria"
-						},
-						{
-							"min": 55,
-							"max": 56,
-							"result": "Nedda"
-						},
-						{
-							"min": 57,
-							"max": 58,
-							"result": "Nikki"
-						},
-						{
-							"min": 59,
-							"max": 60,
-							"result": "Nora"
-						},
-						{
-							"min": 61,
-							"max": 62,
-							"result": "Olivia"
-						},
-						{
-							"min": 63,
-							"max": 64,
-							"result": "Paela"
-						},
-						{
-							"min": 65,
-							"max": 66,
-							"result": "Pearl"
-						},
-						{
-							"min": 67,
-							"max": 68,
-							"result": "Pennie"
-						},
-						{
-							"min": 69,
-							"max": 70,
-							"result": "Philomena"
-						},
-						{
-							"min": 71,
-							"max": 72,
-							"result": "Portia"
-						},
-						{
-							"min": 73,
-							"max": 74,
-							"result": "Robbie"
-						},
-						{
-							"min": 75,
-							"max": 76,
-							"result": "Rose"
-						},
-						{
-							"min": 77,
-							"max": 78,
-							"result": "Saral"
-						},
-						{
-							"min": 79,
-							"max": 80,
-							"result": "Seraphina"
-						},
-						{
-							"min": 81,
-							"max": 82,
-							"result": "Shaena"
-						},
-						{
-							"min": 83,
-							"max": 84,
-							"result": "Stacee"
-						},
-						{
-							"min": 85,
-							"max": 86,
-							"result": "Tawna"
-						},
-						{
-							"min": 87,
-							"max": 88,
-							"result": "Thea"
-						},
-						{
-							"min": 89,
-							"max": 90,
-							"result": "Trym"
-						},
-						{
-							"min": 91,
-							"max": 92,
-							"result": "Tyna"
-						},
-						{
-							"min": 93,
-							"max": 94,
-							"result": "Vani"
-						},
-						{
-							"min": 95,
-							"max": 96,
-							"result": "Verna"
-						},
-						{
-							"min": 97,
-							"max": 98,
-							"result": "Wella"
-						},
-						{
-							"min": 99,
-							"max": 0,
-							"result": "Willow"
-						}
-					]
-				},
-				{
-					"option": "Male",
-					"diceType": 100,
-					"table": [
-						{
-							"min": 1,
-							"max": 2,
-							"result": "Alton"
-						},
-						{
-							"min": 3,
-							"max": 4,
-							"result": "Ander"
-						},
-						{
-							"min": 5,
-							"max": 6,
-							"result": "Bernie"
-						},
-						{
-							"min": 7,
-							"max": 8,
-							"result": "Bobbin"
-						},
-						{
-							"min": 9,
-							"max": 10,
-							"result": "Cade"
-						},
-						{
-							"min": 11,
-							"max": 12,
-							"result": "Callus"
-						},
-						{
-							"min": 13,
-							"max": 14,
-							"result": "Corrin"
-						},
-						{
-							"min": 15,
-							"max": 16,
-							"result": "Dannad"
-						},
-						{
-							"min": 17,
-							"max": 18,
-							"result": "Danniel"
-						},
-						{
-							"min": 19,
-							"max": 20,
-							"result": "Eddie"
-						},
-						{
-							"min": 21,
-							"max": 22,
-							"result": "Egart"
-						},
-						{
-							"min": 23,
-							"max": 24,
-							"result": "Eldon"
-						},
-						{
-							"min": 25,
-							"max": 26,
-							"result": "Errich"
-						},
-						{
-							"min": 27,
-							"max": 28,
-							"result": "Fildo"
-						},
-						{
-							"min": 29,
-							"max": 30,
-							"result": "Finnan"
-						},
-						{
-							"min": 31,
-							"max": 32,
-							"result": "Franklin"
-						},
-						{
-							"min": 33,
-							"max": 34,
-							"result": "Garret"
-						},
-						{
-							"min": 35,
-							"max": 36,
-							"result": "Garth"
-						},
-						{
-							"min": 37,
-							"max": 38,
-							"result": "Gilbert"
-						},
-						{
-							"min": 39,
-							"max": 40,
-							"result": "Gob"
-						},
-						{
-							"min": 41,
-							"max": 42,
-							"result": "Harol"
-						},
-						{
-							"min": 43,
-							"max": 44,
-							"result": "Igor"
-						},
-						{
-							"min": 45,
-							"max": 46,
-							"result": "Jasper"
-						},
-						{
-							"min": 47,
-							"max": 48,
-							"result": "Keith"
-						},
-						{
-							"min": 49,
-							"max": 50,
-							"result": "Kevin"
-						},
-						{
-							"min": 51,
-							"max": 52,
-							"result": "Lazam"
-						},
-						{
-							"min": 53,
-							"max": 54,
-							"result": "Lerry"
-						},
-						{
-							"min": 55,
-							"max": 56,
-							"result": "Lindal"
-						},
-						{
-							"min": 57,
-							"max": 58,
-							"result": "Lyle"
-						},
-						{
-							"min": 59,
-							"max": 60,
-							"result": "Merric"
-						},
-						{
-							"min": 61,
-							"max": 62,
-							"result": "Mican"
-						},
-						{
-							"min": 63,
-							"max": 64,
-							"result": "Milo"
-						},
-						{
-							"min": 65,
-							"max": 66,
-							"result": "Morrin"
-						},
-						{
-							"min": 67,
-							"max": 68,
-							"result": "Nebin"
-						},
-						{
-							"min": 69,
-							"max": 70,
-							"result": "Nevil"
-						},
-						{
-							"min": 71,
-							"max": 72,
-							"result": "Osborn"
-						},
-						{
-							"min": 73,
-							"max": 74,
-							"result": "Ostran"
-						},
-						{
-							"min": 75,
-							"max": 76,
-							"result": "Oswalt"
-						},
-						{
-							"min": 77,
-							"max": 78,
-							"result": "Perrin"
-						},
-						{
-							"min": 79,
-							"max": 80,
-							"result": "Poppy"
-						},
-						{
-							"min": 81,
-							"max": 82,
-							"result": "Reed"
-						},
-						{
-							"min": 83,
-							"max": 84,
-							"result": "Roscoe"
-						},
-						{
-							"min": 85,
-							"max": 86,
-							"result": "Sam"
-						},
-						{
-							"min": 87,
-							"max": 88,
-							"result": "Shardon"
-						},
-						{
-							"min": 89,
-							"max": 90,
-							"result": "Tye"
-						},
-						{
-							"min": 91,
-							"max": 92,
-							"result": "Ulmo"
-						},
-						{
-							"min": 93,
-							"max": 94,
-							"result": "Wellby"
-						},
-						{
-							"min": 95,
-							"max": 96,
-							"result": "Wendel"
-						},
-						{
-							"min": 97,
-							"max": 98,
-							"result": "Wenner"
-						},
-						{
-							"min": 99,
-							"max": 0,
-							"result": "Wes"
-						}
-					]
-				},
-				{
-					"option": "Clan",
-					"diceType": 100,
-					"table": [
-						{
-							"min": 1,
-							"max": 2,
-							"result": "Appleblossom"
-						},
-						{
-							"min": 3,
-							"max": 4,
-							"result": "Bigheart"
-						},
-						{
-							"min": 5,
-							"max": 6,
-							"result": "Brightmoon"
-						},
-						{
-							"min": 7,
-							"max": 8,
-							"result": "Brushgather"
-						},
-						{
-							"min": 9,
-							"max": 10,
-							"result": "Cherrycheeks"
-						},
-						{
-							"min": 11,
-							"max": 12,
-							"result": "Copperkettle"
-						},
-						{
-							"min": 13,
-							"max": 14,
-							"result": "Deephollow"
-						},
-						{
-							"min": 15,
-							"max": 16,
-							"result": "Elderberry"
-						},
-						{
-							"min": 17,
-							"max": 18,
-							"result": "Fastfoot"
-						},
-						{
-							"min": 19,
-							"max": 20,
-							"result": "Fatrabbit"
-						},
-						{
-							"min": 21,
-							"max": 22,
-							"result": "Glenfellow"
-						},
-						{
-							"min": 23,
-							"max": 24,
-							"result": "Goldfound"
-						},
-						{
-							"min": 25,
-							"max": 26,
-							"result": "Goodbarrel"
-						},
-						{
-							"min": 27,
-							"max": 28,
-							"result": "Goodearth"
-						},
-						{
-							"min": 29,
-							"max": 30,
-							"result": "Greenbottle"
-						},
-						{
-							"min": 31,
-							"max": 32,
-							"result": "Greenleaf"
-						},
-						{
-							"min": 33,
-							"max": 34,
-							"result": "High-hill"
-						},
-						{
-							"min": 35,
-							"max": 36,
-							"result": "Hilltopple"
-						},
-						{
-							"min": 37,
-							"max": 38,
-							"result": "Hogcollar"
-						},
-						{
-							"min": 39,
-							"max": 40,
-							"result": "Honeypot"
-						},
-						{
-							"min": 41,
-							"max": 42,
-							"result": "Jamjar"
-						},
-						{
-							"min": 43,
-							"max": 44,
-							"result": "Kettlewhistle"
-						},
-						{
-							"min": 45,
-							"max": 46,
-							"result": "Leagallow"
-						},
-						{
-							"min": 47,
-							"max": 48,
-							"result": "Littlefoot"
-						},
-						{
-							"min": 49,
-							"max": 50,
-							"result": "Nimblefingers"
-						},
-						{
-							"min": 51,
-							"max": 52,
-							"result": "Porridgepot"
-						},
-						{
-							"min": 53,
-							"max": 54,
-							"result": "Quickstep"
-						},
-						{
-							"min": 55,
-							"max": 56,
-							"result": "Reedfellow"
-						},
-						{
-							"min": 57,
-							"max": 58,
-							"result": "Shadowquick"
-						},
-						{
-							"min": 59,
-							"max": 60,
-							"result": "Silvereyes"
-						},
-						{
-							"min": 61,
-							"max": 62,
-							"result": "Smoothhands"
-						},
-						{
-							"min": 63,
-							"max": 64,
-							"result": "Stonebridge"
-						},
-						{
-							"min": 65,
-							"max": 66,
-							"result": "Stoutbridge"
-						},
-						{
-							"min": 67,
-							"max": 68,
-							"result": "Stoutman"
-						},
-						{
-							"min": 69,
-							"max": 70,
-							"result": "Strongbones"
-						},
-						{
-							"min": 71,
-							"max": 72,
-							"result": "Sunmeadow"
-						},
-						{
-							"min": 73,
-							"max": 74,
-							"result": "Swiftwhistle"
-						},
-						{
-							"min": 75,
-							"max": 76,
-							"result": "Tallfellow"
-						},
-						{
-							"min": 77,
-							"max": 78,
-							"result": "Tealeaf"
-						},
-						{
-							"min": 79,
-							"max": 80,
-							"result": "Tenpenny"
-						},
-						{
-							"min": 81,
-							"max": 82,
-							"result": "Thistletop"
-						},
-						{
-							"min": 83,
-							"max": 84,
-							"result": "Thorngage"
-						},
-						{
-							"min": 85,
-							"max": 86,
-							"result": "Tosscobble"
-						},
-						{
-							"min": 87,
-							"max": 88,
-							"result": "Underbough"
-						},
-						{
-							"min": 89,
-							"max": 90,
-							"result": "Underfoot"
-						},
-						{
-							"min": 91,
-							"max": 92,
-							"result": "Warmwater"
-						},
-						{
-							"min": 93,
-							"max": 94,
-							"result": "Whispermouse"
-						},
-						{
-							"min": 95,
-							"max": 96,
-							"result": "Wildcloak"
-						},
-						{
-							"min": 97,
-							"max": 98,
-							"result": "Wildheart"
-						},
-						{
-							"min": 99,
-							"max": 0,
-							"result": "Wiseacre"
-						}
-					]
-				}
-			],
-			"page": 179
+			]
 		},
 		{
 			"name": "Half-Orc",
 			"source": "XGE",
+			"page": 179,
 			"tables": [
 				{
 					"option": "Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -4459,7 +3916,7 @@
 				},
 				{
 					"option": "Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -4713,791 +4170,791 @@
 						}
 					]
 				}
-			],
-			"page": 179
+			]
 		},
 		{
-			"name": "Tiefling",
+			"name": "Halfling",
 			"source": "XGE",
+			"page": 179,
 			"tables": [
 				{
 					"option": "Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
 							"max": 2,
-							"result": "Akta"
+							"result": "Alain"
 						},
 						{
 							"min": 3,
 							"max": 4,
-							"result": "Anakis"
+							"result": "Andry"
 						},
 						{
 							"min": 5,
 							"max": 6,
-							"result": "Armara"
+							"result": "Anne"
 						},
 						{
 							"min": 7,
 							"max": 8,
-							"result": "Astaro"
+							"result": "Bella"
 						},
 						{
 							"min": 9,
 							"max": 10,
-							"result": "Aym"
+							"result": "Blossom"
 						},
 						{
 							"min": 11,
 							"max": 12,
-							"result": "Azza"
+							"result": "Bree"
 						},
 						{
 							"min": 13,
 							"max": 14,
-							"result": "Beleth"
+							"result": "Callie"
 						},
 						{
 							"min": 15,
 							"max": 16,
-							"result": "Bryseis"
+							"result": "Chenna"
 						},
 						{
 							"min": 17,
 							"max": 18,
-							"result": "Bune"
+							"result": "Cora"
 						},
 						{
 							"min": 19,
 							"max": 20,
-							"result": "Criella"
+							"result": "Dee"
 						},
 						{
 							"min": 21,
 							"max": 22,
-							"result": "Damaia"
+							"result": "Dell"
 						},
 						{
 							"min": 23,
 							"max": 24,
-							"result": "Decarabia"
+							"result": "Eida"
 						},
 						{
 							"min": 25,
 							"max": 26,
-							"result": "Ea"
+							"result": "Eran"
 						},
 						{
 							"min": 27,
 							"max": 28,
-							"result": "Gadreel"
+							"result": "Euphemia"
 						},
 						{
 							"min": 29,
 							"max": 30,
-							"result": "Gomory"
+							"result": "Georgina"
 						},
 						{
 							"min": 31,
 							"max": 32,
-							"result": "Hecat"
+							"result": "Gynnie"
 						},
 						{
 							"min": 33,
 							"max": 34,
-							"result": "Ishte"
+							"result": "Harriet"
 						},
 						{
 							"min": 35,
 							"max": 36,
-							"result": "Jezebeth"
+							"result": "Jasmine"
 						},
 						{
 							"min": 37,
 							"max": 38,
-							"result": "Kali"
+							"result": "Jillian"
 						},
 						{
 							"min": 39,
 							"max": 40,
-							"result": "Kallista"
+							"result": "Jo"
 						},
 						{
 							"min": 41,
 							"max": 42,
-							"result": "Kasdeya"
+							"result": "Kithri"
 						},
 						{
 							"min": 43,
 							"max": 44,
-							"result": "Lerissa"
+							"result": "Lavinia"
 						},
 						{
 							"min": 45,
 							"max": 46,
-							"result": "Lilith"
+							"result": "Lidda"
 						},
 						{
 							"min": 47,
 							"max": 48,
-							"result": "Makaria"
+							"result": "Maegan"
 						},
 						{
 							"min": 49,
 							"max": 50,
-							"result": "Manea"
+							"result": "Marigold"
 						},
 						{
 							"min": 51,
 							"max": 52,
-							"result": "Markosian"
+							"result": "Merla"
 						},
 						{
 							"min": 53,
 							"max": 54,
-							"result": "Mastema"
+							"result": "Myria"
 						},
 						{
 							"min": 55,
 							"max": 56,
-							"result": "Naamah"
+							"result": "Nedda"
 						},
 						{
 							"min": 57,
 							"max": 58,
-							"result": "Nemeia"
+							"result": "Nikki"
 						},
 						{
 							"min": 59,
 							"max": 60,
-							"result": "Nija"
+							"result": "Nora"
 						},
 						{
 							"min": 61,
 							"max": 62,
-							"result": "Orianna"
+							"result": "Olivia"
 						},
 						{
 							"min": 63,
 							"max": 64,
-							"result": "Osah"
+							"result": "Paela"
 						},
 						{
 							"min": 65,
 							"max": 66,
-							"result": "Phelaia"
+							"result": "Pearl"
 						},
 						{
 							"min": 67,
 							"max": 68,
-							"result": "Prosperine"
+							"result": "Pennie"
 						},
 						{
 							"min": 69,
 							"max": 70,
-							"result": "Purah"
+							"result": "Philomena"
 						},
 						{
 							"min": 71,
 							"max": 72,
-							"result": "Pyra"
+							"result": "Portia"
 						},
 						{
 							"min": 73,
 							"max": 74,
-							"result": "Rieta"
+							"result": "Robbie"
 						},
 						{
 							"min": 75,
 							"max": 76,
-							"result": "Ronobe"
+							"result": "Rose"
 						},
 						{
 							"min": 77,
 							"max": 78,
-							"result": "Ronwe"
+							"result": "Saral"
 						},
 						{
 							"min": 79,
 							"max": 80,
-							"result": "Seddit"
+							"result": "Seraphina"
 						},
 						{
 							"min": 81,
 							"max": 82,
-							"result": "Seere"
+							"result": "Shaena"
 						},
 						{
 							"min": 83,
 							"max": 84,
-							"result": "Sekhmet"
+							"result": "Stacee"
 						},
 						{
 							"min": 85,
 							"max": 86,
-							"result": "Semyaza"
+							"result": "Tawna"
 						},
 						{
 							"min": 87,
 							"max": 88,
-							"result": "Shava"
+							"result": "Thea"
 						},
 						{
 							"min": 89,
 							"max": 90,
-							"result": "Shax"
+							"result": "Trym"
 						},
 						{
 							"min": 91,
 							"max": 92,
-							"result": "Sorath"
+							"result": "Tyna"
 						},
 						{
 							"min": 93,
 							"max": 94,
-							"result": "Uzza"
+							"result": "Vani"
 						},
 						{
 							"min": 95,
 							"max": 96,
-							"result": "Vapula"
+							"result": "Verna"
 						},
 						{
 							"min": 97,
 							"max": 98,
-							"result": "Vepar"
+							"result": "Wella"
 						},
 						{
 							"min": 99,
 							"max": 0,
-							"result": "Verin"
+							"result": "Willow"
 						}
 					]
 				},
 				{
 					"option": "Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
 							"max": 2,
-							"result": "Abad"
+							"result": "Alton"
 						},
 						{
 							"min": 3,
 							"max": 4,
-							"result": "Ahrim"
+							"result": "Ander"
 						},
 						{
 							"min": 5,
 							"max": 6,
-							"result": "Akmen"
+							"result": "Bernie"
 						},
 						{
 							"min": 7,
 							"max": 8,
-							"result": "Amnon"
+							"result": "Bobbin"
 						},
 						{
 							"min": 9,
 							"max": 10,
-							"result": "Andram"
+							"result": "Cade"
 						},
 						{
 							"min": 11,
 							"max": 12,
-							"result": "Astar"
+							"result": "Callus"
 						},
 						{
 							"min": 13,
 							"max": 14,
-							"result": "Balam"
+							"result": "Corrin"
 						},
 						{
 							"min": 15,
 							"max": 16,
-							"result": "Barakas"
+							"result": "Dannad"
 						},
 						{
 							"min": 17,
 							"max": 18,
-							"result": "Bathin"
+							"result": "Danniel"
 						},
 						{
 							"min": 19,
 							"max": 20,
-							"result": "Caim"
+							"result": "Eddie"
 						},
 						{
 							"min": 21,
 							"max": 22,
-							"result": "Chem"
+							"result": "Egart"
 						},
 						{
 							"min": 23,
 							"max": 24,
-							"result": "Cimer"
+							"result": "Eldon"
 						},
 						{
 							"min": 25,
 							"max": 26,
-							"result": "Cressel"
+							"result": "Errich"
 						},
 						{
 							"min": 27,
 							"max": 28,
-							"result": "Damakos"
+							"result": "Fildo"
 						},
 						{
 							"min": 29,
 							"max": 30,
-							"result": "Ekemon"
+							"result": "Finnan"
 						},
 						{
 							"min": 31,
 							"max": 32,
-							"result": "Euron"
+							"result": "Franklin"
 						},
 						{
 							"min": 33,
 							"max": 34,
-							"result": "Fenriz"
+							"result": "Garret"
 						},
 						{
 							"min": 35,
 							"max": 36,
-							"result": "Forcas"
+							"result": "Garth"
 						},
 						{
 							"min": 37,
 							"max": 38,
-							"result": "Habor"
+							"result": "Gilbert"
 						},
 						{
 							"min": 39,
 							"max": 40,
-							"result": "Iados"
+							"result": "Gob"
 						},
 						{
 							"min": 41,
 							"max": 42,
-							"result": "Kairon"
+							"result": "Harol"
 						},
 						{
 							"min": 43,
 							"max": 44,
-							"result": "Leucis"
+							"result": "Igor"
 						},
 						{
 							"min": 45,
 							"max": 46,
-							"result": "Mamnen"
+							"result": "Jasper"
 						},
 						{
 							"min": 47,
 							"max": 48,
-							"result": "Mantus"
+							"result": "Keith"
 						},
 						{
 							"min": 49,
 							"max": 50,
-							"result": "Marbas"
+							"result": "Kevin"
 						},
 						{
 							"min": 51,
 							"max": 52,
-							"result": "Melech"
+							"result": "Lazam"
 						},
 						{
 							"min": 53,
 							"max": 54,
-							"result": "Merihim"
+							"result": "Lerry"
 						},
 						{
 							"min": 55,
 							"max": 56,
-							"result": "Modean"
+							"result": "Lindal"
 						},
 						{
 							"min": 57,
 							"max": 58,
-							"result": "Mordai"
+							"result": "Lyle"
 						},
 						{
 							"min": 59,
 							"max": 60,
-							"result": "Mormo"
+							"result": "Merric"
 						},
 						{
 							"min": 61,
 							"max": 62,
-							"result": "Morthos"
+							"result": "Mican"
 						},
 						{
 							"min": 63,
 							"max": 64,
-							"result": "Nicor"
+							"result": "Milo"
 						},
 						{
 							"min": 65,
 							"max": 66,
-							"result": "Nirgel"
+							"result": "Morrin"
 						},
 						{
 							"min": 67,
 							"max": 68,
-							"result": "Oriax"
+							"result": "Nebin"
 						},
 						{
 							"min": 69,
 							"max": 70,
-							"result": "Paymon"
+							"result": "Nevil"
 						},
 						{
 							"min": 71,
 							"max": 72,
-							"result": "Pelaios"
+							"result": "Osborn"
 						},
 						{
 							"min": 73,
 							"max": 74,
-							"result": "Purson"
+							"result": "Ostran"
 						},
 						{
 							"min": 75,
 							"max": 76,
-							"result": "Qemuel"
+							"result": "Oswalt"
 						},
 						{
 							"min": 77,
 							"max": 78,
-							"result": "Raam"
+							"result": "Perrin"
 						},
 						{
 							"min": 79,
 							"max": 80,
-							"result": "Rimmon"
+							"result": "Poppy"
 						},
 						{
 							"min": 81,
 							"max": 82,
-							"result": "Sammal"
+							"result": "Reed"
 						},
 						{
 							"min": 83,
 							"max": 84,
-							"result": "Skamos"
+							"result": "Roscoe"
 						},
 						{
 							"min": 85,
 							"max": 86,
-							"result": "Tethren"
+							"result": "Sam"
 						},
 						{
 							"min": 87,
 							"max": 88,
-							"result": "Thamuz"
+							"result": "Shardon"
 						},
 						{
 							"min": 89,
 							"max": 90,
-							"result": "Therai"
+							"result": "Tye"
 						},
 						{
 							"min": 91,
 							"max": 92,
-							"result": "Valafar"
+							"result": "Ulmo"
 						},
 						{
 							"min": 93,
 							"max": 94,
-							"result": "Vassago"
+							"result": "Wellby"
 						},
 						{
 							"min": 95,
 							"max": 96,
-							"result": "Xappan"
+							"result": "Wendel"
 						},
 						{
 							"min": 97,
 							"max": 98,
-							"result": "Zepar"
+							"result": "Wenner"
 						},
 						{
 							"min": 99,
 							"max": 0,
-							"result": "Zephan"
+							"result": "Wes"
 						}
 					]
 				},
 				{
-					"option": "Virtue",
-					"diceType": 100,
+					"option": "Clan",
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
 							"max": 2,
-							"result": "Ambition"
+							"result": "Appleblossom"
 						},
 						{
 							"min": 3,
 							"max": 4,
-							"result": "Art"
+							"result": "Bigheart"
 						},
 						{
 							"min": 5,
 							"max": 6,
-							"result": "Carrion"
+							"result": "Brightmoon"
 						},
 						{
 							"min": 7,
 							"max": 8,
-							"result": "Chant"
+							"result": "Brushgather"
 						},
 						{
 							"min": 9,
 							"max": 10,
-							"result": "Creed"
+							"result": "Cherrycheeks"
 						},
 						{
 							"min": 11,
 							"max": 12,
-							"result": "Death"
+							"result": "Copperkettle"
 						},
 						{
 							"min": 13,
 							"max": 14,
-							"result": "Debauchery"
+							"result": "Deephollow"
 						},
 						{
 							"min": 15,
 							"max": 16,
-							"result": "Despair"
+							"result": "Elderberry"
 						},
 						{
 							"min": 17,
 							"max": 18,
-							"result": "Doom"
+							"result": "Fastfoot"
 						},
 						{
 							"min": 19,
 							"max": 20,
-							"result": "Doubt"
+							"result": "Fatrabbit"
 						},
 						{
 							"min": 21,
 							"max": 22,
-							"result": "Dread"
+							"result": "Glenfellow"
 						},
 						{
 							"min": 23,
 							"max": 24,
-							"result": "Ecstasy"
+							"result": "Goldfound"
 						},
 						{
 							"min": 25,
 							"max": 26,
-							"result": "Ennui"
+							"result": "Goodbarrel"
 						},
 						{
 							"min": 27,
 							"max": 28,
-							"result": "Entropy"
+							"result": "Goodearth"
 						},
 						{
 							"min": 29,
 							"max": 30,
-							"result": "Excellence"
+							"result": "Greenbottle"
 						},
 						{
 							"min": 31,
 							"max": 32,
-							"result": "Fear"
+							"result": "Greenleaf"
 						},
 						{
 							"min": 33,
 							"max": 34,
-							"result": "Glory"
+							"result": "High-hill"
 						},
 						{
 							"min": 35,
 							"max": 36,
-							"result": "Gluttony"
+							"result": "Hilltopple"
 						},
 						{
 							"min": 37,
 							"max": 38,
-							"result": "Grief"
+							"result": "Hogcollar"
 						},
 						{
 							"min": 39,
 							"max": 40,
-							"result": "Hate"
+							"result": "Honeypot"
 						},
 						{
 							"min": 41,
 							"max": 42,
-							"result": "Hope"
+							"result": "Jamjar"
 						},
 						{
 							"min": 43,
 							"max": 44,
-							"result": "Horror"
+							"result": "Kettlewhistle"
 						},
 						{
 							"min": 45,
 							"max": 46,
-							"result": "Ideal"
+							"result": "Leagallow"
 						},
 						{
 							"min": 47,
 							"max": 48,
-							"result": "Ignominy"
+							"result": "Littlefoot"
 						},
 						{
 							"min": 49,
 							"max": 50,
-							"result": "Laughter"
+							"result": "Nimblefingers"
 						},
 						{
 							"min": 51,
 							"max": 52,
-							"result": "Love"
+							"result": "Porridgepot"
 						},
 						{
 							"min": 53,
 							"max": 54,
-							"result": "Lust"
+							"result": "Quickstep"
 						},
 						{
 							"min": 55,
 							"max": 56,
-							"result": "Mayhem"
+							"result": "Reedfellow"
 						},
 						{
 							"min": 57,
 							"max": 58,
-							"result": "Mockery"
+							"result": "Shadowquick"
 						},
 						{
 							"min": 59,
 							"max": 60,
-							"result": "Murder"
+							"result": "Silvereyes"
 						},
 						{
 							"min": 61,
 							"max": 62,
-							"result": "Muse"
+							"result": "Smoothhands"
 						},
 						{
 							"min": 63,
 							"max": 64,
-							"result": "Music"
+							"result": "Stonebridge"
 						},
 						{
 							"min": 65,
 							"max": 66,
-							"result": "Mystery"
+							"result": "Stoutbridge"
 						},
 						{
 							"min": 67,
 							"max": 68,
-							"result": "Nowhere"
+							"result": "Stoutman"
 						},
 						{
 							"min": 69,
 							"max": 70,
-							"result": "Open"
+							"result": "Strongbones"
 						},
 						{
 							"min": 71,
 							"max": 72,
-							"result": "Pain"
+							"result": "Sunmeadow"
 						},
 						{
 							"min": 73,
 							"max": 74,
-							"result": "Passion"
+							"result": "Swiftwhistle"
 						},
 						{
 							"min": 75,
 							"max": 76,
-							"result": "Poetry"
+							"result": "Tallfellow"
 						},
 						{
 							"min": 77,
 							"max": 78,
-							"result": "Quest"
+							"result": "Tealeaf"
 						},
 						{
 							"min": 79,
 							"max": 80,
-							"result": "Random"
+							"result": "Tenpenny"
 						},
 						{
 							"min": 81,
 							"max": 82,
-							"result": "Reverence"
+							"result": "Thistletop"
 						},
 						{
 							"min": 83,
 							"max": 84,
-							"result": "Revulsion"
+							"result": "Thorngage"
 						},
 						{
 							"min": 85,
 							"max": 86,
-							"result": "Sorrow"
+							"result": "Tosscobble"
 						},
 						{
 							"min": 87,
 							"max": 88,
-							"result": "Temerity"
+							"result": "Underbough"
 						},
 						{
 							"min": 89,
 							"max": 90,
-							"result": "Torment"
+							"result": "Underfoot"
 						},
 						{
 							"min": 91,
 							"max": 92,
-							"result": "Tragedy"
+							"result": "Warmwater"
 						},
 						{
 							"min": 93,
 							"max": 94,
-							"result": "Vice"
+							"result": "Whispermouse"
 						},
 						{
 							"min": 95,
 							"max": 96,
-							"result": "Virtue"
+							"result": "Wildcloak"
 						},
 						{
 							"min": 97,
 							"max": 98,
-							"result": "Weary"
+							"result": "Wildheart"
 						},
 						{
 							"min": 99,
 							"max": 0,
-							"result": "Wit"
+							"result": "Wiseacre"
 						}
 					]
 				}
-			],
-			"page": 180
+			]
 		},
 		{
 			"name": "Human",
 			"source": "XGE",
+			"page": 181,
 			"tables": [
 				{
 					"option": "Arabic, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -5753,7 +5210,7 @@
 				},
 				{
 					"option": "Arabic, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -6009,7 +5466,7 @@
 				},
 				{
 					"option": "Celtic, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -6265,7 +5722,7 @@
 				},
 				{
 					"option": "Celtic, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -6521,7 +5978,7 @@
 				},
 				{
 					"option": "Chinese, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -6777,7 +6234,7 @@
 				},
 				{
 					"option": "Chinese, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -7033,7 +6490,7 @@
 				},
 				{
 					"option": "Egyptian, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -7289,7 +6746,7 @@
 				},
 				{
 					"option": "Egyptian, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -7545,7 +7002,7 @@
 				},
 				{
 					"option": "English, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -7801,7 +7258,7 @@
 				},
 				{
 					"option": "English, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -8057,7 +7514,7 @@
 				},
 				{
 					"option": "French, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -8313,7 +7770,7 @@
 				},
 				{
 					"option": "French, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -8569,7 +8026,7 @@
 				},
 				{
 					"option": "German, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -8825,7 +8282,7 @@
 				},
 				{
 					"option": "German, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -9081,7 +8538,7 @@
 				},
 				{
 					"option": "Indian, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -9337,7 +8794,7 @@
 				},
 				{
 					"option": "Indian, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -9593,7 +9050,7 @@
 				},
 				{
 					"option": "Mesoamerican, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -9849,7 +9306,7 @@
 				},
 				{
 					"option": "Mesoamerican, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -10105,7 +9562,7 @@
 				},
 				{
 					"option": "Japanese, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -10361,7 +9818,7 @@
 				},
 				{
 					"option": "Japanese, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -10617,7 +10074,7 @@
 				},
 				{
 					"option": "Niger-Congo, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -10873,7 +10330,7 @@
 				},
 				{
 					"option": "Niger-Congo, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -11129,7 +10586,7 @@
 				},
 				{
 					"option": "Norse, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -11385,7 +10842,7 @@
 				},
 				{
 					"option": "Norse, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -11641,7 +11098,7 @@
 				},
 				{
 					"option": "Polynesian, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -11897,7 +11354,7 @@
 				},
 				{
 					"option": "Polynesian, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -12153,7 +11610,7 @@
 				},
 				{
 					"option": "Roman, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -12409,7 +11866,7 @@
 				},
 				{
 					"option": "Roman, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -12665,7 +12122,7 @@
 				},
 				{
 					"option": "Slavic, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -12921,7 +12378,7 @@
 				},
 				{
 					"option": "Slavic, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -13177,7 +12634,7 @@
 				},
 				{
 					"option": "Spanish, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -13433,7 +12890,7 @@
 				},
 				{
 					"option": "Spanish, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -13689,7 +13146,7 @@
 				},
 				{
 					"option": "Greek, Female",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -13945,7 +13402,7 @@
 				},
 				{
 					"option": "Greek, Male",
-					"diceType": 100,
+					"diceExpression": "d100",
 					"table": [
 						{
 							"min": 1,
@@ -14199,247 +13656,16 @@
 						}
 					]
 				}
-			],
-			"page": 181
-		},
-		{
-			"name": "Gith",
-			"source": "MTF",
-			"tables": [
-				{
-					"option": "Githyanki, Male",
-					"diceType": 10,
-					"table": [
-						{
-							"min": 1,
-							"max": 1,
-							"result": "Elirdain"
-						},
-						{
-							"min": 2,
-							"max": 2,
-							"result": "Gaath"
-						},
-						{
-							"min": 3,
-							"max": 3,
-							"result": "Ja'adoc"
-						},
-						{
-							"min": 4,
-							"max": 4,
-							"result": "Kar'i'nas"
-						},
-						{
-							"min": 5,
-							"max": 5,
-							"result": "Lykus"
-						},
-						{
-							"min": 6,
-							"max": 6,
-							"result": "Quith"
-						},
-						{
-							"min": 7,
-							"max": 7,
-							"result": "Ris'a'an"
-						},
-						{
-							"min": 8,
-							"max": 8,
-							"result": "Tropos"
-						},
-						{
-							"min": 9,
-							"max": 9,
-							"result": "Viran"
-						},
-						{
-							"min": 10,
-							"max": 10,
-							"result": "Xamados"
-						}
-					]
-				},
-				{
-					"option": "Githyanki, Female",
-					"diceType": 10,
-					"table": [
-						{
-							"min": 1,
-							"max": 1,
-							"result": "Aaryl"
-						},
-						{
-							"min": 2,
-							"max": 2,
-							"result": "B'noor"
-						},
-						{
-							"min": 3,
-							"max": 3,
-							"result": "Fenelzi'ir"
-						},
-						{
-							"min": 4,
-							"max": 4,
-							"result": "Jen'lig"
-						},
-						{
-							"min": 5,
-							"max": 5,
-							"result": "Pah'zel"
-						},
-						{
-							"min": 6,
-							"max": 6,
-							"result": "Quorstyl"
-						},
-						{
-							"min": 7,
-							"max": 7,
-							"result": "Sirruth"
-						},
-						{
-							"min": 8,
-							"max": 8,
-							"result": "Vaira"
-						},
-						{
-							"min": 9,
-							"max": 9,
-							"result": "Yessune"
-						},
-						{
-							"min": 10,
-							"max": 10,
-							"result": "Zar'ryth"
-						}
-					]
-				},
-				{
-					"option": "Githzerai, Male",
-					"diceType": 10,
-					"table": [
-						{
-							"min": 1,
-							"max": 1,
-							"result": "Dak"
-						},
-						{
-							"min": 2,
-							"max": 2,
-							"result": "Duurth"
-						},
-						{
-							"min": 3,
-							"max": 3,
-							"result": "Ferzth"
-						},
-						{
-							"min": 4,
-							"max": 4,
-							"result": "Greth"
-						},
-						{
-							"min": 5,
-							"max": 5,
-							"result": "Hurm"
-						},
-						{
-							"min": 6,
-							"max": 6,
-							"result": "Kalla"
-						},
-						{
-							"min": 7,
-							"max": 7,
-							"result": "Muurg"
-						},
-						{
-							"min": 8,
-							"max": 8,
-							"result": "Nurm"
-						},
-						{
-							"min": 9,
-							"max": 9,
-							"result": "Shrakk"
-						},
-						{
-							"min": 10,
-							"max": 10,
-							"result": "Xorm"
-						}
-					]
-				},
-				{
-					"option": "Githzerai, Female",
-					"diceType": 10,
-					"table": [
-						{
-							"min": 1,
-							"max": 1,
-							"result": "Adaka"
-						},
-						{
-							"min": 2,
-							"max": 2,
-							"result": "Adeya"
-						},
-						{
-							"min": 3,
-							"max": 3,
-							"result": "Ella"
-						},
-						{
-							"min": 4,
-							"max": 4,
-							"result": "Ezhelya"
-						},
-						{
-							"min": 5,
-							"max": 5,
-							"result": "Immilzin"
-						},
-						{
-							"min": 6,
-							"max": 6,
-							"result": "Izera"
-						},
-						{
-							"min": 7,
-							"max": 7,
-							"result": "Janara"
-						},
-						{
-							"min": 8,
-							"max": 8,
-							"result": "Loraya"
-						},
-						{
-							"min": 9,
-							"max": 9,
-							"result": "Uweya"
-						},
-						{
-							"min": 10,
-							"max": 10,
-							"result": "Vithka"
-						}
-					]
-				}
-			],
-			"page": 97
+			]
 		},
 		{
 			"name": "Lizardfolk",
 			"source": "GoS",
+			"page": 64,
 			"tables": [
 				{
 					"option": "General",
-					"diceType": 20,
+					"diceExpression": "d20",
 					"table": [
 						{
 							"min": 1,
@@ -14543,8 +13769,782 @@
 						}
 					]
 				}
-			],
-			"page": 64
+			]
+		},
+		{
+			"name": "Tiefling",
+			"source": "XGE",
+			"page": 180,
+			"tables": [
+				{
+					"option": "Female",
+					"diceExpression": "d100",
+					"table": [
+						{
+							"min": 1,
+							"max": 2,
+							"result": "Akta"
+						},
+						{
+							"min": 3,
+							"max": 4,
+							"result": "Anakis"
+						},
+						{
+							"min": 5,
+							"max": 6,
+							"result": "Armara"
+						},
+						{
+							"min": 7,
+							"max": 8,
+							"result": "Astaro"
+						},
+						{
+							"min": 9,
+							"max": 10,
+							"result": "Aym"
+						},
+						{
+							"min": 11,
+							"max": 12,
+							"result": "Azza"
+						},
+						{
+							"min": 13,
+							"max": 14,
+							"result": "Beleth"
+						},
+						{
+							"min": 15,
+							"max": 16,
+							"result": "Bryseis"
+						},
+						{
+							"min": 17,
+							"max": 18,
+							"result": "Bune"
+						},
+						{
+							"min": 19,
+							"max": 20,
+							"result": "Criella"
+						},
+						{
+							"min": 21,
+							"max": 22,
+							"result": "Damaia"
+						},
+						{
+							"min": 23,
+							"max": 24,
+							"result": "Decarabia"
+						},
+						{
+							"min": 25,
+							"max": 26,
+							"result": "Ea"
+						},
+						{
+							"min": 27,
+							"max": 28,
+							"result": "Gadreel"
+						},
+						{
+							"min": 29,
+							"max": 30,
+							"result": "Gomory"
+						},
+						{
+							"min": 31,
+							"max": 32,
+							"result": "Hecat"
+						},
+						{
+							"min": 33,
+							"max": 34,
+							"result": "Ishte"
+						},
+						{
+							"min": 35,
+							"max": 36,
+							"result": "Jezebeth"
+						},
+						{
+							"min": 37,
+							"max": 38,
+							"result": "Kali"
+						},
+						{
+							"min": 39,
+							"max": 40,
+							"result": "Kallista"
+						},
+						{
+							"min": 41,
+							"max": 42,
+							"result": "Kasdeya"
+						},
+						{
+							"min": 43,
+							"max": 44,
+							"result": "Lerissa"
+						},
+						{
+							"min": 45,
+							"max": 46,
+							"result": "Lilith"
+						},
+						{
+							"min": 47,
+							"max": 48,
+							"result": "Makaria"
+						},
+						{
+							"min": 49,
+							"max": 50,
+							"result": "Manea"
+						},
+						{
+							"min": 51,
+							"max": 52,
+							"result": "Markosian"
+						},
+						{
+							"min": 53,
+							"max": 54,
+							"result": "Mastema"
+						},
+						{
+							"min": 55,
+							"max": 56,
+							"result": "Naamah"
+						},
+						{
+							"min": 57,
+							"max": 58,
+							"result": "Nemeia"
+						},
+						{
+							"min": 59,
+							"max": 60,
+							"result": "Nija"
+						},
+						{
+							"min": 61,
+							"max": 62,
+							"result": "Orianna"
+						},
+						{
+							"min": 63,
+							"max": 64,
+							"result": "Osah"
+						},
+						{
+							"min": 65,
+							"max": 66,
+							"result": "Phelaia"
+						},
+						{
+							"min": 67,
+							"max": 68,
+							"result": "Prosperine"
+						},
+						{
+							"min": 69,
+							"max": 70,
+							"result": "Purah"
+						},
+						{
+							"min": 71,
+							"max": 72,
+							"result": "Pyra"
+						},
+						{
+							"min": 73,
+							"max": 74,
+							"result": "Rieta"
+						},
+						{
+							"min": 75,
+							"max": 76,
+							"result": "Ronobe"
+						},
+						{
+							"min": 77,
+							"max": 78,
+							"result": "Ronwe"
+						},
+						{
+							"min": 79,
+							"max": 80,
+							"result": "Seddit"
+						},
+						{
+							"min": 81,
+							"max": 82,
+							"result": "Seere"
+						},
+						{
+							"min": 83,
+							"max": 84,
+							"result": "Sekhmet"
+						},
+						{
+							"min": 85,
+							"max": 86,
+							"result": "Semyaza"
+						},
+						{
+							"min": 87,
+							"max": 88,
+							"result": "Shava"
+						},
+						{
+							"min": 89,
+							"max": 90,
+							"result": "Shax"
+						},
+						{
+							"min": 91,
+							"max": 92,
+							"result": "Sorath"
+						},
+						{
+							"min": 93,
+							"max": 94,
+							"result": "Uzza"
+						},
+						{
+							"min": 95,
+							"max": 96,
+							"result": "Vapula"
+						},
+						{
+							"min": 97,
+							"max": 98,
+							"result": "Vepar"
+						},
+						{
+							"min": 99,
+							"max": 0,
+							"result": "Verin"
+						}
+					]
+				},
+				{
+					"option": "Male",
+					"diceExpression": "d100",
+					"table": [
+						{
+							"min": 1,
+							"max": 2,
+							"result": "Abad"
+						},
+						{
+							"min": 3,
+							"max": 4,
+							"result": "Ahrim"
+						},
+						{
+							"min": 5,
+							"max": 6,
+							"result": "Akmen"
+						},
+						{
+							"min": 7,
+							"max": 8,
+							"result": "Amnon"
+						},
+						{
+							"min": 9,
+							"max": 10,
+							"result": "Andram"
+						},
+						{
+							"min": 11,
+							"max": 12,
+							"result": "Astar"
+						},
+						{
+							"min": 13,
+							"max": 14,
+							"result": "Balam"
+						},
+						{
+							"min": 15,
+							"max": 16,
+							"result": "Barakas"
+						},
+						{
+							"min": 17,
+							"max": 18,
+							"result": "Bathin"
+						},
+						{
+							"min": 19,
+							"max": 20,
+							"result": "Caim"
+						},
+						{
+							"min": 21,
+							"max": 22,
+							"result": "Chem"
+						},
+						{
+							"min": 23,
+							"max": 24,
+							"result": "Cimer"
+						},
+						{
+							"min": 25,
+							"max": 26,
+							"result": "Cressel"
+						},
+						{
+							"min": 27,
+							"max": 28,
+							"result": "Damakos"
+						},
+						{
+							"min": 29,
+							"max": 30,
+							"result": "Ekemon"
+						},
+						{
+							"min": 31,
+							"max": 32,
+							"result": "Euron"
+						},
+						{
+							"min": 33,
+							"max": 34,
+							"result": "Fenriz"
+						},
+						{
+							"min": 35,
+							"max": 36,
+							"result": "Forcas"
+						},
+						{
+							"min": 37,
+							"max": 38,
+							"result": "Habor"
+						},
+						{
+							"min": 39,
+							"max": 40,
+							"result": "Iados"
+						},
+						{
+							"min": 41,
+							"max": 42,
+							"result": "Kairon"
+						},
+						{
+							"min": 43,
+							"max": 44,
+							"result": "Leucis"
+						},
+						{
+							"min": 45,
+							"max": 46,
+							"result": "Mamnen"
+						},
+						{
+							"min": 47,
+							"max": 48,
+							"result": "Mantus"
+						},
+						{
+							"min": 49,
+							"max": 50,
+							"result": "Marbas"
+						},
+						{
+							"min": 51,
+							"max": 52,
+							"result": "Melech"
+						},
+						{
+							"min": 53,
+							"max": 54,
+							"result": "Merihim"
+						},
+						{
+							"min": 55,
+							"max": 56,
+							"result": "Modean"
+						},
+						{
+							"min": 57,
+							"max": 58,
+							"result": "Mordai"
+						},
+						{
+							"min": 59,
+							"max": 60,
+							"result": "Mormo"
+						},
+						{
+							"min": 61,
+							"max": 62,
+							"result": "Morthos"
+						},
+						{
+							"min": 63,
+							"max": 64,
+							"result": "Nicor"
+						},
+						{
+							"min": 65,
+							"max": 66,
+							"result": "Nirgel"
+						},
+						{
+							"min": 67,
+							"max": 68,
+							"result": "Oriax"
+						},
+						{
+							"min": 69,
+							"max": 70,
+							"result": "Paymon"
+						},
+						{
+							"min": 71,
+							"max": 72,
+							"result": "Pelaios"
+						},
+						{
+							"min": 73,
+							"max": 74,
+							"result": "Purson"
+						},
+						{
+							"min": 75,
+							"max": 76,
+							"result": "Qemuel"
+						},
+						{
+							"min": 77,
+							"max": 78,
+							"result": "Raam"
+						},
+						{
+							"min": 79,
+							"max": 80,
+							"result": "Rimmon"
+						},
+						{
+							"min": 81,
+							"max": 82,
+							"result": "Sammal"
+						},
+						{
+							"min": 83,
+							"max": 84,
+							"result": "Skamos"
+						},
+						{
+							"min": 85,
+							"max": 86,
+							"result": "Tethren"
+						},
+						{
+							"min": 87,
+							"max": 88,
+							"result": "Thamuz"
+						},
+						{
+							"min": 89,
+							"max": 90,
+							"result": "Therai"
+						},
+						{
+							"min": 91,
+							"max": 92,
+							"result": "Valafar"
+						},
+						{
+							"min": 93,
+							"max": 94,
+							"result": "Vassago"
+						},
+						{
+							"min": 95,
+							"max": 96,
+							"result": "Xappan"
+						},
+						{
+							"min": 97,
+							"max": 98,
+							"result": "Zepar"
+						},
+						{
+							"min": 99,
+							"max": 0,
+							"result": "Zephan"
+						}
+					]
+				},
+				{
+					"option": "Virtue",
+					"diceExpression": "d100",
+					"table": [
+						{
+							"min": 1,
+							"max": 2,
+							"result": "Ambition"
+						},
+						{
+							"min": 3,
+							"max": 4,
+							"result": "Art"
+						},
+						{
+							"min": 5,
+							"max": 6,
+							"result": "Carrion"
+						},
+						{
+							"min": 7,
+							"max": 8,
+							"result": "Chant"
+						},
+						{
+							"min": 9,
+							"max": 10,
+							"result": "Creed"
+						},
+						{
+							"min": 11,
+							"max": 12,
+							"result": "Death"
+						},
+						{
+							"min": 13,
+							"max": 14,
+							"result": "Debauchery"
+						},
+						{
+							"min": 15,
+							"max": 16,
+							"result": "Despair"
+						},
+						{
+							"min": 17,
+							"max": 18,
+							"result": "Doom"
+						},
+						{
+							"min": 19,
+							"max": 20,
+							"result": "Doubt"
+						},
+						{
+							"min": 21,
+							"max": 22,
+							"result": "Dread"
+						},
+						{
+							"min": 23,
+							"max": 24,
+							"result": "Ecstasy"
+						},
+						{
+							"min": 25,
+							"max": 26,
+							"result": "Ennui"
+						},
+						{
+							"min": 27,
+							"max": 28,
+							"result": "Entropy"
+						},
+						{
+							"min": 29,
+							"max": 30,
+							"result": "Excellence"
+						},
+						{
+							"min": 31,
+							"max": 32,
+							"result": "Fear"
+						},
+						{
+							"min": 33,
+							"max": 34,
+							"result": "Glory"
+						},
+						{
+							"min": 35,
+							"max": 36,
+							"result": "Gluttony"
+						},
+						{
+							"min": 37,
+							"max": 38,
+							"result": "Grief"
+						},
+						{
+							"min": 39,
+							"max": 40,
+							"result": "Hate"
+						},
+						{
+							"min": 41,
+							"max": 42,
+							"result": "Hope"
+						},
+						{
+							"min": 43,
+							"max": 44,
+							"result": "Horror"
+						},
+						{
+							"min": 45,
+							"max": 46,
+							"result": "Ideal"
+						},
+						{
+							"min": 47,
+							"max": 48,
+							"result": "Ignominy"
+						},
+						{
+							"min": 49,
+							"max": 50,
+							"result": "Laughter"
+						},
+						{
+							"min": 51,
+							"max": 52,
+							"result": "Love"
+						},
+						{
+							"min": 53,
+							"max": 54,
+							"result": "Lust"
+						},
+						{
+							"min": 55,
+							"max": 56,
+							"result": "Mayhem"
+						},
+						{
+							"min": 57,
+							"max": 58,
+							"result": "Mockery"
+						},
+						{
+							"min": 59,
+							"max": 60,
+							"result": "Murder"
+						},
+						{
+							"min": 61,
+							"max": 62,
+							"result": "Muse"
+						},
+						{
+							"min": 63,
+							"max": 64,
+							"result": "Music"
+						},
+						{
+							"min": 65,
+							"max": 66,
+							"result": "Mystery"
+						},
+						{
+							"min": 67,
+							"max": 68,
+							"result": "Nowhere"
+						},
+						{
+							"min": 69,
+							"max": 70,
+							"result": "Open"
+						},
+						{
+							"min": 71,
+							"max": 72,
+							"result": "Pain"
+						},
+						{
+							"min": 73,
+							"max": 74,
+							"result": "Passion"
+						},
+						{
+							"min": 75,
+							"max": 76,
+							"result": "Poetry"
+						},
+						{
+							"min": 77,
+							"max": 78,
+							"result": "Quest"
+						},
+						{
+							"min": 79,
+							"max": 80,
+							"result": "Random"
+						},
+						{
+							"min": 81,
+							"max": 82,
+							"result": "Reverence"
+						},
+						{
+							"min": 83,
+							"max": 84,
+							"result": "Revulsion"
+						},
+						{
+							"min": 85,
+							"max": 86,
+							"result": "Sorrow"
+						},
+						{
+							"min": 87,
+							"max": 88,
+							"result": "Temerity"
+						},
+						{
+							"min": 89,
+							"max": 90,
+							"result": "Torment"
+						},
+						{
+							"min": 91,
+							"max": 92,
+							"result": "Tragedy"
+						},
+						{
+							"min": 93,
+							"max": 94,
+							"result": "Vice"
+						},
+						{
+							"min": 95,
+							"max": 96,
+							"result": "Virtue"
+						},
+						{
+							"min": 97,
+							"max": 98,
+							"result": "Weary"
+						},
+						{
+							"min": 99,
+							"max": 0,
+							"result": "Wit"
+						}
+					]
+				}
+			]
 		}
 	]
 }

@@ -1,6 +1,19 @@
 {
 	"monsterFluff": [
 		{
+			"name": "Clockwork Behir",
+			"source": "OoW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OoW/Clockwork Behir.webp"
+					}
+				}
+			]
+		},
+		{
 			"name": "Dagdra Deepforge",
 			"source": "OoW",
 			"entries": [
@@ -26,7 +39,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/AI/Dagdra Deepforge.jpg"
+						"path": "bestiary/AI/Dagdra Deepforge.webp"
 					}
 				}
 			]
@@ -39,7 +52,33 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/AI/Enormous Tentacle.jpg"
+						"path": "bestiary/AI/Enormous Tentacle.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Gildha Duhn",
+			"source": "OoW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OoW/Gildha Duhn.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Grunka",
+			"source": "OoW",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/OoW/Grunka.webp"
 					}
 				}
 			]
@@ -70,7 +109,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/AI/Onyx.jpg"
+						"path": "bestiary/AI/Onyx.webp"
 					}
 				}
 			]
@@ -101,7 +140,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/AI/Two Dry Cloaks.jpg"
+						"path": "bestiary/AI/Two Dry Cloaks.webp"
 					}
 				}
 			]

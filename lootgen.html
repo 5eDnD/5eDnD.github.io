@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta name="description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
 	<title>Lootgen - 5etools</title>
@@ -64,9 +64,9 @@
 	<div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
 
 	<header class="hidden-xs hidden-sm page__header">
-		<div class="container">
-			<h1 class="page__title">Loot Generator</h1>
-			<p class="page__subtitle" id="page__subtitle">Configure the generator, then Roll Loot!</p>
+		<div class="container ve-flex-v-baseline">
+			<h1 class="page__title no-wrap my-0">Loot Generator</h1>
+			<p class="page__subtitle no-wrap my-0" id="page__subtitle">Configure the generator, then Roll Loot!</p>
 		</div>
 	</header>
 
@@ -75,7 +75,9 @@
 	</nav>
 
 	<div class="view-col-group--cancer h-100 mh-0">
-		<div class="container view-col-wrapper view-col-wrapper--cancer">
+		<div class="py-2 ve-flex-vh-center initial-message initial-message--large h-100" id="wrp-loading">Loading...</div>
+
+		<div class="container view-col-wrapper view-col-wrapper--cancer ve-hidden" id="wrp-content">
 			<div class="view-col" id="lootgen-lhs" style="flex: 4;"></div>
 
 			<div class="cancer__wrp-mobile-1 cancer__anchor"><div class="cancer__disp-cancer"></div><!--5ETOOLS_AD_MOB_PLAYER_1--></div>
@@ -97,6 +99,7 @@
 <script type="text/javascript" src="js/omnisearch.js"></script>
 <script type="text/javascript" src="js/hist.js"></script>
 <script type="text/javascript" src="js/filter.js"></script>
+<script type="text/javascript" src="js/utils-dataloader.js"></script>
 <script type="text/javascript" src="js/utils-brew.js"></script>
 <script type="text/javascript" src="js/filter-items.js"></script>
 <script type="text/javascript" src="js/filter-spells.js"></script>

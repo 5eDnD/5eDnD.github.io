@@ -4,10 +4,14 @@ const JSON_URL = "data/renderdemo.json";
 const STORAGE_LOCATION = "demoInput";
 
 window.addEventListener("load", async () => {
-	await BrewUtil2.pInit();
+	await Promise.all([
+		PrereleaseUtil.pInit(),
+		BrewUtil2.pInit(),
+	]);
 	const rendererType = await StorageUtil.pGetForPage("renderer");
 	ExcludeUtil.pInitialise().then(null); // don't await, as this is only used for search
-	BrewUtil2.pGetBrewProcessed(); // don't await, as this is only used for tags
+	PrereleaseUtil.pGetBrewProcessed().then(null); // don't await, as this is only used for tags
+	BrewUtil2.pGetBrewProcessed().then(null); // don't await, as this is only used for tags
 	const data = await DataUtil.loadJSON(JSON_URL);
 	return initDemo(data, rendererType);
 });
@@ -29,17 +33,17 @@ async function initDemo (data, rendererType) {
 		switch (rendererType) {
 			case "html": {
 				renderer = Renderer.get();
-				$out.removeClass("whitespace-pre");
+				$out.removeClass("whitespace-pre").removeClass("code");
 				break;
 			}
 			case "md": {
 				renderer = RendererMarkdown.get();
-				$out.addClass("whitespace-pre");
+				$out.addClass("whitespace-pre").addClass("code");
 				break;
 			}
 			case "cards": {
 				renderer = RendererCard.get();
-				$out.addClass("whitespace-pre");
+				$out.addClass("whitespace-pre").addClass("code");
 				break;
 			}
 			default: throw new Error(`Unhandled renderer!`);
@@ -50,12 +54,7 @@ async function initDemo (data, rendererType) {
 	$selRenderer.val(rendererType || "html");
 
 	// init editor
-	const editor = ace.edit("jsoninput");
-	editor.setOptions({
-		wrap: true,
-		showPrintMargin: false,
-		tabSize: 2,
-	});
+	const editor = EditorUtil.initEditor("jsoninput", {mode: "ace/mode/json"});
 
 	function demoRender () {
 		$msg.html("");

@@ -1,18 +1,32 @@
 "use strict";
 
 class FeatsSublistManager extends SublistManager {
-	constructor () {
-		super({
-			sublistClass: "subfeats",
-		});
+	static get _ROW_TEMPLATE () {
+		return [
+			new SublistCellTemplate({
+				name: "Name",
+				css: "bold col-4 pl-0",
+				colStyle: "",
+			}),
+			new SublistCellTemplate({
+				name: "Ability",
+				css: "col-4",
+				colStyle: "",
+			}),
+			new SublistCellTemplate({
+				name: "Prerequisite",
+				css: "col-4 pr-0",
+				colStyle: "",
+			}),
+		];
 	}
 
 	pGetSublistItem (it, hash) {
+		const cellsText = [it.name, it._slAbility, it._slPrereq];
+
 		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
-				<span class="bold col-4 pl-0">${it.name}</span>
-				<span class="col-4 ${it._slAbility === VeCt.STR_NONE ? "list-entry-none" : ""}">${it._slAbility}</span>
-				<span class="col-4 ${it._slPrereq === VeCt.STR_NONE ? "list-entry-none" : ""} pr-0">${it._slPrereq}</span>
+				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`)
 			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
@@ -29,6 +43,7 @@ class FeatsSublistManager extends SublistManager {
 			},
 			{
 				entity: it,
+				mdRow: [...cellsText],
 			},
 		);
 		return listItem;
@@ -39,15 +54,23 @@ class FeatsPage extends ListPage {
 	constructor () {
 		const pageFilter = new PageFilterFeats();
 		super({
-			dataSource: "data/feats.json",
+			dataSource: DataUtil.feat.loadJSON.bind(DataUtil.feat),
+			dataSourceFluff: DataUtil.featFluff.loadJSON.bind(DataUtil.featFluff),
+
+			pFnGetFluff: Renderer.feat.pGetFluff.bind(Renderer.feat),
 
 			pageFilter,
 
-			listClass: "feats",
-
 			dataProps: ["feat"],
 
+			bookViewOptions: {
+				namePlural: "feats",
+				pageTitle: "Feats Book View",
+			},
+
 			isPreviewable: true,
+
+			isMarkdownPopout: true,
 		});
 	}
 
@@ -55,7 +78,7 @@ class FeatsPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(feat, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(feat.source);
 		const hash = UrlUtil.autoEncodeHash(feat);
@@ -65,7 +88,7 @@ class FeatsPage extends ListPage {
 			<span class="bold col-3-5 px-1">${feat.name}</span>
 			<span class="col-3-5 ${feat._slAbility === VeCt.STR_NONE ? "list-entry-none " : ""}">${feat._slAbility}</span>
 			<span class="col-3 ${feat._slPrereq === VeCt.STR_NONE ? "list-entry-none " : ""}">${feat._slPrereq}</span>
-			<span class="source col-1-7 text-center ${Parser.sourceJsonToColor(feat.source)} pr-0" title="${Parser.sourceJsonToFull(feat.source)}" ${BrewUtil2.sourceJsonToStyle(feat.source)}>${source}</span>
+			<span class="source col-1-7 ve-text-center ${Parser.sourceJsonToColor(feat.source)} pr-0" title="${Parser.sourceJsonToFull(feat.source)}" ${Parser.sourceJsonToStyle(feat.source)}>${source}</span>
 		</a>
 		<div class="ve-flex ve-hidden relative lst__wrp-preview">
 			<div class="vr-0 absolute lst__vr-preview"></div>
@@ -93,18 +116,8 @@ class FeatsPage extends ListPage {
 		return listItem;
 	}
 
-	handleFilterChange () {
-		const f = this._filterBox.getValues();
-		this._list.filter(item => this._pageFilter.toDisplay(f, this._dataList[item.ix]));
-		FilterBox.selectFirstVisible(this._dataList);
-	}
-
-	_doLoadHash (id) {
-		const feat = this._dataList[id];
-
-		this._$pgContent.empty().append(RenderFeats.$getRenderedFeat(feat));
-
-		this._updateSelected();
+	_renderStats_doBuildStatsTab ({ent}) {
+		this._$pgContent.empty().append(RenderFeats.$getRenderedFeat(ent));
 	}
 }
 

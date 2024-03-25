@@ -49,3 +49,15 @@ class PageFilterPsionics extends PageFilter {
 		);
 	}
 }
+
+globalThis.PageFilterPsionics = PageFilterPsionics;
+
+class ListSyntaxPsionics extends ListUiUtil.ListSyntax {
+	static _INDEXABLE_PROPS_ENTRIES = [
+		"entries",
+		"modes",
+		"focus",
+	];
+}
+
+globalThis.ListSyntaxPsionics = ListSyntaxPsionics;

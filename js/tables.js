@@ -10,8 +10,24 @@ class TablesSublistManager extends SublistManager {
 		});
 	}
 
+	static get _ROW_TEMPLATE () {
+		return [
+			new SublistCellTemplate({
+				name: "Name",
+				css: "bold col-12 px-0",
+				colStyle: "",
+			}),
+		];
+	}
+
 	pGetSublistItem (it, hash) {
-		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col"><a href="#${hash}" class="lst--border lst__row-inner" title="${it.name}"><span class="bold col-12 px-0">${it.name}</span></a></div>`)
+		const cellsText = [it.name];
+
+		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
+			<a href="#${hash}" class="lst--border lst__row-inner" title="${it.name}">
+				${this.constructor._getRowCellsHtml({values: cellsText})}
+			</a>
+		</div>`)
 			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
 			.click(evt => this._listSub.doSelect(listItem, evt));
 
@@ -24,6 +40,7 @@ class TablesSublistManager extends SublistManager {
 			},
 			{
 				entity: it,
+				mdRow: [...cellsText],
 			},
 		);
 		return listItem;
@@ -34,7 +51,7 @@ class TablesPage extends ListPage {
 	constructor () {
 		const pageFilter = new PageFilterTables();
 		super({
-			dataSource: DataUtil.table.loadJSON,
+			dataSource: DataUtil.table.loadJSON.bind(DataUtil.table),
 
 			pageFilter,
 
@@ -45,15 +62,21 @@ class TablesPage extends ListPage {
 
 			dataProps: ["table", "tableGroup"],
 
-			bindOtherButtonsOptions: {
-				other: [
-					{
-						name: "Copy as CSV",
-						pFn: () => this._pCopyRenderedAsCsv(),
-					},
-				],
-			},
+			isMarkdownPopout: true,
+
+			listSyntax: new ListSyntaxTables({fnGetDataList: () => this._dataList}),
 		});
+	}
+
+	get _bindOtherButtonsOptions () {
+		return {
+			other: [
+				{
+					name: "Copy as CSV",
+					pFn: () => this._pCopyRenderedAsCsv(),
+				},
+			],
+		};
 	}
 
 	async _pCopyRenderedAsCsv () {
@@ -64,7 +87,19 @@ class TablesPage extends ListPage {
 			.map(tbl => {
 				const parser = new DOMParser();
 				const rows = tbl.rows.map(row => row.map(cell => parser.parseFromString(`<div>${Renderer.get().render(cell)}</div>`, "text/html").documentElement.textContent));
-				return DataUtil.getCsv((tbl.colLabels || []).map(it => Renderer.stripTags(it)), rows);
+
+				const headerRowMetas = Renderer.table.getHeaderRowMetas(tbl) || [];
+				const [headerRowMetasAsHeaders, ...headerRowMetasAsRows] = headerRowMetas
+					.map(headerRowMeta => headerRowMeta.map(it => Renderer.stripTags(it)));
+
+				return DataUtil.getCsv(
+					headerRowMetasAsHeaders,
+					[
+						// If there are extra headers, treat them as rows
+						...headerRowMetasAsRows,
+						...rows,
+					],
+				);
 			})
 			.join("\n\n");
 
@@ -78,14 +113,14 @@ class TablesPage extends ListPage {
 		const sortName = it.name.replace(/^\s*([\d,.]+)\s*gp/, (...m) => m[1].replace(Parser._numberCleanRegexp, "").padStart(9, "0"));
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(it.source);
 		const hash = UrlUtil.autoEncodeHash(it);
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst--border lst__row-inner">
 			<span class="bold col-10 pl-0">${it.name}</span>
-			<span class="col-2 text-center ${Parser.sourceJsonToColor(it.source)} pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${BrewUtil2.sourceJsonToStyle(it.source)}>${source}</span>
+			<span class="col-2 ve-text-center ${Parser.sourceJsonToColor(it.source)} pr-0" title="${Parser.sourceJsonToFull(it.source)}" ${Parser.sourceJsonToStyle(it.source)}>${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -108,27 +143,8 @@ class TablesPage extends ListPage {
 		return listItem;
 	}
 
-	handleFilterChange () {
-		const f = this._filterBox.getValues();
-		this._list.filter(item => this._pageFilter.toDisplay(f, this._dataList[item.ix]));
-		FilterBox.selectFirstVisible(this._dataList);
-	}
-
-	_doLoadHash (id) {
-		Renderer.get().setFirstSection(true);
-		const it = this._dataList[id];
-
-		this._$pgContent.empty().append(RenderTables.$getRenderedTable(it));
-
-		this._updateSelected();
-	}
-
-	_getSearchCache (entity) {
-		if (!entity.rows && !entity.tables) return "";
-		const ptrOut = {_: ""};
-		this._getSearchCache_handleEntryProp(entity, "rows", ptrOut);
-		this._getSearchCache_handleEntryProp(entity, "tables", ptrOut);
-		return ptrOut._;
+	_renderStats_doBuildStatsTab ({ent}) {
+		this._$pgContent.empty().append(RenderTables.$getRenderedTable(ent));
 	}
 }
 

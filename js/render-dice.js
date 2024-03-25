@@ -1,3 +1,5 @@
+"use strict";
+
 Renderer.dice = {
 	SYSTEM_USER: {
 		name: "Avandra", // goddess of luck
@@ -194,17 +196,20 @@ Renderer.dice = {
 
 	// region Event handling
 	async pRollerClickUseData (evt, ele) {
+		evt.stopPropagation();
+		evt.preventDefault();
+
 		const $ele = $(ele);
 		const rollData = $ele.data("packed-dice");
 		let name = $ele.data("roll-name");
 		let shiftKey = evt.shiftKey;
-		let ctrlKey = evt.ctrlKey || evt.metaKey;
+		let ctrlKey = EventUtil.isCtrlMetaKey(evt);
 
 		const options = rollData.toRoll.split(";").map(it => it.trim()).filter(Boolean);
 
 		let chosenRollData;
 		if (options.length > 1) {
-			const cpyRollData = MiscUtil.copy(rollData);
+			const cpyRollData = MiscUtil.copyFast(rollData);
 			const menu = ContextUtil.getMenu([
 				new ContextUtil.Action(
 					"Choose Roll",
@@ -216,7 +221,7 @@ Renderer.dice = {
 					`Roll ${it}`,
 					evt => {
 						shiftKey = shiftKey || evt.shiftKey;
-						ctrlKey = ctrlKey || (evt.ctrlKey || evt.metaKey);
+						ctrlKey = ctrlKey || (EventUtil.isCtrlMetaKey(evt));
 						cpyRollData.toRoll = it;
 						return cpyRollData;
 					},
@@ -257,7 +262,7 @@ Renderer.dice = {
 			results.push(input);
 		}
 
-		const rollDataCpy = MiscUtil.copy(chosenRollData);
+		const rollDataCpy = MiscUtil.copyFast(chosenRollData);
 		rePrompt.lastIndex = 0;
 		rollDataCpy.toRoll = rollDataCpy.toRoll.replace(rePrompt, () => results.shift());
 
@@ -278,7 +283,7 @@ Renderer.dice = {
 							title,
 							evt => {
 								shiftKey = shiftKey || evt.shiftKey;
-								ctrlKey = ctrlKey || (evt.ctrlKey || evt.metaKey);
+								ctrlKey = ctrlKey || (EventUtil.isCtrlMetaKey(evt));
 
 								const fromScaling = rollDataCpy.prompt.options[it];
 								if (!fromScaling) {
@@ -358,6 +363,7 @@ Renderer.dice = {
 		if ($parent.is("th") && $parent.attr("data-rd-isroller") === "true") {
 			if ($parent.attr("data-rd-namegeneratorrolls")) {
 				return Renderer.dice._pRollerClick_pRollGeneratorTable({
+					$parent,
 					$ele,
 					rolledBy,
 					modRollMeta,
@@ -472,7 +478,7 @@ Renderer.dice = {
 		return Renderer.dice._pRollerClick_getMsgBug(total);
 	},
 
-	async _pRollerClick_pRollGeneratorTable ({$ele, rolledBy, modRollMeta, rollOpts}) {
+	async _pRollerClick_pRollGeneratorTable ({$parent, $ele, rolledBy, modRollMeta, rollOpts}) {
 		Renderer.dice.addElement({rolledBy, html: `<i>${rolledBy.label}:</i>`, isMessage: true});
 
 		// Track a total of all rolls--this is a bit meaningless, but this method is expected to return a result value
@@ -482,7 +488,7 @@ Renderer.dice = {
 		const numRolls = Number($parent.attr("data-rd-namegeneratorrolls"));
 		const $ths = $ele.closest(`table`).find(`th`);
 		for (let i = 0; i < numRolls; ++i) {
-			const cpyRolledBy = MiscUtil.copy(rolledBy);
+			const cpyRolledBy = MiscUtil.copyFast(rolledBy);
 			cpyRolledBy.label = $($ths.get(i + 1)).text().trim();
 
 			const result = await Renderer.dice.pRollEntry(
@@ -528,7 +534,7 @@ Renderer.dice = {
 			} else out.rollCount = 2; // otherwise, just roll twice
 		}
 
-		if (evt.ctrlKey || evt.metaKey) {
+		if (EventUtil.isCtrlMetaKey(evt)) {
 			if (entry.subType === "damage") { // If CTRL is held, half the damage
 				entry.toRoll = `floor((${entry.toRoll}) / 2)`;
 			} else if (entry.subType === "d20") { // If CTRL is held, roll disadvantage (assuming SHIFT is not held)
@@ -598,6 +604,7 @@ Renderer.dice = {
 		wrpTree.tree.successMax = entry.successMax;
 		wrpTree.tree.chanceSuccessText = entry.chanceSuccessText;
 		wrpTree.tree.chanceFailureText = entry.chanceFailureText;
+		wrpTree.tree.isColorSuccessFail = entry.isColorSuccessFail;
 
 		// arbitrarily return the result of the highest roll if we roll multiple times
 		const results = [];
@@ -703,13 +710,22 @@ Renderer.dice = {
 				? result >= opts.target ? ` <b>&geq;${opts.target}</b>` : ` <span class="ve-muted">&lt;${opts.target}</span>`
 				: "";
 
-			const totalPart = tree.successThresh
-				? `<span class="roll">${result > (tree.successMax || 100) - tree.successThresh ? (tree.chanceSuccessText || "Success!") : (tree.chanceFailureText || "Failure")}</span>`
+			const isThreshSuccess = tree.successThresh != null && result > (tree.successMax || 100) - tree.successThresh;
+			const isColorSuccess = tree.isColorSuccessFail || !tree.chanceSuccessText;
+			const isColorFail = tree.isColorSuccessFail || !tree.chanceFailureText;
+			const totalPart = tree.successThresh != null
+				? `<span class="roll ${isThreshSuccess && isColorSuccess ? "roll-max" : !isThreshSuccess && isColorFail ? "roll-min" : ""}">${isThreshSuccess ? Renderer.get().render(tree.chanceSuccessText || "Success!") : Renderer.get().render(tree.chanceFailureText || "Failure")}</span>`
 				: `<span class="roll ${allMax ? "roll-max" : allMin ? "roll-min" : ""}">${result}</span>`;
 
 			const title = `${rolledBy.name ? `${rolledBy.name} \u2014 ` : ""}${lbl ? `${lbl}: ` : ""}${tree}`;
 
-			ExtensionUtil.doSendRoll({dice: tree.toString(), rolledBy: rolledBy.name, label: lbl});
+			const message = opts.fnGetMessage ? opts.fnGetMessage(result) : null;
+			ExtensionUtil.doSendRoll({
+				dice: tree.toString(),
+				result,
+				rolledBy: rolledBy.name,
+				label: [lbl, message].filter(Boolean).join(" \u2013 "),
+			});
 
 			if (!opts.isHidden) {
 				$out.append(`
@@ -719,7 +735,7 @@ Renderer.dice = {
 							${totalPart}
 							${ptTarget}
 							<span class="all-rolls ve-muted">${fullHtml}</span>
-							${opts.fnGetMessage ? `<span class="message">${opts.fnGetMessage(result)}</span>` : ""}
+							${message ? `<span class="message">${message}</span>` : ""}
 						</div>
 						<div class="out-roll-item-button-wrp">
 							<button title="Copy to input" class="btn btn-default btn-xs btn-copy-roll" onclick="Renderer.dice._$iptRoll.val('${tree.toString().replace(/\s+/g, "")}'); Renderer.dice._$iptRoll.focus()"><span class="glyphicon glyphicon-pencil"></span></button>
@@ -1048,11 +1064,14 @@ Renderer.dice.lang = {
 
 		str = str
 			.trim()
+			.replace(/\bPBd(?=\d)/g, "(PB)d") // Convert case-sensitive leading PB
 			.toLowerCase()
 			// region Convert some natural language
-			.replace(/\s+plus\s+/g, " + ")
-			.replace(/\s+minus\s+/g, " - ")
-			.replace(/\s+times\s+/g, " * ")
+			.replace(/\s*?\bplus\b\s*?/g, " + ")
+			.replace(/\s*?\bminus\b\s*?/g, " - ")
+			.replace(/\s*?\btimes\b\s*?/g, " * ")
+			.replace(/\s*?\bover\b\s*?/g, " / ")
+			.replace(/\s*?\bdivided by\b\s*?/g, " / ")
 			// endregion
 			.replace(/\s+/g, "")
 			.replace(/[\u2012\u2013\u2014]/g, "-") // convert dashes

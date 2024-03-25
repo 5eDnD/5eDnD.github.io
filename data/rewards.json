@@ -1,6 +1,36 @@
 {
 	"reward": [
 		{
+			"name": "Athreos's Devotee",
+			"source": "MOT",
+			"page": 37,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Athreos trait}",
+				"Your life is intertwined with the fate of the dead. You can cast {@spell gentle repose} with this trait, requiring no material components, a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest. Wisdom is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Athreos's Disciple",
+			"source": "MOT",
+			"page": 37,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Athreos trait}",
+				"You can cast {@spell false life} with this trait, requiring no material components. When you do so, you gain an additional 25 temporary hit points. Once you cast the spell in this way, you can't do so again until you finish a long rest. Wisdom is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Athreos's Votary",
+			"source": "MOT",
+			"page": 37,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Athreos trait}",
+				"You can cast {@spell speak with dead} with this trait, requiring no material components. Once you cast the spell in this way, you can't do so again until you finish a long rest. Wisdom is your spellcasting ability for this spell."
+			]
+		},
+		{
 			"name": "Azorius Charm",
 			"source": "GGR",
 			"page": 173,
@@ -10,12 +40,54 @@
 			]
 		},
 		{
+			"name": "Blessing of Bloody Might",
+			"source": "BMT",
+			"page": 171,
+			"type": "Blessing",
+			"entries": [
+				"Your Strength score increases by 2, to a maximum of 22.",
+				{
+					"type": "entries",
+					"name": "Consequence",
+					"id": "304",
+					"entries": [
+						"The character is cursed with werewolf {@variantrule Player Characters as Lycanthropes|MM|lycanthropy} (see the {@book Monster Manual|MM}) until the blessing ends on them. On nights when the moon is full, the cursed character flies into a rage that lasts until dawn; while in this state, the character becomes an NPC under the DM's control."
+					]
+				}
+			]
+		},
+		{
+			"name": "Blessing of Dumathoin",
+			"source": "PaBTSO",
+			"type": "Blessing",
+			"entries": [
+				"Your eyes become keen enough to pick out hidden secrets. You gain {@sense darkvision}. If you already had {@sense darkvision}, you can see in color in the dark. In addition, you can use an action to gain {@sense truesight} for 1 minute. Once you gain {@sense truesight} in this way, you can't do so again until you finish a long rest."
+			]
+		},
+		{
 			"name": "Blessing of Health",
 			"source": "DMG",
 			"page": 228,
 			"type": "Blessing",
 			"entries": [
 				"Your Constitution score increases by 2, up to a maximum of 22."
+			]
+		},
+		{
+			"name": "Blessing of Lonely Genius",
+			"source": "BMT",
+			"page": 171,
+			"type": "Blessing",
+			"entries": [
+				"Your Intelligence score increases by 2, to a maximum of 22.",
+				{
+					"type": "entries",
+					"name": "Consequence",
+					"id": "306",
+					"entries": [
+						"The character's intellect rubs old friends the wrong way. Three NPCs of the DM's choice become indifferent or hostile toward the character, and the character automatically fails any Charisma check made to improve their attitudes."
+					]
+				}
 			]
 		},
 		{
@@ -55,12 +127,37 @@
 			]
 		},
 		{
+			"name": "Blessing of the Solipsistic Mind",
+			"source": "PaBTSO",
+			"type": "Blessing",
+			"entries": [
+				"You access esoteric truths from an ancient tome by focusing deeply on your own thoughts. You can take an action to focus your inner mind. This focus lasts for 1 hour. While your inner mind is focused, you can't take reactions. For the duration, when you make an Intelligence check, Wisdom check, Intelligence saving throw, or Wisdom saving throw, you can roll a {@dice d8} and add the number rolled to the ability check or saving throw. You regain the ability to focus your inner mind when you finish a long rest."
+			]
+		},
+		{
 			"name": "Blessing of Understanding",
 			"source": "DMG",
 			"page": 228,
 			"type": "Blessing",
 			"entries": [
 				"Your Wisdom score increases by 2, up to a maximum of 22."
+			]
+		},
+		{
+			"name": "Blessing of Unearned Riches",
+			"source": "BMT",
+			"page": 171,
+			"type": "Blessing",
+			"entries": [
+				"The next time you search among or retrieve something from your belongings, you find an unmarked {@item pouch|PHB} containing five 1,000 gp gemstones.",
+				{
+					"type": "entries",
+					"name": "Consequence",
+					"id": "308",
+					"entries": [
+						"The character's new fortune garners unwanted attention from a guild of violent mercenaries, who claim to have been robbed of exactly 5,000 gp worth of gems the same day as the character found the windfall. Every night for the next 7 days, the character is attacked by {@dice 1d4} neutral evil {@creature Veteran||veterans}. When the attacks end, so does this blessing."
+					]
+				}
 			]
 		},
 		{
@@ -334,12 +431,172 @@
 			]
 		},
 		{
+			"name": "Champion of Affliction",
+			"source": "MOT",
+			"page": 70,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Pharika trait}",
+				"You can increase your Dexterity or Wisdom score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of Deception",
+			"source": "MOT",
+			"page": 73,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Phenax trait}",
+				"You can increase your Dexterity or Charisma score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of Destiny",
+			"source": "MOT",
+			"page": 58,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Klothys trait}",
+				"You can increase your Strength or Wisdom score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of Harvests",
+			"source": "MOT",
+			"page": 52,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Karametra trait}",
+				"You can increase your Constitution or Wisdom score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of Horizons",
+			"source": "MOT",
+			"page": 61,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Kruphix trait}",
+				"You can increase your Constitution or Intelligence score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of Slaughter",
+			"source": "MOT",
+			"page": 64,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Mogis trait}",
+				"You can increase your Strength or Constitution score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of Storms",
+			"source": "MOT",
+			"page": 55,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Keranos trait}",
+				"You can increase your Intelligence or Wisdom score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of the Dead",
+			"source": "MOT",
+			"page": 43,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Erebos trait}",
+				"You can increase your Constitution or Wisdom score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of the Forge",
+			"source": "MOT",
+			"page": 76,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Purphoros trait}",
+				"You can increase your Strength or Intelligence score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of the Hunt",
+			"source": "MOT",
+			"page": 67,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Nylea trait}",
+				"You can increase your Dexterity or Wisdom score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of the Passage",
+			"source": "MOT",
+			"page": 37,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Athreos trait}",
+				"You can increase your Intelligence or Wisdom score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of the Polis",
+			"source": "MOT",
+			"page": 40,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Ephara trait}",
+				"You can increase your Intelligence or Charisma score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of the Sea",
+			"source": "MOT",
+			"page": 79,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Thassa trait}",
+				"You can increase your Dexterity or Intelligence score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of the Sun",
+			"source": "MOT",
+			"page": 46,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Heliod trait}",
+				"You can increase your Strength or Wisdom score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Champion of Victory",
+			"source": "MOT",
+			"page": 49,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 50+ Iroas trait}",
+				"You can increase your Strength or Charisma score by 2 and also increase your maximum for that score by 2."
+			]
+		},
+		{
+			"name": "Charm of Agelessness",
+			"source": "BGDIA",
+			"page": 215,
+			"type": "Charm",
+			"entries": [
+				"While you have this charm, you don't age naturally, and your skin gains the waxy complexion of a doll. Magical aging still affects you, however. This charm vanishes from you when you die."
+			]
+		},
+		{
 			"name": "Charm of Air Bubbles",
 			"source": "BAM",
+			"page": 17,
 			"type": "Charm",
 			"entries": [
 				"{@note This charm can be bestowed by a {@creature chwinga astronaut|BAM} using their Magical Gift action.}",
-				"This charm allows you to cast the air bubble spell (see the Astral Adventurer's Guide) as an action. Once used three times, this charm goes away."
+				"This charm allows you to cast the {@spell Air Bubble|AAG} spell (see the Astral Adventurer's Guide) as an action. Once used three times, this charm goes away."
 			]
 		},
 		{
@@ -349,6 +606,15 @@
 			"type": "Charm",
 			"entries": [
 				"This charm allows you to cast the {@spell conjure animals} spell (3rd-level version) as an action. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of Balance",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"When a creature you can see within 60 feet of you damages you, you can use your reaction to deal an amount of force damage to that creature equal to half the damage you took. Once used three times, the charm vanishes from you."
 			]
 		},
 		{
@@ -391,12 +657,49 @@
 			]
 		},
 		{
+			"name": "Charm of Diabolical Inspiration",
+			"source": "BGDIA",
+			"page": 215,
+			"type": "Charm",
+			"entries": [
+				"You grow a short, vestigial tail when you receive this charm unless you have a tail already. When you make an ability check, an attack roll, or a saving throw, you can use this charm to gain advantage on the roll. Once used nine times, the charm vanishes from you, as does your vestigial tail."
+			]
+		},
+		{
+			"name": "Charm of Euryale",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"As an action, you can unleash a petrifying wave of magic from your eyes in a 30-foot cone. Each creature in that area must make a DC 15 Constitution saving throw. On a failed save, a creature has the {@condition petrified} condition for 1 hour. On a successful save, a creature is partially turned to stone and has the {@condition restrained} condition. A {@condition restrained} creature can repeat the save at the end of each of its turns, ending the effect on itself on a success.",
+				"Once you use this charm, it vanishes from you."
+			]
+		},
+		{
 			"name": "Charm of Feather Falling",
 			"source": "DMG",
 			"page": 228,
 			"type": "Charm",
 			"entries": [
 				"This charm grants you the benefits of a {@item ring of feather falling}. These benefits last for 10 days, after which the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of Greater Conscription",
+			"source": "BGDIA",
+			"page": 215,
+			"type": "Charm",
+			"entries": [
+				"While you have this charm, you attract flies. As an action, you activate this charm to summon a {@creature horned devil}. This devil appears in an unoccupied space within 30 feet of you, obeys your commands begrudgingly, and serves you under protest for 9 days or until it dies, whereupon it disappears. When the devil disappears, this charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of Hellish Rebuke",
+			"source": "BGDIA",
+			"page": 215,
+			"type": "Charm",
+			"entries": [
+				"A fiery halo appears above your head when you receive this charm. This charm allows you to cast the {@spell hellish rebuke} spell (9th-level version) as a reaction. Once used nine times, the charm vanishes from you, as does the fiery halo."
 			]
 		},
 		{
@@ -411,10 +714,38 @@
 		{
 			"name": "Charm of Instant Tools",
 			"source": "BAM",
+			"page": 17,
 			"type": "Charm",
 			"entries": [
 				"{@note This charm can be bestowed by a {@creature chwinga astronaut|BAM} using their Magical Gift action.}",
 				"This charm allows you to magically conjure a set of artisan's tools, navigator's tools, or thieves' tools. The conjured tools appear either in your hand or somewhere else in your space (your choice). Once used, this charm goes away, but the tools remain."
+			]
+		},
+		{
+			"name": "Charm of Lesser Conscription",
+			"source": "BGDIA",
+			"page": 215,
+			"type": "Charm",
+			"entries": [
+				"While you have this charm, you attract flies. As an action, you activate this charm to summon a {@creature barbed devil}, two {@creature Bearded Devil||bearded devils}, or three {@creature Spined Devil||spined devils}. All devils appear at once in unoccupied spaces within 30 feet of you. Each devil obeys your commands and serves you eagerly for 9 days or until it dies, whereupon the devil disappears. Once all devils summoned by this charm disappear, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of Many Things",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You are infused with a burst of magic from a {@item Deck of Many Things}. As an action, you can touch a willing creature other than yourself and bestow the effect of a single randomly determined card from the deck upon the target. Once you use this charm, it vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of Many Tongues",
+			"source": "BGDIA",
+			"page": 215,
+			"type": "Charm",
+			"entries": [
+				"You can speak and understand all languages, you gain proficiency in the {@skill Deception} and {@skill Persuasion} skills, and you can add double your normal proficiency bonus when using those skills. This charm vanishes from you when you die."
 			]
 		},
 		{
@@ -436,6 +767,15 @@
 			]
 		},
 		{
+			"name": "Charm of Ruin",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"As an action, you can touch a nonmagical object, or a section of a larger nonmagical object, that fits in a 5-foot cube. The target is reduced to dust. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
 			"name": "Charm of Snowball Strike",
 			"source": "IDRotF",
 			"page": 283,
@@ -446,12 +786,75 @@
 			]
 		},
 		{
+			"name": "Charm of the Adamant",
+			"source": "BGDIA",
+			"page": 215,
+			"type": "Charm",
+			"entries": [
+				"This charm has 9 charges. You can use an action to expend 1 charge from the charm to gain 30 temporary hit points. For the next hour, your eyes become voids of utter darkness, and you can't be {@condition charmed} or {@condition frightened}. Once all its charges have been expended, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Comet",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"As an action, you can force a creature you can see within 60 feet of you to focus on you. For 1 minute, creatures other than you and the target are {@condition invisible} to the target. The effect ends if any creature other than you damages the target or forces the target to make a saving throw. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
 			"name": "Charm of the Crystal Heart",
 			"source": "ToA",
 			"page": 167,
 			"type": "Charm",
 			"entries": [
 				"This charm grants you immunity to piercing and slashing damage from nonmagical attacks, but you gain vulnerability to bludgeoning damage. These effects last for 10 days, after which the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Donjon",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You can cast {@spell Otiluke's Resilient Sphere}, requiring no spell components and using your Intelligence, Wisdom, or Charisma as the spellcasting ability (your choice). Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Fates",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You can tug on the threads of fate to tweak circumstance in your favor. After you make an ability check, an attack roll, or a saving throw, you can roll a {@dice d10} and add it to the total, potentially turning failure into success. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Flames",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"As an action, you can summon two {@creature Bearded Devil||bearded devils}. The summoned devils appear in unoccupied spaces within 60 feet of you, obey your commands, and can't summon other devils. The devils take their turns immediately after yours on the initiative count. A summoned devil remains for 10 minutes, until it or you die, or until you dismiss one or both summoned devils as an action. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Fool",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You can cast {@spell Major Image}, requiring no spell components and using your Intelligence, Wisdom, or Charisma as the spellcasting ability (your choice). When you cast the spell in this way, it lasts its full duration with no concentration required. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Gem",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"As an action, you create a spray of {@dice 4d10} gems in a 30-foot cone originating from you. Each creature in that area must make a DC 15 Dexterity saving throw. On a failed save, a creature takes an amount of bludgeoning damage equal to the number of gems created. On a successful save, a creature takes half as much damage. The gems remain after the effect ends, and each one is worth 10 gp. Once used three times, the charm vanishes from you."
 			]
 		},
 		{
@@ -474,6 +877,33 @@
 			]
 		},
 		{
+			"name": "Charm of the Jester",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You can cast {@spell Tasha's Hideous Laughter}, requiring no spell components and using your Intelligence, Wisdom, or Charisma as the spellcasting ability (your choice). Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Key",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"As a bonus action, you can touch a nonmagical melee weapon and imbue it with magic for 1 hour. For the duration, the weapon deals an extra {@dice 1d8} force damage on a hit and deals double damage to objects and structures. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Knight",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"As an action, you can summon two neutral good {@creature Knight||knights} that are Celestials instead of Humanoids. The knights appear in unoccupied spaces within 60 feet of you and act as your allies. They take their turns immediately after yours on your initiative count. The knights remain for 10 minutes, until they or you die, or until you dismiss one or both of them as an action. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
 			"name": "Charm of the Maimed",
 			"source": "ToA",
 			"page": 167,
@@ -490,6 +920,51 @@
 			"entries": [
 				"{@note This charm can be bestowed by a {@creature chwinga|CM} living a desert by using their Magical Gift action.}",
 				"This charm allows you to cast the {@spell hallucinatory terrain} spell (save DC 15) as an action. Once used, this charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Moon",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"As an action, you make a minor wish. When you do, you create the effects of a spell of 5th level or lower. The spell takes effect as part of this action and requires no spell components. Your Intelligence, Wisdom, or Charisma is the spellcasting ability for this spell (your choice). Once you use this charm, it vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Puzzle",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You can cast {@spell Hypnotic Pattern}, requiring no spell components and using your Intelligence, Wisdom, or Charisma as the spellcasting ability (your choice). Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Rogue",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You can cast {@spell Mislead}, requiring no spell components and using your Intelligence, Wisdom, or Charisma as the spellcasting ability (your choice). When you cast the spell in this way, it lasts its full duration with no concentration required. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Sage",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You can cast {@spell Divination}, requiring no material components and using your Intelligence as the spellcasting ability. Once you cast the spell three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Skull",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"As a bonus action, you can transform into a deathly apparition. Your game statistics are replaced by those of a {@creature wraith}, except for your alignment and personality; your Intelligence, Wisdom, and Charisma scores; and your passive Wisdom ({@skill Perception}) score and languages. You don't have the wraith's Create Specter ability. Your equipment vanishes when you transform but returns when the transformation ends. The transformation lasts for 1 minute, until your wraith form is reduced to 0 hit points, or until you use a bonus action to end it. If the wraith form is reduced to 0 hit points and there is still damage left over, the remaining damage applies to your normal hit points. Once used three times, the charm vanishes from you."
 			]
 		},
 		{
@@ -521,12 +996,38 @@
 			]
 		},
 		{
+			"name": "Charm of the Star",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You can cast {@spell Enhance Ability}, requiring no spell components and using your Intelligence, Wisdom, or Charisma as the spellcasting ability (your choice). When you cast the spell in this way, it lasts its full duration with no concentration required. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
 			"name": "Charm of the Storm",
 			"source": "DIP",
 			"page": 41,
 			"type": "Charm",
 			"entries": [
 				"You become charged with the power of the storm, to the extent that tiny sparks crackle in your eyes. You can cast the {@spell lightning bolt} spell (3rd-level version) as an action. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Stumblenoodle",
+			"source": "HFStCM",
+			"type": "Charm",
+			"entries": [
+				"When a creature you can see within 30 feet of you moves, you can use your reaction to give the creature the {@condition prone} condition. Allies of the target who are within 30 feet of the target must succeed on a DC 16 Wisdom saving throw or have the {@condition stunned} condition until the end of their next turn as they laugh uncontrollably at their friend's misfortune. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Sun",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You learn the {@spell Light} cantrip if you don't already know it. You can cast {@spell Sunburst}, requiring no spell components and using your Intelligence, Wisdom, or Charisma as the spellcasting ability (your choice). Once used, the charm vanishes from you, and you unlearn the {@spell Light} cantrip gained from this charm."
 			]
 		},
 		{
@@ -539,6 +1040,24 @@
 			]
 		},
 		{
+			"name": "Charm of the Talons",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"As an action, you can cast {@spell Dispel Magic}, requiring no spell components and using your Intelligence, Wisdom, or Charisma as the spellcasting ability (your choice). If you successfully end any spells with it, you gain {@dice 1d6} {@book temporary hit points|PHB|9|Temporary Hit Points} for each spell level of the highest-level spell ended. Once used three times, the charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Throne",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You can cast {@spell Mordenkainen's Magnificent Mansion}, requiring no spell components and using your Intelligence, Wisdom, or Charisma as the spellcasting ability (your choice). Once used three times, the charm vanishes from you."
+			]
+		},
+		{
 			"name": "Charm of the Traveler's Haven",
 			"source": "IDRotF",
 			"page": 283,
@@ -546,6 +1065,15 @@
 			"entries": [
 				"{@note This charm can be bestowed by a {@creature chwinga|ToA} living in Icewind Dale or other cold regions by using their Magical Gift action.}",
 				"This charm has 3 charges. As an action, you can expend 1 of the charm's charges to cast the {@spell Leomund's tiny hut} spell, no components required. Once all its charges have been expended, this charm vanishes from you."
+			]
+		},
+		{
+			"name": "Charm of the Void",
+			"source": "BMT",
+			"page": 62,
+			"type": "Charm",
+			"entries": [
+				"You can cast {@spell Banishment}, requiring no material components and using your Intelligence, Wisdom, or Charisma as the spellcasting ability (your choice). Once used three times, the charm vanishes from you."
 			]
 		},
 		{
@@ -585,13 +1113,16 @@
 				"While you have Clay No-Face in your possession, you don't need to eat, drink, or breathe. These benefits last for 30 days while the doll is in your possession, after which the charm vanishes from you.",
 				"The doll is a Tiny construct. Destroying the doll causes the child's soul within it to become trapped in {@adventure the Soulmonger|ToA|5|The Soulmonger}.",
 				{
-					"type": "dataObject",
-					"dataObject": {
+					"type": "statblockInline",
+					"dataType": "object",
+					"data": {
 						"name": "Clay No-Face",
 						"isNpc": true,
 						"source": "ToA",
 						"page": 179,
-						"size": "T",
+						"size": [
+							"T"
+						],
 						"objectType": "U",
 						"creatureType": "construct",
 						"hp": 1,
@@ -607,6 +1138,59 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "Curse of Ruin",
+			"source": "TDCSR",
+			"page": 39,
+			"type": "Curse",
+			"entries": [
+				"Countless legends invoke {@i hgar'Gruum}, the Curse of Ruin. Great orc warriors have been laid low when bloodlust overtook their reason. Mighty mages driven by a foolhardy ambition forsook caution and delved furiously into knowledge no mortal eyes should behold. The Curse of Ruin is said to be the birthright of all {@book orcs|TDCSR|4|orcs}\u2014a deadly taint carried in the blood of the {@deity The Ruiner|Exandria|TDCSR|Ruiner} that forged their people during the {@book Calamity|TDCSR|1|The Calamity}.",
+				{
+					"type": "entries",
+					"name": "Truth of Ruin",
+					"page": 39,
+					"entries": [
+						"The truth is that the Curse of Ruin is a myth. The blood of the {@deity The Ruiner|Exandria|TDCSR|Ruiner} granted {@book orcs|TDCSR|4|orcs} physical strength and superhuman endurance, but it imparted none of the Betrayer God's evil. The power of the myth, however, is more ruinous than any magic."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Consequences of the Myth",
+					"page": 39,
+					"entries": [
+						"Countless superstitious folk across Exandria\u2014including many {@book orcs|TDCSR|4|orcs} themselves\u2014believe in the Curse of Ruin. This belief doesn't make the curse any more real. The myth's existence is a convenient way for any one orc to ignore the real consequences of their mistakes, or of any act of thoughtless harm\u2014the curse takes the blame. Even worse is when this \"birthright\" is leveled at wise, even-tempered {@book orcs|TDCSR|4|orcs} who have done nothing wrong, and their frustrated reactions are then taken as proof of the curse's existence."
+					]
+				}
+			],
+			"hasFluffImages": true
+		},
+		{
+			"name": "Curse of Strife",
+			"source": "TDCSR",
+			"page": 39,
+			"type": "Curse",
+			"entries": [
+				"The insidious voice of the {@deity The Strife Emperor|Exandria|TDCSR|Strife Emperor}, both damnable and damning, invades the minds of countless people across Tal'Dorei who have been afflicted by the Curse of Strife. The curse is especially prevalent in {@book Rifenmist|TDCSR|3|Rifenmist Peninsula}, where the {@deity The Strife Emperor|Exandria|TDCSR|Strife Emperor's} faithful clerics bestow it upon their soldiery, transforming them into perfect weapons of war. The curse acts in unpredictable ways, turning some into chaotic berserkers, others into obedient legionnaires, and others still into selfish, isolationist thieves. Cultists of the {@deity The Strife Emperor|Exandria|TDCSR|Strife Emperor} also use their power to covertly spread the curse throughout hospitable and kind communities across Exandria, aiming to destroy them from within and make them more susceptible to conquest.",
+				{
+					"type": "entries",
+					"name": "Origin of Strife",
+					"page": 39,
+					"entries": [
+						"Such transformations are the result of the {@deity The Strife Emperor|Exandria|TDCSR|Strife Emperor's} torment, which whispers constantly in the victims' minds. The free goblinkin of Tal'Dorei regard those who spread the curse with special contempt\u2014and those who suffer from it with immense pity.",
+						"For centuries, small-minded people in Tal'Dorei have feared {@book goblins|TDCSR|4|goblinkin} because they are the children of the {@deity The Strife Emperor|Exandria|TDCSR|Strife Emperor}. But while the first {@creature goblin|MM|goblins}, {@creature hobgoblin|MM|hobgoblins}, and {@creature bugbear|MM|bugbears} were created in the {@book Calamity|TDCSR|1|The Calamity} as soldiers for this fell god, the curse does not linger in their blood\u2014it spreads via those who pledge their souls to the {@deity The Strife Emperor|Exandria|TDCSR|Strife Emperor}. Clerics of the {@deity The Strife Emperor|Exandria|TDCSR|Strife Emperor} can use the {@spell bestow curse} spell to inflict the Curse of Strife."
+					]
+				},
+				{
+					"type": "entries",
+					"name": "Curing the Curse",
+					"page": 39,
+					"entries": [
+						"Creatures who experience kindness or suffer near-death experiences can have epiphanies that allow their true self to tear through the bloody shroud of the {@deity The Strife Emperor|Exandria|TDCSR|Strife Emperor's} lies. A curse-afflicted creature who spends one week being treated with love and compassion instead of hatred and fear can make a {@dc 20} Wisdom {@quickref saving throws|PHB|2|1|saving throw}, breaking the curse on a success. The {@spell remove curse} spell also immediately ends the curse\u2014and many reformed clerics of the {@deity The Strife Emperor|Exandria|TDCSR|Strife Emperor} have united with clerics of other faiths to loosen the bloody god's grip on their families."
+					]
+				}
+			],
+			"hasFluffImages": true
 		},
 		{
 			"name": "Dark Gift of Dahlver-Nar, He of the Many Teeth",
@@ -821,7 +1405,7 @@
 					"type": "entries",
 					"name": "Blindsight",
 					"entries": [
-						"You have {@sense blindsight} to a range of 10 feet. Within that range, you can effectively see anything that isn't behind {@book total cover|PHB|9|Cover}, even if you're {@condition blinded} or in darkness. Moreover, you can see {@condition invisible} creatures within that range, unless the creatures successfully hide from you."
+						"You have {@sense blindsight} to a range of 10 feet. Within that range, you can effectively see anything that isn't behind {@quickref cover|PHB|3|0|total cover}, even if you're {@condition blinded} or in darkness. Moreover, you can see {@condition invisible} creatures within that range, unless the creatures successfully hide from you."
 					]
 				},
 				{
@@ -842,6 +1426,78 @@
 			"entries": [
 				"You have begun to extend your awareness beyond the single world of the Material Plane that is your home.",
 				"You can cast {@spell contact other plane} as a ritual. The entity you contact is a dragon on another world in the Material Plane, so its knowledge of your world might be limited. Also, this dragon is an echo of the dragon who is the source of the gift, which might affect its attitude and behavior toward you."
+			]
+		},
+		{
+			"name": "Ephara's Devotee",
+			"source": "MOT",
+			"page": 40,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Ephara trait}",
+				"Ephara grants you insight into how people communicate. You can cast {@spell comprehend languages} with this trait, requiring no material component, a number of times equal to your Intelligence modifier (minimum of once). You regain all expended uses when you finish a long rest. Intelligence is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Ephara's Disciple",
+			"source": "MOT",
+			"page": 40,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Ephara trait}",
+				"You can cast {@spell Mordenkainen's private sanctum} with this trait, requiring no material components. Once you cast the spell in this way, you can't do so again until you finish a long rest. Intelligence is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Ephara's Votary",
+			"source": "MOT",
+			"page": 40,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Ephara trait}",
+				"You gain advantage on Charisma ({@skill Persuasion}) checks while you are within a city.",
+				"In addition, when you fail an Intelligence check or Intelligence saving throw, you can reroll the die, and you must use the new roll. Once you use this reroll, you can't do so again until you finish a long rest."
+			]
+		},
+		{
+			"name": "Erebos's Devotee",
+			"source": "MOT",
+			"page": 43,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Erebos trait}",
+				"As a devotee of Erebos, you have proven yourself an executor of the Underworld's grim laws. You can call on Erebos's favor to cast {@spell bane} with this trait, requiring no material components, a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest. Wisdom is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Erebos's Disciple",
+			"source": "MOT",
+			"page": 43,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Erebos trait}",
+				"When a soul is sent to its rightful place, you can draw on the energy of the Underworld to empower you. When a creature dies within 10 feet of you, you can use your reaction to gain a number of temporary hit points equal to your level."
+			]
+		},
+		{
+			"name": "Erebos's Votary",
+			"source": "MOT",
+			"page": 43,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Erebos trait}",
+				"You can cast {@spell vampiric touch} with this trait. Once you cast the spell in this way, you can't do so again until you finish a long rest. Wisdom is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Fortune's Grace",
+			"source": "TDCSR",
+			"page": 190,
+			"type": "Blessing",
+			"entries": [
+				"Your fate-touched essence can cause events to shift in your favor. When you make an attack roll, an ability check, or a {@quickref saving throws|PHB|2|1|saving throw}, you can choose to reroll the {@dice d20}. You must reroll the die before the outcome of the initial roll is determined.",
+				"Alternatively, when a creature you can see makes an attack against you or makes a {@quickref saving throws|PHB|2|1|saving throw} against one of your spells or features, you can force that creature to reroll the attack roll or {@quickref saving throws|PHB|2|1|saving throw}.",
+				"If the roll that triggers the reroll is made with {@quickref Advantage and Disadvantage|PHB|2|0|advantage} or {@quickref Advantage and Disadvantage|PHB|2|0|disadvantage}, {@dice 2d20|both d20s} are rerolled. Once you use this feature, you can't use it again until you finish a {@quickref resting|PHB|2|0|long rest}."
 			]
 		},
 		{
@@ -1073,6 +1729,36 @@
 			]
 		},
 		{
+			"name": "Heliod's Devotee",
+			"source": "MOT",
+			"page": 46,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Heliod trait}",
+				"As a devotee of Heliod, you have proven yourself a worthy champion of the sun god. You can call on Heliod's favor and cast {@spell bless} with this trait, requiring no material components. Heliod's blessing manifests as a nimbus around the affected creatures, causing them to shed dim light in a 5-foot radius until the spell ends. You can cast the spell in this way a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest. Wisdom is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Heliod's Disciple",
+			"source": "MOT",
+			"page": 46,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Heliod trait}",
+				"You grow accustomed to the blazing radiance of the sun; you have advantage on saving throws against being {@condition blinded}, and you have resistance to fire damage."
+			]
+		},
+		{
+			"name": "Heliod's Votary",
+			"source": "MOT",
+			"page": 46,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Heliod trait}",
+				"You can cast {@spell daylight} with this trait. Once you cast the spell in this way, you can't do so again until you finish a long rest. Wisdom is your spellcasting ability for this spell."
+			]
+		},
+		{
 			"name": "I'jin",
 			"source": "ToA",
 			"page": 129,
@@ -1117,6 +1803,37 @@
 			]
 		},
 		{
+			"name": "Iroas's Devotee",
+			"source": "MOT",
+			"page": 49,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Iroas trait}",
+				"As a devotee of Iroas, you have earned his favor through victories won in his name. You can cast {@spell compelled duel} with this trait a number of times equal to your Charisma modifier (minimum of once). You regain all expended uses when you finish a long rest. Charisma is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Iroas's Disciple",
+			"source": "MOT",
+			"page": 49,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Iroas trait}",
+				"As a bonus action, you can call on Iroas's blessing, gaining the following benefit for 1 minute or until you are {@condition incapacitated}: creatures within 30 feet of you can't gain advantage on attack rolls against you. Once you use this trait, you can't do so again until you finish a long rest."
+			]
+		},
+		{
+			"name": "Iroas's Votary",
+			"source": "MOT",
+			"page": 49,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Iroas trait}",
+				"You can cast {@spell crusader's mantle} with this trait. Once you cast the spell in this way, you can't do so again until you finish a long rest. Charisma is your spellcasting ability for this spell.",
+				"In addition, you have advantage on saving throws against being {@condition frightened}."
+			]
+		},
+		{
 			"name": "Izzet Charm",
 			"source": "GGR",
 			"page": 174,
@@ -1134,13 +1851,16 @@
 				"While you have Joho in your possession, it grants you the benefit of a {@item helm of comprehending languages}. This benefit lasts for 7 days while the doll is in your possession, after which the charm vanishes from you.",
 				"The doll is a Tiny construct. Destroying the doll causes the child's soul within it to become trapped in {@adventure the Soulmonger|ToA|5|The Soulmonger}.",
 				{
-					"type": "dataObject",
-					"dataObject": {
+					"type": "statblockInline",
+					"dataType": "object",
+					"data": {
 						"name": "Joho",
 						"isNpc": true,
 						"source": "ToA",
 						"page": 179,
-						"size": "T",
+						"size": [
+							"T"
+						],
 						"objectType": "U",
 						"creatureType": "construct",
 						"hp": 1,
@@ -1155,6 +1875,130 @@
 						]
 					}
 				}
+			]
+		},
+		{
+			"name": "Karametra's Devotee",
+			"source": "MOT",
+			"page": 52,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Karametra trait}",
+				"As a devotee of Karametra, you have proven yourself a worthy potential champion of the harvest god. As a bonus action, you can invoke her protection; spectral plants cover you, providing you with a +1 bonus to AC for 1 minute. Once you use this trait, you can't use it again until you finish a long rest."
+			]
+		},
+		{
+			"name": "Karametra's Disciple",
+			"source": "MOT",
+			"page": 52,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Karametra trait}",
+				"By performing an hour-long ritual, you can conjure enough grapes to fill three vials (4 ounces each) of wine. Each vial serves as a {@item potion of healing} for 24 hours, after which it loses this property. Once you use this trait, you can't do so again until you finish a long rest."
+			]
+		},
+		{
+			"name": "Karametra's Votary",
+			"source": "MOT",
+			"page": 52,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Karametra trait}",
+				"You can cast {@spell create food and water} with this trait. Once you cast the spell in this way, you can't do so again until you finish a long rest. Wisdom is your spellcasting ability for this spell.",
+				"In addition, you have advantage on saving throws against being {@condition poisoned}."
+			]
+		},
+		{
+			"name": "Keranos's Devotee",
+			"source": "MOT",
+			"page": 55,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Keranos trait}",
+				"As a devotee of Keranos, you have proven your wisdom and your allegiance to the storm lord. Once on each of your turns when you hit a creature with a weapon attack, you can deal an extra {@dice 1d6} lightning damage to the target. You can use this trait a number of times equal to your Intelligence modifier (minimum of once). You regain all expended uses when you finish a long rest."
+			]
+		},
+		{
+			"name": "Keranos's Disciple",
+			"source": "MOT",
+			"page": 55,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Keranos trait}",
+				"The energy of the storm fills your being, granting you advantage on initiative rolls."
+			]
+		},
+		{
+			"name": "Keranos's Votary",
+			"source": "MOT",
+			"page": 55,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Keranos trait}",
+				"When you fail an Intelligence or a Wisdom saving throw, you can reroll the die, and you must use the new roll. Once you use this trait, you can't do so again until you finish a long rest."
+			]
+		},
+		{
+			"name": "Klothys's Devotee",
+			"source": "MOT",
+			"page": 58,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Klothys trait}",
+				"As a devotee of Klothys, you can manipulate the bonds of destiny that invisibly entangle every living thing. You can cast {@spell command} with this trait a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest. Wisdom is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Klothys's Disciple",
+			"source": "MOT",
+			"page": 58,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Klothys trait}",
+				"You develop a second sense, allowing you to intuit the tug and pull of destiny. You can't be surprised, provided you aren't {@condition incapacitated}."
+			]
+		},
+		{
+			"name": "Klothys's Votary",
+			"source": "MOT",
+			"page": 58,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Klothys trait}",
+				"You can cast {@spell clairvoyance} with this trait, requiring no material components. Once you cast the spell in this way, you can't do so again until you finish a long rest. Wisdom is your spellcasting ability for this spell.",
+				"In addition, you have advantage on saving throws against being {@condition charmed}."
+			]
+		},
+		{
+			"name": "Kruphix's Devotee",
+			"source": "MOT",
+			"page": 61,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Kruphix trait}",
+				"As a devotee of Kruphix, you have proven yourself a devotee of reality's mysteries and laws. You can cast {@spell detect magic} with this trait a number of times equal to your Intelligence modifier (minimum of once). You regain all expended uses when you finish a long rest.",
+				"In addition, you know the {@spell mage hand} cantrip. Intelligence is your spellcasting ability for these spells."
+			]
+		},
+		{
+			"name": "Kruphix's Disciple",
+			"source": "MOT",
+			"page": 61,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Kruphix trait}",
+				"As a true champion of Kruphix, you can use your {@spell mage hand} cantrip to protect yourself. While your spectral hand is within 5 feet of you, you gain a +2 bonus to your AC against ranged attacks."
+			]
+		},
+		{
+			"name": "Kruphix's Votary",
+			"source": "MOT",
+			"page": 61,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Kruphix trait}",
+				"You can cast {@spell detect thoughts} with this trait, requiring no material components. Once you cast the spell in this way, you can't do so again until you finish a long rest. Intelligence is your spellcasting ability for this spell.",
+				"In addition, you have advantage on saving throws against being {@condition charmed}."
 			]
 		},
 		{
@@ -1246,6 +2090,36 @@
 			]
 		},
 		{
+			"name": "Mogis's Devotee",
+			"source": "MOT",
+			"page": 64,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Mogis trait}",
+				"As a devotee of Mogis, you have shown yourself to be a brutal combatant. You can call on Mogis's favor and cast {@spell wrathful smite} with this trait. Mogis's blessing manifest as a blood-red glow around your weapon, causing it to shed dim light in a 5-foot radius until the spell ends. You can cast the spell in this way a number of times equal to your Constitution modifier (minimum of once). You regain all expended uses when you finish a long rest. Constitution is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Mogis's Disciple",
+			"source": "MOT",
+			"page": 64,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Mogis trait}",
+				"Countless battles and vicious visions have given you focus. You have advantage on saving throws against being {@condition charmed} or {@condition frightened}."
+			]
+		},
+		{
+			"name": "Mogis's Votary",
+			"source": "MOT",
+			"page": 64,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Mogis trait}",
+				"You can cast {@spell blinding smite} with this trait. Once you cast the spell in this way, you can't do so again until you finish a long rest. Constitution is your spellcasting ability for this spell."
+			]
+		},
+		{
 			"name": "Nangnang",
 			"source": "ToA",
 			"page": 129,
@@ -1287,6 +2161,37 @@
 						}
 					]
 				}
+			]
+		},
+		{
+			"name": "Nylea's Devotee",
+			"source": "MOT",
+			"page": 67,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Nylea trait}",
+				"As a devotee of Nylea, you have proven yourself a guardian of the wilds. You can cast {@spell hunter's mark} with this trait a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest. Wisdom is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Nylea's Disciple",
+			"source": "MOT",
+			"page": 67,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Nylea trait}",
+				"When a beast is about to attack you, it must make a DC 15 Wisdom saving throw. On a failed save, the creature must choose a different target, or the attack automatically misses you. On a successful save, the creature is immune to this trait for 24 hours."
+			]
+		},
+		{
+			"name": "Nylea's Votary",
+			"source": "MOT",
+			"page": 67,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Nylea trait}",
+				"You can cast {@spell speak with animals} with this trait a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest. Wisdom is your spellcasting ability for this spell.",
+				"In addition, you have advantage on saving throws against being {@condition poisoned}."
 			]
 		},
 		{
@@ -1380,10 +2285,78 @@
 						{
 							"type": "item",
 							"name": "Power:",
-							"entry": "The host can't be surprised, gains advantage on all Wisdom checks, and never takes damage from falling."
+							"entry": "The host can't be {@quickref Surprise|PHB|3|0|surprised}, gains advantage on all Wisdom checks, and never takes damage from falling."
 						}
 					]
 				}
+			]
+		},
+		{
+			"name": "Pharika's Devotee",
+			"source": "MOT",
+			"page": 70,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Pharika trait}",
+				"As a devotee of Pharika, you have power over affliction. You can cast {@spell ray of sickness} with this trait a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest. Wisdom is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Pharika's Disciple",
+			"source": "MOT",
+			"page": 70,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Pharika trait}",
+				"Pharika blesses you with Pharika's Balm, an effect that can cure or enfeeble. As an action, you can touch a creature and choose one of the following:",
+				{
+					"type": "list",
+					"items": [
+						"The target regains hit points equal to {@dice 1d8} + your Wisdom modifier, and you can cure the target of one disease or neutralize one poison affecting it.",
+						"The target must succeed on a DC 15 Constitution saving throw, or for 1 minute, the target deals only half damage with weapon attacks. The target can repeat the saving throw at the end of each of its turns, ending the effect on a success."
+					]
+				},
+				"You can use this action a number of times equal to your Wisdom modifier (minimum of once). You regain all expended uses when you finish a long rest."
+			]
+		},
+		{
+			"name": "Pharika's Votary",
+			"source": "MOT",
+			"page": 70,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Pharika trait}",
+				"Pharika's blessing shields you from most maladies. You have advantage on saving throws against being {@condition poisoned}, and you are immune to disease."
+			]
+		},
+		{
+			"name": "Phenax's Devotee",
+			"source": "MOT",
+			"page": 73,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Phenax trait}",
+				"As a devotee of Phenax, you have proven yourself accomplished at deception. You can call on Phenax's blessing and cast {@spell disguise self} with this trait. While the spell is active, your shadow still resembles your original form. You can cast the spell in this way a number of times equal to your Charisma modifier (minimum of once). You regain all expended uses when you finish a long rest. Charisma is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Phenax's Disciple",
+			"source": "MOT",
+			"page": 73,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Phenax trait}",
+				"When you are hidden from a creature and miss it with an attack, making the attack doesn't reveal your position."
+			]
+		},
+		{
+			"name": "Phenax's Votary",
+			"source": "MOT",
+			"page": 73,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Phenax trait}",
+				"Your words are inspired by Theros's greatest liar. You have advantage on Charisma ({@skill Deception}) checks."
 			]
 		},
 		{
@@ -1395,6 +2368,38 @@
 			"entries": [
 				"The psionic energy of a gem dragon empowers your mind. You gain resistance to psychic damage.",
 				"In addition, you learn the {@spell telekinesis} spell. You can cast this spell without expending a spell slot. Once you cast this spell in this way, you can't do so again until you finish a long rest. You can also cast this spell using spell slots you have of the appropriate level. The spellcasting ability is Intelligence, Wisdom, or Charisma when you cast the spell with this gift (choose when you gain the gift)."
+			]
+		},
+		{
+			"name": "Purphoros's Devotee",
+			"source": "MOT",
+			"page": 76,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Purphoros trait}",
+				"As a devotee of Purphoros, you have drawn the notice of the forge god with your skill. You can cast {@spell shield of faith} with this trait, requiring no material components, a number of times equal to your Intelligence modifier (minimum of once). You regain all expended uses when you finish a long rest.",
+				"In addition, you know the {@spell mending} cantrip. Intelligence is your spellcasting ability for these spells."
+			]
+		},
+		{
+			"name": "Purphoros's Disciple",
+			"source": "MOT",
+			"page": 76,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Purphoros trait}",
+				"While you are standing and an effect would push you 1 foot or more, you can use your reaction to not be pushed."
+			]
+		},
+		{
+			"name": "Purphoros's Votary",
+			"source": "MOT",
+			"page": 76,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Purphoros trait}",
+				"You can cast {@spell heat metal} with this trait, requiring no material components. Once you cast the spell in this way, you can't do so again until you finish a long rest. Intelligence is your spellcasting ability for this spell.",
+				"In addition, you have advantage on saving throws against being knocked {@condition prone}."
 			]
 		},
 		{
@@ -1487,13 +2492,16 @@
 				"While you have Strawbundle in your possession, this charm allows you to cast the {@spell etherealness} spell as an action, no components required. After it is used three times, the charm vanishes.",
 				"The doll is a Tiny construct. Destroying the doll causes the child's soul within it to become trapped in {@adventure the Soulmonger|ToA|5|The Soulmonger}.",
 				{
-					"type": "dataObject",
-					"dataObject": {
+					"type": "statblockInline",
+					"dataType": "object",
+					"data": {
 						"name": "Strawbundle",
 						"isNpc": true,
 						"source": "ToA",
 						"page": 179,
-						"size": "T",
+						"size": [
+							"T"
+						],
 						"objectType": "U",
 						"creatureType": "construct",
 						"hp": 1,
@@ -1508,6 +2516,36 @@
 						]
 					}
 				}
+			]
+		},
+		{
+			"name": "Thassa's Devotee",
+			"source": "MOT",
+			"page": 79,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 3+ Thassa trait}",
+				"As a devotee of Thassa, you have proven yourself a worthy representative of the god of the sea. You can cast {@spell fog cloud} with this trait. Fog created in this way smells strongly of the sea. You can cast the spell in this way a number of times equal to your Intelligence modifier (minimum of once). You regain all expended uses when you finish a long rest. Intelligence is your spellcasting ability for this spell."
+			]
+		},
+		{
+			"name": "Thassa's Disciple",
+			"source": "MOT",
+			"page": 79,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 25+ Thassa trait}",
+				"You are inspired by the tempestuous, uncontrollable nature of the sea; you have advantage on saving throws against being {@condition charmed} or {@condition restrained}."
+			]
+		},
+		{
+			"name": "Thassa's Votary",
+			"source": "MOT",
+			"page": 79,
+			"type": "Piety Trait",
+			"entries": [
+				"{@i Piety 10+ Thassa trait}",
+				"You can cast {@spell blink} with this trait. Once you cast the spell in this way, you can't do so again until you finish a long rest. Intelligence is your spellcasting ability for this spell."
 			]
 		},
 		{
@@ -1598,7 +2636,7 @@
 		{
 			"name": "Vlagomir's Spark",
 			"source": "IDRotF",
-			"page": 228,
+			"page": 227,
 			"type": "Charm",
 			"entries": [
 				"You gain 1 foot of height every hour and become proportionately heavier until you stand 21 feet tall and weigh 7,700 pounds. When you are 9 feet tall, your Strength becomes 19 unless it is already higher. For every 3 additional feet of height you gain, your Strength increases by 1, to a maximum of 23. Armor and clothing you are wearing and weapons you are carrying magically increase in size to match your growth. If you are the recipient of a {@spell greater restoration} spell or similar magic, this charm vanishes from you, and you immediately shrink back to normal size, along with any armor, clothing, and weapons in your possession."

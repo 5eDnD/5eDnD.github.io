@@ -145,6 +145,10 @@
 			"conditionInflict": [
 				"frightened"
 			],
+			"savingThrowForced": [
+				"dexterity",
+				"wisdom"
+			],
 			"hasToken": true,
 			"hasFluff": true
 		},
@@ -272,6 +276,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
 			"languageTags": [
 				"X"
 			],
@@ -284,6 +291,7 @@
 				"CW"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflictSpell": [
@@ -291,6 +299,13 @@
 				"frightened",
 				"invisible",
 				"paralyzed"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"dexterity",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true
@@ -404,7 +419,7 @@
 				{
 					"name": "Personal Insight",
 					"entries": [
-						"The usagt targets one creature it can see within 30 feet of it. The target must contest its Charisma ({@skill Deception}) check against the usagt‘s Wisdom (Insight) check.",
+						"The usagt targets one creature it can see within 30 feet of it. The target must contest its Charisma ({@skill Deception}) check against the usagt's Wisdom (Insight) check.",
 						"The target has advantage on the roll if it is immune to being {@condition charmed}. A target can choose to fail this check.",
 						"If the usagt wins, it magically learns the identity of a creature from the target's past, someone the target wishes it could speak to again or with whom the target has left something unsaid. If somehow no such creature exists in the target's past, the usagt learns that instead."
 					]
@@ -442,6 +457,10 @@
 			],
 			"conditionInflictSpell": [
 				"incapacitated"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluff": true

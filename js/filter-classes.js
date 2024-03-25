@@ -6,7 +6,7 @@ class PageFilterClassesBase extends PageFilter {
 
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Reprinted", "Sidekick", "SRD", "Basic Rules"],
+			items: ["Reprinted", "Sidekick", "SRD", "Basic Rules", "Legacy"],
 			deselFn: (it) => { return it === "Reprinted" || it === "Sidekick"; },
 			displayFnMini: it => it === "Reprinted" ? "Repr." : it,
 			displayFnTitle: it => it === "Reprinted" ? it : "",
@@ -34,22 +34,12 @@ class PageFilterClassesBase extends PageFilter {
 				}
 			},
 		});
-
-		// region source
-		this._sourceWalker = MiscUtil.getWalker({keyBlacklist: new Set(["type", "data"])}).walk;
-		this._sourcePrimitiveHandlers = {
-			string: (obj, lastKey) => {
-				if (lastKey === "source") this._sourceFilter.addItem(obj);
-				return obj;
-			},
-		};
-		// endregion
 	}
 
 	get optionsFilter () { return this._optionsFilter; }
 
 	static mutateForFilters (cls) {
-		cls.source = cls.source || SRC_PHB;
+		cls.source = cls.source || Parser.SRC_PHB;
 		cls.subclasses = cls.subclasses || [];
 
 		cls._fSources = SourceFilter.getCompleteFilterSources(cls);
@@ -65,6 +55,7 @@ class PageFilterClassesBase extends PageFilter {
 		if (cls.isReprinted) cls._fMisc.push("Reprinted");
 		if (cls.srd) cls._fMisc.push("SRD");
 		if (cls.basicRules) cls._fMisc.push("Basic Rules");
+		if (SourceUtil.isLegacySourceWotc(cls.source)) cls._fMisc.push("Legacy");
 		if (cls.isSidekick) cls._fMisc.push("Sidekick");
 
 		cls.subclasses.forEach(sc => {
@@ -74,11 +65,22 @@ class PageFilterClassesBase extends PageFilter {
 			sc._fMisc = [];
 			if (sc.srd) sc._fMisc.push("SRD");
 			if (sc.basicRules) sc._fMisc.push("Basic Rules");
+			if (SourceUtil.isLegacySourceWotc(sc.source)) sc._fMisc.push("Legacy");
 			if (sc.isReprinted) sc._fMisc.push("Reprinted");
 		});
 	}
 
-	_addEntrySourcesToFilter (entry) { this._sourceWalker(entry, this._sourcePrimitiveHandlers); }
+	_addEntrySourcesToFilter (entry) { this._addEntrySourcesToFilter_walk(entry); }
+
+	_addEntrySourcesToFilter_walk = (obj) => {
+		if ((typeof obj !== "object") || obj == null) return;
+
+		if (obj instanceof Array) return obj.forEach(this._addEntrySourcesToFilter_walk.bind(this));
+
+		if (obj.source) this._sourceFilter.addItem(obj.source);
+		// Assume anything we care about is under `entries`, for performance
+		if (obj.entries) this._addEntrySourcesToFilter_walk(obj.entries);
+	};
 
 	/**
 	 * @param cls
@@ -193,6 +195,8 @@ class PageFilterClassesBase extends PageFilter {
 	}
 }
 
+globalThis.PageFilterClassesBase = PageFilterClassesBase;
+
 class PageFilterClasses extends PageFilterClassesBase {
 	static _getClassSubclassLevelArray (it) {
 		return it.classFeatures.map((_, i) => i + 1);
@@ -263,3 +267,5 @@ class PageFilterClasses extends PageFilterClassesBase {
 		];
 	}
 }
+
+globalThis.PageFilterClasses = PageFilterClasses;

@@ -47,26 +47,7 @@
 			],
 			"areaTags": [
 				"C"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Warlock",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Absorb Elements",
@@ -123,35 +104,7 @@
 				"fire",
 				"lightning",
 				"thunder"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Ranger",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Aganazzar's Scorcher",
@@ -208,19 +161,7 @@
 			],
 			"areaTags": [
 				"L"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Beast Bond",
@@ -271,23 +212,12 @@
 				"beast"
 			],
 			"miscTags": [
+				"ADV",
 				"SGT"
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Ranger",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Bones of the Earth",
@@ -351,19 +281,12 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"DFT",
 				"SGT"
 			],
 			"areaTags": [
 				"MT"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Catapult",
@@ -416,29 +339,12 @@
 			"savingThrow": [
 				"dexterity"
 			],
+			"miscTags": [
+				"OBJ"
+			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Catnap",
@@ -492,31 +398,7 @@
 			],
 			"areaTags": [
 				"MT"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Cause Fear",
@@ -587,31 +469,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Bard",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					},
-					{
-						"name": "Cleric",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Ceremony",
@@ -701,26 +559,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Cleric",
-						"source": "PHB"
-					},
-					{
-						"name": "Paladin",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Druid",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Chaos Bolt",
@@ -873,20 +712,6 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					}
-				]
-			},
-			"backgrounds": [
-				{
-					"name": "Izzet Engineer",
-					"source": "GGR"
-				}
 			]
 		},
 		{
@@ -944,31 +769,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Control Flames",
@@ -1029,22 +830,6 @@
 			"areaTags": [
 				"C"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -1121,23 +906,7 @@
 			],
 			"areaTags": [
 				"C"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Create Bonfire",
@@ -1199,40 +968,13 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"OBJ",
 				"SCL",
 				"SGT"
 			],
 			"areaTags": [
 				"C"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Create Homunculus",
@@ -1273,22 +1015,7 @@
 			],
 			"miscTags": [
 				"PRM"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Warlock",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Crown of Stars",
@@ -1341,27 +1068,13 @@
 				"R"
 			],
 			"miscTags": [
-				"LGT"
+				"LGT",
+				"OBJ",
+				"UBA"
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Danse Macabre",
@@ -1412,20 +1125,9 @@
 			],
 			"miscTags": [
 				"SGT",
-				"SMN"
+				"SMN",
+				"UBA"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -1477,35 +1179,12 @@
 				"constitution"
 			],
 			"miscTags": [
-				"LGTS"
+				"LGTS",
+				"UBA"
 			],
 			"areaTags": [
 				"Y"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Cleric",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Druid",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					},
-					{
-						"name": "Paladin",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Dragon's Breath",
@@ -1565,19 +1244,7 @@
 			"areaTags": [
 				"ST",
 				"N"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Druid Grove",
@@ -1657,21 +1324,14 @@
 				"To a creature immune to this effect, the winds are a fragrant, gentle breeze, and the area of {@spell spike growth} is harmless."
 			],
 			"miscTags": [
+				"OBS",
 				"PRM",
 				"SMN"
 			],
 			"areaTags": [
 				"C",
 				"Q"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Dust Devil",
@@ -1735,24 +1395,9 @@
 			],
 			"miscTags": [
 				"FMV",
-				"SGT"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+				"SGT",
+				"UBA"
+			]
 		},
 		{
 			"name": "Earth Tremor",
@@ -1809,29 +1454,12 @@
 			"savingThrow": [
 				"dexterity"
 			],
+			"miscTags": [
+				"DFT"
+			],
 			"areaTags": [
 				"R"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Earthbind",
@@ -1882,27 +1510,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Elemental Bane",
@@ -1970,31 +1578,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Enemies Abound",
@@ -2041,27 +1625,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Enervation",
@@ -2121,23 +1685,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Erupting Earth",
@@ -2193,27 +1741,12 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"DFT",
 				"SGT"
 			],
 			"areaTags": [
 				"C"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -2252,24 +1785,9 @@
 			],
 			"miscTags": [
 				"SGT",
-				"TP"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+				"TP",
+				"UBA"
+			]
 		},
 		{
 			"name": "Find Greater Steed",
@@ -2325,14 +1843,6 @@
 				"PRM",
 				"SMN"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Paladin",
-						"source": "PHB"
-					}
-				]
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -2388,34 +1898,9 @@
 			"damageInflict": [
 				"fire"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Ranger",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			"miscTags": [
+				"AAD"
+			]
 		},
 		{
 			"name": "Frostbite",
@@ -2476,35 +1961,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Guardian of Nature",
@@ -2576,20 +2033,11 @@
 				"force"
 			],
 			"miscTags": [
+				"AAD",
+				"ADV",
+				"DFT",
 				"THP"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Ranger",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Gust",
@@ -2599,10 +2047,6 @@
 				{
 					"source": "EEPC",
 					"page": 19
-				},
-				{
-					"source": "UAWGE",
-					"page": 107
 				},
 				{
 					"source": "ERLW",
@@ -2653,34 +2097,11 @@
 			],
 			"miscTags": [
 				"FMV",
+				"OBJ",
 				"SGT"
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			},
-			"races": [
-				{
-					"name": "Half-Elf (Mark of Storm)",
-					"source": "TCE",
-					"baseName": "Half-Elf",
-					"baseSource": "PHB"
-				}
 			]
 		},
 		{
@@ -2746,23 +2167,12 @@
 			],
 			"miscTags": [
 				"HL",
-				"SGT"
+				"SGT",
+				"UBA"
 			],
 			"areaTags": [
 				"C"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Ranger",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Holy Weapon",
@@ -2810,24 +2220,14 @@
 				"constitution"
 			],
 			"miscTags": [
+				"AAD",
 				"LGT",
-				"SGT"
+				"SGT",
+				"UBA"
 			],
 			"areaTags": [
 				"MT"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Cleric",
-						"source": "PHB"
-					},
-					{
-						"name": "Paladin",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Ice Knife",
@@ -2887,23 +2287,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Illusory Dragon",
@@ -2962,19 +2346,12 @@
 				"intelligence"
 			],
 			"miscTags": [
-				"SGT"
+				"SGT",
+				"UBA"
 			],
 			"areaTags": [
 				"N"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Immolation",
@@ -3030,26 +2407,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Druid",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Infernal Calling",
@@ -3092,7 +2450,7 @@
 				"Uttering a dark incantation, you summon a devil from the Nine Hells. You choose the devil's type, which must be one of {@filter challenge rating 6 or lower|bestiary|challenge rating=[&0;&6]|tag=devil|miscellaneous=!swarm}, such as a {@creature barbed devil} or a {@creature bearded devil}. The devil appears in an unoccupied space that you can see within range. The devil disappears when it drops to 0 hit points or when the spell ends.",
 				"The devil is unfriendly toward you and your companions. Roll initiative for the devil, which has its own turns. It is under the Dungeon Master's control and acts according to its nature on each of its turns, which might result in its attacking you if it thinks it can prevail, or trying to tempt you to undertake an evil act in exchange for limited service. The DM has the creature's statistics.",
 				"On each of your turns, you can try to issue a verbal command to the devil (no action required by you). It obeys the command if the likely outcome is in accordance with its desires, especially if the result would draw you toward evil. Otherwise, you must make a Charisma ({@skill Deception}, {@skill Intimidation}, or {@skill Persuasion}) check contested by its Wisdom ({@skill Insight}) check. You make the check with advantage if you say the devil's true name. If your check fails, the devil becomes immune to your verbal commands for the duration of the spell, though it can still carry out your commands if it chooses. If your check succeeds, the devil carries out your command\u2014such as \"attack my enemies,\" \"explore the room ahead,\" or \"bear this message to the queen\"\u2014until it completes the activity, at which point it returns to you to report having done so.",
-				"If your concentration ends before the spell reaches its full duration, the devil doesn't disappear if it has become immune to your verbal commands. Instead, it acts in whatever manner it chooses for {@dice 3d6} minutes, and then it disappears.",
+				"If your {@status concentration} ends before the spell reaches its full duration, the devil doesn't disappear if it has become immune to your verbal commands. Instead, it acts in whatever manner it chooses for {@dice 3d6} minutes, and then it disappears.",
 				"If you possess an individual devil's talisman, you can summon that devil if it is of the appropriate challenge rating plus 1, and it obeys all your commands, with no Charisma checks required."
 			],
 			"entriesHigherLevel": [
@@ -3108,18 +2466,6 @@
 				"SGT",
 				"SMN"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -3176,27 +2522,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Investiture of Flame",
@@ -3264,27 +2590,7 @@
 			],
 			"areaTags": [
 				"L"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Investiture of Ice",
@@ -3348,30 +2654,13 @@
 			"savingThrow": [
 				"constitution"
 			],
+			"miscTags": [
+				"DFT"
+			],
 			"areaTags": [
 				"N",
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Investiture of Stone",
@@ -3436,27 +2725,7 @@
 			],
 			"areaTags": [
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Investiture of Wind",
@@ -3519,27 +2788,7 @@
 			],
 			"areaTags": [
 				"C"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Invulnerability",
@@ -3580,15 +2829,7 @@
 			],
 			"entries": [
 				"You are immune to all damage until the spell ends."
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Life Transference",
@@ -3639,31 +2880,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Cleric",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Paladin",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Maddening Darkness",
@@ -3710,19 +2927,7 @@
 			],
 			"areaTags": [
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Maelstrom",
@@ -3774,20 +2979,13 @@
 				"strength"
 			],
 			"miscTags": [
+				"DFT",
 				"FMV",
 				"SGT"
 			],
 			"areaTags": [
 				"R"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Magic Stone",
@@ -3838,27 +3036,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Mass Polymorph",
@@ -3910,30 +3088,7 @@
 			],
 			"areaTags": [
 				"MT"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Druid",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Maximilian's Earthen Grasp",
@@ -3998,19 +3153,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Melf's Minute Meteors",
@@ -4069,21 +3212,12 @@
 			"savingThrow": [
 				"dexterity"
 			],
+			"miscTags": [
+				"UBA"
+			],
 			"areaTags": [
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Mental Prison",
@@ -4131,30 +3265,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Bard",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Mighty Fortress",
@@ -4216,14 +3327,6 @@
 				"PRM",
 				"SGT"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -4281,30 +3384,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Bard",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Mold Earth",
@@ -4359,27 +3439,12 @@
 				"If you cast this spell multiple times, you can have no more than two of its non-instantaneous effects active at a time, and you can dismiss such an effect as an action."
 			],
 			"miscTags": [
+				"DFT",
 				"SGT"
 			],
 			"areaTags": [
 				"C"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Negative Energy Flood",
@@ -4426,19 +3491,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Power Word Pain",
@@ -4480,30 +3533,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Bard",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Primal Savagery",
@@ -4555,22 +3585,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Primordial Ward",
@@ -4627,15 +3642,7 @@
 				"fire",
 				"lightning",
 				"thunder"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Psychic Scream",
@@ -4683,27 +3690,7 @@
 			],
 			"areaTags": [
 				"MT"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Pyrotechnics",
@@ -4763,36 +3750,13 @@
 				"constitution"
 			],
 			"miscTags": [
+				"OBS",
 				"SGT"
 			],
 			"areaTags": [
 				"C",
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Scatter",
@@ -4833,30 +3797,7 @@
 			],
 			"areaTags": [
 				"MT"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Bard",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Shadow Blade",
@@ -4906,22 +3847,9 @@
 			"damageInflict": [
 				"psychic"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			},
+			"miscTags": [
+				"UBA"
+			],
 			"hasFluffImages": true
 		},
 		{
@@ -4970,17 +3898,12 @@
 			"damageInflict": [
 				"necrotic"
 			],
+			"miscTags": [
+				"OBS"
+			],
 			"areaTags": [
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Shape Water",
@@ -5043,30 +3966,6 @@
 			],
 			"areaTags": [
 				"C"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			},
-			"races": [
-				{
-					"name": "Genasi (Water)",
-					"source": "EEPC",
-					"baseName": "Genasi",
-					"baseSource": "EEPC"
-				}
 			]
 		},
 		{
@@ -5117,23 +4016,7 @@
 			],
 			"areaTags": [
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Skill Empowerment",
@@ -5173,38 +4056,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Cleric",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Skywrite",
@@ -5252,31 +4104,7 @@
 			],
 			"miscTags": [
 				"SGT"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Snare",
@@ -5330,31 +4158,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Ranger",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Snilloc's Snowball Swarm",
@@ -5411,19 +4215,7 @@
 			],
 			"areaTags": [
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Soul Cage",
@@ -5489,7 +4281,7 @@
 					"type": "entries",
 					"name": "Eyes of the Dead",
 					"entries": [
-						"You can use an action to name a place the humanoid saw in life, which creates an invisible sensor somewhere in that place if it is on the plane of existence you're currently on. The sensor remains for as long as you concentrate, up to 10 minutes (as if you were concentrating on a spell). You receive visual and auditory information from the sensor as if you were in its space using your senses."
+						"You can use an action to name a place the humanoid saw in life, which creates an invisible sensor somewhere in that place if it is on the plane of existence you're currently on. The sensor remains for as long as you concentrate, up to 10 minutes (as if you were {@status concentration||concentrating} on a spell). You receive visual and auditory information from the sensor as if you were in its space using your senses."
 					]
 				},
 				"A creature that can see the sensor (such as one using {@spell see invisibility} or {@sense truesight}) sees a translucent image of the tormented humanoid whose soul you caged."
@@ -5498,20 +4290,10 @@
 				"humanoid"
 			],
 			"miscTags": [
-				"HL"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+				"HL",
+				"UBA",
+				"ADV"
+			]
 		},
 		{
 			"name": "Steel Wind Strike",
@@ -5560,19 +4342,7 @@
 			],
 			"areaTags": [
 				"MT"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Ranger",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Storm Sphere",
@@ -5637,22 +4407,14 @@
 			"savingThrow": [
 				"strength"
 			],
+			"miscTags": [
+				"DFT",
+				"UBA"
+			],
 			"areaTags": [
 				"ST",
 				"S"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -5695,7 +4457,7 @@
 			"entries": [
 				"You utter foul words, summoning one demon from the chaos of the Abyss. You choose the demon's type, which must be {@filter one of challenge rating 5 or lower|bestiary|challenge rating=[&0;&5]|tag=demon|miscellaneous=!swarm}, such as a {@creature shadow demon} or a {@creature barlgura}. The demon appears in an unoccupied space you can see within range, and the demon disappears when it drops to 0 hit points or when the spell ends.",
 				"Roll initiative for the demon, which has its own turns. When you summon it and on each of your turns thereafter, you can issue a verbal command to it (requiring no action on your part), telling it what it must do on its next turn. If you issue no command, it spends its turn attacking any creature within reach that has attacked it.",
-				"At the end of each of the demon's turns, it makes a Charisma saving throw. The demon has disadvantage on this saving throw if you say its true name. On a failed save, the demon continues to obey you. On a successful save, your control of the demon ends for the rest of the duration, and the demon spends its turns pursuing and attacking the nearest non-demons to the best of its ability. If you stop concentrating on the spell before it reaches its full duration, an uncontrolled demon doesn't disappear for {@dice 1d6} rounds if it still has hit points.",
+				"At the end of each of the demon's turns, it makes a Charisma saving throw. The demon has disadvantage on this saving throw if you say its true name. On a failed save, the demon continues to obey you. On a successful save, your control of the demon ends for the rest of the duration, and the demon spends its turns pursuing and attacking the nearest non-demons to the best of its ability. If you stop {@status concentration||concentrating} on the spell before it reaches its full duration, an uncontrolled demon doesn't disappear for {@dice 1d6} rounds if it still has hit points.",
 				"As part of casting the spell, you can form a circle on the ground with the blood used as a material component. The circle is large enough to encompass your space. While the spell lasts, the summoned demon can't cross the circle or harm it, and it can't target anyone within it. Using the material component in this manner consumes it when the spell ends."
 			],
 			"entriesHigherLevel": [
@@ -5713,19 +4475,7 @@
 			"miscTags": [
 				"SGT",
 				"SMN"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Summon Lesser Demons",
@@ -5826,19 +4576,7 @@
 				"RO",
 				"SGT",
 				"SMN"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Synaptic Static",
@@ -5870,7 +4608,7 @@
 			],
 			"entries": [
 				"You choose a point within range and cause psychic energy to explode there. Each creature in a 20-foot-radius sphere centered on that point must make an Intelligence saving throw. A creature with an Intelligence score of 2 or lower can't be affected by this spell. A target takes {@damage 8d6} psychic damage on a failed save, or half as much damage on a successful one.",
-				"After a failed save, a target has muddled thoughts for 1 minute. During that time, it rolls a {@dice d6} and subtracts the number rolled from all its attack rolls and ability checks, as well as its Constitution saving throws to maintain concentration. The target can make an Intelligence saving throw at the end of each of its turns, ending the effect on itself on a success."
+				"After a failed save, a target has muddled thoughts for 1 minute. During that time, it rolls a {@dice d6} and subtracts the number rolled from all its attack rolls and ability checks, as well as its Constitution saving throws to maintain {@status concentration}. The target can make an Intelligence saving throw at the end of each of its turns, ending the effect on itself on a success."
 			],
 			"damageInflict": [
 				"psychic"
@@ -5881,27 +4619,7 @@
 			],
 			"areaTags": [
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Temple of the Gods",
@@ -5963,15 +4681,7 @@
 				"HL",
 				"PRM",
 				"SGT"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Cleric",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Tenser's Transformation",
@@ -6031,23 +4741,10 @@
 				"constitution"
 			],
 			"miscTags": [
+				"AAD",
+				"ADV",
 				"THP"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Bard",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Thunder Step",
@@ -6101,30 +4798,7 @@
 			],
 			"areaTags": [
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Druid",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Thunderclap",
@@ -6183,39 +4857,7 @@
 			],
 			"areaTags": [
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Tidal Wave",
@@ -6266,23 +4908,7 @@
 			],
 			"areaTags": [
 				"W"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Tiny Servant",
@@ -6330,31 +4956,10 @@
 				}
 			],
 			"miscTags": [
-				"SMN"
+				"OBJ",
+				"SMN",
+				"UBA"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Bard",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -6421,23 +5026,7 @@
 			],
 			"areaTags": [
 				"ST"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Cleric",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Transmute Rock",
@@ -6518,27 +5107,7 @@
 			],
 			"areaTags": [
 				"C"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					},
-					{
-						"name": "Artificer",
-						"source": "TCE"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Vitriolic Sphere",
@@ -6595,23 +5164,7 @@
 			],
 			"areaTags": [
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					},
-					{
-						"name": "Artificer (Revisited)",
-						"source": "UAArtificerRevisited"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Wall of Light",
@@ -6680,30 +5233,7 @@
 			"areaTags": [
 				"ST",
 				"W"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Warlock",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Cleric",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Wall of Sand",
@@ -6756,22 +5286,7 @@
 			],
 			"areaTags": [
 				"W"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				],
-				"fromClassListVariant": [
-					{
-						"name": "Druid",
-						"source": "PHB",
-						"definedInSource": "UAClassFeatureVariants"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Wall of Water",
@@ -6787,8 +5302,7 @@
 					"page": 116
 				},
 				{
-					"source": "MOT",
-					"page": 0
+					"source": "MOT"
 				}
 			],
 			"level": 3,
@@ -6826,32 +5340,11 @@
 				"Any ranged weapon attack that enters the wall's space has disadvantage on the attack roll, and fire damage is halved if the fire effect passes through the wall to reach its target. Spells that deal cold damage that pass through the wall cause the area of the wall they pass through to freeze solid (at least a 5-foot-square section is frozen). Each 5-foot-square frozen section has AC 5 and 15 hit points. Reducing a frozen section to 0 hit points destroys it. When a section is destroyed, the wall's water doesn't fill it."
 			],
 			"miscTags": [
+				"DFT",
 				"SGT"
 			],
 			"areaTags": [
 				"W"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			},
-			"races": [
-				{
-					"name": "Triton",
-					"source": "VGM"
-				}
 			]
 		},
 		{
@@ -6908,26 +5401,9 @@
 			"conditionInflict": [
 				"deafened"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Bard",
-						"source": "PHB"
-					},
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			"miscTags": [
+				"DFT"
+			]
 		},
 		{
 			"name": "Watery Sphere",
@@ -6988,23 +5464,7 @@
 			],
 			"areaTags": [
 				"S"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Whirlwind",
@@ -7071,22 +5531,6 @@
 			"areaTags": [
 				"Y"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Sorcerer",
-						"source": "PHB"
-					},
-					{
-						"name": "Wizard",
-						"source": "PHB"
-					}
-				]
-			},
 			"hasFluffImages": true
 		},
 		{
@@ -7142,15 +5586,7 @@
 			],
 			"areaTags": [
 				"MT"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Cleric",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Wrath of Nature",
@@ -7235,24 +5671,14 @@
 				"strength"
 			],
 			"miscTags": [
-				"SGT"
+				"DFT",
+				"SGT",
+				"UBA"
 			],
 			"areaTags": [
 				"ST",
 				"C"
-			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Druid",
-						"source": "PHB"
-					},
-					{
-						"name": "Ranger",
-						"source": "PHB"
-					}
-				]
-			}
+			]
 		},
 		{
 			"name": "Zephyr Strike",
@@ -7292,14 +5718,10 @@
 			"damageInflict": [
 				"force"
 			],
-			"classes": {
-				"fromClassList": [
-					{
-						"name": "Ranger",
-						"source": "PHB"
-					}
-				]
-			}
+			"miscTags": [
+				"AAD",
+				"ADV"
+			]
 		}
 	]
 }

@@ -2,6 +2,9 @@
 
 // TODO refactor the "feature" parts of this to a `PageFilterFeatures`
 class PageFilterClassesRaw extends PageFilterClassesBase {
+	static _WALKER = null;
+	static _IMPLS_SIDE_DATA = {};
+
 	async _pPopulateBoxOptions (opts) {
 		await super._pPopulateBoxOptions(opts);
 		opts.isCompact = false;
@@ -36,22 +39,34 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 	// region Data loading
 	static async _pGetParentClass (sc) {
 		// Search in base classes
-		let baseClass = (await DataUtil.class.loadRawJSON()).class.find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || SRC_PHB) === sc.classSource.toLowerCase());
-
-		const brew = BrewUtil2.pGetBrewProcessed();
+		let baseClass = (await DataUtil.class.loadRawJSON()).class.find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || Parser.SRC_PHB) === sc.classSource.toLowerCase());
 
 		// Search in brew classes
-		if (!baseClass) {
-			baseClass = (brew.class || []).find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || SRC_PHB) === sc.classSource.toLowerCase());
-		}
+		baseClass = baseClass || await this._pGetParentClass_pPrerelease({sc});
+		baseClass = baseClass || await this._pGetParentClass_pBrew({sc});
 
 		return baseClass;
+	}
+
+	static async _pGetParentClass_pPrerelease ({sc}) {
+		await this._pGetParentClass_pPrereleaseBrew({sc, brewUtil: PrereleaseUtil});
+	}
+
+	static async _pGetParentClass_pBrew ({sc}) {
+		await this._pGetParentClass_pPrereleaseBrew({sc, brewUtil: BrewUtil2});
+	}
+
+	static async _pGetParentClass_pPrereleaseBrew ({sc, brewUtil}) {
+		const brew = await brewUtil.pGetBrewProcessed();
+		return (brew.class || [])
+			.find(bc => bc.name.toLowerCase() === sc.className.toLowerCase() && (bc.source.toLowerCase() || Parser.SRC_PHB) === sc.classSource.toLowerCase());
 	}
 
 	static async pPostLoad (data, {...opts} = {}) {
 		data = MiscUtil.copy(data);
 
-		// Ensure homebrew is initialised
+		// Ensure prerelease/homebrew is initialised
+		await PrereleaseUtil.pGetBrewProcessed();
 		await BrewUtil2.pGetBrewProcessed();
 
 		if (!data.class) data.class = [];
@@ -61,9 +76,9 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 			// Do this sequentially, to avoid double-adding the same base classes
 			for (const sc of data.subclass) {
 				if (!sc.className) continue; // Subclass class name is required
-				sc.classSource = sc.classSource || SRC_PHB;
+				sc.classSource = sc.classSource || Parser.SRC_PHB;
 
-				let cls = data.class.find(it => (it.name || "").toLowerCase() === sc.className.toLowerCase() && (it.source || SRC_PHB).toLowerCase() === sc.classSource.toLowerCase());
+				let cls = data.class.find(it => (it.name || "").toLowerCase() === sc.className.toLowerCase() && (it.source || Parser.SRC_PHB).toLowerCase() === sc.classSource.toLowerCase());
 
 				if (!cls) {
 					cls = await this._pGetParentClass(sc);
@@ -87,7 +102,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 
 		// Clean and initialise fields; sort arrays
 		data.class.forEach(cls => {
-			cls.source = cls.source || SRC_PHB;
+			cls.source = cls.source || Parser.SRC_PHB;
 
 			cls.subclasses = cls.subclasses || [];
 
@@ -95,7 +110,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 				sc.name = sc.name || "(Unnamed subclass)";
 				sc.source = sc.source || cls.source;
 				sc.className = sc.className || cls.name;
-				sc.classSource = sc.classSource || cls.source || SRC_PHB;
+				sc.classSource = sc.classSource || cls.source || Parser.SRC_PHB;
 			});
 
 			cls.subclasses.sort((a, b) => SortUtil.ascSortLower(a.name, b.name) || SortUtil.ascSortLower(a.source || cls.source, b.source || cls.source));
@@ -123,28 +138,19 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		// Load the data once before diving into nested promises, to avoid needless context switching
 		await this._pPreloadSideData();
 
-		await Promise.all(data.class.map(async cls => {
-			await Promise.all((cls.classFeatures || []).map(cf => this.pInitClassFeatureLoadeds({...opts, classFeature: cf, className: cls.name})));
+		for (const cls of data.class) {
+			await (cls.classFeatures || []).pSerialAwaitMap(cf => this.pInitClassFeatureLoadeds({...opts, classFeature: cf, className: cls.name}));
 
 			if (cls.classFeatures) cls.classFeatures = cls.classFeatures.filter(it => !it.isIgnored);
 
-			await Promise.all((cls.subclasses || []).map(async sc => {
-				await Promise.all((sc.subclassFeatures || []).map(scf => this.pInitSubclassFeatureLoadeds({...opts, subclassFeature: scf, className: cls.name, subclassName: sc.name})));
+			for (const sc of cls.subclasses || []) {
+				await (sc.subclassFeatures || []).pSerialAwaitMap(scf => this.pInitSubclassFeatureLoadeds({...opts, subclassFeature: scf, className: cls.name, subclassName: sc.name}));
 
 				if (sc.subclassFeatures) sc.subclassFeatures = sc.subclassFeatures.filter(it => !it.isIgnored);
-			}));
-		}));
+			}
+		}
 
-		// Add synthetic fluff to subclasses
-		data.class.forEach(cls => {
-			(cls.subclasses || []).forEach(sc => {
-				const fluff = Renderer.findEntry(sc.subclassFeatures);
-				MiscUtil.set(fluff, "data", "isSkipFeature");
-				sc._fluff = MiscUtil.copy(fluff);
-			});
-		});
-
-		return data.class;
+		return data;
 	}
 
 	static async pInitClassFeatureLoadeds ({classFeature, className, ...opts}) {
@@ -159,7 +165,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		classFeature.level = level;
 		classFeature.source = source;
 
-		const entityRoot = await Renderer.hover.pCacheAndGet("raw_classFeature", classFeature.source, classFeature.hash, {isCopy: true});
+		const entityRoot = await DataLoader.pCacheAndGet("raw_classFeature", classFeature.source, classFeature.hash, {isCopy: true});
 		const loadedRoot = {
 			type: "classFeature",
 			entity: entityRoot,
@@ -203,7 +209,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		subclassFeature.level = level;
 		subclassFeature.source = source;
 
-		const entityRoot = await Renderer.hover.pCacheAndGet("raw_subclassFeature", subclassFeature.source, subclassFeature.hash, {isCopy: true});
+		const entityRoot = await DataLoader.pCacheAndGet("raw_subclassFeature", subclassFeature.source, subclassFeature.hash, {isCopy: true});
 		const loadedRoot = {
 			type: "subclassFeature",
 			entity: entityRoot,
@@ -285,6 +291,17 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		});
 	}
 
+	static async pInitVehicleUpgradeLoadeds ({vehicleUpgrade, raw, ...opts}) {
+		return this._pInitGenericLoadeds({
+			...opts,
+			ent: vehicleUpgrade,
+			prop: "vehicleUpgrade",
+			page: UrlUtil.PG_VEHICLES,
+			propAncestorName: "_ancestorVehicleUpgradeName",
+			raw,
+		});
+	}
+
 	static async _pInitGenericLoadeds ({ent, prop, page, propAncestorName, raw, ...opts}) {
 		if (typeof ent !== "object") throw new Error(`Expected an object of the form {${prop}: "<UID>"}`);
 
@@ -296,7 +313,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 		ent.name = name;
 		ent.source = source;
 
-		const entityRoot = raw != null ? MiscUtil.copy(raw) : await Renderer.hover.pCacheAndGet(`raw_${prop}`, ent.source, ent.hash, {isCopy: true});
+		const entityRoot = raw != null ? MiscUtil.copy(raw) : await DataLoader.pCacheAndGet(`raw_${prop}`, ent.source, ent.hash, {isCopy: true});
 		const loadedRoot = {
 			type: prop,
 			entity: entityRoot,
@@ -340,7 +357,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 	static async _pGetIgnoredAndApplySideData (entity, type) {
 		if (!PageFilterClassesRaw._IMPLS_SIDE_DATA[type]) throw new Error(`Unhandled type "${type}"`);
 
-		const sideData = await PageFilterClassesRaw._IMPLS_SIDE_DATA[type].pGetSideLoadedMatch(entity, type);
+		const sideData = await PageFilterClassesRaw._IMPLS_SIDE_DATA[type].pGetSideLoaded(entity, {isSilent: true});
 
 		if (!sideData) return false;
 		if (sideData.isIgnored) return true;
@@ -357,7 +374,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 	static async _pLoadSubEntries (walker, entityRoot, {ancestorType, ancestorMeta, ...opts}) {
 		const out = [];
 
-		const pRecurse = async toWalk => {
+		const pRecurse = async (parent, toWalk) => {
 			const references = [];
 			const path = [];
 
@@ -372,6 +389,8 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 					},
 					preObject: (obj) => {
 						if (obj.type === "options") {
+							const parentName = (path.last() || {}).name ?? parent.name;
+
 							// Add metadata to options--only if they have a "count" specified, otherwise we assume
 							//   that the entire option set is to be imported as per regular features.
 							if (obj.count != null) {
@@ -380,12 +399,11 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 									ent._optionsMeta = {
 										setId: optionSetId,
 										count: obj.count,
-										name: (path.last() || {}).name,
+										name: parentName,
 									};
 								});
 							}
 
-							const parentName = MiscUtil.get(path.last(), "name");
 							if (parentName) {
 								obj.entries.forEach(ent => {
 									if (typeof ent !== "object") return;
@@ -410,10 +428,15 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 						const {source} = unpacked;
 						const hash = UrlUtil.URL_TO_HASH_BUILDER["classFeature"](unpacked);
 
-						let entity = await Renderer.hover.pCacheAndGet("raw_classFeature", source, hash, {isCopy: true});
+						let entity = await DataLoader.pCacheAndGet("raw_classFeature", source, hash, {isCopy: true});
 
 						if (!entity) {
-							this._handleReferenceError(`Failed to load "classFeature" reference "${ent.classFeature}"`);
+							this._handleReferenceError(`Failed to load "classFeature" reference "${ent.classFeature}" (not found)`);
+							continue;
+						}
+
+						if (toWalk.__prop === entity.__prop && UrlUtil.URL_TO_HASH_BUILDER["classFeature"](toWalk) === hash) {
+							this._handleReferenceError(`Failed to load "classFeature" reference "${ent.classFeature}" (circular reference)`);
 							continue;
 						}
 
@@ -437,7 +460,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							isRequiredOption,
 						});
 
-						entity = await pRecurse(entity);
+						entity = await pRecurse(entity, entity.entries);
 
 						break;
 					}
@@ -446,10 +469,15 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 						const {source} = unpacked;
 						const hash = UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](unpacked);
 
-						let entity = await Renderer.hover.pCacheAndGet("raw_subclassFeature", source, hash, {isCopy: true});
+						let entity = await DataLoader.pCacheAndGet("raw_subclassFeature", source, hash, {isCopy: true});
 
 						if (!entity) {
-							this._handleReferenceError(`Failed to load "subclassFeature" reference "${ent.subclassFeature}"`);
+							this._handleReferenceError(`Failed to load "subclassFeature" reference "${ent.subclassFeature}" (not found)`);
+							continue;
+						}
+
+						if (toWalk.__prop === entity.__prop && UrlUtil.URL_TO_HASH_BUILDER["subclassFeature"](toWalk) === hash) {
+							this._handleReferenceError(`Failed to load "subclassFeature" reference "${ent.subclassFeature}" (circular reference)`);
 							continue;
 						}
 
@@ -473,7 +501,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							isRequiredOption,
 						});
 
-						entity = await pRecurse(entity);
+						entity = await pRecurse(entity, entity.entries);
 
 						break;
 					}
@@ -483,10 +511,15 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 						const {source} = unpacked;
 						const hash = UrlUtil.URL_TO_HASH_BUILDER[page](unpacked);
 
-						const entity = await Renderer.hover.pCacheAndGet(page, source, hash, {isCopy: true});
+						const entity = await DataLoader.pCacheAndGet(page, source, hash, {isCopy: true});
 
 						if (!entity) {
-							this._handleReferenceError(`Failed to load "optfeature" reference "${ent.optionalfeature}"`);
+							this._handleReferenceError(`Failed to load "optfeature" reference "${ent.optionalfeature}" (not found)`);
+							continue;
+						}
+
+						if (toWalk.__prop === entity.__prop && UrlUtil.URL_TO_HASH_BUILDER[page](toWalk) === hash) {
+							this._handleReferenceError(`Failed to load "optfeature" reference "${ent.optionalfeature}" (circular reference)`);
 							continue;
 						}
 
@@ -499,8 +532,8 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 							ancestorType,
 							displayName: ent._displayNamePrefix ? `${ent._displayNamePrefix}${entity.name}` : null,
 							...ancestorMeta,
-							foundryData: {
-								requirements: `${entityRoot.className} ${entityRoot.level}${entityRoot.subclassShortName ? ` (${entityRoot.subclassShortName})` : ""}`,
+							foundrySystem: {
+								requirements: entityRoot.className ? `${entityRoot.className} ${entityRoot.level}${entityRoot.subclassShortName ? ` (${entityRoot.subclassShortName})` : ""}` : null,
 							},
 						});
 
@@ -524,7 +557,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 			return toWalk;
 		};
 
-		entityRoot = await pRecurse(entityRoot);
+		if (entityRoot.entries) entityRoot.entries = await pRecurse(entityRoot, entityRoot.entries);
 
 		return {entityRoot, subLoadeds: out};
 	}
@@ -543,13 +576,13 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 			entity,
 			ancestorType,
 			displayName,
-			foundryData,
+			foundrySystem,
 			...others
 		},
 	) {
 		if (ancestorType) entity._ancestorType = ancestorType;
 		if (displayName) entity._displayName = displayName;
-		if (foundryData) entity._foundryData = foundryData;
+		if (foundrySystem) entity._foundrySystem = foundrySystem;
 		Object.assign(entity, {...others});
 	}
 
@@ -559,7 +592,7 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 
 	static _getPostLoadWalker () {
 		PageFilterClassesRaw._WALKER = PageFilterClassesRaw._WALKER || MiscUtil.getWalker({
-			keyBlacklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLACKLIST,
+			keyBlocklist: MiscUtil.GENERIC_WALKER_ENTRIES_KEY_BLOCKLIST,
 			isDepthFirst: true,
 		});
 		return PageFilterClassesRaw._WALKER;
@@ -568,8 +601,8 @@ class PageFilterClassesRaw extends PageFilterClassesBase {
 	static setImplSideData (prop, Impl) { PageFilterClassesRaw._IMPLS_SIDE_DATA[prop] = Impl; }
 	// endregion
 }
-PageFilterClassesRaw._WALKER = null;
-PageFilterClassesRaw._IMPLS_SIDE_DATA = {};
+
+globalThis.PageFilterClassesRaw = PageFilterClassesRaw;
 
 class ModalFilterClasses extends ModalFilter {
 	/**
@@ -717,7 +750,7 @@ class ModalFilterClasses extends ModalFilter {
 
 			const $ovlLoading = $(`<div class="w-100 h-100 ve-flex-vh-center"><i class="dnd-font ve-muted">Loading...</i></div>`).appendTo($modalInner);
 
-			const $iptSearch = $(`<input class="form-control" type="search" placeholder="Search...">`);
+			const $iptSearch = $(`<input class="form-control h-100" type="search" placeholder="Search...">`);
 			const $btnReset = $(`<button class="btn btn-default">Reset</button>`);
 			const $wrpFormTop = $$`<div class="ve-flex input-group btn-group w-100 lst__form-top">${$iptSearch}${$btnReset}</div>`;
 
@@ -878,24 +911,34 @@ class ModalFilterClasses extends ModalFilter {
 	/** Caches the result for fast re-querying. */
 	async _pLoadAllData () {
 		this._pLoadingAllData = this._pLoadingAllData || (async () => {
-			const [data, brew] = await Promise.all([
+			const [data, prerelease, brew] = await Promise.all([
 				MiscUtil.copy(await DataUtil.class.loadRawJSON()),
+				PrereleaseUtil.pGetBrewProcessed(),
 				BrewUtil2.pGetBrewProcessed(),
 			]);
 
-			// Combine main data with brew
-			const clsProps = BrewUtil2.getPageProps({page: UrlUtil.PG_CLASSES});
-			if (clsProps.includes("*")) {
-				Object.entries(brew)
-					.filter(([, brewVal]) => brewVal instanceof Array)
-					.forEach(([prop, brewArr]) => data[prop] = [...(data[prop] || []), ...MiscUtil.copy(brewArr)]);
-			} else clsProps.forEach(prop => data[prop] = [...(data[prop] || []), ...MiscUtil.copy(brew[prop] || [])]);
+			// Combine main data with prerelease/brew
+			this._pLoadAllData_mutAddPrereleaseBrew({data, brew: prerelease, brewUtil: PrereleaseUtil});
+			this._pLoadAllData_mutAddPrereleaseBrew({data, brew: brew, brewUtil: BrewUtil2});
 
-			this._allData = await PageFilterClassesRaw.pPostLoad(data);
+			this._allData = (await PageFilterClassesRaw.pPostLoad(data)).class;
 		})();
 
 		await this._pLoadingAllData;
 		return this._allData;
+	}
+
+	_pLoadAllData_mutAddPrereleaseBrew ({data, brew, brewUtil}) {
+		const clsProps = brewUtil.getPageProps({page: UrlUtil.PG_CLASSES});
+
+		if (!clsProps.includes("*")) {
+			clsProps.forEach(prop => data[prop] = [...(data[prop] || []), ...MiscUtil.copy(brew[prop] || [])]);
+			return;
+		}
+
+		Object.entries(brew)
+			.filter(([, brewVal]) => brewVal instanceof Array)
+			.forEach(([prop, brewArr]) => data[prop] = [...(data[prop] || []), ...MiscUtil.copy(brewArr)]);
 	}
 
 	_getListItems (pageFilter, cls, clsI) {
@@ -907,13 +950,13 @@ class ModalFilterClasses extends ModalFilter {
 
 	_getListItems_getClassItem (pageFilter, cls, clsI) {
 		const eleLabel = document.createElement("label");
-		eleLabel.className = "w-100 ve-flex lst--border no-select lst__wrp-cells";
+		eleLabel.className = `w-100 ve-flex lst--border veapp__list-row no-select lst__wrp-cells`;
 
 		const source = Parser.sourceJsonToAbv(cls.source);
 
 		eleLabel.innerHTML = `<div class="col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
-		<div class="bold col-9">${cls.name}</div>
-		<div class="col-2 pr-0 text-center ${Parser.sourceJsonToColor(cls.source)}" title="${Parser.sourceJsonToFull(cls.source)}" ${BrewUtil2.sourceJsonToStyle(cls.source)}>${source}</div>`;
+		<div class="bold col-9 ${cls._versionBase_isVersion ? "italic" : ""}">${cls._versionBase_isVersion ? `<span class="px-3"></span>` : ""}${cls.name}</div>
+		<div class="col-2 pr-0 ve-flex-h-center ${Parser.sourceJsonToColor(cls.source)}" title="${Parser.sourceJsonToFull(cls.source)}" ${Parser.sourceJsonToStyle(cls.source)}>${source}${Parser.sourceJsonToMarkerHtml(cls.source)}</div>`;
 
 		return new ListItem(
 			clsI,
@@ -931,13 +974,13 @@ class ModalFilterClasses extends ModalFilter {
 
 	_getListItems_getSubclassItem (pageFilter, cls, clsI, sc, scI) {
 		const eleLabel = document.createElement("label");
-		eleLabel.className = "w-100 ve-flex lst--border no-select lst__wrp-cells";
+		eleLabel.className = `w-100 ve-flex lst--border veapp__list-row no-select lst__wrp-cells`;
 
 		const source = Parser.sourceJsonToAbv(sc.source);
 
 		eleLabel.innerHTML = `<div class="col-1 pl-0 ve-flex-vh-center"><div class="fltr-cls__tgl"></div></div>
-		<div class="col-9 pl-1 ve-flex-v-center"><span class="mx-3">\u2014</span> ${sc.name}</div>
-		<div class="col-2 pr-0 text-center ${Parser.sourceJsonToColor(sc.source)}" title="${Parser.sourceJsonToFull(sc.source)}" ${BrewUtil2.sourceJsonToStyle(sc.source)}>${source}</div>`;
+		<div class="col-9 pl-1 ve-flex-v-center ${sc._versionBase_isVersion ? "italic" : ""}">${sc._versionBase_isVersion ? `<span class="px-3"></span>` : ""}<span class="mx-3">\u2014</span> ${sc.name}</div>
+		<div class="col-2 pr-0 ve-flex-h-center ${Parser.sourceJsonToColor(sc.source)}" title="${Parser.sourceJsonToFull(sc.source)}" ${Parser.sourceJsonToStyle(sc.source)}>${source}${Parser.sourceJsonToMarkerHtml(sc.source)}</div>`;
 
 		return new ListItem(
 			`${clsI}--${scI}`,
@@ -954,3 +997,5 @@ class ModalFilterClasses extends ModalFilter {
 		);
 	}
 }
+
+globalThis.ModalFilterClasses = ModalFilterClasses;

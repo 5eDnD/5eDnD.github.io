@@ -16,7 +16,12 @@ trash_in
 # Generated files
 sitemap.xml
 *.DS_Store
+Thumbs.db
+.rsync-filter
 
 # Generated service worker files
 sw.js
 sw-injector.js
+
+# Log files
+*.log

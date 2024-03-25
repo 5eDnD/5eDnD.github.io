@@ -12,7 +12,8 @@
 						"path": "adventure/AitFR-DN/16_1476395070.webp"
 					},
 					"width": 1242,
-					"height": 1057
+					"height": 1057,
+					"credit": "Aaron J. Riley"
 				},
 				"A large, grassy hill stands in the High Moors, cracked by some ancient stress. It was thought to be a barrow, once, but it was never meant to be a tomb. It is a vault turned into a prison as punishment for the poor souls who vowed to defend it... and failed.",
 				"Inside this hill, beneath it, and beyond it, secrets await\u2014secrets that could destroy an artifact of great power, for good or ill. Despite the danger and despite the woe that befell previous trespassers inside the hill, someone must venture inside to learn those secrets. The artifact could already be in the wrong hands.",
@@ -974,11 +975,19 @@
 						}
 					],
 					"imageType": "map",
+					"grid": {
+						"type": "square",
+						"size": 50,
+						"offsetX": -16,
+						"offsetY": -9,
+						"scale": 2.33
+					},
 					"hrefThumbnail": {
 						"type": "internal",
 						"path": "adventure/AitFR-DN/thumbnail/16_1476395079.webp"
 					},
-					"id": "040"
+					"id": "040",
+					"credit": "Will Hindmarch"
 				},
 				{
 					"type": "entries",
@@ -1169,7 +1178,8 @@
 								"path": "adventure/AitFR-DN/16_1476395089.webp"
 							},
 							"width": 1242,
-							"height": 1031
+							"height": 1031,
+							"credit": "Daniel Zrom"
 						}
 					],
 					"id": "01a"
@@ -1451,7 +1461,8 @@
 						"path": "adventure/AitFR-DN/16_1476395101.webp"
 					},
 					"width": 1028,
-					"height": 499
+					"height": 499,
+					"credit": "Viko Menezes"
 				}
 			],
 			"id": "03c"

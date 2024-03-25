@@ -8,13 +8,14 @@
 	<meta charset="utf-8">
 	<meta name="description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
 	<title>RoLang Demo - 5etools</title>
 
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/langdemo.css">
 
 	<!-- Favicons -->
 	<link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -54,17 +55,6 @@
 	<script type="text/javascript" src="js/styleswitch.js"></script>
 	<script type="text/javascript" src="js/navigation.js"></script>
 	<script type="text/javascript" src="js/browsercheck.js"></script>
-
-	<style>
-		.rlng__sel-sample {
-			max-width: 200px;
-		}
-
-		.rlng__output {
-			font-size: 72px;
-			font-weight: bold
-		}
-	</style>
 </head>
 
 <body>
@@ -72,9 +62,9 @@
 	<div class="cancer__wrp-leaderboard cancer__anchor"><div class="cancer__disp-cancer"></div><div class="cancer__wrp-leaderboard-inner"><!--5ETOOLS_AD_LEADERBOARD--></div></div>
 
 	<header class="hidden-xs hidden-sm page__header">
-		<div class="container">
-			<h1 class="page__title">RoLang Demo</h1>
-			<p class="page__subtitle" id="page__subtitle">Edit the input and context, and hit Run</p>
+		<div class="container ve-flex-v-baseline">
+			<h1 class="page__title no-wrap my-0">RoLang Demo</h1>
+			<p class="page__subtitle no-wrap my-0" id="page__subtitle">Edit the input and context, and hit Run</p>
 		</div>
 	</header>
 
@@ -124,6 +114,7 @@
 <script type="text/javascript" src="js/omnidexer.js"></script>
 <script type="text/javascript" src="js/omnisearch.js"></script>
 <script type="text/javascript" src="js/filter.js"></script>
+<script type="text/javascript" src="js/utils-dataloader.js"></script>
 <script type="text/javascript" src="js/utils-brew.js"></script>
 <script type="text/javascript" src="js/render.js"></script>
 <script type="text/javascript" src="js/render-dice.js"></script>

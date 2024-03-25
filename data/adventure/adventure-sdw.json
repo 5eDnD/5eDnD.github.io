@@ -9,7 +9,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/SDW/000-icbir-twisted-forest.jpg"
+						"path": "adventure/SDW/000-icbir-twisted-forest.webp"
 					},
 					"width": 2560,
 					"height": 1472
@@ -115,6 +115,13 @@
 											"width": 2105,
 											"height": 2933,
 											"imageType": "map",
+											"grid": {
+												"type": "hexColsOdd",
+												"size": 95,
+												"offsetX": -35,
+												"offsetY": 16,
+												"units": "miles"
+											},
 											"id": "0f8"
 										},
 										{
@@ -123,10 +130,17 @@
 												"type": "internal",
 												"path": "adventure/SDW/002-wnecz-map-sword-coast-pc.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 2153,
 											"height": 3000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "hexColsOdd",
+												"size": 98,
+												"offsetX": -42,
+												"offsetY": 7,
+												"units": "miles"
+											},
 											"mapParent": {
 												"id": "0f8",
 												"autoScale": true
@@ -304,6 +318,9 @@
 									"width": 3600,
 									"height": 2280,
 									"imageType": "map",
+									"grid": {
+										"type": "none"
+									},
 									"id": "0f9",
 									"mapRegions": [
 										{
@@ -528,10 +545,13 @@
 										"type": "internal",
 										"path": "adventure/SDW/004-kpcvb-map-leilon-town-construction_player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 3600,
 									"height": 2280,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "none"
+									},
 									"mapParent": {
 										"id": "0f9"
 									}
@@ -846,7 +866,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/SDW/005-hvzlg-shadowy-bronze-dragon.jpg"
+						"path": "adventure/SDW/005-hvzlg-shadowy-bronze-dragon.webp"
 					},
 					"width": 2560,
 					"height": 1770
@@ -975,6 +995,12 @@
 													"width": 3600,
 													"height": 2280,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 86,
+														"offsetX": 37,
+														"offsetY": 30
+													},
 													"id": "0fa",
 													"mapRegions": [
 														{
@@ -1773,10 +1799,16 @@
 														"type": "internal",
 														"path": "adventure/SDW/007-vrzqg-map-bronze-shrine_player.jpg"
 													},
-													"title": "(Player Version)",
+													"title": "Player Version",
 													"width": 3600,
 													"height": 2280,
 													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 86,
+														"offsetX": 37,
+														"offsetY": 30
+													},
 													"mapParent": {
 														"id": "0fa"
 													}
@@ -2119,6 +2151,13 @@
 											"width": 3600,
 											"height": 2280,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 37,
+												"offsetY": 25,
+												"distance": 10
+											},
 											"id": "0fb",
 											"mapRegions": [
 												{
@@ -7687,10 +7726,17 @@
 												"type": "internal",
 												"path": "adventure/SDW/009-u8tfu-map-claugyliamatars-lair_player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 3600,
 											"height": 2280,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 37,
+												"offsetY": 25,
+												"distance": 10
+											},
 											"mapParent": {
 												"id": "0fb"
 											}
@@ -8204,7 +8250,7 @@
 								"An armored dreadnaught made from metal and bones rests on a rocky outcrop in the bay. Flames leap from a brazier mounted to its mainmast and its ragged sails are stitched from worn leather. Barbaric half-orcs patrol its decks and standby, ready to employ its deadly siege weapons. A giant's skeleton clutching a halberd is lashed to its bow. Over a dozen zombies are impaled on stakes set into the rocks around the vessel."
 							]
 						},
-						"Scouting the dreadnaught or getting onboard without being spotted is the party's first challenge. Characters who attempt to sneak up on the vessel must succeed on a DC 15 group Dexterity ({@skill Stealth}) check, with advantage if they attempt this task at night. On a failure, the cultists on the deck spot them and open fire with the siege weapons mounted to their vessel (see {@adventure areas {@dice D3}|SDW|4|D3. Main Deck}-{@adventure {@dice D5}|SDW|4|D5. Forecastle} and {@adventure {@dice D7}|SDW|4|D7. Poop Deck}). The characters are 200 feet away from the vessel if spotted during the day, or 100 feet away if spotted at night.",
+						"Scouting the dreadnaught or getting onboard without being spotted is the party's first challenge. Characters who attempt to sneak up on the vessel must succeed on a DC 15 group Dexterity ({@skill Stealth}) check, with advantage if they attempt this task at night. On a failure, the cultists on the deck spot them and open fire with the siege weapons mounted to their vessel (see {@adventure areas D3|SDW|4|D3. Main Deck}-{@adventure D5|SDW|4|D5. Forecastle} and {@adventure D7|SDW|4|D7. Poop Deck}). The characters are 200 feet away from the vessel if spotted during the day, or 100 feet away if spotted at night.",
 						{
 							"type": "entries",
 							"name": "Staked Zombies",
@@ -8286,10 +8332,16 @@
 												"type": "internal",
 												"path": "adventure/SDW/010-bivmm-map-deathknight-dreadnaught_dm.jpg"
 											},
-											"title": "Map 5: Deathknight-Dreadnaught",
+											"title": "Map 5: Death Knight-Dreadnaught",
 											"width": 3600,
 											"height": 2280,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 36,
+												"offsetY": 25
+											},
 											"id": "0fc",
 											"mapRegions": [
 												{
@@ -9718,10 +9770,16 @@
 												"type": "internal",
 												"path": "adventure/SDW/011-jxmkr-map-deathknight-dreadnaught_player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 3600,
 											"height": 2280,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 36,
+												"offsetY": 25
+											},
 											"mapParent": {
 												"id": "0fc"
 											}
@@ -9759,7 +9817,7 @@
 									"id": "09d",
 									"entries": [
 										"The main deck contains a set of stairs that descend into the bowels of the ship, a ballista mounted on a rotating platform (see \"{@book Siege Equipment|DMG|8|Siege Equipment}\" in chapter 8 of the {@book Dungeon Master's Guide|DMG}), and a hatch that opens into the ship's stores. The hatch can only be opened by creatures with a combined Strength score of 18 or more.",
-										"Two {@creature Anchorite of Talos|DIP|anchorites of Talos} (see {@adventure appendix A|SDW|8}) are stationed at the ballista, with an additional {@creature Anchorite of Talos|DIP|anchorite} present on deck for every two characters in the party, including sidekicks. If combat occurs here, the anchorites on the forecastle and quarterdeck ({@adventure areas {@dice D5}|SDW|4|D5. Forecastle} and {@adventure {@dice D6}|SDW|4|D6. Quarterdeck}) respond immediately."
+										"Two {@creature Anchorite of Talos|DIP|anchorites of Talos} (see {@adventure appendix A|SDW|8}) are stationed at the ballista, with an additional {@creature Anchorite of Talos|DIP|anchorite} present on deck for every two characters in the party, including sidekicks. If combat occurs here, the anchorites on the forecastle and quarterdeck ({@adventure areas D5|SDW|4|D5. Forecastle} and {@adventure D6|SDW|4|D6. Quarterdeck}) respond immediately."
 									]
 								},
 								{
@@ -9883,7 +9941,7 @@
 									"name": "D14. Crew Quarters",
 									"id": "0ac",
 									"entries": [
-										"String hammocks are strung up here like cobwebs. When they enter this area, the characters hear singing drifting from the cabin at {@adventure {@dice D17}|SDW|4|D17. Death Knight's Soul}. Due to the awkwardness of this space, any Medium or larger creature fighting in here counts as squeezing into a smaller space (see \"{@book Creature Size|PHB|9|Creature Size}\" in chapter 9 of the {@book Player's Handbook|PHB}).",
+										"String hammocks are strung up here like cobwebs. When they enter this area, the characters hear singing drifting from the cabin at {@adventure D17|SDW|4|D17. Death Knight's Soul}. Due to the awkwardness of this space, any Medium or larger creature fighting in here counts as squeezing into a smaller space (see \"{@book Creature Size|PHB|9|Creature Size}\" in chapter 9 of the {@book Player's Handbook|PHB}).",
 										"The hammocks are enchanted to attack anyone who enters without the death knight's permission. Each hammock has the statistics of a {@creature rug of smothering} except that it looks like a hammock when using its False Appearance feature. One hammock animates for every member of the party, including sidekicks."
 									]
 								},
@@ -10117,6 +10175,12 @@
 									"width": 3600,
 									"height": 2280,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 36,
+										"offsetY": 24
+									},
 									"id": "0fd",
 									"mapRegions": [
 										{
@@ -10573,10 +10637,16 @@
 										"type": "internal",
 										"path": "adventure/SDW/013-zsgrp-map-iniarvs-tower_player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 3600,
 									"height": 2280,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 36,
+										"offsetY": 24
+									},
 									"mapParent": {
 										"id": "0fd"
 									}
@@ -10800,6 +10870,13 @@
 									"width": 3600,
 									"height": 2280,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 37,
+										"offsetY": 25,
+										"distance": 10
+									},
 									"id": "0fe",
 									"mapRegions": [
 										{
@@ -11923,10 +12000,17 @@
 										"type": "internal",
 										"path": "adventure/SDW/015-ca4ip-map-leilon-point_player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 3600,
 									"height": 2280,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 37,
+										"offsetY": 25,
+										"distance": 10
+									},
 									"mapParent": {
 										"id": "0fe"
 									}
@@ -12175,7 +12259,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/023-ynkgo-donnabella.png"
+										"path": "adventure/DC/023-ynkgo-donnabella.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -12239,7 +12323,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/024-leeom-galandro.png"
+										"path": "adventure/DC/024-leeom-galandro.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -12303,7 +12387,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/025-l3v6r-inverna.png"
+										"path": "adventure/DC/025-l3v6r-inverna.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -12367,7 +12451,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/026-3krsm-nib.png"
+										"path": "adventure/DC/026-3krsm-nib.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -12431,7 +12515,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/027-pu4f2-pete.png"
+										"path": "adventure/DC/027-pu4f2-pete.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -12495,7 +12579,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/028-gttxp-quinn.png"
+										"path": "adventure/DC/028-gttxp-quinn.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -12559,7 +12643,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/029-1qyge-ruby.png"
+										"path": "adventure/DC/029-1qyge-ruby.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -12623,7 +12707,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/030-nemem-shanjan.png"
+										"path": "adventure/DC/030-nemem-shanjan.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -12687,7 +12771,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/031-nrqv1-talon.png"
+										"path": "adventure/DC/031-nrqv1-talon.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -12848,7 +12932,7 @@
 												"type": "entries",
 												"name": "Empowered Spells",
 												"entries": [
-													"Choose one {@book school of magic|PHB|10|The Schools of Magic}. Whenever the spellcaster casts a spell of that school by expending a spell slot, the spellcaster can add its spellcasting ability modifier to the spell's damage roll or healing roll, if any. Spellcasting. The spellcaster learns another cantrip: {@spell spare the dying} (healer) or {@spell Shocking Grasp||shocking grasp} (mage). The caster also gains one 5th‐level spell slot and learns one new 5th‐level spell: {@spell mass cure wounds} (healer) or {@spell hold monster} (mage)."
+													"Choose one {@book school of magic|PHB|10|The Schools of Magic}. Whenever the spellcaster casts a spell of that school by expending a spell slot, the spellcaster can add its spellcasting ability modifier to the spell's damage roll or healing roll, if any. Spellcasting. The spellcaster learns another cantrip: {@spell spare the dying} (healer) or {@spell shocking grasp} (mage). The caster also gains one 5th‐level spell slot and learns one new 5th‐level spell: {@spell mass cure wounds} (healer) or {@spell hold monster} (mage)."
 												],
 												"id": "0f4"
 											}

@@ -9,7 +9,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/SLW/000-a97mm-broken-town.png"
+						"path": "adventure/SLW/000-a97mm-broken-town.webp"
 					},
 					"width": 2000,
 					"height": 1450
@@ -114,6 +114,13 @@
 											"width": 2105,
 											"height": 2933,
 											"imageType": "map",
+											"grid": {
+												"type": "hexColsOdd",
+												"size": 96,
+												"offsetX": -48,
+												"offsetY": 2,
+												"units": "miles"
+											},
 											"id": "0fc"
 										},
 										{
@@ -122,10 +129,17 @@
 												"type": "internal",
 												"path": "adventure/SLW/002-wnecz-map-sword-coast-pc.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 2153,
 											"height": 3000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "hexColsOdd",
+												"size": 97,
+												"offsetX": -32,
+												"offsetY": 18,
+												"units": "miles"
+											},
 											"mapParent": {
 												"id": "0fc",
 												"autoScale": true
@@ -330,7 +344,7 @@
 							"name": "Aubrey's Peculiarities Shoppe",
 							"id": "01e",
 							"entries": [
-								"This shop is crammed with curiosities dredged from the ruins of Leilon: old fishing rods, swamp idols, mining helmets, and other oddities. A whimsical Illuskan male named Aubrey Silverspun runs the store. Roll a {@dice d20} on Peculiarities table to see what he has on offer when the characters visit. ",
+								"This shop is crammed with curiosities dredged from the ruins of Leilon: old fishing rods, swamp idols, mining helmets, and other oddities. A whimsical Illuskan male named Aubrey Silverspun runs the store. Roll a {@dice d20} on Peculiarities table to see what he has on offer when the characters visit.",
 								{
 									"type": "table",
 									"caption": "Peculiarities",
@@ -507,7 +521,7 @@
 									"name": "Foul Weather at Wayside Quest",
 									"id": "030",
 									"entries": [
-										"This guest is triggered when the town notices that, on an otherwise fair day, a terrible storm rages in the distance, directly above the Wayside Inn. The town council, concerned about the phenomenon and anyone caught in it, asks the party to investigate. If the characters undertake this quest, see \"{@adventure Foul Weather at Wayside|SLW|5}.\""
+										"This quest is triggered when the town notices that, on an otherwise fair day, a terrible storm rages in the distance, directly above the Wayside Inn. The town council, concerned about the phenomenon and anyone caught in it, asks the party to investigate. If the characters undertake this quest, see \"{@adventure Foul Weather at Wayside|SLW|5}.\""
 									]
 								},
 								{
@@ -588,6 +602,12 @@
 									"width": 3600,
 									"height": 2280,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 36,
+										"offsetY": 24
+									},
 									"id": "0fd"
 								},
 								{
@@ -596,10 +616,16 @@
 										"type": "internal",
 										"path": "adventure/SLW/004-unnbj-map-wayside-inn_player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 3600,
 									"height": 2280,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 34,
+										"offsetY": 22
+									},
 									"mapParent": {
 										"id": "0fd"
 									}
@@ -733,6 +759,9 @@
 									"width": 3600,
 									"height": 2280,
 									"imageType": "map",
+									"grid": {
+										"type": "none"
+									},
 									"id": "0fe"
 								},
 								{
@@ -741,10 +770,13 @@
 										"type": "internal",
 										"path": "adventure/SLW/006-mjl1f-map-leilon-town-map_ruined_player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 3600,
 									"height": 2280,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "none"
+									},
 									"mapParent": {
 										"id": "0fe"
 									}
@@ -1147,6 +1179,12 @@
 									"width": 2835,
 									"height": 3600,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 136,
+										"offsetX": 56,
+										"offsetY": 36
+									},
 									"id": "0ff"
 								},
 								{
@@ -1155,10 +1193,16 @@
 										"type": "internal",
 										"path": "adventure/SLW/008-x847s-map-aid-from-phandalin_dm.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 2835,
 									"height": 3600,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 136,
+										"offsetX": 56,
+										"offsetY": 36
+									},
 									"mapParent": {
 										"id": "0ff"
 									}
@@ -1380,6 +1424,12 @@
 											"width": 3600,
 											"height": 2280,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 36,
+												"offsetY": 25
+											},
 											"id": "100"
 										},
 										{
@@ -1388,10 +1438,16 @@
 												"type": "internal",
 												"path": "adventure/SLW/010-unnbj-map-wayside-inn_player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 3600,
 											"height": 2280,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 36,
+												"offsetY": 25
+											},
 											"mapParent": {
 												"id": "100"
 											}
@@ -1534,7 +1590,7 @@
 						"Two hundred years ago, the wizard Thalivar settled in Leilon and raised a high tower as a laboratory for his magical studies. Thalivar's field of interest was the planes of existence. At the top of his tower he erected a planar beacon that shone into other worlds, drawing strange creatures like moths to a flame and paralyzing them for his studies. Over the years, the reclusive wizard filled the tower's library with his research and built an impressive menagerie of monsters.",
 						"One summer, Thalivar stopped visiting the town for supplies. The locals who entered his tower to investigate didn't return, and the House of Thalivar became a shunned site at the heart of Leilon, drawing adventures from afar to plumb its mysteries for treasure. When the cataclysmic Spellplague wracked Toril, the magic of the tower's planar beacon was redirected outward into the town, freezing the inhabitants where they stood and bringing ruin to the settlement.",
 						"Forces from Neverwinter tore down the planar beacon and are refurbishing the tower for use as a garrison building. These efforts are led by Gallio Elibro, a powerful wizard and ranking member of the Order of the Many-Starred Cloak.",
-						"Gallio has secret orders from his superiors to seize Thalivar's research and rebuild the planar beacon in a stronger form. Unfortunately, his efforts are hampered by ghostly activities inside the tower, which have driven away his military work crew. Gallio is unaware that Thalivar's spirit haunts the tower and possesses him each night to carry on its research! ",
+						"Gallio has secret orders from his superiors to seize Thalivar's research and rebuild the planar beacon in a stronger form. Unfortunately, his efforts are hampered by ghostly activities inside the tower, which have driven away his military work crew. Gallio is unaware that Thalivar's spirit haunts the tower and possesses him each night to carry on its research!",
 						{
 							"type": "entries",
 							"name": "Quest Goals",
@@ -1550,7 +1606,7 @@
 					"name": "Travel to the Tower",
 					"id": "094",
 					"entries": [
-						"The House of Thalivar perches on a rocky crag in the center of town. The locals shun the place, and the bluff is overgrown with brambles and thorn bushes. A beaten trail made by soldiers winds up to the foot of the tower. ",
+						"The House of Thalivar perches on a rocky crag in the center of town. The locals shun the place, and the bluff is overgrown with brambles and thorn bushes. A beaten trail made by soldiers winds up to the foot of the tower.",
 						{
 							"type": "entries",
 							"name": "Encounters on the Way",
@@ -1611,10 +1667,16 @@
 										"type": "internal",
 										"path": "adventure/SLW/011-kmdtd-map-house-of-thalivar_dm.jpg"
 									},
-									"title": "Map 6: Ruined Tower (Leilon)",
+									"title": "Map 6: House of Thalivar",
 									"width": 3600,
 									"height": 2280,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 34,
+										"offsetY": 22
+									},
 									"id": "101",
 									"mapRegions": [
 										{
@@ -2370,10 +2432,16 @@
 										"type": "internal",
 										"path": "adventure/SLW/012-idnt1-map-house-of-thalivar_player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 3600,
 									"height": 2280,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 34,
+										"offsetY": 22
+									},
 									"mapParent": {
 										"id": "101"
 									}
@@ -2543,7 +2611,7 @@
 									"name": "H5. Servant's Quarters",
 									"id": "0a9",
 									"entries": [
-										"Thalivar was tended by his loyal faerie servant, Soapwort, who died when his master accidentally released a menagerie of extraplanar monsters into the tower. Soapwort's chamber has long since caved in, and his bed is buried underneath a pile of rubble. Characters who spend at least 30 minutes clearing the wreckage discover humanoid bones crushed underneath. Those who succeed on a DC 12 Intelligence ({@skill Medicine}) check while examining the bones identify that they are fey in origin. ",
+										"Thalivar was tended by his loyal faerie servant, Soapwort, who died when his master accidentally released a menagerie of extraplanar monsters into the tower. Soapwort's chamber has long since caved in, and his bed is buried underneath a pile of rubble. Characters who spend at least 30 minutes clearing the wreckage discover humanoid bones crushed underneath. Those who succeed on a DC 12 Intelligence ({@skill Medicine}) check while examining the bones identify that they are fey in origin.",
 										{
 											"type": "inset",
 											"name": "Raising Soapwort",
@@ -2792,6 +2860,12 @@
 											"width": 3600,
 											"height": 2280,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 36,
+												"offsetY": 24
+											},
 											"id": "102"
 										},
 										{
@@ -2800,10 +2874,16 @@
 												"type": "internal",
 												"path": "adventure/SLW/014-ibxmx-map-lizardfolk-camp_dm.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 3600,
 											"height": 2280,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 86,
+												"offsetX": 36,
+												"offsetY": 24
+											},
 											"mapParent": {
 												"id": "102"
 											}
@@ -3113,6 +3193,12 @@
 									"width": 3600,
 									"height": 2280,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 36,
+										"offsetY": 25
+									},
 									"id": "103",
 									"mapRegions": [
 										{
@@ -5658,10 +5744,16 @@
 										"type": "internal",
 										"path": "adventure/SLW/016-vi6zl-map-thunder-cliffs_player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 3600,
 									"height": 2280,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 86,
+										"offsetX": 36,
+										"offsetY": 25
+									},
 									"mapParent": {
 										"id": "103"
 									}
@@ -5683,7 +5775,7 @@
 							"name": "2. Unhappy Cultists",
 							"id": "0de",
 							"entries": [
-								"If the characters are able to approach without tripping the alarm, they might hear some disgruntled cultists talking while they work. If the alarm was tripped, the cultists wait with weapons drawn and cannot be surprised.",
+								"If the characters are able to approach without tripping the alarm, they might hear some disgruntled cultists talking while they work. If the alarm was tripped, the cultists wait with weapons drawn and cannot be {@quickref Surprise|PHB|3|0|surprised}.",
 								"If the adventurers get a chance to hear the cultists talking, use the following read-aloud text to portray that conversation:",
 								{
 									"type": "insetReadaloud",
@@ -5713,7 +5805,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/SLW/017-q5cyq-sea-hags.jpg"
+												"path": "adventure/SLW/017-q5cyq-sea-hags.webp"
 											},
 											"title": "Sea Hags",
 											"width": 1600,
@@ -5994,7 +6086,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/023-ynkgo-donnabella.png"
+										"path": "adventure/DC/023-ynkgo-donnabella.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -6058,7 +6150,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/024-leeom-galandro.png"
+										"path": "adventure/DC/024-leeom-galandro.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -6122,7 +6214,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/025-l3v6r-inverna.png"
+										"path": "adventure/DC/025-l3v6r-inverna.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -6186,7 +6278,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/026-3krsm-nib.png"
+										"path": "adventure/DC/026-3krsm-nib.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -6250,7 +6342,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/027-pu4f2-pete.png"
+										"path": "adventure/DC/027-pu4f2-pete.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -6314,7 +6406,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/028-gttxp-quinn.png"
+										"path": "adventure/DC/028-gttxp-quinn.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -6378,7 +6470,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/029-1qyge-ruby.png"
+										"path": "adventure/DC/029-1qyge-ruby.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -6442,7 +6534,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/030-nemem-shanjan.png"
+										"path": "adventure/DC/030-nemem-shanjan.webp"
 									},
 									"width": 850,
 									"height": 1000
@@ -6506,7 +6598,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/DC/031-nrqv1-talon.png"
+										"path": "adventure/DC/031-nrqv1-talon.webp"
 									},
 									"width": 850,
 									"height": 1000

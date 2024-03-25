@@ -53,7 +53,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Acererak.jpg"
+						"path": "bestiary/ToA/Acererak.webp"
 					}
 				}
 			]
@@ -91,7 +91,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Albino Dwarf.jpg"
+						"path": "bestiary/ToA/Albino Dwarf.webp"
 					}
 				}
 			]
@@ -122,7 +122,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Albino Dwarf.jpg"
+						"path": "bestiary/ToA/Albino Dwarf.webp"
 					}
 				}
 			]
@@ -168,7 +168,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Aldani (Lobsterfolk).jpg"
+						"path": "bestiary/ToA/Aldani (Lobsterfolk).webp"
 					}
 				}
 			]
@@ -200,7 +200,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Almiraj.jpg"
+						"path": "bestiary/ToA/Almiraj.webp"
 					}
 				}
 			]
@@ -310,7 +310,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Artus Cimber.jpg"
+						"path": "bestiary/ToA/Artus Cimber.webp"
 					}
 				}
 			]
@@ -348,7 +348,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Asharra.jpg"
+						"path": "bestiary/ToA/Asharra.webp"
 					}
 				}
 			]
@@ -373,6 +373,16 @@
 							]
 						}
 					]
+				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Assassin Vine.webp"
+					},
+					"credit": "Zoltan Boros"
 				}
 			]
 		},
@@ -418,7 +428,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Atropal.jpg"
+						"path": "bestiary/ToA/Atropal.webp"
 					}
 				}
 			]
@@ -450,7 +460,20 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Bag of Nails.jpg"
+						"path": "bestiary/ToA/Bag of Nails.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Blind Artist",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Blind Artist.webp"
 					}
 				}
 			]
@@ -496,7 +519,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Chwinga.jpg"
+						"path": "bestiary/ToA/Chwinga.webp"
 					}
 				}
 			]
@@ -592,7 +615,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Dragonbait.jpg"
+						"path": "bestiary/ToA/Dragonbait.webp"
 					}
 				}
 			]
@@ -624,7 +647,20 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Eblis.jpg"
+						"path": "bestiary/ToA/Eblis.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Ekene-Afa",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Ekene-Afa.webp"
 					}
 				}
 			]
@@ -637,7 +673,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Elok Jaharwon.png"
+						"path": "bestiary/ToA/Elok Jaharwon.webp"
 					}
 				}
 			]
@@ -650,7 +686,20 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Fenthaza.png"
+						"path": "bestiary/ToA/Fenthaza.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Flask of Wine",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/098-ph08.webp"
 					}
 				}
 			]
@@ -681,7 +730,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Flying Monkey.jpg"
+						"path": "bestiary/ToA/Flying Monkey.webp"
 					}
 				}
 			]
@@ -712,7 +761,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Giant Four-Armed Gargoyle.jpg"
+						"path": "bestiary/ToA/Giant Four-Armed Gargoyle.webp"
 					}
 				}
 			]
@@ -786,7 +835,20 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Girallon Zombie.jpg"
+						"path": "bestiary/ToA/Girallon Zombie.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Grabstab",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Grabstab.webp"
 					}
 				}
 			]
@@ -824,7 +886,20 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Hew Hackinstone.jpg"
+						"path": "bestiary/ToA/Hew Hackinstone.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Ifan Talro'a",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Ifan Talro'a.webp"
 					}
 				}
 			]
@@ -856,7 +931,33 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Jaculi.jpg"
+						"path": "bestiary/ToA/Jaculi.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Jessamine",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Jessamine.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Jobal",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Jobal.webp"
 					}
 				}
 			]
@@ -888,7 +989,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Kamadan.jpg"
+						"path": "bestiary/ToA/Kamadan.webp"
 					}
 				}
 			]
@@ -919,7 +1020,20 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/King of Feathers.jpg"
+						"path": "bestiary/ToA/King of Feathers.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Kwayothé",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Kwayothe.webp"
 					}
 				}
 			]
@@ -932,7 +1046,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Laskilar.png"
+						"path": "bestiary/ToA/Laskilar.webp"
 					}
 				}
 			]
@@ -991,7 +1105,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Liara Portyr.jpg"
+						"path": "bestiary/ToA/Liara Portyr.webp"
 					}
 				}
 			]
@@ -1096,7 +1210,33 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Mwaxanaré.jpg"
+						"path": "bestiary/ToA/Mwaxanaré.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Nanny Pu'pu",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Nanny Pu'pu.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Orvex Ocrammas",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Orvex Ocrammas.webp"
 					}
 				}
 			]
@@ -1128,7 +1268,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Pterafolk.jpg"
+						"path": "bestiary/ToA/Pterafolk.webp"
 					}
 				}
 			]
@@ -1201,7 +1341,33 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Ras Nsi.jpg"
+						"path": "bestiary/ToA/Ras Nsi.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Salida",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/099-ph09.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Skeleton Key",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/065-502.webp"
 					}
 				}
 			]
@@ -1256,7 +1422,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Stone Juggernaut.jpg"
+						"path": "bestiary/ToA/Stone Juggernaut.webp"
 					}
 				}
 			]
@@ -1289,7 +1455,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Su-monster.jpg"
+						"path": "bestiary/ToA/Su-monster.webp"
 					}
 				}
 			]
@@ -1358,7 +1524,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Tabaxi Minstrel.jpg"
+						"path": "bestiary/ToA/Tabaxi Minstrel.webp"
 					}
 				}
 			]
@@ -1389,7 +1555,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Tomb Dwarf.jpg"
+						"path": "bestiary/ToA/Tomb Dwarf.webp"
 					}
 				}
 			]
@@ -1414,6 +1580,15 @@
 							]
 						}
 					]
+				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Tomb Guardian.webp"
+					}
 				}
 			]
 		},
@@ -1443,7 +1618,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Tri-flower Frond.jpg"
+						"path": "bestiary/ToA/Tri-flower Frond.webp"
 					}
 				}
 			]
@@ -1495,7 +1670,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Tyrannosaurus Zombie.jpg"
+						"path": "bestiary/ToA/Tyrannosaurus Zombie.webp"
 					}
 				}
 			]
@@ -1536,7 +1711,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Valindra Shadowmantle.jpg"
+						"path": "bestiary/ToA/Valindra Shadowmantle.webp"
 					}
 				}
 			]
@@ -1592,6 +1767,19 @@
 			]
 		},
 		{
+			"name": "Wakanga O'tamu",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Wakanga O'tamu.webp"
+					}
+				}
+			]
+		},
+		{
 			"name": "Withers",
 			"source": "ToA",
 			"entries": [
@@ -1617,7 +1805,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Withers.jpg"
+						"path": "bestiary/ToA/Withers.webp"
 					}
 				}
 			]
@@ -1676,7 +1864,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Xandala.jpg"
+						"path": "bestiary/ToA/Xandala.webp"
 					}
 				}
 			]
@@ -1721,7 +1909,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Yellow Musk Creeper.png"
+						"path": "bestiary/ToA/Yellow Musk Creeper.webp"
 					}
 				}
 			]
@@ -1766,7 +1954,20 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Yellow Musk Zombie.png"
+						"path": "bestiary/ToA/Yellow Musk Zombie.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Yorb",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Yorb.webp"
 					}
 				}
 			]
@@ -1779,7 +1980,20 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Zaroum Al-Saryak.png"
+						"path": "bestiary/ToA/Zaroum Al-Saryak.webp"
+					}
+				}
+			]
+		},
+		{
+			"name": "Zhanthi",
+			"source": "ToA",
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/ToA/Zhanthi.webp"
 					}
 				}
 			]
@@ -1838,7 +2052,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Zindar.jpg"
+						"path": "bestiary/ToA/Zindar.webp"
 					}
 				}
 			]
@@ -1869,7 +2083,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/ToA/Zorbo.jpg"
+						"path": "bestiary/ToA/Zorbo.webp"
 					}
 				}
 			]

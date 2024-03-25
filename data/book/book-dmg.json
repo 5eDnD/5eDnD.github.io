@@ -6568,6 +6568,7 @@
 										{
 											"type": "table",
 											"caption": "XP Thresholds by Character Level",
+											"basicRules": true,
 											"colLabels": [
 												"Character Level",
 												"Easy",
@@ -6812,6 +6813,7 @@
 												{
 													"type": "table",
 													"caption": "Encounter Multipliers",
+													"basicRules": true,
 													"colLabels": [
 														"Number of Monsters",
 														"Multiplier"
@@ -6907,6 +6909,7 @@
 										{
 											"type": "table",
 											"caption": "Adventuring Day XP",
+											"basicRules": true,
 											"colLabels": [
 												"Level",
 												"Adjusted XP per Day per Character"
@@ -7022,7 +7025,7 @@
 								{
 									"type": "list",
 									"items": [
-										"The whole party is surprised, and the enemy isn't.",
+										"The whole party is {@quickref Surprise|PHB|3|0|surprised}, and the enemy isn't.",
 										"The enemy has cover, and the party doesn't.",
 										"The characters are unable to see the enemy.",
 										"The characters are taking damage every round from some environmental effect or magical source, and the enemy isn't.",
@@ -10262,21 +10265,7 @@
 									],
 									"id": "1c3"
 								},
-								{
-									"type": "inline",
-									"entries": [
-										"See the ",
-										{
-											"type": "link",
-											"href": {
-												"type": "internal",
-												"path": "trapshazards.html"
-											},
-											"text": "traps and hazards page"
-										},
-										" for more information."
-									]
-								}
+								"See the {@5etools traps and hazards page|trapshazards.html} for more information."
 							],
 							"id": "1c2"
 						}
@@ -10628,6 +10617,7 @@
 								{
 									"type": "table",
 									"caption": "Precipitation",
+									"srd": true,
 									"colLabels": [
 										"d20",
 										"Precipitation"
@@ -11798,79 +11788,79 @@
 									"rows": [
 										[
 											"2",
-											"Animals on the loose"
+											"{@book Animals on the loose|DMG|5|Animals on the loose}"
 										],
 										[
 											"3",
-											"Announcement"
+											"{@book Announcement|DMG|5|Announcement}"
 										],
 										[
 											"4",
-											"Brawl"
+											"{@book Brawl|DMG|5|Brawl}"
 										],
 										[
 											"5",
-											"Bullies"
+											"{@book Bullies|DMG|5|Bullies}"
 										],
 										[
 											"6",
-											"Companion"
+											"{@book Companion|DMG|5|Companion}"
 										],
 										[
 											"7",
-											"Contest"
+											"{@book Contest|DMG|5|Contest}"
 										],
 										[
 											"8",
-											"Corpse"
+											"{@book Corpse|DMG|5|Corpse}"
 										],
 										[
 											"9",
-											"Draft"
+											"{@book Draft|DMG|5|Draft}"
 										],
 										[
 											"10",
-											"Drunk"
+											"{@book Drunk|DMG|5|Drunk}"
 										],
 										[
 											"11",
-											"Fire"
+											"{@book Fire|DMG|5|Fire}"
 										],
 										[
 											"12",
-											"Found trinket"
+											"{@book Found trinket|DMG|5|Found trinket}"
 										],
 										[
 											"13",
-											"Guard harassment"
+											"{@book Guard harassment|DMG|5|Guard harassment}"
 										],
 										[
 											"14",
-											"Pickpocket"
+											"{@book Pickpocket|DMG|5|Pickpocket}"
 										],
 										[
 											"15",
-											"Procession"
+											"{@book Procession|DMG|5|Procession}"
 										],
 										[
 											"16",
-											"Protest"
+											"{@book Protest|DMG|5|Protest}"
 										],
 										[
 											"17",
-											"Runaway cart"
+											"{@book Runaway cart|DMG|5|Runaway cart}"
 										],
 										[
 											"18",
-											"Shady transaction"
+											"{@book Shady transaction|DMG|5|Shady transaction}"
 										],
 										[
 											"19",
-											"Spectacle"
+											"{@book Spectacle|DMG|5|Spectacle}"
 										],
 										[
 											"20",
-											"Urchin"
+											"{@book Urchin|DMG|5|Urchin}"
 										]
 									]
 								},
@@ -11973,7 +11963,7 @@
 									],
 									"id": "1f6"
 								},
-								"You can determine the trinket by rolling on the Trinket stable in the {@i Player's Handbook}.",
+								"You can determine the trinket by rolling on the {@item Trinket|PHB|Trinkets table} in the {@i Player's Handbook}.",
 								{
 									"type": "entries",
 									"name": "Guard Harassment",
@@ -12400,6 +12390,7 @@
 										{
 											"type": "table",
 											"caption": "Airborne and Waterborne Vehicles",
+											"srd": true,
 											"colLabels": [
 												"Ship",
 												"Cost",
@@ -12571,6 +12562,7 @@
 										{
 											"type": "table",
 											"caption": "Trap Save DCs and Attack Bonuses",
+											"srd": true,
 											"colLabels": [
 												"Trap Danger",
 												"Save DC",
@@ -12602,6 +12594,7 @@
 										{
 											"type": "table",
 											"caption": "Damage Severity by Level",
+											"srd": true,
 											"colLabels": [
 												"Character Level",
 												"Setback",
@@ -12663,21 +12656,7 @@
 							"name": "Sample Traps",
 							"page": 121,
 							"entries": [
-								{
-									"type": "inline",
-									"entries": [
-										"See the ",
-										{
-											"type": "link",
-											"href": {
-												"type": "internal",
-												"path": "trapshazards.html"
-											},
-											"text": "traps and hazards page"
-										},
-										" for more information."
-									]
-								}
+								"See the {@5etools traps and hazards page|trapshazards.html} for more information."
 							],
 							"id": "217"
 						}
@@ -14946,6 +14925,7 @@
 												{
 													"type": "table",
 													"caption": "Spell Scroll",
+													"srd": true,
 													"colLabels": [
 														"Spell Level",
 														"Rarity",
@@ -16844,15 +16824,15 @@
 										],
 										[
 											"77",
-											"{@item Ioun stone, absorption},"
+											"{@item Ioun stone, absorption}"
 										],
 										[
 											"78",
-											"{@item Ioun stone, agility},"
+											"{@item Ioun stone, agility}"
 										],
 										[
 											"79",
-											"{@item Ioun stone, fortitude},"
+											"{@item Ioun stone, fortitude}"
 										],
 										[
 											"80",
@@ -17224,21 +17204,7 @@
 							"name": "Magic Items A-Z",
 							"page": 150,
 							"entries": [
-								{
-									"type": "inline",
-									"entries": [
-										"Magic items are presented in alphabetical order. A magic item's description gives the item's name, its category, its rarity, and its magical properties. The full list of items is available on the ",
-										{
-											"type": "link",
-											"href": {
-												"type": "internal",
-												"path": "items.html"
-											},
-											"text": "items"
-										},
-										" page."
-									]
-								}
+								"Magic items are presented in alphabetical order. A magic item's description gives the item's name, its category, its rarity, and its magical properties. The full list of items is available on the {@5etools items|items.html} page."
 							],
 							"id": "269"
 						}
@@ -17277,6 +17243,7 @@
 										{
 											"type": "table",
 											"caption": "Sentient Magic Item Communication",
+											"srd": true,
 											"colLabels": [
 												"d100",
 												"Communication"
@@ -17312,6 +17279,7 @@
 										{
 											"type": "table",
 											"caption": "Sentient Magic Item Senses",
+											"srd": true,
 											"colLabels": [
 												"d4",
 												"Senses"
@@ -17351,6 +17319,7 @@
 										{
 											"type": "table",
 											"caption": "Sentient Magic Item Alignment",
+											"srd": true,
 											"colLabels": [
 												"d100",
 												"Alignment"
@@ -17420,6 +17389,7 @@
 										{
 											"type": "table",
 											"caption": "Sentient Special Purpose",
+											"srd": true,
 											"colLabels": [
 												"d10",
 												"Purpose"
@@ -19181,6 +19151,7 @@
 										{
 											"type": "table",
 											"caption": "Object Armor Class",
+											"srd": true,
 											"colLabels": [
 												"Substance",
 												"AC"
@@ -19232,6 +19203,7 @@
 										{
 											"type": "table",
 											"caption": "Object Hit Points",
+											"srd": true,
 											"colLabels": [
 												"Size",
 												"Fragile",
@@ -19523,23 +19495,23 @@
 									"rows": [
 										[
 											"Cone",
-											"Size ÷ 10 (round up)"
+											"{@dice ceil(#$prompt_number:title=Enter a Size$# / 10)|Size ÷ 10} (round up)"
 										],
 										[
 											"Cube or square",
-											"Size ÷ 5 (round up)"
+											"{@dice ceil(#$prompt_number:title=Enter a Size$# / 5)|Size ÷ 5} (round up)"
 										],
 										[
 											"Cylinder",
-											"Radius ÷ 5 (round up)"
+											"{@dice ceil(#$prompt_number:title=Enter a Radius$# / 5)|Radius ÷ 5} (round up)"
 										],
 										[
 											"Line",
-											"Length ÷ 30 (round up)"
+											"{@dice ceil(#$prompt_number:title=Enter a Length$# / 30)|Length ÷ 30} (round up)"
 										],
 										[
 											"Sphere or circle",
-											"Radius ÷ 5 (round up)"
+											"{@dice ceil(#$prompt_number:title=Enter a Radius$# / 5)|Radius ÷ 5} (round up)"
 										]
 									]
 								},
@@ -19683,7 +19655,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "rules/Monster_Size_Chart.png"
+												"path": "book/DMG/Monster_Size_Chart.webp"
 											},
 											"width": 1035,
 											"height": 800
@@ -19692,7 +19664,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "rules/Creature_Size_on_Squares_and_Hexes.png"
+												"path": "book/DMG/Creature_Size_on_Squares_and_Hexes.webp"
 											},
 											"width": 1574,
 											"height": 658
@@ -19760,7 +19732,7 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "rules/Flanking_and_Cover_Squares.png"
+														"path": "book/DMG/Flanking_and_Cover_Squares.webp"
 													},
 													"width": 1579,
 													"height": 539
@@ -19778,7 +19750,7 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "rules/Flanking_and_Cover_Hexes.png"
+														"path": "book/DMG/Flanking_and_Cover_Hexes.webp"
 													},
 													"width": 1558,
 													"height": 530
@@ -20213,6 +20185,7 @@
 						{
 							"type": "table",
 							"caption": "Poisons",
+							"srd": true,
 							"colLabels": [
 								"Item",
 								"Type",
@@ -20616,7 +20589,7 @@
 									]
 								},
 								"When awarding XP, treat a major milestone as a hard encounter and a minor milestone as an easy encounter.",
-								"If you want to reward your players for their progress through an adventure with something more than XPand treasure, give them additional small rewards at milestone points. Here are some examples:",
+								"If you want to reward your players for their progress through an adventure with something more than XP and treasure, give them additional small rewards at milestone points. Here are some examples:",
 								{
 									"type": "list",
 									"items": [
@@ -21177,6 +21150,78 @@
 										"One round after a smoke grenade lands, it emits a cloud of smoke that creates a heavily obscured area in a 20-foot radius. A moderate wind (at least 10 miles per hour) disperses the smoke in 4 rounds; a strong wind (20 or more miles per hour) disperses it in 1 round."
 									],
 									"id": "32f"
+								},
+								{
+									"type": "tableGroup",
+									"name": "Explosives",
+									"tables": [
+										{
+											"type": "table",
+											"caption": "Explosives",
+											"colLabels": [
+												"Renaissance Item",
+												"Cost",
+												"Weight"
+											],
+											"colStyles": [
+												"col-8",
+												"col-2 text-right",
+												"col-2 text-right"
+											],
+											"rows": [
+												[
+													"{@item Bomb}",
+													"150 gp",
+													"1 lb."
+												],
+												[
+													"{@item Gunpowder Keg||Gunpowder, keg}",
+													"250 gp",
+													"20 lb."
+												],
+												[
+													"{@item Gunpowder Horn||Gunpowder, powder horn}",
+													"35 gp",
+													"2 lb."
+												]
+											]
+										},
+										{
+											"type": "table",
+											"colLabels": [
+												"Modern Item",
+												"Cost",
+												"Weight"
+											],
+											"colStyles": [
+												"col-8 text",
+												"col-2 text-right",
+												"col-2 text-right"
+											],
+											"rows": [
+												[
+													"{@item Dynamite (stick)}",
+													"\u2014",
+													"1 lb."
+												],
+												[
+													"{@item Fragmentation Grenade||Grenade, fragmentation}",
+													"\u2014",
+													"1 lb."
+												],
+												[
+													"{@item Smoke Grenade||Grenade, smoke}",
+													"\u2014",
+													"2 lb."
+												],
+												[
+													"{@item Grenade Launcher||Grenade launcher}",
+													"\u2014",
+													"7 lb."
+												]
+											]
+										}
+									]
 								}
 							],
 							"id": "32b"
@@ -21847,7 +21892,7 @@
 								{
 									"type": "list",
 									"items": [
-										"The creature is surprised.",
+										"The creature is {@quickref Surprise|PHB|3|0|surprised}.",
 										"The creature is reduced to half its hit points or fewer for the first time in the battle.",
 										"The creature has no way to harm the opposing side on its turn."
 									]
@@ -21856,7 +21901,7 @@
 								{
 									"type": "list",
 									"items": [
-										"All the creatures in the group are surprised.",
+										"All the creatures in the group are {@quickref Surprise|PHB|3|0|surprised}.",
 										"The group's leader is reduced to 0 hit points, {@condition incapacitated}, taken prisoner, or removed from battle.",
 										"The group is reduced to half its original size with no losses on the opposing side."
 									]
@@ -22315,6 +22360,8 @@
 										{
 											"type": "table",
 											"caption": "Experience Points by Challenge Rating",
+											"basicRules": true,
+											"srd": true,
 											"colLabels": [
 												"CR",
 												"XP"
@@ -22589,6 +22636,8 @@
 												{
 													"type": "table",
 													"caption": "Hit Dice by Size",
+													"srd": true,
+													"basicRules": true,
 													"colLabels": [
 														"Monster Size",
 														"Hit Die",
@@ -24011,7 +24060,7 @@
 										"Instead of gaining a number of spell slots to cast your spells from the Spellcasting feature, you gain a pool of spell points instead. You expend a number of spell points to create a spell slot of a given level, and then use that slot to cast a spell. You can't reduce your spell points total to less than 0, and you regain all spent spell points when you finish a long rest.",
 										"Spells of 6th level and higher are particularly taxing to cast. You can use spell points to create one slot of each level of 6th or higher. You can't create another slot of the same level until you finish a long rest.",
 										"The number of spell points you have to spend is based on your level as a spellcaster, as shown in the Spell Points by Level table. Your level also determines the maximum-level spell slot you can create. Even though you might have enough points to create a slot above this maximum, you can't do so.",
-										"The Spell Points by Level table applies to {@class bard||bards}, {@class cleric||clerics}, {@class druid||druid}, {@class sorcerer||sorcerers}, and {@class wizard||wizards}. For a {@class paladin} or {@class ranger}, halve the character's level in that class and then consult the table. For a {@class fighter|phb|fighter (Eldritch Knight)|Eldritch Knight} or {@class rogue|phb|rogue (Arcane Trickster)|Arcane Trickster}, divide the character's level in that class by three.",
+										"The Spell Points by Level table applies to {@class bard||bards}, {@class cleric||clerics}, {@class druid||druids}, {@class sorcerer||sorcerers}, and {@class wizard||wizards}. For a {@class paladin} or {@class ranger}, halve the character's level in that class and then consult the table. For a {@class fighter|phb|fighter (Eldritch Knight)|Eldritch Knight} or {@class rogue|phb|rogue (Arcane Trickster)|Arcane Trickster}, divide the character's level in that class by three.",
 										"This system can be applied to monsters that cast spells using spell slots, but it isn't recommended that you do so. Tracking spell point expenditures for a monster can be a hassle.",
 										{
 											"type": "table",
@@ -24397,7 +24446,7 @@
 							"type": "table",
 							"caption": "Passage Width",
 							"colLabels": [
-								"{@dice d12}/{@dice d20}",
+								"{@dice d12;d20}",
 								"Width"
 							],
 							"colStyles": [
@@ -25603,7 +25652,7 @@
 										],
 										[
 											"13",
-											"Prison for hold ing captured intruders"
+											"Prison for holding captured intruders"
 										],
 										[
 											"14-15",
@@ -28815,7 +28864,16 @@
 								"path": "book/DMG/app-c-1.jpg"
 							},
 							"width": 1125,
-							"height": 2475
+							"height": 2475,
+							"imageType": "map",
+							"title": "Map 1",
+							"grid": {
+								"type": "square",
+								"size": 97,
+								"offsetX": -19,
+								"offsetY": 3,
+								"scale": 3
+							}
 						},
 						{
 							"type": "image",
@@ -28824,7 +28882,16 @@
 								"path": "book/DMG/app-c-2.jpg"
 							},
 							"width": 1013,
-							"height": 2862
+							"height": 2862,
+							"imageType": "map",
+							"title": "Map 2",
+							"grid": {
+								"type": "square",
+								"size": 146,
+								"offsetX": -50,
+								"offsetY": 50,
+								"scale": 2
+							}
 						},
 						{
 							"type": "image",
@@ -28833,7 +28900,17 @@
 								"path": "book/DMG/app-c-3.jpg"
 							},
 							"width": 2179,
-							"height": 2942
+							"height": 2942,
+							"imageType": "map",
+							"title": "Map 3",
+							"grid": {
+								"type": "square",
+								"size": 117,
+								"offsetX": 14,
+								"offsetY": -6,
+								"scale": 2,
+								"distance": 10
+							}
 						},
 						{
 							"type": "image",
@@ -28842,7 +28919,14 @@
 								"path": "book/DMG/app-c-4.jpg"
 							},
 							"width": 2182,
-							"height": 3105
+							"height": 3105,
+							"imageType": "map",
+							"title": "Map 4",
+							"grid": {
+								"type": "square",
+								"size": 84,
+								"scale": 3
+							}
 						},
 						{
 							"type": "image",
@@ -28851,7 +28935,14 @@
 								"path": "book/DMG/app-c-5.jpg"
 							},
 							"width": 3900,
-							"height": 3151
+							"height": 3151,
+							"imageType": "map",
+							"title": "Map 5",
+							"grid": {
+								"type": "none",
+								"size": 146,
+								"distance": 100
+							}
 						},
 						{
 							"type": "image",
@@ -28860,7 +28951,14 @@
 								"path": "book/DMG/app-c-6.jpg"
 							},
 							"width": 3375,
-							"height": 2625
+							"height": 2625,
+							"imageType": "map",
+							"title": "Map 6",
+							"grid": {
+								"type": "none",
+								"size": 53,
+								"distance": 100
+							}
 						},
 						{
 							"type": "image",
@@ -28869,7 +28967,14 @@
 								"path": "book/DMG/app-c-7.jpg"
 							},
 							"width": 2100,
-							"height": 1575
+							"height": 1575,
+							"imageType": "map",
+							"title": "Map 7",
+							"grid": {
+								"type": "square",
+								"size": 105,
+								"scale": 2
+							}
 						},
 						{
 							"type": "image",
@@ -28878,7 +28983,15 @@
 								"path": "book/DMG/app-c-8.jpg"
 							},
 							"width": 2288,
-							"height": 1613
+							"height": 1613,
+							"imageType": "map",
+							"title": "Map 8",
+							"grid": {
+								"type": "square",
+								"size": 75,
+								"offsetX": 21,
+								"offsetY": 36
+							}
 						},
 						{
 							"type": "image",
@@ -28887,7 +29000,16 @@
 								"path": "book/DMG/app-c-9.jpg"
 							},
 							"width": 2040,
-							"height": 2965
+							"height": 2965,
+							"imageType": "map",
+							"title": "Map 9",
+							"grid": {
+								"type": "square",
+								"size": 102,
+								"offsetX": 50,
+								"offsetY": 20,
+								"scale": 3
+							}
 						}
 					]
 				}

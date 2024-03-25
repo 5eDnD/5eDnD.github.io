@@ -139,6 +139,13 @@
 				"prone",
 				"unconscious"
 			],
+			"savingThrowForced": [
+				"intelligence"
+			],
+			"savingThrowForcedSpell": [
+				"charisma",
+				"wisdom"
+			],
 			"hasToken": true
 		},
 		{
@@ -360,6 +367,7 @@
 		{
 			"name": "Garret Levistusson",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "LLK",
 			"page": 41,
 			"size": [
@@ -468,6 +476,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"shortsword|phb"
+			],
 			"traitTags": [
 				"Sneak Attack"
 			],
@@ -487,6 +498,7 @@
 				"CB"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflict": [
@@ -496,6 +508,9 @@
 				"charmed",
 				"incapacitated",
 				"prone"
+			],
+			"savingThrowForcedSpell": [
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluffImages": true
@@ -552,12 +567,16 @@
 			"spellcastingTags": [
 				"O"
 			],
+			"savingThrowForcedSpell": [
+				"dexterity"
+			],
 			"hasToken": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Gloine Nathair-Nathair",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "LLK",
 			"page": 23,
 			"_copy": {
@@ -586,7 +605,7 @@
 					"name": "Petrifying Gaze",
 					"entries": [
 						"When a creature that can see the medusa's eyes starts its turn within 30 feet of the medusa, the medusa can force it to make a {@dc 14} Constitution saving throw if the medusa isn't {@condition incapacitated} and can see the creature. If the saving throw fails by 5 or more, the creature is instantly {@condition petrified}. Otherwise, a creature that fails the save begins to turn to glass and is {@condition restrained}. The {@condition restrained} creature must repeat the saving throw at the end of its next turn, becoming {@condition petrified} on a failure or ending the effect on a success. The petrification lasts until the creature is freed by the  {@spell greater restoration} spell or other magic.",
-						"Unless surprised, a creature can avert its eyes to avoid the saving throw at the start of its turn. If the creature does so, it can't see the medusa until the start of its next turn, when it can avert its eyes again. If the creature looks at the medusa in the meantime, it must immediately make the save.",
+						"Unless {@quickref Surprise|PHB|3|0|surprised}, a creature can avert its eyes to avoid the saving throw at the start of its turn. If the creature does so, it can't see the medusa until the start of its next turn, when it can avert its eyes again. If the creature looks at the medusa in the meantime, it must immediately make the save.",
 						"If the medusa sees itself reflected on a polished surface within 30 feet of it and in an area of bright light, the medusa is, due to its curse, affected by its own gaze."
 					]
 				}
@@ -595,12 +614,16 @@
 				"petrified",
 				"restrained"
 			],
+			"savingThrowForced": [
+				"constitution"
+			],
 			"hasToken": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Mary Greymalkin",
 			"isNpc": true,
+			"isNamedCreature": true,
 			"source": "LLK",
 			"page": 41,
 			"size": [
@@ -712,6 +735,9 @@
 					]
 				}
 			],
+			"attachedItems": [
+				"quarterstaff|phb"
+			],
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -735,6 +761,7 @@
 				"CL"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"conditionInflict": [
@@ -744,6 +771,13 @@
 			"conditionInflictSpell": [
 				"charmed",
 				"incapacitated"
+			],
+			"savingThrowForced": [
+				"wisdom"
+			],
+			"savingThrowForcedSpell": [
+				"intelligence",
+				"wisdom"
 			],
 			"hasToken": true,
 			"hasFluffImages": true
@@ -861,7 +895,7 @@
 				{
 					"name": "Transparent",
 					"entries": [
-						"Even when an ooze-folk is in plain sight, it takes a {@dc 12} Wisdom ({@skill Perception}) check to spot an ooze-folk that has neither moved nor attacked. A creature that tries to enter the ooze-folk's space while unaware of the ooze-folk is surprised by the ooze-folk."
+						"Even when an ooze-folk is in plain sight, it takes a {@dc 12} Wisdom ({@skill Perception}) check to spot an ooze-folk that has neither moved nor attacked. A creature that tries to enter the ooze-folk's space while unaware of the ooze-folk is {@quickref Surprise|PHB|3|0|surprised} by the ooze-folk."
 					]
 				},
 				{
@@ -902,6 +936,7 @@
 				"S"
 			],
 			"miscTags": [
+				"MLW",
 				"MW"
 			],
 			"hasToken": true

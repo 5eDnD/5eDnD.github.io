@@ -48,7 +48,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/000-qocvf-flowchart-0-1.png"
+										"path": "adventure/BGDIA/000-qocvf-flowchart-0-1.webp"
 									},
 									"title": "Diagram 0.1: Adventure Flowchart",
 									"width": 715,
@@ -63,7 +63,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/001-ud5xx-00-01.png"
+										"path": "adventure/BGDIA/001-ud5xx-00-01.webp"
 									},
 									"width": 1000,
 									"height": 643
@@ -274,7 +274,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/BGDIA/002-dbn8x-01-01.png"
+						"path": "adventure/BGDIA/002-dbn8x-01-01.webp"
 					},
 					"width": 1000,
 					"height": 651
@@ -303,7 +303,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/003-krifv-flowchart-1-1.png"
+								"path": "adventure/BGDIA/003-krifv-flowchart-1-1.webp"
 							},
 							"title": "Diagram 1.1: Chapter 1 Flowchart",
 							"width": 701,
@@ -346,7 +346,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/004-sbxtc-01-02.png"
+								"path": "adventure/BGDIA/004-sbxtc-01-02.webp"
 							},
 							"title": "Flaming Fist Coat of Arms",
 							"width": 880,
@@ -367,6 +367,9 @@
 									"width": 2133,
 									"height": 1371,
 									"imageType": "map",
+									"grid": {
+										"type": "none"
+									},
 									"id": "1a8"
 								},
 								{
@@ -375,10 +378,13 @@
 										"type": "internal",
 										"path": "adventure/BGDIA/006-q2wdo-map-1-1-player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 2550,
 									"height": 1650,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "none"
+									},
 									"mapParent": {
 										"id": "1a8",
 										"autoScale": true
@@ -418,7 +424,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/007-jnifm-01-03.jpg"
+										"path": "adventure/BGDIA/007-jnifm-01-03.webp"
 									},
 									"title": "When the fog clears, Baldur's Gate shines on the shores of the Chionthar River",
 									"width": 5025,
@@ -506,6 +512,12 @@
 											"width": 7891,
 											"height": 4000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 217,
+												"offsetX": -155,
+												"offsetY": -159
+											},
 											"id": "329",
 											"mapRegions": [
 												{
@@ -833,10 +845,16 @@
 												"type": "internal",
 												"path": "adventure/BGDIA/009-hc2oz-map-1-2-player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 6105,
 											"height": 4000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 166,
+												"offsetX": 75,
+												"offsetY": -4
+											},
 											"mapParent": {
 												"id": "329",
 												"autoScale": true
@@ -1212,6 +1230,12 @@
 													"width": 6105,
 													"height": 4000,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 93,
+														"offsetX": -14,
+														"offsetY": -6
+													},
 													"id": "32a",
 													"mapRegions": [
 														{
@@ -2459,10 +2483,16 @@
 														"type": "internal",
 														"path": "adventure/BGDIA/011-6opzj-map-1-3.jpg"
 													},
-													"title": "(Player Version)",
+													"title": "Player Version",
 													"width": 6105,
 													"height": 4000,
 													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 93,
+														"offsetX": -13,
+														"offsetY": -11
+													},
 													"mapParent": {
 														"id": "32a"
 													}
@@ -2666,7 +2696,7 @@
 									"id": "057",
 									"entries": [
 										"An ordinary {@creature rat} scurries around this room, looking for scraps of food. If the characters use a {@spell speak with animals} spell or similar magic to communicate with the rat, it can share its knowledge of the dungeon with them. It warms to characters who offer it food.",
-										"The rat's knowledge is limited to places it has visited\u2014specifically {@adventure areas {@dice D5}|BGDIA|1|D5. Welcome to the Dungeon} through {@adventure {@dice D26}|BGDIA|1|D26. Bhaal's Rest}. It doesn't know the location of secret doors, so it's unaware of {@adventure areas {@dice D27}|BGDIA|1|D27. Echoes of Battle} through {@adventure {@dice D33}|BGDIA|1|D33. Covenant of the Dead Three}, which are hidden behind the secret door in {@adventure area D23|BGDIA|1|D23. Secret Door and Sentry}."
+										"The rat's knowledge is limited to places it has visited\u2014specifically {@adventure areas D5|BGDIA|1|D5. Welcome to the Dungeon} through {@adventure D26|BGDIA|1|D26. Bhaal's Rest}. It doesn't know the location of secret doors, so it's unaware of {@adventure areas D27|BGDIA|1|D27. Echoes of Battle} through {@adventure D33|BGDIA|1|D33. Covenant of the Dead Three}, which are hidden behind the secret door in {@adventure area D23|BGDIA|1|D23. Secret Door and Sentry}."
 									]
 								},
 								{
@@ -2895,7 +2925,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/012-637000763477922224.png"
+												"path": "adventure/BGDIA/012-637000763477922224.webp"
 											},
 											"title": "{@creature Mortlock Vanthampur|BGDIA}",
 											"width": 399,
@@ -3011,7 +3041,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/013-ubtk4-01-04.png"
+										"path": "adventure/BGDIA/013-ubtk4-01-04.webp"
 									},
 									"title": "Ultiss, cultist of Tiamat",
 									"width": 568,
@@ -3136,6 +3166,12 @@
 											"width": 6333,
 											"height": 4000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 177,
+												"offsetX": -65,
+												"offsetY": 27
+											},
 											"id": "32b",
 											"mapRegions": [
 												{
@@ -3602,10 +3638,16 @@
 												"type": "internal",
 												"path": "adventure/BGDIA/015-a4sl5-map-1-4.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 5964,
 											"height": 4000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 164,
+												"offsetX": -5,
+												"offsetY": -60
+											},
 											"mapParent": {
 												"id": "32b",
 												"autoScale": true
@@ -3661,7 +3703,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/016-637001789236815068.png"
+												"path": "adventure/BGDIA/016-637001789236815068.webp"
 											},
 											"title": "{@creature Amrik Vanthampur|BGDIA}",
 											"width": 360,
@@ -3855,6 +3897,12 @@
 											"width": 7370,
 											"height": 4000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 140,
+												"offsetX": 53,
+												"offsetY": 28
+											},
 											"id": "32c",
 											"mapRegions": [
 												{
@@ -4509,10 +4557,15 @@
 												"type": "internal",
 												"path": "adventure/BGDIA/018-9v1gm-map-1-5.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 5649,
 											"height": 4000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 99,
+												"offsetY": 61
+											},
 											"mapParent": {
 												"id": "32c",
 												"autoScale": true
@@ -4586,7 +4639,7 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/BGDIA/019-637000771038732405.png"
+														"path": "adventure/BGDIA/019-637000771038732405.webp"
 													},
 													"title": "{@creature Thurstwell Vanthampur|BGDIA}",
 													"width": 389,
@@ -4732,7 +4785,7 @@
 									"id": "0ad",
 									"entries": [
 										"Lanterns hang from the rafters of this drafty hall. The staircase to the north descends 15 feet to area V10.",
-										"Five lawful evil human {@creature Guard||guards} stand watch here\u2014one by each door. They attack anyone not accompanied by a Vanthampur family member. If they hear trouble elsewhere, the guards can't be surprised, but they stay put unless ordered to move by a member of the family. Combat here alerts {@creature Thurstwell Vanthampur|BGDIA} in {@area area V13|0af|x}."
+										"Five lawful evil human {@creature Guard||guards} stand watch here\u2014one by each door. They attack anyone not accompanied by a Vanthampur family member. If they hear trouble elsewhere, the guards can't be {@quickref Surprise|PHB|3|0|surprised}, but they stay put unless ordered to move by a member of the family. Combat here alerts {@creature Thurstwell Vanthampur|BGDIA} in {@area area V13|0af|x}."
 									]
 								},
 								{
@@ -4915,6 +4968,12 @@
 									"width": 6105,
 									"height": 4000,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 93,
+										"offsetX": -16,
+										"offsetY": -10
+									},
 									"id": "32d",
 									"mapRegions": [
 										{
@@ -5365,10 +5424,16 @@
 										"type": "internal",
 										"path": "adventure/BGDIA/021-8iocy-map-1-6-player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 6105,
 									"height": 4000,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 93,
+										"offsetX": -16,
+										"offsetY": -10
+									},
 									"mapParent": {
 										"id": "32d"
 									}
@@ -5391,7 +5456,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/022-637000757702239303.png"
+										"path": "adventure/BGDIA/022-637000757702239303.webp"
 									},
 									"title": "{@creature Duke Thalamra Vanthampur|BGDIA}",
 									"width": 400,
@@ -5806,7 +5871,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/023-636988751903431559.jpeg"
+										"path": "adventure/BGDIA/023-636988751903431559.webp"
 									},
 									"title": "{@creature Liara Portyr|ToA}",
 									"width": 400,
@@ -5891,7 +5956,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/024-why5x-01-05.png"
+										"path": "adventure/BGDIA/024-why5x-01-05.webp"
 									},
 									"width": 1000,
 									"height": 655
@@ -6087,7 +6152,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/025-a1ei6-01-07.jpg"
+												"path": "adventure/BGDIA/025-a1ei6-01-07.webp"
 											},
 											"title": "The contents of {@creature Thavius Kreeg|BGDIA}'s mysterious puzzle box are revealed.",
 											"width": 5025,
@@ -6285,7 +6350,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/BGDIA/026-jkxip-02-01.png"
+						"path": "adventure/BGDIA/026-jkxip-02-01.webp"
 					},
 					"width": 1000,
 					"height": 651
@@ -6323,7 +6388,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/027-3l0ic-flowchart-2-1.png"
+								"path": "adventure/BGDIA/027-3l0ic-flowchart-2-1.webp"
 							},
 							"title": "Diagram 2.1: Chapter 2 Flowchart",
 							"width": 713,
@@ -6584,6 +6649,9 @@
 															"width": 4250,
 															"height": 3020,
 															"imageType": "map",
+															"grid": {
+																"type": "none"
+															},
 															"id": "3c7"
 														},
 														{
@@ -6592,10 +6660,13 @@
 																"type": "internal",
 																"path": "adventure/BGDIA/029-fjxsa-map-elturel-poster.jpg"
 															},
-															"title": "(Player Version)",
+															"title": "Player Version",
 															"width": 4250,
 															"height": 3020,
 															"imageType": "mapPlayer",
+															"grid": {
+																"type": "none"
+															},
 															"mapParent": {
 																"id": "3c7"
 															}
@@ -6657,7 +6728,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/030-qtzty-02-02-large.jpg"
+												"path": "adventure/BGDIA/030-qtzty-02-02-large.webp"
 											},
 											"title": "Anchored by the chains of Avernus, the city of Elturel is doomed to drown in the River Styx unless someone finds a way to save it.",
 											"width": 2513,
@@ -6738,7 +6809,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/031-nsppi-02-03.jpg"
+										"path": "adventure/BGDIA/031-nsppi-02-03.webp"
 									},
 									"width": 1000,
 									"height": 651
@@ -6935,6 +7006,13 @@
 															"width": 6105,
 															"height": 4000,
 															"imageType": "map",
+															"grid": {
+																"type": "square",
+																"size": 128,
+																"offsetX": -13,
+																"offsetY": -10,
+																"distance": 10
+															},
 															"id": "3c8",
 															"mapRegions": [
 																{
@@ -7541,10 +7619,17 @@
 																"type": "internal",
 																"path": "adventure/BGDIA/033-d0d5t-map-2-2-player.png"
 															},
-															"title": "(Player Version)",
+															"title": "Player Version",
 															"width": 6105,
 															"height": 4000,
 															"imageType": "mapPlayer",
+															"grid": {
+																"type": "square",
+																"size": 128,
+																"offsetX": -11,
+																"offsetY": -5,
+																"distance": 10
+															},
 															"mapParent": {
 																"id": "3c8"
 															}
@@ -7620,6 +7705,13 @@
 													"width": 3700,
 													"height": 5600,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 190,
+														"offsetX": -37,
+														"offsetY": -54,
+														"distance": 10
+													},
 													"id": "3c9",
 													"mapRegions": [
 														{
@@ -8030,6 +8122,13 @@
 													"width": 2631,
 													"height": 4000,
 													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 137,
+														"offsetX": -47,
+														"offsetY": -61,
+														"distance": 10
+													},
 													"mapParent": {
 														"id": "3c9",
 														"autoScale": true
@@ -8124,6 +8223,13 @@
 															"width": 6154,
 															"height": 4000,
 															"imageType": "map",
+															"grid": {
+																"type": "square",
+																"size": 140,
+																"offsetX": -79,
+																"offsetY": 33,
+																"distance": 10
+															},
 															"id": "3ca",
 															"mapRegions": [
 																{
@@ -9037,10 +9143,17 @@
 																"type": "internal",
 																"path": "adventure/BGDIA/037-wcrji-map-2-4-player.jpg"
 															},
-															"title": "(Player Version)",
+															"title": "Player Version",
 															"width": 6090,
 															"height": 4000,
 															"imageType": "mapPlayer",
+															"grid": {
+																"type": "square",
+																"size": 131,
+																"offsetX": -13,
+																"offsetY": -7,
+																"distance": 10
+															},
 															"mapParent": {
 																"id": "3ca",
 																"autoScale": true
@@ -9116,7 +9229,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/038-h5py9-02-04.png"
+												"path": "adventure/BGDIA/038-h5py9-02-04.webp"
 											},
 											"title": "Tome of the Creed Resolute",
 											"width": 1000,
@@ -9199,7 +9312,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/039-637001885543345186.png"
+										"path": "adventure/BGDIA/039-637001885543345186.webp"
 									},
 									"title": "{@creature Gideon Lightward|BGDIA}",
 									"width": 370,
@@ -9345,6 +9458,12 @@
 													"width": 4000,
 													"height": 5236,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 132,
+														"offsetX": -8,
+														"offsetY": -38
+													},
 													"id": "3cb",
 													"mapRegions": [
 														{
@@ -9673,6 +9792,12 @@
 													"width": 4000,
 													"height": 5429,
 													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 131,
+														"offsetX": 1,
+														"offsetY": 3
+													},
 													"mapParent": {
 														"id": "3cb",
 														"autoScale": true
@@ -9859,6 +9984,12 @@
 													"width": 4000,
 													"height": 5429,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 116,
+														"offsetX": -46,
+														"offsetY": -44
+													},
 													"id": "3cc",
 													"mapRegions": [
 														{
@@ -10003,6 +10134,12 @@
 													"width": 4000,
 													"height": 5429,
 													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 116,
+														"offsetX": -47,
+														"offsetY": -48
+													},
 													"mapParent": {
 														"id": "3cc"
 													}
@@ -10087,7 +10224,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/044-637000773572596171.png"
+												"path": "adventure/BGDIA/044-637000773572596171.webp"
 											},
 											"title": "{@creature Ulder Ravengard|BGDIA}",
 											"width": 380,
@@ -10291,7 +10428,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/045-vspmo-02-05.png"
+										"path": "adventure/BGDIA/045-vspmo-02-05.webp"
 									},
 									"width": 753,
 									"height": 1000
@@ -10346,7 +10483,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/BGDIA/046-ugtxa-03-01.png"
+						"path": "adventure/BGDIA/046-ugtxa-03-01.webp"
 					},
 					"width": 3200,
 					"height": 2048
@@ -10381,7 +10518,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/047-ygrsa-flowchart-3-1.png"
+								"path": "adventure/BGDIA/047-ygrsa-flowchart-3-1.webp"
 							},
 							"title": "Diagram 3.1: Chapter 3 Flowchart",
 							"width": 1260,
@@ -10519,7 +10656,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/048-bgcpo-03-02.png"
+												"path": "adventure/BGDIA/048-bgcpo-03-02.webp"
 											},
 											"width": 1000,
 											"height": 669
@@ -10612,6 +10749,9 @@
 													"width": 2550,
 													"height": 1812,
 													"imageType": "map",
+													"grid": {
+														"type": "none"
+													},
 													"id": "3cd"
 												},
 												{
@@ -10620,10 +10760,13 @@
 														"type": "internal",
 														"path": "adventure/BGDIA/050-gzik9-map-avernus-player.jpg"
 													},
-													"title": "(Player Version)",
+													"title": "Player Version",
 													"width": 2550,
 													"height": 1812,
 													"imageType": "mapPlayer",
+													"grid": {
+														"type": "none"
+													},
 													"mapParent": {
 														"id": "3cd"
 													}
@@ -10727,7 +10870,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/051-d9bim-03-03.png"
+												"path": "adventure/BGDIA/051-d9bim-03-03.webp"
 											},
 											"width": 1000,
 											"height": 651
@@ -10788,7 +10931,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/052-vhatr-03-04.png"
+										"path": "adventure/BGDIA/052-vhatr-03-04.webp"
 									},
 									"title": "{@creature Mad Maggie|BGDIA} and Mickey",
 									"width": 956,
@@ -10826,7 +10969,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/053-p0ex0-03-05.png"
+										"path": "adventure/BGDIA/053-p0ex0-03-05.webp"
 									},
 									"title": "{@creature Chukka|BGDIA} and {@creature Clonk|BGDIA}",
 									"width": 1000,
@@ -10948,7 +11091,7 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/BGDIA/054-yaoms-03-06.png"
+														"path": "adventure/BGDIA/054-yaoms-03-06.webp"
 													},
 													"title": "Madcap",
 													"width": 809,
@@ -11146,7 +11289,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/055-1ivlr-03-07.png"
+								"path": "adventure/BGDIA/055-1ivlr-03-07.webp"
 							},
 							"title": "{@creature Raggadragga|BGDIA}",
 							"width": 734,
@@ -11176,7 +11319,7 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/BGDIA/056-aw9op-03-08-full.jpg"
+														"path": "adventure/BGDIA/056-aw9op-03-08-full.webp"
 													},
 													"title": "The warlords of Avernus conquer the hellish wastelands in infernal war machines powered by souls",
 													"width": 5025,
@@ -11221,7 +11364,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/057-u4jqy-03-09.png"
+										"path": "adventure/BGDIA/057-u4jqy-03-09.webp"
 									},
 									"width": 932,
 									"height": 1000
@@ -11249,7 +11392,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/058-gyhxw-03-10.png"
+										"path": "adventure/BGDIA/058-gyhxw-03-10.webp"
 									},
 									"width": 445,
 									"height": 1000
@@ -11277,7 +11420,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/059-kyqim-03-11.png"
+										"path": "adventure/BGDIA/059-kyqim-03-11.webp"
 									},
 									"width": 751,
 									"height": 1000
@@ -11296,7 +11439,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/060-l2faf-03-12.png"
+												"path": "adventure/BGDIA/060-l2faf-03-12.webp"
 											},
 											"width": 1000,
 											"height": 673
@@ -11367,7 +11510,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/061-xw7mq-03-13.png"
+										"path": "adventure/BGDIA/061-xw7mq-03-13.webp"
 									},
 									"title": "Haruman",
 									"width": 540,
@@ -11407,7 +11550,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/062-eunqt-03-14.png"
+								"path": "adventure/BGDIA/062-eunqt-03-14.webp"
 							},
 							"width": 384,
 							"height": 1000
@@ -11445,6 +11588,12 @@
 											"width": 6105,
 											"height": 4000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 128,
+												"offsetX": -9,
+												"offsetY": -10
+											},
 											"id": "3ce",
 											"mapRegions": [
 												{
@@ -11943,10 +12092,16 @@
 												"type": "internal",
 												"path": "adventure/BGDIA/064-ok29m-map-3-2-player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 6105,
 											"height": 4000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 128,
+												"offsetX": -7,
+												"offsetY": -8
+											},
 											"mapParent": {
 												"id": "3ce"
 											}
@@ -12049,7 +12204,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/065-1fckv-flowchart-3-2.png"
+								"path": "adventure/BGDIA/065-1fckv-flowchart-3-2.webp"
 							},
 							"title": "Diagram 3.2: Path of Demons",
 							"width": 552,
@@ -12097,7 +12252,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/066-636997675080825896.png"
+												"path": "adventure/BGDIA/066-636997675080825896.webp"
 											},
 											"title": "{@creature Abyssal Chicken|BGDIA}",
 											"width": 320,
@@ -12402,6 +12557,12 @@
 									"width": 5754,
 									"height": 4000,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 136,
+										"offsetX": 57,
+										"offsetY": -54
+									},
 									"id": "3cf",
 									"mapRegions": [
 										{
@@ -12776,10 +12937,16 @@
 										"type": "internal",
 										"path": "adventure/BGDIA/068-swsdq-map-3-3-player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 5649,
 									"height": 4000,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 128,
+										"offsetX": -16,
+										"offsetY": 14
+									},
 									"mapParent": {
 										"id": "3cf",
 										"autoScale": true
@@ -13055,7 +13222,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/069-xef0g-03-15.png"
+												"path": "adventure/BGDIA/069-xef0g-03-15.webp"
 											},
 											"width": 1000,
 											"height": 698
@@ -13084,7 +13251,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/070-2mb1u-flowchart-3-3.png"
+								"path": "adventure/BGDIA/070-2mb1u-flowchart-3-3.webp"
 							},
 							"title": "Diagram 3.3: Path of Devils",
 							"width": 552,
@@ -13116,7 +13283,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/071-84p9h-03-16.png"
+										"path": "adventure/BGDIA/071-84p9h-03-16.webp"
 									},
 									"width": 1000,
 									"height": 651
@@ -13162,6 +13329,11 @@
 											"width": 6105,
 											"height": 4000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 140,
+												"offsetX": 6
+											},
 											"id": "3d0",
 											"mapRegions": [
 												{
@@ -13511,10 +13683,15 @@
 												"type": "internal",
 												"path": "adventure/BGDIA/073-ugdpq-map-3-4-player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 6105,
 											"height": 4000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 140,
+												"offsetX": 6
+											},
 											"mapParent": {
 												"id": "3d0"
 											}
@@ -13765,7 +13942,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/074-637000129226875587.png"
+								"path": "adventure/BGDIA/074-637000129226875587.webp"
 							},
 							"title": "{@creature Krull|BGDIA}",
 							"width": 399,
@@ -13802,7 +13979,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/075-637000099535198696.png"
+												"path": "adventure/BGDIA/075-637000099535198696.webp"
 											},
 											"title": "{@creature Arkhan the Cruel|BGDIA}",
 											"width": 399,
@@ -13839,7 +14016,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/076-637000772337192497.png"
+								"path": "adventure/BGDIA/076-637000772337192497.webp"
 							},
 							"title": "{@creature Torogar Steelfist|BGDIA}",
 							"width": 399,
@@ -13919,6 +14096,12 @@
 											"width": 6105,
 											"height": 4000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 128,
+												"offsetX": -8,
+												"offsetY": -9
+											},
 											"id": "3d1",
 											"mapRegions": [
 												{
@@ -14083,10 +14266,16 @@
 												"type": "internal",
 												"path": "adventure/BGDIA/078-m5uin-map-3-5-player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 5821,
 											"height": 4000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 130,
+												"offsetX": 27,
+												"offsetY": -51
+											},
 											"mapParent": {
 												"id": "3d1",
 												"autoScale": true
@@ -14172,7 +14361,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/079-637000103086709349.png"
+										"path": "adventure/BGDIA/079-637000103086709349.webp"
 									},
 									"title": "{@creature Bel|BGDIA}",
 									"width": 400,
@@ -14235,7 +14424,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/080-fm0m5-sibriex.png"
+								"path": "adventure/BGDIA/080-fm0m5-sibriex.webp"
 							},
 							"title": "Sibriex",
 							"width": 851,
@@ -14348,7 +14537,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/081-637008601115675287.png"
+												"path": "adventure/BGDIA/081-637008601115675287.webp"
 											},
 											"title": "{@creature Bone Whelk|BGDIA}",
 											"width": 400,
@@ -14405,6 +14594,12 @@
 											"width": 8700,
 											"height": 4500,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 220,
+												"offsetX": -6,
+												"offsetY": 12
+											},
 											"id": "3d2",
 											"mapRegions": [
 												{
@@ -14767,10 +14962,16 @@
 												"type": "internal",
 												"path": "adventure/BGDIA/083-aw2bo-map-3-6-player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 6614,
 											"height": 4000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 174,
+												"offsetX": 62,
+												"offsetY": 18
+											},
 											"mapParent": {
 												"id": "3d2",
 												"autoScale": true
@@ -15022,7 +15223,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/BGDIA/084-qhkab-03-17.png"
+						"path": "adventure/BGDIA/084-qhkab-03-17.webp"
 					},
 					"width": 1000,
 					"height": 651
@@ -15138,6 +15339,12 @@
 											"width": 6105,
 											"height": 4000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 155,
+												"offsetX": -16,
+												"offsetY": -18
+											},
 											"id": "3d3",
 											"mapRegions": [
 												{
@@ -15275,10 +15482,16 @@
 												"type": "internal",
 												"path": "adventure/BGDIA/086-4vafs-map-3-7-player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 6105,
 											"height": 4000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 155,
+												"offsetX": -14,
+												"offsetY": -13
+											},
 											"mapParent": {
 												"id": "3d3"
 											}
@@ -15424,7 +15637,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/087-13nbu-03-18.png"
+												"path": "adventure/BGDIA/087-13nbu-03-18.webp"
 											},
 											"width": 1000,
 											"height": 697
@@ -15541,7 +15754,7 @@
 											"page": 129,
 											"id": "2a5",
 											"entries": [
-												"All metal armor and weapons listed in {@adventure chapter 5|PHB|-1} of the {@book Player's Handbook|PHB} are available for sale at this shop, at a 150 percent markup."
+												"All metal armor and weapons listed in {@book chapter 5|PHB|5} of the {@book Player's Handbook|PHB} are available for sale at this shop, at a 150 percent markup."
 											]
 										},
 										{
@@ -15717,7 +15930,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/088-ok5br-03-19.png"
+												"path": "adventure/BGDIA/088-ok5br-03-19.webp"
 											},
 											"width": 382,
 											"height": 1000
@@ -15775,7 +15988,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/089-zbxl3-03-20.png"
+										"path": "adventure/BGDIA/089-zbxl3-03-20.webp"
 									},
 									"width": 381,
 									"height": 1000
@@ -15832,7 +16045,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/090-637000767383854885.png"
+												"path": "adventure/BGDIA/090-637000767383854885.webp"
 											},
 											"title": "{@creature Smiler the Defiler|BGDIA}",
 											"width": 400,
@@ -15856,7 +16069,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/BGDIA/091-ojqdd-04-01.png"
+						"path": "adventure/BGDIA/091-ojqdd-04-01.webp"
 					},
 					"width": 1000,
 					"height": 640
@@ -15881,7 +16094,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/092-nerf8-flowchart-4-1.png"
+								"path": "adventure/BGDIA/092-nerf8-flowchart-4-1.webp"
 							},
 							"title": "Diagram 4.1: Chapter 4 Flowchart",
 							"width": 627,
@@ -16107,6 +16320,13 @@
 													"width": 5606,
 													"height": 4000,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 128,
+														"offsetX": 50,
+														"offsetY": -4,
+														"distance": 10
+													},
 													"id": "3d4",
 													"mapRegions": [
 														{
@@ -17705,10 +17925,17 @@
 														"type": "internal",
 														"path": "adventure/BGDIA/094-q5hof-map-4-1-player.jpg"
 													},
-													"title": "(Player Version)",
+													"title": "Player Version",
 													"width": 5607,
 													"height": 4000,
 													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 128,
+														"offsetX": 56,
+														"offsetY": -8,
+														"distance": 10
+													},
 													"mapParent": {
 														"id": "3d4",
 														"autoScale": true
@@ -17871,7 +18098,7 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/BGDIA/095-zfnvo-04-02.png"
+														"path": "adventure/BGDIA/095-zfnvo-04-02.webp"
 													},
 													"width": 1000,
 													"height": 632
@@ -18031,6 +18258,13 @@
 											"width": 6105,
 											"height": 4000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 123,
+												"offsetX": -8,
+												"offsetY": -8,
+												"distance": 10
+											},
 											"id": "3d5",
 											"mapRegions": [
 												{
@@ -18108,10 +18342,17 @@
 												"type": "internal",
 												"path": "adventure/BGDIA/097-ijryu-map-4-2-player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 6105,
 											"height": 4000,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 123,
+												"offsetX": -7,
+												"offsetY": -5,
+												"distance": 10
+											},
 											"mapParent": {
 												"id": "3d5"
 											}
@@ -18319,7 +18560,7 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/BGDIA/098-heq4h-04-03.png"
+														"path": "adventure/BGDIA/098-heq4h-04-03.webp"
 													},
 													"width": 1000,
 													"height": 665
@@ -18380,7 +18621,7 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/BGDIA/099-ivhcv-04-04.png"
+														"path": "adventure/BGDIA/099-ivhcv-04-04.webp"
 													},
 													"title": "Left to right: Charge of Zariel and the Hellriders, the war on Avernus, and Zariel's surrender to Asmodeus",
 													"width": 1000,
@@ -18413,7 +18654,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/100-rkst9-04-05.png"
+												"path": "adventure/BGDIA/100-rkst9-04-05.webp"
 											},
 											"title": "Left to right: Haruman emerging from the Styx, Olanthius transformed into a death knight, and both by Zariel's side",
 											"width": 1000,
@@ -18467,7 +18708,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/BGDIA/101-efblf-05-01.png"
+						"path": "adventure/BGDIA/101-efblf-05-01.webp"
 					},
 					"width": 1000,
 					"height": 642
@@ -18529,7 +18770,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/102-zmysb-05-02.png"
+												"path": "adventure/BGDIA/102-zmysb-05-02.webp"
 											},
 											"width": 489,
 											"height": 1000
@@ -18619,7 +18860,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/103-83py4-05-03.png"
+												"path": "adventure/BGDIA/103-83py4-05-03.webp"
 											},
 											"title": "White Abishai",
 											"width": 1000,
@@ -18815,7 +19056,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/104-lempw-05-04.png"
+												"path": "adventure/BGDIA/104-lempw-05-04.webp"
 											},
 											"width": 1000,
 											"height": 634
@@ -18894,7 +19135,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/105-cfqaj-05-05.png"
+												"path": "adventure/BGDIA/105-cfqaj-05-05.webp"
 											},
 											"width": 1000,
 											"height": 663
@@ -18984,7 +19225,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/106-vgjbn-05-06-5k.jpg"
+										"path": "adventure/BGDIA/106-vgjbn-05-06-5k.webp"
 									},
 									"title": "The Blood War is the cosmic struggle between the evil forces of Law and Chaos\u2014a war that threatens to tear the multiverse asunder.",
 									"width": 5025,
@@ -19006,7 +19247,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/BGDIA/107-7ot5i-06-01.png"
+						"path": "adventure/BGDIA/107-7ot5i-06-01.webp"
 					},
 					"width": 1000,
 					"height": 642
@@ -19067,7 +19308,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/108-e9sso-06-02.png"
+								"path": "adventure/BGDIA/108-e9sso-06-02.webp"
 							},
 							"width": 875,
 							"height": 1000
@@ -19101,7 +19342,13 @@
 							"title": "Map: Sword Coast",
 							"width": 2092,
 							"height": 1321,
-							"imageType": "map"
+							"imageType": "map",
+							"grid": {
+								"type": "none",
+								"size": 285,
+								"distance": 100,
+								"units": "miles"
+							}
 						},
 						{
 							"type": "entries",
@@ -19613,7 +19860,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/110-i0skp-06-03.jpg"
+										"path": "adventure/BGDIA/110-i0skp-06-03.webp"
 									},
 									"width": 1000,
 									"height": 537
@@ -19664,7 +19911,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/111-2brwh-06-04-2k.jpg"
+										"path": "adventure/BGDIA/111-2brwh-06-04-2k.webp"
 									},
 									"title": "Murderous servants of the Dead Three corner their prey near the statue of Minsc and Boo.",
 									"width": 2000,
@@ -19707,7 +19954,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/112-637008615720684842.png"
+												"path": "adventure/BGDIA/112-637008615720684842.webp"
 											},
 											"title": "{@creature Nine-Fingers Keene|BGDIA}",
 											"width": 400,
@@ -19778,6 +20025,11 @@
 											"width": 5025,
 											"height": 3338,
 											"imageType": "map",
+											"grid": {
+												"type": "none",
+												"size": 88,
+												"distance": 250
+											},
 											"id": "3d6"
 										},
 										{
@@ -19786,10 +20038,15 @@
 												"type": "internal",
 												"path": "adventure/BGDIA/114-xroll-map-6-2-player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 5250,
 											"height": 3488,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "none",
+												"size": 92,
+												"distance": 250
+											},
 											"mapParent": {
 												"id": "3d6",
 												"autoScale": true
@@ -19878,7 +20135,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/115-xxr8w-06-05.png"
+								"path": "adventure/BGDIA/115-xxr8w-06-05.webp"
 							},
 							"width": 1000,
 							"height": 650
@@ -20238,7 +20495,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/116-2goeq-06-06.jpg"
+												"path": "adventure/BGDIA/116-2goeq-06-06.webp"
 											},
 											"width": 768,
 											"height": 1000
@@ -20422,7 +20679,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/117-z1ykj-06-07.png"
+										"path": "adventure/BGDIA/117-z1ykj-06-07.webp"
 									},
 									"width": 1000,
 									"height": 651
@@ -20822,7 +21079,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/118-kvzma-06-08.jpg"
+												"path": "adventure/BGDIA/118-kvzma-06-08.webp"
 											},
 											"width": 767,
 											"height": 1000
@@ -21222,7 +21479,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/119-khhrx-06-09.jpg"
+												"path": "adventure/BGDIA/119-khhrx-06-09.webp"
 											},
 											"width": 1000,
 											"height": 666
@@ -21244,7 +21501,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/120-637002460268839401.png"
+												"path": "adventure/BGDIA/120-637002460268839401.webp"
 											},
 											"title": "{@creature Rilsa Rael|BGDIA}",
 											"width": 350,
@@ -21274,7 +21531,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/121-xswfn-06-10.png"
+												"path": "adventure/BGDIA/121-xswfn-06-10.webp"
 											},
 											"title": "Wyrm's Crossing",
 											"width": 1000,
@@ -21523,7 +21780,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/122-u05el-06-11.png"
+								"path": "adventure/BGDIA/122-u05el-06-11.webp"
 							},
 							"title": "Wyvern",
 							"width": 905,
@@ -21814,7 +22071,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/125-ungrs-06-14.png"
+												"path": "adventure/BGDIA/125-ungrs-06-14.webp"
 											},
 											"width": 624,
 											"height": 1000
@@ -22107,7 +22364,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/BGDIA/126-dx5pm-06-15.png"
+												"path": "adventure/BGDIA/126-dx5pm-06-15.webp"
 											},
 											"width": 600,
 											"height": 1000
@@ -22392,7 +22649,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/BGDIA/127-i0cx5-a-01.png"
+										"path": "adventure/BGDIA/127-i0cx5-a-01.webp"
 									},
 									"width": 1000,
 									"height": 651
@@ -22673,66 +22930,16 @@
 					"entries": [
 						"Charms are supernatural gifts described in {@book chapter 7|DMG|7|Charms} of the {@book Dungeon Master's Guide|DMG}. Archdevils and their appointed vassals can bestow such gifts on mortals, usually to entice them into signing an infernal contract. This section describes several new charms that archdevils and their vassals can bestow.",
 						{
-							"type": "entries",
-							"name": "Charm of Agelessness",
-							"page": 215,
-							"id": "415",
-							"entries": [
-								"While you have this charm, you don't age naturally, and your skin gains the waxy complexion of a doll. Magical aging still affects you, however. This charm vanishes from you when you die."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Charm of Diabolical Inspiration",
-							"page": 215,
-							"id": "416",
-							"entries": [
-								"You grow a short, vestigial tail when you receive this charm unless you have a tail already. When you make an ability check, an attack roll, or a saving throw, you can use this charm to gain advantage on the roll. Once used nine times, the charm vanishes from you, as does your vestigial tail."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Charm of Greater Conscription",
-							"page": 215,
-							"id": "417",
-							"entries": [
-								"While you have this charm, you attract flies. As an action, you activate this charm to summon a {@creature horned devil}. This devil appears in an unoccupied space within 30 feet of you, obeys your commands begrudgingly, and serves you under protest for 9 days or until it dies, whereupon it disappears. When the devil disappears, this charm vanishes from you."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Charm of Hellish Rebuke",
-							"page": 215,
-							"id": "418",
-							"entries": [
-								"A fiery halo appears above your head when you receive this charm. This charm allows you to cast the {@spell hellish rebuke} spell (9th-level version) as a reaction. Once used nine times, the charm vanishes from you, as does the fiery halo."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Charm of Lesser Conscription",
-							"page": 215,
-							"id": "419",
-							"entries": [
-								"While you have this charm, you attract flies. As an action, you activate this charm to summon a {@creature barbed devil}, two {@creature Bearded Devil||bearded devils}, or three {@creature Spined Devil||spined devils}. All devils appear at once in unoccupied spaces within 30 feet of you. Each devil obeys your commands and serves you eagerly for 9 days or until it dies, whereupon the devil disappears. Once all devils summoned by this charm disappear, the charm vanishes from you."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Charm of Many Tongues",
-							"page": 215,
-							"id": "41a",
-							"entries": [
-								"You can speak and understand all languages, you gain proficiency in the {@skill Deception} and {@skill Persuasion} skills, and you can add double your normal proficiency bonus when using those skills. This charm vanishes from you when you die."
-							]
-						},
-						{
-							"type": "entries",
-							"name": "Charm of the Adamant",
-							"page": 215,
-							"id": "41b",
-							"entries": [
-								"This charm has 9 charges. You can use an action to expend 1 charge from the charm to gain 30 temporary hit points. For the next hour, your eyes become voids of utter darkness, and you can't be {@condition charmed} or {@condition frightened}. Once all its charges have been expended, the charm vanishes from you."
+							"type": "list",
+							"columns": 3,
+							"items": [
+								"{@reward Charm of Agelessness|BGDIA}",
+								"{@reward Charm of Diabolical Inspiration|BGDIA}",
+								"{@reward Charm of Greater Conscription|BGDIA}",
+								"{@reward Charm of Hellish Rebuke|BGDIA}",
+								"{@reward Charm of Lesser Conscription|BGDIA}",
+								"{@reward Charm of Many Tongues|BGDIA}",
+								"{@reward Charm of the Adamant|BGDIA}"
 							]
 						}
 					]
@@ -23317,7 +23524,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/BGDIA/154-zlhps-e-01.png"
+						"path": "adventure/BGDIA/154-zlhps-e-01.webp"
 					},
 					"width": 2000,
 					"height": 2496
@@ -23381,7 +23588,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/155-mzc8l-f-01-reya.png"
+								"path": "adventure/BGDIA/155-mzc8l-f-01-reya.webp"
 							},
 							"title": "Reya Mantlemorn",
 							"width": 932,
@@ -23391,7 +23598,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/156-nqkvt-f-01-heads.png"
+								"path": "adventure/BGDIA/156-nqkvt-f-01-heads.webp"
 							},
 							"title": "Salamander Mechanic, Z'neth the Hobgoblin & {@creature Krull|BGDIA} the Tortle",
 							"width": 857,
@@ -23401,7 +23608,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/157-fdk6x-f-01-chicken.png"
+								"path": "adventure/BGDIA/157-fdk6x-f-01-chicken.webp"
 							},
 							"title": "Abyssal Chicken",
 							"width": 1350,
@@ -23411,7 +23618,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/158-jdktd-f-01-mahadi.jpg"
+								"path": "adventure/BGDIA/158-jdktd-f-01-mahadi.webp"
 							},
 							"title": "Mahadi",
 							"width": 2000,
@@ -23421,7 +23628,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/159-bh4m9-f-01-hellfire.png"
+								"path": "adventure/BGDIA/159-bh4m9-f-01-hellfire.webp"
 							},
 							"title": "Hellfire Greatsword",
 							"width": 1500,
@@ -23431,7 +23638,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/160-eofdk-f-01-slobberchops.png"
+								"path": "adventure/BGDIA/160-eofdk-f-01-slobberchops.webp"
 							},
 							"title": "Slobberchops",
 							"width": 1500,
@@ -23441,7 +23648,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/161-uqqdp-f-02-crokek.png"
+								"path": "adventure/BGDIA/161-uqqdp-f-02-crokek.webp"
 							},
 							"title": "{@creature Crokek'Toeck|BGDIA}",
 							"width": 2249,
@@ -23451,7 +23658,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/162-4hii1-f-02-soulcoin.png"
+								"path": "adventure/BGDIA/162-4hii1-f-02-soulcoin.webp"
 							},
 							"title": "Soul Coin",
 							"width": 630,
@@ -23461,7 +23668,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/163-1elo6-f-02-mickey.png"
+								"path": "adventure/BGDIA/163-1elo6-f-02-mickey.webp"
 							},
 							"title": "Mickey, Barnabas & Gulah the Oni (Deleted NPC)",
 							"width": 1638,
@@ -23471,7 +23678,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/164-mvaed-f-02-sylvira.jpg"
+								"path": "adventure/BGDIA/164-mvaed-f-02-sylvira.webp"
 							},
 							"title": "Sylvira and Jezebel",
 							"width": 2513,
@@ -23481,7 +23688,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/165-nruhn-f-02-chukka.png"
+								"path": "adventure/BGDIA/165-nruhn-f-02-chukka.webp"
 							},
 							"title": "{@creature Chukka|BGDIA} and {@creature Clonk|BGDIA}",
 							"width": 820,
@@ -23491,7 +23698,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/166-cmij7-f-02-maggie.png"
+								"path": "adventure/BGDIA/166-cmij7-f-02-maggie.webp"
 							},
 							"title": "{@creature Mad Maggie|BGDIA}",
 							"width": 650,
@@ -23501,7 +23708,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/167-0iruv-f-02-lulu.png"
+								"path": "adventure/BGDIA/167-0iruv-f-02-lulu.webp"
 							},
 							"title": "{@creature Lulu|BGDIA}",
 							"width": 850,
@@ -23511,7 +23718,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/168-t8ppi-f-02-madcaps.png"
+								"path": "adventure/BGDIA/168-t8ppi-f-02-madcaps.webp"
 							},
 							"title": "Madcaps",
 							"width": 860,
@@ -23521,7 +23728,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/169-60gsv-f-04-marrenoloth.jpg"
+								"path": "adventure/BGDIA/169-60gsv-f-04-marrenoloth.webp"
 							},
 							"title": "Marrenoloth plying the River Styx",
 							"width": 1332,
@@ -23531,7 +23738,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/170-omn4i-f-04-fortress.jpg"
+								"path": "adventure/BGDIA/170-omn4i-f-04-fortress.webp"
 							},
 							"title": "Zariel's Flying Fortress",
 							"width": 1076,
@@ -23541,7 +23748,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/171-fdsgw-f-04-yeenoghu.jpg"
+								"path": "adventure/BGDIA/171-fdsgw-f-04-yeenoghu.webp"
 							},
 							"title": "Yeenoghu's Demons",
 							"width": 1472,
@@ -23551,7 +23758,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/172-t5qi9-f-04-falaster.png"
+								"path": "adventure/BGDIA/172-t5qi9-f-04-falaster.webp"
 							},
 							"title": "Falaster Fisk",
 							"width": 832,
@@ -23561,7 +23768,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/173-c7ifa-f-04-bg.jpg"
+								"path": "adventure/BGDIA/173-c7ifa-f-04-bg.webp"
 							},
 							"title": "Baldur's Gate, Lower City, with ghost cat and shadow cat",
 							"width": 2512,
@@ -23571,7 +23778,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/174-ymqp5-f-05-avernus.jpg"
+								"path": "adventure/BGDIA/174-ymqp5-f-05-avernus.webp"
 							},
 							"title": "Avernus",
 							"width": 5025,
@@ -23581,7 +23788,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/175-eyylt-f-05-warmachines.png"
+								"path": "adventure/BGDIA/175-eyylt-f-05-warmachines.webp"
 							},
 							"title": "Infernal War Machines",
 							"width": 2388,
@@ -23591,7 +23798,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/176-kcjq4-f-05-happymobile.png"
+								"path": "adventure/BGDIA/176-kcjq4-f-05-happymobile.webp"
 							},
 							"title": "{@creature Mad Maggie|BGDIA}'s Happymobile",
 							"width": 1350,
@@ -23601,7 +23808,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/177-aojlt-f-05-warmachines-2.png"
+								"path": "adventure/BGDIA/177-aojlt-f-05-warmachines-2.webp"
 							},
 							"title": "Merry Widow, Hell's Belle & Buzz Killer",
 							"width": 2500,
@@ -23611,7 +23818,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/178-mx6zf-f-05-aleksipug.jpg"
+								"path": "adventure/BGDIA/178-mx6zf-f-05-aleksipug.webp"
 							},
 							"title": "Devil riding an Aleksipug",
 							"width": 1329,
@@ -23621,7 +23828,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/179-az93n-f-06-fortress.jpg"
+								"path": "adventure/BGDIA/179-az93n-f-06-fortress.webp"
 							},
 							"title": "Fortress in Avernus",
 							"width": 5025,
@@ -23631,7 +23838,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/180-e8oli-f-06-thavius.png"
+								"path": "adventure/BGDIA/180-e8oli-f-06-thavius.webp"
 							},
 							"title": "{@creature Thavius Kreeg|BGDIA} (Amnizu)",
 							"width": 1977,
@@ -23641,7 +23848,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/BGDIA/181-jyznh-f-06-jander.jpg"
+								"path": "adventure/BGDIA/181-jyznh-f-06-jander.webp"
 							},
 							"title": "Jander Sunstar (Vampire)",
 							"width": 2458,
@@ -23661,7 +23868,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/BGDIA/182-ef7bt-g-01.png"
+						"path": "adventure/BGDIA/182-ef7bt-g-01.webp"
 					},
 					"width": 1419,
 					"height": 1806

@@ -1,8 +1,9 @@
-const fs = require("fs");
-const ut = require("../node/util.js");
-require("../js/utils.js");
-require("../js/render.js");
-require("../js/render-dice.js");
+import * as fs from "fs";
+import * as ut from "../node/util.js";
+import "../js/parser.js";
+import "../js/utils.js";
+import "../js/render.js";
+import "../js/render-dice.js";
 
 class TestFoundry {
 	static async pLoadData (originalFilename, originalPath) {
@@ -63,7 +64,7 @@ class TestFoundry {
 		const FOUNDRY_FILE = "foundry.json";
 
 		const dirList = fs.readdirSync(`./data/${dir}`)
-			.filter(it => !it.startsWith("fluff-") && !it.startsWith("roll20") && it !== "index.json");
+			.filter(it => !it.startsWith("fluff-") && it !== "sources.json" && it !== "index.json");
 
 		if (!dirList.includes(FOUNDRY_FILE)) throw new Error(`No "${FOUNDRY_FILE}" file found in dir "${dir}"!`);
 
@@ -161,4 +162,4 @@ async function main () {
 	return !errors.length;
 }
 
-module.exports = main();
+export default main();

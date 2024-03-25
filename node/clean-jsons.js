@@ -1,20 +1,27 @@
 "use strict";
 
-const fs = require("fs");
-const ut = require("./util");
-require("../js/utils");
-require("../js/render.js");
+import * as fs from "fs";
+import * as ut from "./util.js";
 
-function cleanFolder (folder) {
+import "../js/parser.js";
+import "../js/utils.js";
+import "../js/render.js";
+
+function cleanFolder (folder, {isFast = false} = {}) {
 	console.log(`Cleaning directory ${folder}...`);
-	const files = ut.listFiles({dir: folder});
+	const files = ut.listFiles({
+		dir: folder,
+		blocklistFilePrefixes: ut.FILE_PREFIX_BLOCKLIST
+			.filter(it => it !== "foundry-"),
+	});
 	files
 		.filter(file => file.endsWith(".json"))
 		.forEach(file => {
 			console.log(`\tCleaning ${file}...`);
-			fs.writeFileSync(file, CleanUtil.getCleanJson(ut.readJson(file), {isFast: false}), "utf-8");
+			fs.writeFileSync(file, CleanUtil.getCleanJson(ut.readJson(file), {isFast}), "utf-8");
 		});
 }
 
 cleanFolder(`./data`);
+cleanFolder(`./homebrew`, {isFast: true});
 console.log("Cleaning complete.");

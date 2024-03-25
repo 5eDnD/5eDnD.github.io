@@ -73,6 +73,15 @@
 						}
 					]
 				}
+			],
+			"images": [
+				{
+					"type": "image",
+					"href": {
+						"type": "internal",
+						"path": "bestiary/LMoP/Mormesk the Wraith.webp"
+					}
+				}
 			]
 		},
 		{
@@ -97,7 +106,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "bestiary/LMoP/Nezznar the Black Spider.jpg"
+						"path": "bestiary/LMoP/Nezznar the Black Spider.webp"
 					}
 				}
 			]

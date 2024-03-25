@@ -6,7 +6,7 @@
 class CreatureBuilder extends Builder {
 	constructor () {
 		super({
-			titleSidebarLoadExisting: "Load Existing Creature",
+			titleSidebarLoadExisting: "Copy Existing Creature",
 			titleSidebarDownloadJson: "Download Creatures as JSON",
 			metaSidebarDownloadMarkdown: {
 				title: "Download Creatures as Markdown",
@@ -15,7 +15,6 @@ class CreatureBuilder extends Builder {
 				},
 			},
 			prop: "monster",
-			typeRenderData: "dataCreature",
 		});
 
 		this._bestiaryFluffIndex = null;
@@ -25,10 +24,13 @@ class CreatureBuilder extends Builder {
 		this._$selLegendaryGroup = null;
 		this._legendaryGroupCache = null;
 
-		// Indexed template creature traits
+		// region Indexed template creature actions and traits
+		this._jsonCreatureActions = null;
+		this._indexedActions = null;
+
 		this._jsonCreatureTraits = null;
 		this._indexedTraits = null;
-		this._addedHashesCreatureTraits = new Set();
+		// endregion
 
 		this._renderOutputDebounced = MiscUtil.debounce(() => this._renderOutput(), 50);
 
@@ -36,13 +38,13 @@ class CreatureBuilder extends Builder {
 	}
 
 	static _getAsMarkdown (mon) {
-		return RendererMarkdown.get().render({entries: [{type: "dataCreature", dataCreature: mon}]});
+		return RendererMarkdown.get().render({entries: [{type: "statblockInline", dataType: "monster", data: mon}]});
 	}
 
 	async pHandleSidebarLoadExistingClick () {
 		const result = await SearchWidget.pGetUserCreatureSearch();
 		if (result) {
-			const creature = MiscUtil.copy(await Renderer.hover.pCacheAndGet(result.page, result.source, result.hash));
+			const creature = MiscUtil.copy(await DataLoader.pCacheAndGet(result.page, result.source, result.hash));
 			return this.pHandleSidebarLoadExistingData(creature);
 		}
 	}
@@ -98,6 +100,7 @@ class CreatureBuilder extends Builder {
 		delete creature.hasToken;
 		delete creature.uniqueId;
 		delete creature._versions;
+		delete creature.reprintedAs;
 		if (creature.variant) creature.variant.forEach(ent => delete ent._version);
 
 		// Semi-gracefully handle e.g. ERLW's Steel Defender
@@ -106,11 +109,15 @@ class CreatureBuilder extends Builder {
 		const meta = {...(opts.meta || {}), ...this._getInitialMetaState()};
 
 		if (ScaleCreature.isCrInScaleRange(creature) && !opts.isForce) {
-			const ixDefault = Parser.CRS.indexOf(creature.cr.cr || creature.cr);
-			const scaleTo = await InputUiUtil.pGetUserEnum({values: Parser.CRS, title: "At Challenge Rating...", default: ixDefault});
+			const crDefault = creature.cr.cr || creature.cr;
 
-			if (scaleTo != null && scaleTo !== ixDefault) {
-				const scaled = await ScaleCreature.scale(creature, Parser.crToNumber(Parser.CRS[scaleTo]));
+			const scaleTo = await InputUiUtil.pGetUserScaleCr({
+				title: "At Challenge Rating...",
+				default: crDefault,
+			});
+
+			if (scaleTo != null && scaleTo !== crDefault) {
+				const scaled = await ScaleCreature.scale(creature, Parser.crToNumber(scaleTo));
 				delete scaled._displayName;
 				this.setStateFromLoaded({s: scaled, m: meta});
 			} else this.setStateFromLoaded({s: creature, m: meta});
@@ -141,11 +148,17 @@ class CreatureBuilder extends Builder {
 	}
 
 	async _pHashChange_pHandleSubHashes (sub, toLoad) {
-		if (!sub.length) return toLoad;
+		if (!sub.length) return super._pHashChange_pHandleSubHashes(sub, toLoad);
 
 		const scaledHash = sub.find(it => it.startsWith(UrlUtil.HASH_START_CREATURE_SCALED));
 		const scaledSpellSummonHash = sub.find(it => it.startsWith(UrlUtil.HASH_START_CREATURE_SCALED_SPELL_SUMMON));
 		const scaledClassSummonHash = sub.find(it => it.startsWith(UrlUtil.HASH_START_CREATURE_SCALED_CLASS_SUMMON));
+
+		if (
+			!scaledHash
+			&& !scaledSpellSummonHash
+			&& !scaledClassSummonHash
+		) return super._pHashChange_pHandleSubHashes(sub, toLoad);
 
 		if (scaledHash) {
 			const scaleTo = Number(UrlUtil.unpackSubHash(scaledHash)[VeCt.HASH_SCALED][0]);
@@ -173,28 +186,78 @@ class CreatureBuilder extends Builder {
 			}
 		}
 
-		return toLoad;
+		return {
+			isAllowEditExisting: false,
+			toLoad,
+		};
 	}
 
 	async _pInit () {
-		const [bestiaryFluffIndex, jsonCreature] = await Promise.all([
+		const [bestiaryFluffIndex, jsonCreature, items] = await Promise.all([
 			DataUtil.loadJSON("data/bestiary/fluff-index.json"),
 			DataUtil.loadJSON("data/makebrew-creature.json"),
+			Renderer.item.pBuildList(),
 			DataUtil.monster.pPreloadMeta(),
 		]);
-		const brew = await BrewUtil2.pGetBrewProcessed();
 
 		this._bestiaryFluffIndex = bestiaryFluffIndex;
 
-		await this._pBuildLegendaryGroupCache({brew});
+		MiscTag.init({items});
+		AttachedItemTag.init({items});
 
-		this._jsonCreatureTraits = [...jsonCreature.makebrewCreatureTrait, ...(brew.makebrewCreatureTrait || [])];
+		await this._pBuildLegendaryGroupCache();
+
+		this._jsonCreatureTraits = [
+			...jsonCreature.makebrewCreatureTrait,
+			...((await PrereleaseUtil.pGetBrewProcessed()).makebrewCreatureTrait || []),
+			...((await BrewUtil2.pGetBrewProcessed()).makebrewCreatureTrait || []),
+		];
 		this._indexedTraits = elasticlunr(function () {
 			this.addField("n");
 			this.setRef("id");
 		});
 		SearchUtil.removeStemmer(this._indexedTraits);
 		this._jsonCreatureTraits.forEach((it, i) => this._indexedTraits.addDoc({
+			n: it.name,
+			id: i,
+		}));
+
+		this._jsonCreatureActions = [
+			...items
+				.filter(it => !it._isItemGroup && it._category === "Basic" && (it.type === "M" || it.type === "R") && it.dmg1 && it.dmgType)
+				.map(item => {
+					const mDice = /^(?<count>\d+)d(?<face>\d+)\b/i.exec(item.dmg1);
+					if (!mDice) return null;
+
+					const abil = item.type === "M" ? "str" : "dex";
+					const ptAtk = `${item.type === "M" ? "m" : "r"}w${item.type === "M" && item.range ? `,rw` : ""}`;
+					const ptRange = item.range
+						? `${item.type === "M" ? `reach 5 ft. or ` : ""}range ${item.range} ft.`
+						: "reach 5 ft.";
+					const dmgAvg = Number(mDice.groups.count) * ((Number(mDice.groups.face) + 1) / 2);
+					const isFinesse = !!item?.property?.includes("F");
+
+					return {
+						name: item.name,
+						entries: [
+							`{@atk ${ptAtk}} {@hit <$to_hit__${abil}$>} to hit, ${ptRange}, one target. {@h}<$damage_avg__(size_mult*${dmgAvg})+${abil}$> ({@damage <$size_mult__${mDice.groups.count}$>d${mDice.groups.face}<$damage_mod__${abil}$>}) ${Parser.dmgTypeToFull(item.dmgType)} damage.`,
+						],
+						entriesFinesse: isFinesse ? [
+							`{@atk ${ptAtk}} {@hit <$to_hit__dex$>} to hit, ${ptRange}, one target. {@h}<$damage_avg__(size_mult*${dmgAvg})+dex$> ({@damage <$size_mult__${mDice.groups.count}$>d${mDice.groups.face}<$damage_mod__dex$>}) ${Parser.dmgTypeToFull(item.dmgType)} damage.`,
+						] : null,
+					};
+				})
+				.filter(Boolean),
+			...jsonCreature.makebrewCreatureAction,
+			...((await PrereleaseUtil.pGetBrewProcessed()).makebrewCreatureAction || []),
+			...((await BrewUtil2.pGetBrewProcessed()).makebrewCreatureAction || []),
+		];
+		this._indexedActions = elasticlunr(function () {
+			this.addField("n");
+			this.setRef("id");
+		});
+		SearchUtil.removeStemmer(this._indexedActions);
+		this._jsonCreatureActions.forEach((it, i) => this._indexedActions.addDoc({
 			n: it.name,
 			id: i,
 		}));
@@ -254,7 +317,7 @@ class CreatureBuilder extends Builder {
 			if (state.s.save) {
 				const pb = this._getProfBonus();
 				Object.entries(state.s.save).forEach(([prop, val]) => {
-					const expected = Parser.getAbilityModNumber(state.s[prop]) + pb;
+					const expected = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, prop, {isDefaultTen: true})) + pb;
 					if (Number(val) === Number(expected)) state.m.profSave[prop] = 1;
 				});
 			}
@@ -265,7 +328,7 @@ class CreatureBuilder extends Builder {
 				const pb = this._getProfBonus();
 				Object.entries(state.s.skill).forEach(([prop, val]) => {
 					const abilProp = Parser.skillToAbilityAbv(prop);
-					const abilMod = Parser.getAbilityModNumber(state.s[abilProp]);
+					const abilMod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, abilProp, {isDefaultTen: true}));
 
 					const expectedProf = abilMod + pb;
 					if (Number(val) === Number(expectedProf)) return state.m.profSkill[prop] = 1;
@@ -364,7 +427,13 @@ class CreatureBuilder extends Builder {
 			DamageTypeTag.tryRun(this._state);
 			DamageTypeTag.tryRunSpells(this._state);
 			DamageTypeTag.tryRunRegionalsLairs(this._state);
+			CreatureSavingThrowTagger.tryRun(this._state);
+			CreatureSavingThrowTagger.tryRunSpells(this._state);
+			CreatureSavingThrowTagger.tryRunRegionalsLairs(this._state);
 			MiscTag.tryRun(this._state);
+			TagImmResVulnConditional.tryRun(this._state);
+			DragonAgeTag.tryRun(this._state);
+			AttachedItemTag.tryRun(this._state);
 
 			this.renderOutput();
 			this.doUiSave();
@@ -402,6 +471,7 @@ class CreatureBuilder extends Builder {
 		this.__$getAlignmentInput(cb).appendTo(infoTab.$wrpTab);
 		this.__$getCrInput(cb).appendTo(infoTab.$wrpTab);
 		this.__$getProfBonusInput(cb).appendTo(infoTab.$wrpTab);
+		this.__$getProfNoteInput(cb).appendTo(infoTab.$wrpTab);
 		BuilderUi.$getStateIptNumber("Level", cb, this._state, {title: "Used for Sidekicks only"}, "level").appendTo(infoTab.$wrpTab);
 
 		// SPECIES
@@ -532,7 +602,7 @@ class CreatureBuilder extends Builder {
 				cb();
 			});
 
-		const $initialSizeRows = (initial ? [initial].flat() : [SZ_MEDIUM]).map(tag => this.__$getSizeInput__getSizeRow(tag, rows, setState));
+		const $initialSizeRows = (initial ? [initial].flat() : [Parser.SZ_MEDIUM]).map(tag => this.__$getSizeInput__getSizeRow(tag, rows, setState));
 
 		const $wrpTagRows = $$`<div>${$initialSizeRows ? $initialSizeRows.map(it => it.$wrp) : ""}</div>`;
 		$$`<div>
@@ -547,7 +617,7 @@ class CreatureBuilder extends Builder {
 		const $selSize = $(`<select class="form-control input-xs">
 			${Parser.SIZE_ABVS.map(sz => `<option value="${sz}">${Parser.sizeAbvToFull(sz)}</option>`)}
 		</select>`)
-			.val(size || SZ_MEDIUM)
+			.val(size || Parser.SZ_MEDIUM)
 			.change(() => {
 				setState();
 			});
@@ -569,30 +639,42 @@ class CreatureBuilder extends Builder {
 		const initial = this._state.type;
 		const initialSwarm = !!initial.swarmSize;
 
-		const setStateCreature = () => {
-			if (tagRows.length) {
-				const validTags = tagRows.map($tr => {
+		const setState = () => {
+			const types = chooseTypeRows
+				.map(rowMeta => rowMeta.cbGetType());
+
+			const isSwarm = $selMode.val() === "1";
+
+			const validTags = tagRows
+				.map($tr => {
 					const prefix = $tr.$iptPrefix.val().trim();
 					const tag = $tr.$iptTag.val().trim();
 					if (!tag) return null;
 					if (prefix) return {tag, prefix};
 					return tag;
-				}).filter(Boolean);
-				if (validTags.length) {
-					this._state.type = {
-						type: $selType.val(),
-						tags: validTags,
-					};
-				} else this._state.type = $selType.val();
-			} else this._state.type = $selType.val();
-			cb();
-		};
+				})
+				.filter(Boolean);
 
-		const setStateSwarm = () => {
-			this._state.type = {
-				type: $selType.val(),
-				swarmSize: $selSwarmSize.val(),
+			const note = $iptNote.val().trim();
+
+			if (types.length === 1 && !isSwarm && !validTags.length && !note) {
+				this._state.type = types[0];
+				cb();
+				return;
+			}
+
+			const out = {
+				type: types.length === 1
+					? types[0]
+					: {choose: types},
 			};
+
+			if (isSwarm) out.swarmSize = $selSwarmSize.val();
+			if (validTags.length) out.tags = validTags;
+			if (note) out.note = note;
+
+			this._state.type = out;
+
 			cb();
 		};
 
@@ -602,46 +684,57 @@ class CreatureBuilder extends Builder {
 		</select>`).val(initialSwarm ? "1" : "0").change(() => {
 			switch ($selMode.val()) {
 				case "0": {
-					$stageType.showVe(); $stageSwarm.hideVe();
-					setStateCreature();
+					$stageSwarm.hideVe();
+					setState();
 					break;
 				}
 				case "1": {
-					$stageType.hideVe(); $stageSwarm.showVe();
-					setStateSwarm();
+					$stageSwarm.showVe();
+					setState();
 					break;
 				}
 			}
 		}).appendTo($rowInner);
 
-		const $selType = $(`<select class="form-control input-xs">${Parser.MON_TYPES.map(tp => `<option value="${tp}">${tp.uppercaseFirst()}</option>`).join("")}</select>`)
-			.change(() => {
-				switch ($selMode.val()) {
-					case "0": setStateCreature(); break;
-					case "1": setStateSwarm(); break;
-				}
-			})
-			.appendTo($rowInner)
-			.val(initial.type || initial);
+		// region CHOOSE-FROM TYPE CONTROLS
+		const chooseTypeRows = [];
 
-		// TAG CONTROLS
+		const $btnAddChooseType = $(`<button class="btn btn-xs btn-default">Add Type</button>`)
+			.click(() => {
+				const metaTypeRow = this.__$getTypeInput__getChooseTypeRow(null, chooseTypeRows, setState);
+				$wrpChooseTypeRows.append(metaTypeRow.$wrp);
+			});
+
+		const initialChooseTypeRowsMetas = initial.type?.choose
+			? initial.type.choose.map(type => this.__$getTypeInput__getChooseTypeRow(type, chooseTypeRows, setState))
+			: [this.__$getTypeInput__getChooseTypeRow(initial.type || initial, chooseTypeRows, setState)];
+
+		const $wrpChooseTypeRows = $$`<div>${initialChooseTypeRowsMetas.map(it => it.$wrp)}</div>`;
+		const $stageType = $$`<div class="mt-2">
+		${$wrpChooseTypeRows}
+		<div>${$btnAddChooseType}</div>
+		</div>`.appendTo($rowInner);
+		// endregion
+
+		// region TAG CONTROLS
 		const tagRows = [];
 
 		const $btnAddTag = $(`<button class="btn btn-xs btn-default">Add Tag</button>`)
 			.click(() => {
-				const $tagRow = this.__$getTypeInput__getTagRow(null, tagRows, setStateCreature);
+				const $tagRow = this.__$getTypeInput__getTagRow(null, tagRows, setState);
 				$wrpTagRows.append($tagRow.$wrp);
 			});
 
-		const $initialTagRows = initial.tags ? initial.tags.map(tag => this.__$getTypeInput__getTagRow(tag, tagRows, setStateCreature)) : null;
+		const $initialTagRows = initial.tags ? initial.tags.map(tag => this.__$getTypeInput__getTagRow(tag, tagRows, setState)) : null;
 
 		const $wrpTagRows = $$`<div>${$initialTagRows ? $initialTagRows.map(it => it.$wrp) : ""}</div>`;
-		const $stageType = $$`<div class="mt-2">
+		const $stageTags = $$`<div class="mt-2">
 		${$wrpTagRows}
 		<div>${$btnAddTag}</div>
-		</div>`.appendTo($rowInner).toggleVe(!initialSwarm);
+		</div>`.appendTo($rowInner);
+		// endregion
 
-		// SWARM CONTROLS
+		// region SWARM CONTROLS
 		const $selSwarmSize = $(`<select class="form-control input-xs mt-2">${Parser.SIZE_ABVS.map(sz => `<option value="${sz}">${Parser.sizeAbvToFull(sz)}</option>`).join("")}</select>`)
 			.change(() => {
 				this._state.type.swarmSize = $selSwarmSize.val();
@@ -651,22 +744,89 @@ class CreatureBuilder extends Builder {
 		${$selSwarmSize}
 		</div>`.appendTo($rowInner).toggleVe(initialSwarm);
 		initialSwarm && $selSwarmSize.val(initial.swarmSize);
+		// endregion
+
+		// region NOTE CONTROLS
+		const $iptNote = $(`<input class="form-control input-xs form-control--minimal mr-2" placeholder="Note">`)
+			.val(initial.note || "")
+			.change(() => {
+				setState();
+			});
+		$$`<div class="ve-flex-v-center mb-2"><span class="mr-2 mkbru__sub-name--33">Type Note</span>${$iptNote}</div>`
+			.appendTo($rowInner);
+		// endregion
 
 		return $row;
 	}
 
-	__$getTypeInput__getTagRow (tag, tagRows, setStateCreature) {
+	__$getTypeInput__getChooseTypeRow (type, chooseTypeRows, setState) {
+		const isInitialCustom = type && !Parser.MON_TYPES.includes(type);
+
+		const $selType = $(`<select class="form-control input-xs mr-2">${Parser.MON_TYPES.map(tp => `<option value="${tp}">${tp.uppercaseFirst()}</option>`).join("")}</select>`)
+			.change(() => {
+				setState();
+			});
+		if (!isInitialCustom) $selType.val(type || Parser.TP_HUMANOID);
+
+		const $iptTypeCustom = $(`<input class="form-control input-xs form-control--minimal mr-2" placeholder="Custom Type">`)
+			.on("change", () => {
+				setState();
+			});
+		if (isInitialCustom) $selType.val(type || "");
+
+		const $cbIsCustomType = $(`<input type="checkbox">`)
+			.on("change", () => {
+				renderIsCustom();
+				setState();
+			})
+			.prop("checked", isInitialCustom);
+
+		const renderIsCustom = () => {
+			const isChecked = $cbIsCustomType.prop("checked");
+			$iptTypeCustom.toggleVe(isChecked);
+			$selType.toggleVe(!isChecked);
+		};
+
+		renderIsCustom();
+
+		const cbGetType = () => {
+			if ($cbIsCustomType.prop("checked")) return $iptTypeCustom.val();
+			return $selType.val();
+		};
+
+		const $btnRemove = $(`<button class="btn btn-xs btn-danger" title="Remove Row"><span class="glyphicon glyphicon-trash"/></button>`)
+			.click(() => {
+				chooseTypeRows.splice(chooseTypeRows.indexOf(out), 1);
+				$wrp.empty().remove();
+				setState();
+			});
+
+		const $wrp = $$`<div class="ve-flex mb-2">
+			${$selType}
+			${$iptTypeCustom}
+			<label class="ve-flex-v-center mr-2">
+				<span class="mr-2">Custom</span>
+				${$cbIsCustomType}
+			</label>
+			${$btnRemove}
+		</div>`;
+		const out = {$wrp, cbGetType};
+		chooseTypeRows.push(out);
+		return out;
+	}
+
+	__$getTypeInput__getTagRow (tag, tagRows, setState) {
 		const $iptPrefix = $(`<input class="form-control input-xs form-control--minimal mr-2" placeholder="Prefix">`)
 			.change(() => {
 				$iptTag.removeClass("form-control--error");
-				if ($iptTag.val().trim().length || !$iptPrefix.val().trim().length) setStateCreature();
+				if ($iptTag.val().trim().length || !$iptPrefix.val().trim().length) setState();
 				else $iptTag.addClass("form-control--error");
 			});
 		if (tag && tag.prefix) $iptPrefix.val(tag.prefix);
 		const $iptTag = $(`<input class="form-control input-xs form-control--minimal mr-2" placeholder="Tag (lowercase)">`)
 			.change(() => {
 				$iptTag.removeClass("form-control--error");
-				setStateCreature();
+				setState();
 			});
 		if (tag) $iptTag.val(tag.tag || tag);
 		const $btnAddGeneric = $(`<button class="btn btn-xs btn-default mr-2">Add Tag...</button>`)
@@ -678,14 +838,14 @@ class CreatureBuilder extends Builder {
 
 				if (tag != null) {
 					$iptTag.val(tag);
-					setStateCreature();
+					setState();
 				}
 			});
 		const $btnRemove = $(`<button class="btn btn-xs btn-danger" title="Remove Row"><span class="glyphicon glyphicon-trash"/></button>`)
 			.click(() => {
 				tagRows.splice(tagRows.indexOf(out), 1);
 				$wrp.empty().remove();
-				setStateCreature();
+				setState();
 			});
 		const $wrp = $$`<div class="ve-flex mb-2">${$iptPrefix}${$iptTag}${$btnAddGeneric}${$btnRemove}</div>`;
 		const out = {$wrp, $iptPrefix, $iptTag};
@@ -1061,7 +1221,7 @@ class CreatureBuilder extends Builder {
 				const searchWidget = new SearchWidget(
 					{Item: SearchWidget.CONTENT_INDICES.Item},
 					(doc) => {
-						$iptFrom.val(`{@item ${doc.n}${doc.s !== SRC_DMG ? `|${doc.s}` : ""}}`.toLowerCase());
+						$iptFrom.val(`{@item ${doc.n}${doc.s !== Parser.SRC_DMG ? `|${doc.s}` : ""}}`.toLowerCase());
 						doUpdateState();
 						doClose();
 					},
@@ -1155,7 +1315,7 @@ class CreatureBuilder extends Builder {
 			if (!this._meta.autoCalc.hpModifier) return;
 
 			const num = Number($selSimpleNum.val());
-			const mod = Parser.getAbilityModNumber(this._state.con);
+			const mod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, "con", {isDefaultTen: true}));
 			const total = num * mod;
 			$iptSimpleMod.val(total ?? null);
 			hpSimpleAverageHook();
@@ -1327,7 +1487,10 @@ class CreatureBuilder extends Builder {
 					const speed = UiUtil.strToInt(speedRaw);
 					const condition = $iptCond.val().trim();
 					this._state.speed[prop] = (condition ? {number: speed, condition: condition} : speed);
-					if (prop === "fly") this._state.speed.canHover = !!(condition && /(^|[^a-zA-Z])hover([^a-zA-Z]|$)/i.exec(condition));
+					if (prop === "fly") {
+						this._state.speed.canHover = !!(condition && /(^|[^a-zA-Z])hover([^a-zA-Z]|$)/i.exec(condition));
+						if (!this._state.speed.canHover) delete this._state.speed.canHover;
+					}
 				}
 				cb();
 			};
@@ -1366,10 +1529,25 @@ class CreatureBuilder extends Builder {
 		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple("Ability Scores", {isMarked: true, isRow: true});
 
 		const $getRow = (name, prop) => {
-			const $iptAbil = $(`<input class="form-control form-control--minimal input-xs text-center">`)
-				.val(this._state[prop])
+			const valInitial = this._state[prop] != null && typeof this._state[prop] !== "number"
+				? this._state[prop].special
+				: this._state[prop];
+
+			const $iptAbil = $(`<input class="form-control form-control--minimal input-xs ve-text-center">`)
+				.val(valInitial)
 				.change(() => {
-					this._state[prop] = UiUtil.strToInt($iptAbil.val());
+					const val = $iptAbil.val().trim();
+					if (!val) {
+						delete this._state[prop];
+						return cb();
+					}
+
+					if (isNaN(val)) {
+						this._state[prop] = {special: val};
+						return cb();
+					}
+
+					this._state[prop] = UiUtil.strToInt(val);
 					cb();
 				});
 
@@ -1388,7 +1566,7 @@ class CreatureBuilder extends Builder {
 		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple("Saving Throws", {isMarked: true, isRow: true});
 
 		const $getRow = (name, prop) => {
-			const $iptVal = $(`<input class="form-control form-control--minimal input-xs mb-2 text-center">`)
+			const $iptVal = $(`<input class="form-control form-control--minimal input-xs mb-2 ve-text-center">`)
 				.change(() => {
 					$btnProf.removeClass("active");
 					delete this._meta.profSave[prop];
@@ -1396,7 +1574,7 @@ class CreatureBuilder extends Builder {
 				});
 
 			const _setFromAbility = () => {
-				const total = Parser.getAbilityModNumber(this._state[prop]) + this._getProfBonus();
+				const total = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, prop, {isDefaultTen: true})) + this._getProfBonus();
 				(this._state.save = this._state.save || {})[prop] = total < 0 ? `${total}` : `+${total}`;
 				$iptVal.val(total);
 				cb();
@@ -1441,7 +1619,7 @@ class CreatureBuilder extends Builder {
 		const $getRow = (name, prop) => {
 			const abilProp = Parser.skillToAbilityAbv(prop);
 
-			const $iptVal = $(`<input class="form-control form-control--minimal input-xs mr-2 text-center">`)
+			const $iptVal = $(`<input class="form-control form-control--minimal input-xs mr-2 ve-text-center">`)
 				.change(() => {
 					if (this._meta.profSkill[prop]) {
 						$btnProf.removeClass("active");
@@ -1452,7 +1630,8 @@ class CreatureBuilder extends Builder {
 				});
 
 			const _setFromAbility = (isExpert) => {
-				const total = Parser.getAbilityModNumber(this._state[abilProp]) + (this._getProfBonus() * (2 - !isExpert));
+				const total = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, abilProp, {isDefaultTen: true}))
+					+ (this._getProfBonus() * (2 - !isExpert));
 
 				const nextSkills = {...(this._state.skill || {})}; // regenerate the object to allow hooks to fire
 				nextSkills[prop] = total < 0 ? `${total}` : `+${total}`;
@@ -1521,7 +1700,7 @@ class CreatureBuilder extends Builder {
 		const raw = $iptVal.val();
 		if (raw && raw.trim()) {
 			const num = UiUtil.strToInt(raw);
-			const nextState = {...this._state[mode]} || {};
+			const nextState = {...(this._state[mode] || {})};
 			nextState[prop] = num < 0 ? `${num}` : `+${num}`;
 			this._state[mode] = nextState;
 		} else {
@@ -1542,7 +1721,7 @@ class CreatureBuilder extends Builder {
 			if (this._meta.autoCalc.passivePerception) {
 				const pp = Math.round((() => {
 					if (this._state.skill && this._state.skill.perception && this._state.skill.perception.trim()) return Number(this._state.skill.perception);
-					else return Parser.getAbilityModNumber(this._state.wis);
+					else return Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, "wis", {isDefaultTen: true}));
 				})() + 10);
 
 				$iptPerception.val(pp);
@@ -1822,7 +2001,7 @@ class CreatureBuilder extends Builder {
 			.change(() => doUpdateState());
 		if (this._state.languages && this._state.languages.length) $iptLanguages.val(this._state.languages.join(", "));
 
-		const availLanguages = Object.entries(Parser.MON_LANGUAGE_TAG_TO_FULL).filter(([k]) => !CreatureBuilder._LANGUAGE_BLACKLIST.has(k))
+		const availLanguages = Object.entries(Parser.MON_LANGUAGE_TAG_TO_FULL).filter(([k]) => !CreatureBuilder._LANGUAGE_BLOCKLIST.has(k))
 			.map(([k, v]) => v === "Telepathy" ? "telepathy" : v); // lowercase telepathy
 
 		const $btnAddGeneric = $(`<button class="btn btn-xs btn-default mr-2 mkbru_mon__btn-add-sense-language">Add Language</button>`)
@@ -2014,6 +2193,23 @@ class CreatureBuilder extends Builder {
 		else return this._state.cr == null ? 0 : Parser.crToPb(this._state.cr.cr || this._state.cr);
 	}
 
+	__$getProfNoteInput (cb) {
+		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple("Proficiency Note", {title: `The value to display as the "Proficiency Bonus" on the statblock. If not specified, the display value is based on the creature's CR.`});
+
+		const $iptPbNote = $(`<input class="form-control form-control--minimal input-xs mr-2">`)
+			.val(this._state.pbNote || "")
+			.change(() => {
+				const val = $iptPbNote.val().trim();
+				if (val) this._state.pbNote = val;
+				else delete this._state.pbNote;
+				cb();
+			});
+
+		$$`<div class="ve-flex-v-center">${$iptPbNote}</div>`.appendTo($rowInner);
+
+		return $row;
+	}
+
 	__$getSpellcastingInput (cb) {
 		const [$row, $rowInner] = BuilderUi.getLabelledRowTuple("Spellcasting", {isMarked: true});
 
@@ -2157,6 +2353,11 @@ class CreatureBuilder extends Builder {
 				mode: "frequency",
 			},
 			{
+				display: "\uD835\uDC65/month (/each) spells",
+				type: "monthly",
+				mode: "frequency",
+			},
+			{
 				display: "\uD835\uDC65/year (/each) spells",
 				type: "yearly",
 				mode: "frequency",
@@ -2243,6 +2444,7 @@ class CreatureBuilder extends Builder {
 			if (trait.daily) handleFrequency("daily");
 			if (trait.rest) handleFrequency("rest");
 			if (trait.weekly) handleFrequency("weekly");
+			if (trait.monthly) handleFrequency("monthly");
 			if (trait.yearly) handleFrequency("yearly");
 			if (trait.spells) {
 				Object.entries(trait.spells).forEach(([k, v]) => {
@@ -2343,6 +2545,7 @@ class CreatureBuilder extends Builder {
 							case "daily": return "/Day";
 							case "rest": return "/Rest";
 							case "weekly": return "/Week";
+							case "monthly": return "/Month";
 							case "yearly": return "/Year";
 						}
 					})();
@@ -2487,10 +2690,9 @@ class CreatureBuilder extends Builder {
 								cbClose: (isDataEntered) => {
 									searchWidget.$wrpSearch.detach();
 									if (!isDataEntered) return resolve(null);
-									const trait = MiscUtil.copy(this._jsonCreatureTraits[traitIndex]);
-									let name = this._state.shortName && typeof this._state.shortName === "string" ? this._state.shortName : this._state.name;
-									if (!this._state.isNamedCreature) name = (name || "").toLowerCase();
-									trait.entries = JSON.parse(JSON.stringify(trait.entries).replace(/<\$name\$>/gi, name));
+									const trait = MiscUtil.copyFast(this._jsonCreatureTraits[traitIndex]);
+									trait.entries = DataUtil.generic.variableResolver.resolve({obj: trait.entries, ent: this._state});
+									resolve(trait);
 									resolve(trait);
 								},
 							});
@@ -2628,7 +2830,7 @@ class CreatureBuilder extends Builder {
 								const getFormData = () => {
 									const pb = this._getProfBonus();
 									const isDex = $cbFinesse.prop("checked") || ($cbRanged.prop("checked") && !$cbMelee.prop("checked"));
-									const abilMod = Parser.getAbilityModNumber(isDex ? this._state.dex : this._state.str);
+									const abilMod = Parser.getAbilityModNumber(Renderer.monster.getSafeAbilityScore(this._state, isDex ? "dex" : "str", {isDefaultTen: true}));
 									const [melee, ranged] = [$cbMelee.prop("checked") ? "mw" : false, $cbRanged.prop("checked") ? "rw" : false];
 
 									const ptAtk = `{@atk ${[melee ? "mw" : null, ranged ? "rw" : null].filter(Boolean).join(",")}}`;
@@ -2743,6 +2945,48 @@ class CreatureBuilder extends Builder {
 								${$stageBonusDamage}
 								<div class="ve-flex-v-center ve-flex-h-right mt-2 pb-1 px-1">${$btnConfirm}${$btnReset}</div>
 								</div>`.appendTo($modalInner);
+							});
+						},
+					},
+					{
+						name: "Add Predefined Action",
+						action: () => {
+							let actionIndex;
+							return new Promise(resolve => {
+								const searchWidget = new SearchWidget(
+									{Action: this._indexedActions},
+									async (ix) => {
+										actionIndex = ix;
+										doClose(true);
+									},
+									{
+										defaultCategory: "Action",
+										searchOptions: {
+											fields: {
+												n: {boost: 5, expand: true},
+											},
+											expand: true,
+										},
+										fnTransform: (doc) => doc.id,
+									},
+								);
+								const {$modalInner, doClose} = UiUtil.getShowModal({
+									title: "Select an Action",
+									cbClose: (isDataEntered) => {
+										searchWidget.$wrpSearch.detach();
+										if (!isDataEntered) return resolve(null);
+										const action = MiscUtil.copyFast(this._jsonCreatureActions[actionIndex]);
+										const isFinesse = action.entriesFinesse && this._state.dex > this._state.str;
+										action.entries = DataUtil.generic.variableResolver.resolve({
+											obj: isFinesse ? action.entriesFinesse : action.entries,
+											ent: this._state,
+										});
+										delete action.entriesFinesse;
+										resolve(action);
+									},
+								});
+								$modalInner.append(searchWidget.$wrpSearch);
+								searchWidget.doFocus();
 							});
 						},
 					},
@@ -2940,17 +3184,17 @@ class CreatureBuilder extends Builder {
 			})
 			.appendTo($rowInner);
 
-		this._legendaryGroupCache.filter(it => it.source).forEach((g, i) => this._$selLegendaryGroup.append(`<option value="${i}">${g.name}${g.source === SRC_MM ? "" : ` [${Parser.sourceJsonToAbv(g.source)}]`}</option>`));
+		this._legendaryGroupCache.filter(it => it.source).forEach((g, i) => this._$selLegendaryGroup.append(`<option value="${i}">${g.name}${g.source === Parser.SRC_MM ? "" : ` [${Parser.sourceJsonToAbv(g.source)}]`}</option>`));
 
 		this._handleLegendaryGroupChange();
 
 		return $row;
 	}
 
-	async _pBuildLegendaryGroupCache ({brew} = {}) {
-		brew = brew || await BrewUtil2.pGetBrewProcessed();
+	async _pBuildLegendaryGroupCache () {
+		DataUtil.monster.populateMetaReference({legendaryGroup: (await BrewUtil2.pGetBrewProcessed()).legendaryGroup || []});
+		DataUtil.monster.populateMetaReference({legendaryGroup: (await BrewUtil2.pGetBrewProcessed()).legendaryGroup || []});
 
-		DataUtil.monster.populateMetaReference({legendaryGroup: brew.legendaryGroup || []});
 		const baseLegendaryGroups = Object.values(DataUtil.monster.metaGroupMap).map(obj => Object.values(obj)).flat();
 		this._legendaryGroups = [...baseLegendaryGroups];
 
@@ -3137,7 +3381,7 @@ class CreatureBuilder extends Builder {
 
 		const tabs = this._renderTabs(
 			[
-				new TabUiUtil.TabMeta({name: "Statblock"}),
+				new TabUiUtil.TabMeta({name: "Stat Block"}),
 				new TabUiUtil.TabMeta({name: "Info"}),
 				new TabUiUtil.TabMeta({name: "Images"}),
 				new TabUiUtil.TabMeta({name: "Data"}),
@@ -3231,7 +3475,7 @@ CreatureBuilder._AC_COMMON = {
 	"Unarmored Defense": "unarmored defense",
 	"Natural Armor": "natural armor",
 };
-CreatureBuilder._LANGUAGE_BLACKLIST = new Set(["CS", "X", "XX"]);
+CreatureBuilder._LANGUAGE_BLOCKLIST = new Set(["CS", "X", "XX"]);
 CreatureBuilder._rowSortOrder = 0;
 
 const creatureBuilder = new CreatureBuilder();

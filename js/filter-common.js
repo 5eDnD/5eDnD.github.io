@@ -1,3 +1,5 @@
+"use strict";
+
 class FilterCommon {
 	static getDamageVulnerableFilter () {
 		return this._getDamageResistVulnImmuneFilter({
@@ -108,3 +110,5 @@ class FilterCommon {
 		if (it.choose?.from) it.choose?.from.forEach(itSub => this._recurseResVulnImm(allSet, itSub));
 	}
 }
+
+globalThis.FilterCommon = FilterCommon;

@@ -33,8 +33,8 @@
 										"type": "internal",
 										"path": "adventure/SKT/000-giantrunes.webp"
 									},
-									"width": 1000,
-									"height": 557
+									"width": 1251,
+									"height": 697
 								}
 							]
 						},
@@ -319,7 +319,7 @@
 									"page": 16,
 									"id": "019",
 									"entries": [
-										"You can begin the adventure with 5th-level characters by skipping over{@adventure chapter 1|SKT|1} and starting in one of the three locations described in {@adventure chapter 2|SKT|2}. {@adventure appendix A|SKT|13} suggests ways in which you can transition characters from the D&D {@i Starter Set} adventure or one of several other D&D adventures to {@adventure chapter 2|SKT|2} of {@i Storm King's Thunder}."
+										"You can begin the adventure with 5th-level characters by skipping over {@adventure chapter 1|SKT|1} and starting in one of the three locations described in {@adventure chapter 2|SKT|2}. {@adventure appendix A|SKT|13} suggests ways in which you can transition characters from the D&D {@i Starter Set} adventure or one of several other D&D adventures to {@adventure chapter 2|SKT|2} of {@i Storm King's Thunder}."
 									]
 								},
 								{
@@ -632,7 +632,7 @@
 					"width": 1000,
 					"height": 699
 				},
-				"This chapter is designed to advance a party of 1st-level characters to 5th level. The characters gain levels by accomplishing various goals, which are summarized in the Character Advancement sidebar at the end of the chapter. If the characters are already 5th level, skip ahead to chapter 2, \"Rumblings,\" using the information in {@adventure appendix A|SKT|13} if the characters are transitioning from another published adventure to this one.",
+				"This chapter is designed to advance a party of 1st-level characters to 5th level. The characters gain levels by accomplishing various goals, which are summarized in the Character Advancement sidebar at the end of the chapter. If the characters are already 5th level, skip ahead to {@adventure chapter 2|SKT|2}, \"Rumblings,\" using the information in {@adventure appendix A|SKT|13} if the characters are transitioning from another published adventure to this one.",
 				"Nightstone is a fortified settlement located a few miles south of the Ardeep Forest, in the untamed hills between Waterdeep and Daggerford. A lonely wooden signpost, standing where the trail to Nightstone meets the High Road, points the way to the settlement.",
 				"Nightstone's closest neighbors are the elves of the Ardeep Forest. Hunters from Nightstone have incurred the elves' wrath on multiple occasions. However, elves are the least of the settlement's problems, as fledgling heroes who come to Nightstone in search of adventure quickly discover.",
 				"The characters are traveling to Nightstone for one or more of the following reasons:",
@@ -741,6 +741,14 @@
 									"width": 2400,
 									"height": 3300,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 77,
+										"offsetX": 4,
+										"offsetY": -24,
+										"scale": 2,
+										"distance": 10
+									},
 									"mapRegions": [
 										{
 											"area": "04a",
@@ -2501,7 +2509,15 @@
 									},
 									"width": 2400,
 									"height": 3300,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 77,
+										"offsetX": 4,
+										"offsetY": -24,
+										"scale": 2,
+										"distance": 10
+									}
 								}
 							]
 						},
@@ -3310,6 +3326,11 @@
 									"width": 2100,
 									"height": 1575,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 52,
+										"offsetX": 12
+									},
 									"mapRegions": [
 										{
 											"area": "08f",
@@ -6784,7 +6805,14 @@
 									},
 									"width": 2030,
 									"height": 1502,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 105,
+										"offsetX": 31,
+										"offsetY": 29,
+										"scale": 2
+									}
 								}
 							]
 						},
@@ -7117,10 +7145,17 @@
 								"type": "internal",
 								"path": "adventure/SKT/013-towerofzephyros.webp"
 							},
-							"title": "Map 1.3: Tower of {@creature Zephyros|SKT}",
+							"title": "Map 1.3: Tower of Zephyros",
 							"width": 1200,
 							"height": 3300,
 							"imageType": "map",
+							"grid": {
+								"type": "square",
+								"size": 55,
+								"offsetX": -10,
+								"offsetY": 23,
+								"distance": 10
+							},
 							"mapRegions": [
 								{
 									"area": "09f",
@@ -7526,7 +7561,7 @@
 									"id": "0a3",
 									"entries": [
 										"Amarath's \"smiling bag\" is actually a {@item bag of holding}. The bag becomes empty once the {@creature invisible stalker} leaves it.",
-										"N'von carries a pouch containing ten pinches of faerie dust. He offers the pouch to {@creature Zephyros|SKT} as a gift (see \"Development\").",
+										"N'von carries a pouch containing ten pinches of {@item faerie dust|SKT}. He offers the pouch to {@creature Zephyros|SKT} as a gift (see \"Development\").",
 										"One pinch of the faerie dust can substitute for the material components of any enchantment spell of 3rd level or lower. The faerie dust has other magical effects as well. If a pinch of faerie dust is sprinkled on a creature, roll percentile dice and consult the Faerie Dust table to determine the effect."
 									]
 								},
@@ -7711,6 +7746,11 @@
 									"width": 2711,
 									"height": 1476,
 									"imageType": "map",
+									"grid": {
+										"type": "none",
+										"size": 52,
+										"distance": 100
+									},
 									"mapRegions": [
 										{
 											"area": "0af",
@@ -8066,7 +8106,12 @@
 									},
 									"width": 2711,
 									"height": 1476,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"grid": {
+										"type": "none",
+										"size": 52,
+										"distance": 100
+									}
 								}
 							]
 						},
@@ -8478,6 +8523,12 @@
 									"width": 2217,
 									"height": 3000,
 									"imageType": "map",
+									"grid": {
+										"type": "none",
+										"size": 66,
+										"distance": 0.25,
+										"units": "miles"
+									},
 									"mapRegions": [
 										{
 											"area": "0d6",
@@ -10837,7 +10888,13 @@
 									},
 									"width": 2385,
 									"height": 3289,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"grid": {
+										"type": "none",
+										"size": 71,
+										"distance": 0.25,
+										"units": "miles"
+									}
 								}
 							]
 						},
@@ -11375,6 +11432,11 @@
 									"width": 2256,
 									"height": 3000,
 									"imageType": "map",
+									"grid": {
+										"type": "none",
+										"size": 167,
+										"distance": 100
+									},
 									"mapRegions": [
 										{
 											"area": "107",
@@ -13426,7 +13488,12 @@
 									},
 									"width": 2471,
 									"height": 3286,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"grid": {
+										"type": "none",
+										"size": 183,
+										"distance": 100
+									}
 								}
 							]
 						},
@@ -14117,7 +14184,7 @@
 							"page": 65,
 							"id": "144",
 							"entries": [
-								"The Uthgardt are a black-haired and blue\u2014eyed people\u2014large, hale, territorial folk who don't trust outsiders. Few Uthgardt are willing to trade with non-Uthgardt settlements. Many are raiders who pillage and destroy any caravan or homestead they come across.",
+								"The Uthgardt are a black-haired and blue-eyed people\u2014large, hale, territorial folk who don't trust outsiders. Few Uthgardt are willing to trade with non-Uthgardt settlements. Many are raiders who pillage and destroy any caravan or homestead they come across.",
 								"Uthgardt barbarians take their name from Uthgar Gardolfsson, a great hero-chief who battled giants and conquered much of the North before ascending to godhood. In addition to revering Uthgar, each tribe venerates a totem animal spirit after which the tribe is named.",
 								"Numerous Uthgardt tribes have been vanquished over the years, and at least one tribe previously thought to be extinct has returned in force. There are currently eleven known Uthgardt tribes scattered throughout the North. Each tribe claims a vast tract of wilderness as its hunting grounds\u2014territory that often overlaps with the hunting grounds of other Uthgardt tribes as well as land claimed by civilized races, orcs, dragons, goblinoids, and other monsters. Encounters with Uthgardt barbarians can occur almost anywhere in the Savage Frontier.",
 								"Uthgardt speak their own language (called Bothii), which has no alphabet. Each tribe is made up of several widely scattered clans, each with its own chieftain and tribal shaman. The chieftains of a particular tribe choose one among them to become the great chief of the tribe, with power comparable to a monarch.",
@@ -14317,7 +14384,7 @@
 									"\u2014"
 								],
 								[
-									"{@area Battlefield|15b|x}",
+									"{@area Uthgardt Marauders|159|x}",
 									"09\u201318",
 									"08\u201332",
 									"05\u201324",
@@ -14327,7 +14394,7 @@
 									"01\u201315"
 								],
 								[
-									"{@area Cloud castle|15c|x}",
+									"{@area Battlefield|15b|x}",
 									"19\u201321",
 									"33\u201337",
 									"25\u201328",
@@ -14337,7 +14404,7 @@
 									"16\u201319"
 								],
 								[
-									"{@area Crag cats|1e1|x}",
+									"{@area Cloud castle|15c|x}",
 									"\u2014",
 									"38\u201339",
 									"29\u201330",
@@ -14347,7 +14414,7 @@
 									"20\u201322"
 								],
 								[
-									"{@area Dig site|15e|x}",
+									"{@area Crag cats|1e1|x}",
 									"\u2014",
 									"\u2014",
 									"31\u201335",
@@ -14357,7 +14424,7 @@
 									"23\u201335"
 								],
 								[
-									"{@area Dragon|160|x}",
+									"{@area Dig site|15e|x}",
 									"22\u201329",
 									"40\u201346",
 									"36\u201338",
@@ -14367,7 +14434,7 @@
 									"36\u201341"
 								],
 								[
-									"{@area Elk|161|x}",
+									"{@area Dragon|160|x}",
 									"\u2014",
 									"\u2014",
 									"39\u201341",
@@ -14377,7 +14444,7 @@
 									"\u2014"
 								],
 								[
-									"{@area Elves|163|x}",
+									"{@area Elk|161|x}",
 									"30\u201337",
 									"47\u201353",
 									"42\u201350",
@@ -14387,7 +14454,7 @@
 									"42\u201354"
 								],
 								[
-									"{@area Fire giant|165|x}",
+									"{@area Elves|163|x}",
 									"38\u201353",
 									"\u2014",
 									"\u2014",
@@ -14397,7 +14464,7 @@
 									"\u2014"
 								],
 								[
-									"{@area Food hunters|167|x}",
+									"{@area Fire giant|165|x}",
 									"54\u201355",
 									"54\u201355",
 									"51\u201353",
@@ -14407,7 +14474,7 @@
 									"55\u201356"
 								],
 								[
-									"{@area Frost giants|1e2|x}",
+									"{@area Food hunters|167|x}",
 									"56\u201362",
 									"56\u201362",
 									"54\u201359",
@@ -14417,7 +14484,7 @@
 									"57\u201358"
 								],
 								[
-									"{@area Hill giants|16b|x}",
+									"{@area Frost giants|1e2|x}",
 									"63\u201367",
 									"63\u201366",
 									"60\u201361",
@@ -14427,7 +14494,7 @@
 									"59\u201370"
 								],
 								[
-									"{@area Horse-drawn wagon|16c|x}",
+									"{@area Hill giants|16b|x}",
 									"68\u201370",
 									"67\u201368",
 									"62\u201376",
@@ -14437,7 +14504,7 @@
 									"71\u201374"
 								],
 								[
-									"{@area Knight|16d|x}",
+									"{@area Horse-drawn wagon|16c|x}",
 									"71\u201375",
 									"69\u201375",
 									"\u2014",
@@ -14447,7 +14514,7 @@
 									"\u2014"
 								],
 								[
-									"{@area Ogres|16e|x}",
+									"{@area Knight|16d|x}",
 									"76\u201380",
 									"76\u201378",
 									"77\u201380",
@@ -14457,7 +14524,7 @@
 									"\u2014"
 								],
 								[
-									"{@area Orcs|170|x}",
+									"{@area Ogres|16e|x}",
 									"81\u201382",
 									"79\u201384",
 									"81\u201385",
@@ -14467,7 +14534,7 @@
 									"75\u201376"
 								],
 								[
-									"{@area Ranger|172|x}",
+									"{@area Orcs|170|x}",
 									"83\u201390",
 									"85\u201391",
 									"86\u201390",
@@ -14477,7 +14544,7 @@
 									"77\u201387"
 								],
 								[
-									"{@area Stone giants|173|x}",
+									"{@area Ranger|172|x}",
 									"91\u201395",
 									"92\u201395",
 									"91\u201394",
@@ -14487,7 +14554,7 @@
 									"88\u201393"
 								],
 								[
-									"{@area Travelers|175|x}",
+									"{@area Stone giants|173|x}",
 									"\u2014",
 									"\u2014",
 									"95\u201397",
@@ -14497,7 +14564,7 @@
 									"94\u201395"
 								],
 								[
-									"{@area Uthgardt Marauders|159|x}",
+									"{@area Travelers|175|x}",
 									"96\u201300",
 									"96\u201300",
 									"98\u201300",
@@ -14535,26 +14602,6 @@
 											"id": "158",
 											"entries": [
 												"Each bandit carries a pouch containing {@dice 1d10} gp. The bandit captain's pouch holds {@dice 2d10} gp and {@dice 1d6} gems worth 100 gp each."
-											]
-										}
-									]
-								},
-								{
-									"type": "entries",
-									"name": "Uthgardt Marauders",
-									"page": 69,
-									"id": "159",
-									"entries": [
-										"The characters encounter a hostile group of Uthgardt barbarians consisting of {@dice 4d6} {@creature Tribal Warrior||tribal warriors} and an {@creature Uthgardt shaman|SKT} (see {@adventure appendix C|SKT|15}). If the group has twenty or more tribal warriors, add {@dice 1d3} {@creature Berserker||berserkers} and a tribal chieftain (a {@creature berserker} with 90 hit points) to the group. If the encounter occurs during the day, the Uthgardt are prowling the countryside while hunting wild game; if the encounter occurs at night, they are camped.",
-										"Use the information in the \"Uthgardt\" section to choose an appropriate tribe based on the location where the encounter takes place. If these Uthgardt belong to the Gray Wolf tribe, use the {@creature werewolf} statistics for the chieftain and the berserkers, and give the chieftain 90 hit points. Also give the Gray Wolf chieftain {@dice 1d4} {@creature Wolf||wolves} as animal companions.",
-										"The barbarians carry no treasure.",
-										{
-											"type": "entries",
-											"name": "Sea",
-											"page": 69,
-											"id": "15a",
-											"entries": [
-												"If this encounter occurs at sea, the characters encounter {@dice 1d3} longships, each with ten {@creature Berserker||berserkers} and thirty {@creature Tribal Warrior||tribal warriors} aboard. One of the berserkers serves as the captain. These hostile, bloodthirsty Northfolk raiders hail from Gundarlun, the Korinn Archipelago, Tuern, or the Whalebones. The longships have a speed of 3 miles per hour. If the vessel the characters are in moves at least as fast, the characters can flee from the barbarians and avoid an altercation."
 											]
 										}
 									]
@@ -14845,9 +14892,29 @@
 												"{@b Grassland}: {@dice 1d6} farmers whose homestead was attacked by hill giants, or {@dice 1d4} ranchers on {@creature Riding Horse||riding horses} who are heading to a nearby settlement to warn it about giants in the area",
 												"{@b Hills/Moors}: {@dice 1d4} shepherds guiding the remnants of their flock to safety after a harrowing hill giant encounter",
 												"{@b Mountains}: {@dice 1d4} prospectors or miners who had a close call with some frost giants or stone giants and were forced to leave behind their mining gear, supplies, and treasure",
-												"R{@b oad/Trail}: Either {@dice 3d6} peasants fleeing their homes after a frost giant, hill giant, or stone giant attack; an angry mob of {@dice 6d6} peasants looking to reclaim their land or avenge dead loved ones; or a lone merchant or minstrel in a horse-drawn wagon who is relocating to a safer settlement",
+												"{@b Road/Trail}: Either {@dice 3d6} peasants fleeing their homes after a frost giant, hill giant, or stone giant attack; an angry mob of {@dice 6d6} peasants looking to reclaim their land or avenge dead loved ones; or a lone merchant or minstrel in a horse-drawn wagon who is relocating to a safer settlement",
 												"{@b Sea}: Either a friendly vessel carrying {@dice 6d6} crew and passengers who saw a cloud giant castle or a frost giant greatship, or {@dice 1d4} survivors floating on debris after their ship was sunk by a frost giant greatship",
 												"{@b Tundra}: {@dice 1d4} hunters or trappers who narrowly escaped from a fire giant or a frost giant but were forced to leave a companion behind"
+											]
+										}
+									]
+								},
+								{
+									"type": "entries",
+									"name": "Uthgardt Marauders",
+									"page": 69,
+									"id": "159",
+									"entries": [
+										"The characters encounter a hostile group of Uthgardt barbarians consisting of {@dice 4d6} {@creature Tribal Warrior||tribal warriors} and an {@creature Uthgardt shaman|SKT} (see {@adventure appendix C|SKT|15}). If the group has twenty or more tribal warriors, add {@dice 1d3} {@creature Berserker||berserkers} and a tribal chieftain (a {@creature berserker} with 90 hit points) to the group. If the encounter occurs during the day, the Uthgardt are prowling the countryside while hunting wild game; if the encounter occurs at night, they are camped.",
+										"Use the information in the \"Uthgardt\" section to choose an appropriate tribe based on the location where the encounter takes place. If these Uthgardt belong to the Gray Wolf tribe, use the {@creature werewolf} statistics for the chieftain and the berserkers, and give the chieftain 90 hit points. Also give the Gray Wolf chieftain {@dice 1d4} {@creature Wolf||wolves} as animal companions.",
+										"The barbarians carry no treasure.",
+										{
+											"type": "entries",
+											"name": "Sea",
+											"page": 69,
+											"id": "15a",
+											"entries": [
+												"If this encounter occurs at sea, the characters encounter {@dice 1d3} longships, each with ten {@creature Berserker||berserkers} and thirty {@creature Tribal Warrior||tribal warriors} aboard. One of the berserkers serves as the captain. These hostile, bloodthirsty Northfolk raiders hail from Gundarlun, the Korinn Archipelago, Tuern, or the Whalebones. The longships have a speed of 3 miles per hour. If the vessel the characters are in moves at least as fast, the characters can flee from the barbarians and avoid an altercation."
 											]
 										}
 									]
@@ -14874,6 +14941,12 @@
 							"width": 3000,
 							"height": 1905,
 							"imageType": "map",
+							"grid": {
+								"type": "none",
+								"size": 249,
+								"distance": 100,
+								"units": "miles"
+							},
 							"mapRegions": [
 								{
 									"area": "259",
@@ -18285,6 +18358,13 @@
 												"path": "adventure/SKT/028-skt03-beorunnaswell.webp"
 											},
 											"title": "Map 3.2: Beorunna's Well",
+											"grid": {
+												"type": "square",
+												"size": 95,
+												"offsetX": 22,
+												"offsetY": 6,
+												"distance": 50
+											},
 											"width": 3000,
 											"height": 2063,
 											"imageType": "map",
@@ -18329,7 +18409,14 @@
 											},
 											"width": 3200,
 											"height": 2200,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 101,
+												"offsetX": 28,
+												"offsetY": 9,
+												"distance": 50
+											}
 										}
 									]
 								},
@@ -18667,6 +18754,11 @@
 											"width": 2400,
 											"height": 1650,
 											"imageType": "map",
+											"grid": {
+												"type": "none",
+												"size": 74,
+												"distance": 100
+											},
 											"mapRegions": [
 												{
 													"area": "1a1",
@@ -18707,7 +18799,12 @@
 											},
 											"width": 2400,
 											"height": 1650,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "none",
+												"size": 74,
+												"distance": 100
+											}
 										}
 									]
 								},
@@ -18832,6 +18929,14 @@
 											"width": 727,
 											"height": 1000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 93,
+												"offsetX": 40,
+												"offsetY": -24,
+												"scale": 2,
+												"distance": 50
+											},
 											"mapRegions": [
 												{
 													"area": "1ac",
@@ -18873,7 +18978,14 @@
 											},
 											"width": 1600,
 											"height": 2200,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 102,
+												"offsetX": 44,
+												"offsetY": -25,
+												"distance": 50
+											}
 										}
 									]
 								},
@@ -19068,6 +19180,13 @@
 											"width": 3000,
 											"height": 2063,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 85,
+												"offsetX": 11,
+												"offsetY": -8,
+												"distance": 50
+											},
 											"mapRegions": [
 												{
 													"area": "1bd",
@@ -19109,7 +19228,13 @@
 											},
 											"width": 3200,
 											"height": 2200,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 90,
+												"offsetX": 17,
+												"distance": 50
+											}
 										}
 									]
 								},
@@ -19239,6 +19364,13 @@
 											"width": 3000,
 											"height": 2063,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 116,
+												"offsetX": 68,
+												"offsetY": 28,
+												"distance": 50
+											},
 											"mapRegions": [
 												{
 													"area": "1c6",
@@ -19280,7 +19412,14 @@
 											},
 											"width": 3200,
 											"height": 2200,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 124,
+												"offsetX": -51,
+												"offsetY": 25,
+												"distance": 50
+											}
 										}
 									]
 								},
@@ -19661,7 +19800,7 @@
 											"page": 93,
 											"id": "1e7",
 											"entries": [
-												"The cracking of ice and a faint tremor presage the arrival of this hungry monster. Characters who have a passive Wisdom ({@skill Perception}) score of 11 or higher aren't surprised when the young remorhaz bursts out of the snow and ice nearby."
+												"The cracking of ice and a faint tremor presage the arrival of this hungry monster. Characters who have a passive Wisdom ({@skill Perception}) score of 11 or higher aren't {@quickref Surprise|PHB|3|0|surprised} when the young remorhaz bursts out of the snow and ice nearby."
 											]
 										}
 									]
@@ -20094,6 +20233,13 @@
 											"width": 1600,
 											"height": 2200,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 108,
+												"offsetX": 63,
+												"offsetY": 58,
+												"distance": 50
+											},
 											"mapRegions": [
 												{
 													"area": "211",
@@ -20134,7 +20280,14 @@
 											},
 											"width": 1600,
 											"height": 2200,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 109,
+												"offsetX": 61,
+												"offsetY": 47,
+												"distance": 50
+											}
 										}
 									]
 								},
@@ -20354,6 +20507,12 @@
 											"width": 1600,
 											"height": 2200,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"offsetX": 39,
+												"offsetY": 25,
+												"distance": 50
+											},
 											"mapRegions": [
 												{
 													"area": "224",
@@ -20394,7 +20553,14 @@
 											},
 											"width": 1600,
 											"height": 2200,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 99,
+												"offsetX": 43,
+												"offsetY": 29,
+												"distance": 50
+											}
 										}
 									]
 								},
@@ -20575,6 +20741,13 @@
 											"width": 1600,
 											"height": 2200,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 96,
+												"offsetX": 59,
+												"offsetY": -25,
+												"distance": 50
+											},
 											"mapRegions": [
 												{
 													"area": "234",
@@ -20615,7 +20788,14 @@
 											},
 											"width": 1600,
 											"height": 2200,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 96,
+												"offsetX": -36,
+												"offsetY": -24,
+												"distance": 50
+											}
 										}
 									]
 								},
@@ -20706,6 +20886,11 @@
 									"width": 942,
 									"height": 1735,
 									"imageType": "map",
+									"grid": {
+										"type": "none",
+										"size": 314,
+										"distance": 100
+									},
 									"mapRegions": [
 										{
 											"area": "1cd",
@@ -20849,6 +21034,14 @@
 											"width": 727,
 											"height": 1000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 87,
+												"offsetX": 11,
+												"offsetY": 31,
+												"scale": 2,
+												"distance": 50
+											},
 											"mapRegions": [
 												{
 													"area": "244",
@@ -20890,7 +21083,14 @@
 											},
 											"width": 1600,
 											"height": 2200,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 96,
+												"offsetX": 9,
+												"offsetY": 32,
+												"distance": 50
+											}
 										}
 									]
 								},
@@ -21033,6 +21233,13 @@
 											"width": 1600,
 											"height": 2200,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 105,
+												"offsetX": 57,
+												"offsetY": -1,
+												"distance": 50
+											},
 											"mapRegions": [
 												{
 													"area": "251",
@@ -21073,7 +21280,14 @@
 											},
 											"width": 1600,
 											"height": 2200,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 105,
+												"offsetX": 57,
+												"offsetY": -3,
+												"distance": 50
+											}
 										}
 									]
 								},
@@ -21233,6 +21447,12 @@
 									"width": 992,
 									"height": 1318,
 									"imageType": "map",
+									"grid": {
+										"type": "none",
+										"size": 281,
+										"distance": 100,
+										"units": "miles"
+									},
 									"mapRegions": [
 										{
 											"area": "260",
@@ -21590,7 +21810,7 @@
 								},
 								"A female {@creature hill giant} named Moog has barricaded herself in this lonely tower so that she can wallow in self-pity undisturbed. {@creature Chief Guh|SKT} has taken Moog's husband, Hruk, as her own, leaving Moog with no one to abuse on a daily basis. Moog is singing a mournful tune, which is amplified by the acoustics of the tower.",
 								"Moog sits on the upper level of the tower (area 2), her calves and bare feet dangling through a hole in the floor. From this position, she can see anyone that enters the tower through the front door, the hole in the upstairs wall, or the window above the doorway. She has her back to the upstairs window that faces east, and can't see anyone approaching from that direction. Her incessant singing is so loud that she can't hear anything but the loudest noises outside the tower.",
-								"The hawks circling above the tower are four {@creature Blood Hawk||blood hawks}. Any character who pays attention to the hawks can discern their crimson feathers with a successful DC 10 Wisdom ({@skill Perception}) check or recall their aggressive nature with a successful DC 10 Intelligence ({@skill Nature}) check. The blood hawks attack any creature that tries to enter the tower through the broken wall or the roof, but otherwise they keep their distance. Once the hawks attack, Moog can't be surprised.",
+								"The hawks circling above the tower are four {@creature Blood Hawk||blood hawks}. Any character who pays attention to the hawks can discern their crimson feathers with a successful DC 10 Wisdom ({@skill Perception}) check or recall their aggressive nature with a successful DC 10 Intelligence ({@skill Nature}) check. The blood hawks attack any creature that tries to enter the tower through the broken wall or the roof, but otherwise they keep their distance. Once the hawks attack, Moog can't be {@quickref Surprise|PHB|3|0|surprised}.",
 								{
 									"type": "image",
 									"href": {
@@ -21601,6 +21821,13 @@
 									"width": 1000,
 									"height": 688,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 65,
+										"offsetX": 14,
+										"offsetY": 4,
+										"distance": 10
+									},
 									"mapRegions": [
 										{
 											"area": "27a",
@@ -21679,11 +21906,7 @@
 									},
 									"title": "Figure 3.1: Harper Teleportation Network",
 									"width": 727,
-									"height": 1000,
-									"mapParent": {
-										"id": "230",
-										"autoScale": true
-									}
+									"height": 1000
 								},
 								"Krowen isn't very adventurous himself, but he's fond of adventurers and uses them to do his dirty work. If the characters explain that they're trying to thwart the giants, Krowen grants the party free access to a secret network of {@spell teleportation circle}s that he and his fellow Harper wizards use for travel. He also gives the characters a sheet of parchment that shows all six circles and their sigil addresses (show the players figure 3.1). The circles are located in Everlund, Loudwater, Mirabar, Neverwinter, Waterdeep, and Yartar. The specific locations of these circles are briefly described below, and a Harper spellcaster stands ready at each site to cast the {@spell teleportation circle} spell should the party require it. Each spellcaster has the statistics of a {@creature mage}, with the following changes:",
 								{
@@ -21865,6 +22088,14 @@
 									"width": 2400,
 									"height": 3300,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 88,
+										"offsetX": -31,
+										"offsetY": -11,
+										"scale": 2,
+										"distance": 20
+									},
 									"mapRegions": [
 										{
 											"area": "2b1",
@@ -23523,7 +23754,15 @@
 									},
 									"width": 2400,
 									"height": 3300,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 88,
+										"offsetX": -31,
+										"offsetY": -10,
+										"scale": 2,
+										"distance": 20
+									}
 								}
 							]
 						},
@@ -24314,10 +24553,13 @@
 										"type": "internal",
 										"path": "adventure/SKT/060-skt04-harshnagsmap.webp"
 									},
-									"title": "Map 4.2: {@creature Harshnag|SKT}'s Map",
+									"title": "Map 4.2: Harshnag's Map",
 									"width": 2612,
 									"height": 1761,
 									"imageType": "map",
+									"grid": {
+										"type": "none"
+									},
 									"mapRegions": [
 										{
 											"area": "2c1",
@@ -24452,6 +24694,13 @@
 									"width": 1000,
 									"height": 688,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 88,
+										"offsetX": 48,
+										"offsetY": 23,
+										"scale": 2
+									},
 									"mapRegions": [
 										{
 											"area": "2ce",
@@ -24493,7 +24742,13 @@
 									},
 									"width": 2400,
 									"height": 1650,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 105,
+										"offsetX": 56,
+										"offsetY": 42
+									}
 								}
 							]
 						},
@@ -25291,6 +25546,12 @@
 											"width": 2182,
 											"height": 3000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 67,
+												"scale": 3,
+												"distance": 10
+											},
 											"mapRegions": [
 												{
 													"area": "306",
@@ -26686,7 +26947,15 @@
 											},
 											"width": 2400,
 											"height": 3300,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 74,
+												"offsetX": -9,
+												"offsetY": -33,
+												"scale": 3,
+												"distance": 10
+											}
 										}
 									]
 								}
@@ -26939,7 +27208,7 @@
 							"id": "30d",
 							"entries": [
 								"In the area north of the pigpen, rivulets of water trickle down the north wall and carve shallow ruts in the floor as they snake their way across the room and through openings in the opposite wall. Five wooden cages are arranged about the room. Their doors are situated on top, with heavy rocks placed on them. A creature can use an action to attempt a DC 15 Strength ({@skill Athletics}) check to knock off a rock or open a cage door that has a rock pressing down on it. The sound of a rock hitting the cave floor alerts the guards in this area.",
-								"Three of the five cages contain prisoners destined for Guh's gullet. Two {@creature Bugbear||bugbears} guard the prisoners. These bugbears can't be surprised once the alarm sounds or if they hear combat in area 12.",
+								"Three of the five cages contain prisoners destined for Guh's gullet. Two {@creature Bugbear||bugbears} guard the prisoners. These bugbears can't be {@quickref Surprise|PHB|3|0|surprised} once the alarm sounds or if they hear combat in area 12.",
 								{
 									"type": "entries",
 									"name": "Prisoners",
@@ -27383,6 +27652,13 @@
 											"width": 2400,
 											"height": 3300,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 85,
+												"offsetX": 40,
+												"scale": 3,
+												"distance": 10
+											},
 											"mapRegions": [
 												{
 													"area": "32c",
@@ -31360,7 +31636,15 @@
 											},
 											"width": 2400,
 											"height": 3300,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 57,
+												"offsetX": 15,
+												"offsetY": 22,
+												"scale": 2,
+												"distance": 10
+											}
 										}
 									]
 								}
@@ -31555,7 +31839,7 @@
 							"id": "33c",
 							"entries": [
 								"This damp cave contains a large, shallow pool, around which colorful beds of moss grow. Sprouting from these mossy beds are scores of mushrooms that range in height from a few inches to 5 feet tall. The stone giants consider the mushrooms a delicacy and eat them raw. A narrow stream originating from a fissure in the northeast tunnel feeds the pool before snaking westward and spilling into the canyon.",
-								"A {@creature stone giant} bathes in the pool. It has gained the benefits of the Olach Morrah feature (see \"The Great Stillness\" section earlier in this chapter). If it hears intruders approaching, it uses its {@spell meld into stone} spell to sink into the stone at the bottom of the pool. If the characters disturb the pool or attempt to cross the room, the giant rises up and attacks with its greatclub. Characters with a passive Wisdom ({@skill Perception}) score lower than 16 are surprised by the giant as it rises from the pool.",
+								"A {@creature stone giant} bathes in the pool. It has gained the benefits of the Olach Morrah feature (see \"The Great Stillness\" section earlier in this chapter). If it hears intruders approaching, it uses its {@spell meld into stone} spell to sink into the stone at the bottom of the pool. If the characters disturb the pool or attempt to cross the room, the giant rises up and attacks with its greatclub. Characters with a passive Wisdom ({@skill Perception}) score lower than 16 are {@quickref Surprise|PHB|3|0|surprised} by the giant as it rises from the pool.",
 								"Clinging to the 50-foot-high ceiling are ten {@creature Piercer||piercers}. As a bonus action on its turn, the giant can hum a tone and cause one of the piercers to drop on another creature in the cavern. The piercers don't attack otherwise."
 							]
 						},
@@ -31566,7 +31850,7 @@
 							"id": "33d",
 							"entries": [
 								"The fungi in area 10 have spread throughout this tunnel. A forest of sticky mushrooms ranging in height from a few inches to 3 feet tall covers the floor, and the fossilized stone giants standing in alcoves along the walls are covered with blue, gold, and scarlet moss.",
-								"When one or more characters reach the middle of this area, have all the characters in the tunnel make a DC 13 Wisdom ({@skill Perception}) check. Those who fail the check are surprised when two {@creature Black Pudding||black puddings} boil out of crevices in the floor and attack."
+								"When one or more characters reach the middle of this area, have all the characters in the tunnel make a DC 13 Wisdom ({@skill Perception}) check. Those who fail the check are {@quickref Surprise|PHB|3|0|surprised} when two {@creature Black Pudding||black puddings} boil out of crevices in the floor and attack."
 							]
 						},
 						{
@@ -32041,7 +32325,7 @@
 							"id": "367",
 							"entries": [
 								"When the characters first arrive, most of Svardborg's frost giants are out hunting whales aboard Storvald's flagship (see \"The {@i Krigvind}\" section at the end of this chapter). A few giants stayed behind to guard the white dragon eggs and watch over the Northlander barbarians and yetis. Also present in Svardborg are {@creature Isendraug|SKT}, a female adult white dragon who desperately wants her eggs back, and Nilraun Dhaerlost, the evil Zhentarim mage who is plotting with {@creature Jarl Storvald|SKT} to find the {@item Ring of Winter|ToA}. Characters who interrogate Nilraun can learn where Storvald is and what the frost giant jarl is up to.",
-								"The giants' lodge has a warning horn on the upper floor (in area 2C). If it is blown, the sound puts all of Svardborg on alert. Some giants remain at their posts and can't be surprised. Others gather the Northlanders and the yetis and search Svardborg for intruders to kill.",
+								"The giants' lodge has a warning horn on the upper floor (in area 2C). If it is blown, the sound puts all of Svardborg on alert. Some giants remain at their posts and can't be {@quickref Surprise|PHB|3|0|surprised}. Others gather the Northlanders and the yetis and search Svardborg for intruders to kill.",
 								"The Svardborg Roster table specifies the locations of the occupants and indicates how those creatures behave when the horn sounds or when intruders are detected.",
 								{
 									"type": "entries",
@@ -32128,6 +32412,14 @@
 													"width": 2182,
 													"height": 3000,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 79,
+														"offsetX": 61,
+														"offsetY": -29,
+														"scale": 3,
+														"distance": 20
+													},
 													"mapRegions": [
 														{
 															"area": "369",
@@ -32938,7 +33230,15 @@
 													},
 													"width": 2400,
 													"height": 3300,
-													"imageType": "mapPlayer"
+													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 87,
+														"offsetX": -24,
+														"offsetY": -35,
+														"scale": 3,
+														"distance": 20
+													}
 												},
 												{
 													"type": "image",
@@ -32951,6 +33251,14 @@
 													"width": 2157,
 													"height": 3000,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 71,
+														"offsetX": 32,
+														"offsetY": 10,
+														"scale": 3,
+														"distance": 10
+													},
 													"mapRegions": [
 														{
 															"area": "374",
@@ -34066,7 +34374,15 @@
 													},
 													"width": 2400,
 													"height": 3338,
-													"imageType": "mapPlayer"
+													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 79,
+														"offsetX": -39,
+														"offsetY": 10,
+														"scale": 3,
+														"distance": 10
+													}
 												}
 											]
 										}
@@ -34590,7 +34906,14 @@
 									"title": "Map 7.3: Krigvind",
 									"width": 1000,
 									"height": 585,
-									"imageType": "map"
+									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 51,
+										"offsetX": -2,
+										"offsetY": -13,
+										"scale": 6
+									}
 								},
 								{
 									"type": "image",
@@ -34605,7 +34928,14 @@
 									},
 									"width": 2400,
 									"height": 1458,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 61,
+										"offsetX": 14,
+										"offsetY": 15,
+										"scale": 3
+									}
 								}
 							]
 						},
@@ -35117,6 +35447,14 @@
 											"width": 2183,
 											"height": 3000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 81,
+												"offsetX": 50,
+												"offsetY": 21,
+												"scale": 3,
+												"distance": 10
+											},
 											"mapRegions": [
 												{
 													"area": "3d6",
@@ -36719,7 +37057,15 @@
 											},
 											"width": 2401,
 											"height": 3300,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 88,
+												"offsetX": 11,
+												"offsetY": 41,
+												"scale": 3,
+												"distance": 10
+											}
 										}
 									]
 								},
@@ -36887,7 +37233,7 @@
 									"id": "3c5",
 									"entries": [
 										"Characters can try to reach area 9 by climbing through the openings in the frame of the water wheel and crawling along its iron axle. This is a dangerous act, and getting from one side to the other requires a successful DC 15 Strength ({@skill Athletics}) or Dexterity ({@skill Acrobatics}) check. A character who fails the check doesn't make it across and must make a DC 10 Dexterity saving throw. On a failed save, the character is swept down the river and tumbles down the mountainside, taking 70 ({@dice 20d6}) bludgeoning damage from the fall. On a successful save, the character manages to hang onto the wheel or the axle and avoid a fall, but is stuck between the spokes of the wheel and must repeat the check on his or her next turn to reach one end of the axle or the other.",
-										"Characters might try to make this route safer by preventing the water wheel from turning. Jamming a fence post or similar object between the spokes of the water wheel disables it, as does a successful DC 20 Strength check made to grab the wheel and stop it from turning. When the wheel is stopped, the force of the current puts tremendous strain on it. At the end of each turn, the wheel has a 25 percent chance of breaking apart and tumbling down the waterfall. If that happens, the millstone and the elevator (area 9) cease to function. Any creature on the wheel when it breaks is swept over the cliff with the wreckage and takes 70 ({@dice 20d6}) bludgeoning damage from the fall. The breaking of the wheel puts the yakfolk village on alert. Meanwhile, Zalto orders one of the fire giants in area 34 to go to area 9, find out what has caused the elevator to stop working, and report back. Unless it encounters trouble along the way, the giant arrives in area 9 roughly 20 minutes after the elevator stops working. If the giant finds evidence of foul play, it reports back to Zalto (taking 20 minutes to reach him). Zalto then places the foundry on alert, meaning that its defenders can't be surprised."
+										"Characters might try to make this route safer by preventing the water wheel from turning. Jamming a fence post or similar object between the spokes of the water wheel disables it, as does a successful DC 20 Strength check made to grab the wheel and stop it from turning. When the wheel is stopped, the force of the current puts tremendous strain on it. At the end of each turn, the wheel has a 25 percent chance of breaking apart and tumbling down the waterfall. If that happens, the millstone and the elevator (area 9) cease to function. Any creature on the wheel when it breaks is swept over the cliff with the wreckage and takes 70 ({@dice 20d6}) bludgeoning damage from the fall. The breaking of the wheel puts the yakfolk village on alert. Meanwhile, Zalto orders one of the fire giants in area 34 to go to area 9, find out what has caused the elevator to stop working, and report back. Unless it encounters trouble along the way, the giant arrives in area 9 roughly 20 minutes after the elevator stops working. If the giant finds evidence of foul play, it reports back to Zalto (taking 20 minutes to reach him). Zalto then places the foundry on alert, meaning that its defenders can't be {@quickref Surprise|PHB|3|0|surprised}."
 									]
 								}
 							]
@@ -37459,6 +37805,14 @@
 													"width": 2432,
 													"height": 1716,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 73,
+														"offsetX": 71,
+														"offsetY": 57,
+														"scale": 3,
+														"distance": 10
+													},
 													"mapRegions": [
 														{
 															"area": "410",
@@ -38129,7 +38483,14 @@
 													},
 													"width": 2432,
 													"height": 1716,
-													"imageType": "mapPlayer"
+													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 73,
+														"offsetY": 9,
+														"scale": 3,
+														"distance": 10
+													}
 												}
 											]
 										}
@@ -38466,7 +38827,7 @@
 							"items": [
 								"If the characters slay {@creature Duke Zalto|SKT}, the drow might arrive shortly thereafter and attack.",
 								"If the characters are having an easy time in Ironslag, the drow might be with Zalto when the party finally confronts him. Draac doesn't give Zalto the {@item iron flask} until the characters are defeated or forced to retreat.",
-								"If the characters leave Ironslag without confronting {@creature Duke Zalto|SKT}, the drow arrive after the party leaves and give Zalto the{@item iron flask}."
+								"If the characters leave Ironslag without confronting {@creature Duke Zalto|SKT}, the drow arrive after the party leaves and give Zalto the {@item iron flask}."
 							]
 						},
 						"On their first turns in combat, both Draac and Taal attempt to summon a {@creature shadow demon}. If defeat seems likely, Draac orders the remainder of his force to cover his escape while he flees with the {@item iron flask}.",
@@ -38875,6 +39236,13 @@
 											"width": 2182,
 											"height": 3000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 75,
+												"offsetX": -13,
+												"scale": 3,
+												"distance": 10
+											},
 											"mapRegions": [
 												{
 													"area": "437",
@@ -39400,7 +39768,15 @@
 											},
 											"width": 2400,
 											"height": 3300,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 82,
+												"offsetX": 80,
+												"offsetY": 44,
+												"scale": 3,
+												"distance": 10
+											}
 										},
 										{
 											"type": "image",
@@ -39409,10 +39785,18 @@
 												"type": "internal",
 												"path": "adventure/SKT/089-skt09-lyn2.webp"
 											},
-											"title": "Map 9.2: Lyn Armaal, Levels 2-6",
+											"title": "Map 9.2: Lyn Armaal, Levels 2\u20136",
 											"width": 2182,
 											"height": 3000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 75,
+												"offsetX": 49,
+												"offsetY": 27,
+												"scale": 3,
+												"distance": 10
+											},
 											"mapRegions": [
 												{
 													"area": "45b",
@@ -41104,7 +41488,15 @@
 											},
 											"width": 2400,
 											"height": 3300,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 82,
+												"offsetX": -14,
+												"offsetY": -18,
+												"scale": 3,
+												"distance": 10
+											}
 										}
 									]
 								}
@@ -42061,6 +42453,14 @@
 											"width": 2182,
 											"height": 3000,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 79,
+												"offsetX": 20,
+												"offsetY": 20,
+												"scale": 3,
+												"distance": 10
+											},
 											"mapRegions": [
 												{
 													"area": "49a",
@@ -45267,7 +45667,15 @@
 											},
 											"width": 2400,
 											"height": 3300,
-											"imageType": "mapPlayer"
+											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 87,
+												"offsetX": 12,
+												"offsetY": 21,
+												"scale": 3,
+												"distance": 10
+											}
 										}
 									]
 								}
@@ -45992,6 +46400,14 @@
 													"width": 2400,
 													"height": 1650,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 59,
+														"offsetX": -9,
+														"offsetY": 3,
+														"scale": 2,
+														"distance": 10
+													},
 													"mapRegions": [
 														{
 															"area": "4ca",
@@ -46697,7 +47113,14 @@
 													},
 													"width": 2400,
 													"height": 1650,
-													"imageType": "mapPlayer"
+													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 59,
+														"offsetX": -8,
+														"scale": 2,
+														"distance": 10
+													}
 												}
 											]
 										}
@@ -47011,6 +47434,14 @@
 									"width": 1000,
 									"height": 688,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 78,
+										"offsetX": 31,
+										"offsetY": 61,
+										"scale": 2,
+										"distance": 10
+									},
 									"mapRegions": [
 										{
 											"area": "4dc",
@@ -47472,7 +47903,14 @@
 									},
 									"width": 2400,
 									"height": 1650,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 92,
+										"offsetX": 52,
+										"offsetY": 26,
+										"distance": 10
+									}
 								}
 							]
 						},
@@ -47819,6 +48257,13 @@
 									"width": 1000,
 									"height": 688,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 62,
+										"offsetX": -6,
+										"offsetY": 25,
+										"scale": 3
+									},
 									"mapRegions": [
 										{
 											"area": "4f8",
@@ -48076,7 +48521,14 @@
 									},
 									"width": 2400,
 									"height": 1650,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 102,
+										"offsetX": -43,
+										"offsetY": 36,
+										"scale": 2
+									}
 								}
 							]
 						},
@@ -48229,7 +48681,7 @@
 					"id": "505",
 					"entries": [
 						"{@creature Khaspere Drylund|SKT}'s treachery convinces {@creature Slarkrethel|SKT} that enemies are close to finding and freeing {@creature King Hekaton|SKT}. The kraken leaves its lair in the darkest depths of the Trackless Sea and swims toward the {@i Morkoth}. The same magic that {@creature Slarkrethel|SKT} placed on the {@i Morkoth} to conceal it from divination spells allows the kraken to locate the ship unerringly.",
-						"If the characters free Hekaton and leave the {@i Morkoth} within an hour of doing so, {@creature Slarkrethel|SKT} arrives too late to stop them. If the characters are still aboard the {@i Morkoth} an hour after freeing Hekaton, the kraken pays them an unannounced visit. The kraken announces its arrival by wrapping its gigantic tentacles around the hull of the {@i Morkoth}. All creatures aboard the ship are surprised unless they are swimming beneath the vessel and can see the enormous kraken approaching from directly below the craft. Once the kraken strikes, all creatures in this encounter must roll initiative. {@creature Slarkrethel|SKT} wants to terrify and humble the adventurers, not annihilate them, so it mainly uses its tentacles to crush the {@i Morkoth} and pull it into the depths. Under no circumstances does the kraken allow the ship to fall into enemy hands. As an action, the kraken can attack the {@i Morkoth} with all ten of its tentacles and deal 250 bludgeoning damage to the ship on each of its turns, accounting for the {@i Morkoth}'s damage threshold and the kraken's siege monster feature. Assuming the ship has all its hit points when {@creature Slarkrethel|SKT} attacks, the vessel is destroyed after the kraken's second turn in combat. While crushing the ship, the kraken can't take other actions but can use its legendary actions as normal. Hekaton isn't afraid to face the kraken, and the kraken in turn has no qualms about killing the storm giant king (see \"Development\").",
+						"If the characters free Hekaton and leave the {@i Morkoth} within an hour of doing so, {@creature Slarkrethel|SKT} arrives too late to stop them. If the characters are still aboard the {@i Morkoth} an hour after freeing Hekaton, the kraken pays them an unannounced visit. The kraken announces its arrival by wrapping its gigantic tentacles around the hull of the {@i Morkoth}. All creatures aboard the ship are {@quickref Surprise|PHB|3|0|surprised} unless they are swimming beneath the vessel and can see the enormous kraken approaching from directly below the craft. Once the kraken strikes, all creatures in this encounter must roll initiative. {@creature Slarkrethel|SKT} wants to terrify and humble the adventurers, not annihilate them, so it mainly uses its tentacles to crush the {@i Morkoth} and pull it into the depths. Under no circumstances does the kraken allow the ship to fall into enemy hands. As an action, the kraken can attack the {@i Morkoth} with all ten of its tentacles and deal 250 bludgeoning damage to the ship on each of its turns, accounting for the {@i Morkoth}'s damage threshold and the kraken's siege monster feature. Assuming the ship has all its hit points when {@creature Slarkrethel|SKT} attacks, the vessel is destroyed after the kraken's second turn in combat. While crushing the ship, the kraken can't take other actions but can use its legendary actions as normal. Hekaton isn't afraid to face the kraken, and the kraken in turn has no qualms about killing the storm giant king (see \"Development\").",
 						"{@creature Slarkrethel|SKT} is a {@creature kraken}, with the following changes:",
 						{
 							"type": "list",
@@ -48445,10 +48897,18 @@
 										"type": "internal",
 										"path": "adventure/SKT/108-skt12-lair.webp"
 									},
-									"title": "Map 12.1: {@creature Iymrith|SKT}'s Lair",
+									"title": "Map 12.1: Iymrith's Lair",
 									"width": 2182,
 									"height": 3000,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 53,
+										"offsetX": 7,
+										"offsetY": -4,
+										"scale": 2,
+										"distance": 10
+									},
 									"mapRegions": [
 										{
 											"area": "510",
@@ -48835,7 +49295,14 @@
 									},
 									"width": 2400,
 									"height": 3300,
-									"imageType": "mapPlayer"
+									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 59,
+										"offsetX": -22,
+										"scale": 2,
+										"distance": 10
+									}
 								}
 							]
 						},
@@ -48878,7 +49345,7 @@
 												"Three hidden sinkholes are marked 1A, 1B, and 1C on the map."
 											]
 										},
-										"The first creature to enter a hidden sinkhole's space causes the sinkhole to appear and must succeed on a DC 15 Dexterity saving throw or fall to the bottom of it. A creature that falls into a sinkhole lands {@condition prone} but takes no damage, since the sand cushions its fall. The sinkhole remains open thereafter. Sinkhole 1A drops down into a rough-hewn passage that connects areas 4 and 5. Sinkhole 1B is directly above the purple wormling pit in area 5, and any creature falling into it is surprised and attacked by {@dice 1d4} purple wormlings. Sinkhole 1C drops down into a rough-hewn cave west of areas 2 and 3."
+										"The first creature to enter a hidden sinkhole's space causes the sinkhole to appear and must succeed on a DC 15 Dexterity saving throw or fall to the bottom of it. A creature that falls into a sinkhole lands {@condition prone} but takes no damage, since the sand cushions its fall. The sinkhole remains open thereafter. Sinkhole 1A drops down into a rough-hewn passage that connects areas 4 and 5. Sinkhole 1B is directly above the purple wormling pit in area 5, and any creature falling into it is {@quickref Surprise|PHB|3|0|surprised} and attacked by {@dice 1d4} purple wormlings. Sinkhole 1C drops down into a rough-hewn cave west of areas 2 and 3."
 									]
 								},
 								{
@@ -49246,21 +49713,7 @@
 			"page": 247,
 			"id": "537",
 			"entries": [
-				{
-					"type": "inlineBlock",
-					"entries": [
-						"The details of the special NPCs can be found in the ",
-						{
-							"type": "link",
-							"href": {
-								"type": "internal",
-								"path": "bestiary.html"
-							},
-							"text": "bestiary"
-						},
-						". A quick reference can be found below."
-					]
-				},
+				"The details of the special NPCs can be found in the {@5etools bestiary|bestiary.html}. A quick reference can be found below.",
 				{
 					"type": "list",
 					"name": "Bryn Shander",

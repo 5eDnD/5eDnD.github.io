@@ -1,15 +1,17 @@
-const fs = require("fs");
-require("../js/utils");
-const ut = require("./util");
-const UtilGenTables = require("./util-generate-tables-data.js");
-
-Object.assign(global, require("../js/hist.js"));
+import * as fs from "fs";
+import "../js/parser.js";
+import "../js/utils.js";
+import "../js/render.js";
+import * as ut from "./util.js";
+import "../js/utils-generate-tables-data.js";
+import "../js/utils-dataloader.js";
+import "../js/hist.js";
 
 class GenTables {
 	_doLoadAdventureData () {
 		return ut.readJson(`./data/adventures.json`).adventure
 			.map(idx => {
-				if (GenTables.ADVENTURE_WHITELIST[idx.id]) {
+				if (!GenTables.ADVENTURE_BLOCKLIST[idx.id]) {
 					return {
 						adventure: idx,
 						adventureData: JSON.parse(fs.readFileSync(`./data/adventure/adventure-${idx.id.toLowerCase()}.json`, "utf-8")),
@@ -22,7 +24,7 @@ class GenTables {
 	_doLoadBookData () {
 		return ut.readJson(`./data/books.json`).book
 			.map(idx => {
-				if (!GenTables.BOOK_BLACKLIST[idx.id]) {
+				if (!GenTables.BOOK_BLOCKLIST[idx.id]) {
 					return {
 						book: idx,
 						bookData: JSON.parse(fs.readFileSync(`./data/book/book-${idx.id.toLowerCase()}.json`, "utf-8")),
@@ -39,6 +41,8 @@ class GenTables {
 		await this._pAddClassData(output);
 		await this._pAddVariantRuleData(output);
 		await this._pAddBackgroundData(output);
+		await this._pAddEncountersData(output);
+		await this._pAddNamesData(output);
 
 		const toSave = JSON.stringify({table: output.tables, tableGroup: output.tableGroups});
 		fs.writeFileSync(`./data/generated/gendata-tables.json`, toSave, "utf-8");
@@ -134,12 +138,58 @@ class GenTables {
 			});
 		});
 	}
+
+	// -----------------------
+
+	async _pAddEncountersData (output) {
+		return this._pAddEncounterOrNamesData({
+			output,
+			path: `./data/encounters.json`,
+			prop: "encounter",
+			fnGetNameCaption: Renderer.table.getConvertedEncounterTableName.bind(Renderer.table),
+			colLabel1: "Encounter",
+		});
+	}
+
+	async _pAddNamesData (output) {
+		return this._pAddEncounterOrNamesData({
+			output,
+			path: `./data/names.json`,
+			prop: "name",
+			fnGetNameCaption: Renderer.table.getConvertedNameTableName.bind(Renderer.table),
+			colLabel1: "Name",
+		});
+	}
+
+	async _pAddEncounterOrNamesData (
+		{
+			output,
+			path,
+			prop,
+			fnGetNameCaption,
+			colLabel1,
+		},
+	) {
+		ut.patchLoadJson();
+		const jsonData = await DataUtil.loadJSON(path);
+		ut.unpatchLoadJson();
+
+		jsonData[prop].forEach(group => {
+			group.tables.forEach(tableRaw => {
+				output.tables.push(Renderer.table.getConvertedEncounterOrNamesTable({
+					group,
+					tableRaw,
+					fnGetNameCaption,
+					colLabel1,
+				}));
+			});
+		});
+	}
+
+	// -----------------------
 }
-GenTables.BOOK_BLACKLIST = {};
-GenTables.ADVENTURE_WHITELIST = {
-	[SRC_SKT]: true,
-	[SRC_TTP]: true,
-};
+GenTables.BOOK_BLOCKLIST = {};
+GenTables.ADVENTURE_BLOCKLIST = {};
 
 const generator = new GenTables();
-module.exports = generator.pRun();
+export default generator.pRun();

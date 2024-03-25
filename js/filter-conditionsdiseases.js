@@ -16,15 +16,16 @@ class PageFilterConditionsDiseases extends PageFilter {
 			displayFn: PageFilterConditionsDiseases.getDisplayProp,
 			deselFn: (it) => it === "disease" || it === "status",
 		});
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD", "Basic Rules", "Has Images", "Has Info"], isMiscFilter: true});
+		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD", "Basic Rules", "Legacy", "Has Images", "Has Info"], isMiscFilter: true});
 	}
 
 	static mutateForFilters (it) {
 		it._fMisc = [];
 		if (it.srd) it._fMisc.push("SRD");
 		if (it.basicRules) it._fMisc.push("Basic Rules");
-		if (it.hasFluff) it._fMisc.push("Has Info");
-		if (it.hasFluffImages) it._fMisc.push("Has Images");
+		if (SourceUtil.isLegacySourceWotc(it.source)) it._fMisc.push("Legacy");
+		if (it.hasFluff || it.fluff?.entries) it._fMisc.push("Has Info");
+		if (it.hasFluffImages || it.fluff?.images) it._fMisc.push("Has Images");
 	}
 
 	addToFilters (it, isExcluded) {
@@ -50,3 +51,5 @@ class PageFilterConditionsDiseases extends PageFilter {
 		);
 	}
 }
+
+globalThis.PageFilterConditionsDiseases = PageFilterConditionsDiseases;

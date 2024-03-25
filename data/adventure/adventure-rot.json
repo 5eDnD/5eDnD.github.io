@@ -533,7 +533,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/000-tod-00-01.png"
+												"path": "adventure/RoT/000-tod-00-01.webp"
 											},
 											"title": "{@creature Severin|RoT}",
 											"width": 685,
@@ -682,7 +682,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/001-symbol-harpers.png"
+										"path": "adventure/RoT/001-symbol-harpers.webp"
 									},
 									"width": 579,
 									"height": 1000
@@ -727,7 +727,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/002-ooa08-03.png"
+										"path": "adventure/RoT/002-ooa08-03.webp"
 									},
 									"width": 579,
 									"height": 1000
@@ -773,7 +773,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/003-ooa08-05a.png"
+										"path": "adventure/RoT/003-ooa08-05a.webp"
 									},
 									"width": 577,
 									"height": 1000
@@ -819,7 +819,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/004-symbol-alliance.png"
+										"path": "adventure/RoT/004-symbol-alliance.webp"
 									},
 									"width": 579,
 									"height": 1000
@@ -965,7 +965,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/005-symbol-zhentarim.png"
+										"path": "adventure/RoT/005-symbol-zhentarim.webp"
 									},
 									"width": 579,
 									"height": 1000
@@ -1056,7 +1056,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/RoT/006-tod-09-01.png"
+						"path": "adventure/RoT/006-tod-09-01.webp"
 					},
 					"width": 1537,
 					"height": 1000
@@ -1379,7 +1379,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/RoT/007-tod-10-01.png"
+						"path": "adventure/RoT/007-tod-10-01.webp"
 					},
 					"width": 1537,
 					"height": 1000
@@ -1431,7 +1431,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/008-tod-10-02.png"
+										"path": "adventure/RoT/008-tod-10-02.webp"
 									},
 									"title": "{@creature Maccath the Crimson|RoT}",
 									"width": 697,
@@ -1870,6 +1870,12 @@
 													"width": 3960,
 													"height": 5700,
 													"imageType": "map",
+													"grid": {
+														"type": "square",
+														"size": 85,
+														"offsetY": 17,
+														"distance": 15
+													},
 													"id": "114",
 													"mapRegions": [
 														{
@@ -3193,10 +3199,16 @@
 														"type": "internal",
 														"path": "adventure/RoT/010-map-10-1-arauthators-iceberg-player.jpg"
 													},
-													"title": "(Player Version)",
+													"title": "Player Version",
 													"width": 3960,
 													"height": 5700,
 													"imageType": "mapPlayer",
+													"grid": {
+														"type": "square",
+														"size": 85,
+														"offsetY": 17,
+														"distance": 15
+													},
 													"mapParent": {
 														"id": "114"
 													}
@@ -3352,7 +3364,7 @@
 							"id": "0b7",
 							"entries": [
 								"If {@creature Maccath the Crimson|RoT} hasn't been encountered elsewhere in Oyaviggaton, the characters meet her here.",
-								"At the top of the ramp from area 9, 1 ice {@creature Ice Troll|RoT|ice troll} (see area 12) stands guard over this cavern. It positions itself around the corner so it can't be seen until intruders reach the top of the ramp.",
+								"At the top of the ramp from area 9, 1 ice {@creature ice troll|RoT} (see area 12) stands guard over this cavern. It positions itself around the corner so it can't be seen until intruders reach the top of the ramp.",
 								{
 									"type": "insetReadaloud",
 									"id": "0b8",
@@ -3392,7 +3404,7 @@
 										{
 											"type": "list",
 											"items": [
-												"Arauthator is currently in {@area  area 20|0d5|x} of his lair, close to the entrance beneath the scriptorium (area 11).",
+												"Arauthator is currently in {@area area 20|0d5|x} of his lair, close to the entrance beneath the scriptorium (area 11).",
 												"Most of the material stolen from the Hosttower is in the scriptorium, but a few items might be in Arauthator's lair (see \"{@area Arauthator's Treasure|0d8|x}\" at the end of this chapter.)",
 												"Maccath knows the general layout of the dragon's cavern but not its specific dangers. Arauthator has never allowed her out of his sight in the lair. In particular, she knows nothing of the scrags in {@area area 15|0cf|x} or the traps in {@area area 18|0d2|x}.",
 												"Two entrances lead to Arauthator's lair\u2014one in the adjoining scriptorium and the other in {@area area 6|0b0|x}.",
@@ -3712,7 +3724,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/RoT/011-tod-11-01.png"
+						"path": "adventure/RoT/011-tod-11-01.webp"
 					},
 					"width": 1537,
 					"height": 1000
@@ -3958,10 +3970,17 @@
 																"type": "internal",
 																"path": "adventure/RoT/012-map-11-1-tomb-of-diderius.jpg"
 															},
-															"title": "Map 11.1: Tomb of {@creature Diderius|RoT}",
+															"title": "Map 11.1: Tomb of Diderius",
 															"width": 4050,
 															"height": 3000,
 															"imageType": "map",
+															"grid": {
+																"type": "square",
+																"size": 95,
+																"offsetX": 7,
+																"offsetY": -71,
+																"distance": 10
+															},
 															"id": "24a",
 															"mapRegions": [
 																{
@@ -4646,10 +4665,17 @@
 																"type": "internal",
 																"path": "adventure/RoT/013-map-11-1-tomb-of-diderius-player.jpg"
 															},
-															"title": "(Player Version)",
+															"title": "Player Version",
 															"width": 4050,
 															"height": 3000,
 															"imageType": "mapPlayer",
+															"grid": {
+																"type": "square",
+																"size": 94,
+																"offsetX": 21,
+																"offsetY": 36,
+																"distance": 10
+															},
 															"mapParent": {
 																"id": "24a"
 															}
@@ -4753,7 +4779,7 @@
 							"id": "0f9",
 							"entries": [
 								"This chamber is a high vaulted dome with a deep inset ledge circling the room, 10 feet wide and 15 feet up. The floor here is set with a beautiful tile mosaic showing a knight in plate armor wielding a glowing sword against a chimera. The word \"SAFE\" is written in chalk on the door leading to area 5, marking that chamber as a resting place used by the cultists.",
-								"When the first character enters this room, the tile chimera begins to slowly shift. With a successful DC 14 Wisdom ({@skill Perception}) check, a character notices this movement and is not surprised as the tiles shoot up and the chimera seemingly claws its way out of the mosaic.",
+								"When the first character enters this room, the tile chimera begins to slowly shift. With a successful DC 14 Wisdom ({@skill Perception}) check, a character notices this movement and is not {@quickref Surprise|PHB|3|0|surprised} as the tiles shoot up and the chimera seemingly claws its way out of the mosaic.",
 								"The {@creature Animated Tile Chimera|RoT|tile chimera} acts as a normal {@creature chimera} magically animated and customized per the sidebar. It makes a clacking noise as it moves, and when injured, it sprays tiles instead of bleeding. It is thin in one dimension and can use that fact to its advantage in combat. The creature flies up to the ledge to use its fire breath at range, flying down to attack in melee until it can breathe again.",
 								{
 									"type": "inset",
@@ -4814,7 +4840,7 @@
 							"page": 128,
 							"id": "0ff",
 							"entries": [
-								"The divination pool used water to create a mirror-like surface for its powerful rituals, which was replenished from this well. The well holds water still, but the regional effects {@creature Diderius|RoT} imposes on his lair causes it to evaporate within a few rounds of being hauled up into this area. A bronze bucket on a rope sits near the well, while an empty basin stands 8 feet up along the north wall, with stone steps leading up to it. A brass lever protrudes from the wall near the basin. When water is poured into the basin and the lever pulled, it feeds the sluice in {@area  area 12|10d|x}.",
+								"The divination pool used water to create a mirror-like surface for its powerful rituals, which was replenished from this well. The well holds water still, but the regional effects {@creature Diderius|RoT} imposes on his lair causes it to evaporate within a few rounds of being hauled up into this area. A bronze bucket on a rope sits near the well, while an empty basin stands 8 feet up along the north wall, with stone steps leading up to it. A brass lever protrudes from the wall near the basin. When water is poured into the basin and the lever pulled, it feeds the sluice in {@area area 12|10d|x}.",
 								"The sides of the well and the floor next to it are covered in bright red mushrooms. They are slick with a watery sheen that resembles blood, and have the taste and texture of raw liver if picked and eaten before the lair effects spoil them. They are safe to consume, however.",
 								"The cultists used this room as a forward campsite during their short expedition. Sleeping rolls and camping gear are scattered around. As with the door leading into this area, \"SAFE\" is scribed on the wall in chalk in case anyone became lost or disoriented.",
 								{
@@ -4923,7 +4949,7 @@
 							"page": 130,
 							"id": "109",
 							"entries": [
-								"Two long tables of plain stone stand at the south end of this dining hall, while a long marble table stands to the north. The door up the stairs leading to{@area  area 8|106|x} has \"? DANGER\" written in chalk on it. The door down the southern stairs is spiked shut, and has \"DANGER\" scrawled on it in chalk.",
+								"Two long tables of plain stone stand at the south end of this dining hall, while a long marble table stands to the north. The door up the stairs leading to {@area area 8|106|x} has \"? DANGER\" written in chalk on it. The door down the southern stairs is spiked shut, and has \"DANGER\" scrawled on it in chalk.",
 								"Five {@creature Bearded Devil||bearded devils} are seated at the marble table\u2014the last survivors of {@creature Varram|RoT}'s expedition. When his cultist followers were routed investigating area 11, {@creature Varram|RoT} left the devils here with instructions to guard against any creatures coming out of that area. The devils take their orders seriously, which means they all but ignore the adventurers unless the characters attack.",
 								"If the devils are questioned politely, they tell the characters only that they were ordered to remain here. They admit that their master is {@creature Varram|RoT}, and speak of great treasure down the stairs to the south. The dwarf has been gone for some time, but they have no idea what happened to him.",
 								"If the devils are offered 100 gp or more in gems, they also tell the characters that they have fought and killed undead in the complex; that the dwarf lost something important to his cult and needs the divination pool to get it back; and that they are working for the cult on the orders of their lord Zariel, Archduchess of Avernus, who wants {@creature Tiamat|RoT} out of the Nine Hells.",
@@ -5001,7 +5027,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/014-tod-11-02.png"
+										"path": "adventure/RoT/014-tod-11-02.webp"
 									},
 									"title": "{@creature Varram|RoT}",
 									"width": 796,
@@ -5175,7 +5201,7 @@
 									"page": 132,
 									"id": "122",
 									"entries": [
-										"The secret door in the hallway leading to{@area  area 21|128|x} is marked by an archway scribed into the wall. However, a pressure plate is set 10 feet before the archway, revealed by a successful DC 15 Intelligence ({@skill Investigation}) check. When any creature steps on the pressure plate, darts shoot out from the walls along the length of the hallway, targeting all creatures in the area: +8 to hit, 3 ({@dice 1d6}) piercing damage, and the target must succeed on a DC 14 Constitution saving throw or take 10 ({@dice 3d6}) poison damage and be {@condition paralyzed} for 1 minute."
+										"The secret door in the hallway leading to {@area area 21|128|x} is marked by an archway scribed into the wall. However, a pressure plate is set 10 feet before the archway, revealed by a successful DC 15 Intelligence ({@skill Investigation}) check. When any creature steps on the pressure plate, darts shoot out from the walls along the length of the hallway, targeting all creatures in the area: +8 to hit, 3 ({@dice 1d6}) piercing damage, and the target must succeed on a DC 14 Constitution saving throw or take 10 ({@dice 3d6}) poison damage and be {@condition paralyzed} for 1 minute."
 									]
 								},
 								{
@@ -5292,7 +5318,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/RoT/015-tod-12-01.png"
+								"path": "adventure/RoT/015-tod-12-01.webp"
 							},
 							"title": "{@creature Neronvain|RoT}",
 							"width": 683,
@@ -5487,10 +5513,17 @@
 																"type": "internal",
 																"path": "adventure/RoT/016-map-12-1-neronvains-stronghold.jpg"
 															},
-															"title": "Map 12.1: {@creature Neronvain|RoT}'s Stronghold",
+															"title": "Map 12.1: Neronvain's Stronghold",
 															"width": 6000,
 															"height": 4444,
 															"imageType": "map",
+															"grid": {
+																"type": "square",
+																"size": 192,
+																"offsetX": 87,
+																"offsetY": -7,
+																"distance": 15
+															},
 															"id": "24b",
 															"mapRegions": [
 																{
@@ -6363,10 +6396,16 @@
 																"type": "internal",
 																"path": "adventure/RoT/017-map-12-1-neronvains-stronghold-player.jpg"
 															},
-															"title": "(Player Version)",
+															"title": "Player Version",
 															"width": 6000,
 															"height": 4444,
 															"imageType": "mapPlayer",
+															"grid": {
+																"type": "square",
+																"size": 191,
+																"offsetX": -86,
+																"distance": 15
+															},
 															"mapParent": {
 																"id": "24b"
 															}
@@ -6587,7 +6626,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/RoT/018-tod-13-01.png"
+						"path": "adventure/RoT/018-tod-13-01.webp"
 					},
 					"width": 1537,
 					"height": 1000
@@ -6921,7 +6960,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/019-tod-13-02.png"
+										"path": "adventure/RoT/019-tod-13-02.webp"
 									},
 									"title": "Dragon Cultist",
 									"width": 879,
@@ -6982,7 +7021,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/RoT/020-tod-14-01.png"
+						"path": "adventure/RoT/020-tod-14-01.webp"
 					},
 					"width": 1530,
 					"height": 1000
@@ -7161,7 +7200,7 @@
 													"type": "image",
 													"href": {
 														"type": "internal",
-														"path": "adventure/RoT/021-tod-14-02.png"
+														"path": "adventure/RoT/021-tod-14-02.webp"
 													},
 													"title": "The Draakhorn",
 													"width": 1000,
@@ -7329,7 +7368,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/RoT/022-tod-15-01.png"
+						"path": "adventure/RoT/022-tod-15-01.webp"
 					},
 					"width": 1537,
 					"height": 1000
@@ -7446,6 +7485,13 @@
 											"width": 1980,
 											"height": 2850,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 57,
+												"offsetX": -32,
+												"offsetY": -21,
+												"distance": 10
+											},
 											"id": "24c",
 											"mapRegions": [
 												{
@@ -8243,10 +8289,17 @@
 												"type": "internal",
 												"path": "adventure/RoT/024-map-15-1-xonthals-tower-player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 3300,
 											"height": 4750,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 96,
+												"offsetX": 21,
+												"offsetY": 30,
+												"distance": 10
+											},
 											"mapParent": {
 												"id": "24c",
 												"autoScale": true
@@ -8343,7 +8396,7 @@
 									"id": "1a0",
 									"entries": [
 										"When the characters complete the maze by successfully entering the hedge at the fifth sundial, they emerge within sight of a teleportation circle at the foot of the tower. The body of a dead cultist lies sprawled on the ground (the one {@creature Iskander|RoT} threw off the balcony earlier). Behind them, the characters see a straight path that leads directly to the sundial intersection. Another path extends thirty yards beyond the sundial, ending at the exit to the village.",
-										"A few seconds after the first character steps onto the circle, all creatures in the circle are teleported to{@area  area 8|1b6|x}. Alternatively, the characters can walk out of the garden from the foot of the tower without any detours or difficulties. However, any gems they collected in the maze (see below) will mysteriously vanish from their possession."
+										"A few seconds after the first character steps onto the circle, all creatures in the circle are teleported to {@area area 8|1b6|x}. Alternatively, the characters can walk out of the garden from the foot of the tower without any detours or difficulties. However, any gems they collected in the maze (see below) will mysteriously vanish from their possession."
 									]
 								}
 							]
@@ -8715,7 +8768,7 @@
 					"id": "1c0",
 					"entries": [
 						"Though the cultists have claimed the upper levels of Xonthal's Tower, they have no control over the dungeon beneath it. The secrets and ancient guardians of this area remain a mystery to them. Xonthal performed most of his experiments here, and the dungeons once included numerous extradimensional spaces accessible from the main corridor ({@area area 17|1cc|x}).",
-						"When the first two groups of cultists sent down here to explore were killed by the elementals in {@area  area 15|1c7|x}, Jorgen Pawl quickly declared the dungeon off limits. {@creature Iskander|RoT} understood the risks of fleeing here, but he knew it was the one place where Jorgen's fanatical followers would be reluctant to pursue him.",
+						"When the first two groups of cultists sent down here to explore were killed by the elementals in {@area area 15|1c7|x}, Jorgen Pawl quickly declared the dungeon off limits. {@creature Iskander|RoT} understood the risks of fleeing here, but he knew it was the one place where Jorgen's fanatical followers would be reluctant to pursue him.",
 						{
 							"type": "entries",
 							"name": "General Features",
@@ -8785,7 +8838,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/025-tod-15-02.png"
+										"path": "adventure/RoT/025-tod-15-02.webp"
 									},
 									"title": "{@creature Iskander|RoT}",
 									"width": 714,
@@ -9010,7 +9063,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/RoT/026-tod-16-01.png"
+						"path": "adventure/RoT/026-tod-16-01.webp"
 					},
 					"width": 1583,
 					"height": 1000
@@ -9136,7 +9189,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/RoT/027-tod-17-01.png"
+						"path": "adventure/RoT/027-tod-17-01.webp"
 					},
 					"width": 1537,
 					"height": 1000
@@ -9312,10 +9365,16 @@
 												"type": "internal",
 												"path": "adventure/RoT/028-map-17-1-well-of-dragons.jpg"
 											},
-											"title": "Map 17.1: the Well of Dragons",
+											"title": "Map 17.1: The Well of Dragons",
 											"width": 1980,
 											"height": 2850,
 											"imageType": "map",
+											"grid": {
+												"type": "square",
+												"size": 62,
+												"scale": 2,
+												"distance": 20
+											},
 											"id": "24d",
 											"mapRegions": [
 												{
@@ -10946,10 +11005,18 @@
 												"type": "internal",
 												"path": "adventure/RoT/029-map-17-1-well-of-dragons-player.jpg"
 											},
-											"title": "(Player Version)",
+											"title": "Player Version",
 											"width": 3300,
 											"height": 4750,
 											"imageType": "mapPlayer",
+											"grid": {
+												"type": "square",
+												"size": 103,
+												"offsetX": 12,
+												"offsetY": 16,
+												"scale": 2,
+												"distance": 20
+											},
 											"mapParent": {
 												"id": "24d",
 												"autoScale": true
@@ -11000,7 +11067,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/030-tod-17-02.png"
+										"path": "adventure/RoT/030-tod-17-02.webp"
 									},
 									"title": "{@creature Naergoth Bladelord|RoT}",
 									"width": 751,
@@ -11219,10 +11286,18 @@
 										"type": "internal",
 										"path": "adventure/RoT/031-map-17-2-tiamats-temple.jpg"
 									},
-									"title": "Map 17.2: {@creature Tiamat|RoT}'s Temple",
+									"title": "Map 17.2: Tiamat's Temple",
 									"width": 1980,
 									"height": 2850,
 									"imageType": "map",
+									"grid": {
+										"type": "square",
+										"size": 55,
+										"offsetX": -23,
+										"offsetY": -3,
+										"scale": 2,
+										"distance": 10
+									},
 									"id": "24e",
 									"mapRegions": [
 										{
@@ -11258,10 +11333,18 @@
 										"type": "internal",
 										"path": "adventure/RoT/032-map-17-2-tiamats-temple-player.jpg"
 									},
-									"title": "(Player Version)",
+									"title": "Player Version",
 									"width": 3300,
 									"height": 4750,
 									"imageType": "mapPlayer",
+									"grid": {
+										"type": "square",
+										"size": 92,
+										"offsetX": -44,
+										"offsetY": -13,
+										"scale": 2,
+										"distance": 10
+									},
 									"mapParent": {
 										"id": "24e",
 										"autoScale": true
@@ -12581,7 +12664,7 @@
 					"type": "image",
 					"href": {
 						"type": "internal",
-						"path": "adventure/RoT/059-tod-e-01.jpg"
+						"path": "adventure/RoT/059-tod-e-01.webp"
 					},
 					"width": 2560,
 					"height": 1701
@@ -12601,7 +12684,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/RoT/060-tod-e-02.jpg"
+								"path": "adventure/RoT/060-tod-e-02.webp"
 							},
 							"width": 2560,
 							"height": 1701
@@ -12618,7 +12701,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/RoT/061-tod-e-03.jpg"
+								"path": "adventure/RoT/061-tod-e-03.webp"
 							},
 							"width": 2560,
 							"height": 1701
@@ -12635,7 +12718,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/RoT/062-tod-e-04.jpg"
+								"path": "adventure/RoT/062-tod-e-04.webp"
 							},
 							"width": 2560,
 							"height": 1701
@@ -12652,7 +12735,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/RoT/063-tod-e-05.jpg"
+								"path": "adventure/RoT/063-tod-e-05.webp"
 							},
 							"width": 2560,
 							"height": 1701
@@ -12669,7 +12752,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/RoT/064-tod-e-06.png"
+								"path": "adventure/RoT/064-tod-e-06.webp"
 							},
 							"width": 2560,
 							"height": 1701
@@ -12686,7 +12769,7 @@
 							"type": "image",
 							"href": {
 								"type": "internal",
-								"path": "adventure/RoT/065-tod-e-07.png"
+								"path": "adventure/RoT/065-tod-e-07.webp"
 							},
 							"width": 2560,
 							"height": 1810
@@ -12712,7 +12795,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/066-tod-e-08a.png"
+												"path": "adventure/RoT/066-tod-e-08a.webp"
 											},
 											"title": "Red Wizards of Thay Stronghold",
 											"width": 1905,
@@ -12722,7 +12805,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/067-tod-e-08b.png"
+												"path": "adventure/RoT/067-tod-e-08b.webp"
 											},
 											"title": "Red Wizards",
 											"width": 1446,
@@ -12732,7 +12815,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/068-tod-e-08c.png"
+												"path": "adventure/RoT/068-tod-e-08c.webp"
 											},
 											"title": "Rath Modar (Formal)",
 											"width": 741,
@@ -12767,7 +12850,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/069-tod-e-09a.jpg"
+												"path": "adventure/RoT/069-tod-e-09a.webp"
 											},
 											"title": "Dread Warriors make up the terrifying undead army of the Red Wizards",
 											"width": 1438,
@@ -12777,7 +12860,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/070-tod-e-09b.png"
+												"path": "adventure/RoT/070-tod-e-09b.webp"
 											},
 											"title": "Zhentarim, also known as the Black Network, and winged snake",
 											"width": 547,
@@ -12787,7 +12870,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/071-tod-e-09c.png"
+												"path": "adventure/RoT/071-tod-e-09c.webp"
 											},
 											"title": "Dread Warrior",
 											"width": 500,
@@ -12810,7 +12893,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/072-tod-e-10a.png"
+												"path": "adventure/RoT/072-tod-e-10a.webp"
 											},
 											"width": 705,
 											"height": 1000
@@ -12819,7 +12902,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/073-tod-e-10b.png"
+												"path": "adventure/RoT/073-tod-e-10b.webp"
 											},
 											"width": 798,
 											"height": 1000
@@ -12848,7 +12931,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/074-tod-e-11a.png"
+										"path": "adventure/RoT/074-tod-e-11a.webp"
 									},
 									"title": "Mask of {@creature Tiamat|RoT}",
 									"width": 1000,
@@ -12863,7 +12946,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/075-tod-e-11c.jpg"
+										"path": "adventure/RoT/075-tod-e-11c.webp"
 									},
 									"title": "The Five Dragon Masks (with Wyrmspeaker Regalia)",
 									"width": 2000,
@@ -12881,7 +12964,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/076-tod-e-12a.png"
+										"path": "adventure/RoT/076-tod-e-12a.webp"
 									},
 									"width": 1600,
 									"height": 798
@@ -12901,7 +12984,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/077-tod-e-12b.png"
+												"path": "adventure/RoT/077-tod-e-12b.webp"
 											},
 											"title": "Dragon Cultist Assassin/Thief Elite Tier",
 											"width": 1200,
@@ -12911,7 +12994,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/078-tod-e-12c.jpg"
+												"path": "adventure/RoT/078-tod-e-12c.webp"
 											},
 											"title": "Dragon Cultist: Rogue Ideations",
 											"width": 1376,
@@ -12921,7 +13004,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/079-tod-e-12d.jpg"
+												"path": "adventure/RoT/079-tod-e-12d.webp"
 											},
 											"title": "Cult of the Dragon Masks/Headgear",
 											"width": 1600,
@@ -12931,7 +13014,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/080-tod-e-12e.png"
+												"path": "adventure/RoT/080-tod-e-12e.webp"
 											},
 											"title": "Cult of the Dragon Decorative Regalia",
 											"width": 669,
@@ -12941,7 +13024,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/081-tod-e-12i.png"
+												"path": "adventure/RoT/081-tod-e-12i.webp"
 											},
 											"title": "Dragon Fang (Dagger)",
 											"width": 897,
@@ -12951,7 +13034,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/082-tod-e-12j.png"
+												"path": "adventure/RoT/082-tod-e-12j.webp"
 											},
 											"title": "Glove and Hand Tattooing Details Dragon Loyalty",
 											"width": 1000,
@@ -12961,7 +13044,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/083-tod-e-12k.jpg"
+												"path": "adventure/RoT/083-tod-e-12k.webp"
 											},
 											"title": "2nd Rank & 4th Rank",
 											"width": 1000,
@@ -12971,7 +13054,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/084-tod-e-12f1.png"
+												"path": "adventure/RoT/084-tod-e-12f1.webp"
 											},
 											"title": "Cult Initiate",
 											"width": 680,
@@ -12981,7 +13064,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/085-tod-e-12f2.png"
+												"path": "adventure/RoT/085-tod-e-12f2.webp"
 											},
 											"title": "1st Rank: Dragonclaw",
 											"width": 680,
@@ -12991,7 +13074,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/086-tod-e-12f3.png"
+												"path": "adventure/RoT/086-tod-e-12f3.webp"
 											},
 											"title": "2nd Rank: Dragonwing",
 											"width": 680,
@@ -13001,7 +13084,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/087-tod-e-12f4.png"
+												"path": "adventure/RoT/087-tod-e-12f4.webp"
 											},
 											"title": "3rd Rank: Dragonfang",
 											"width": 680,
@@ -13011,7 +13094,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/088-tod-e-12f5.png"
+												"path": "adventure/RoT/088-tod-e-12f5.webp"
 											},
 											"title": "4th Rank: Dragonsoul",
 											"width": 680,
@@ -13021,7 +13104,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/089-tod-e-12g.jpg"
+												"path": "adventure/RoT/089-tod-e-12g.webp"
 											},
 											"title": "Dragon Cult Recruiter Formal Wear",
 											"width": 1311,
@@ -13031,7 +13114,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/090-tod-e-12h.png"
+												"path": "adventure/RoT/090-tod-e-12h.webp"
 											},
 											"title": "Dragon Cult Recruiter Street Clothes",
 											"width": 484,
@@ -13060,7 +13143,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/091-tod-e-13a.jpg"
+										"path": "adventure/RoT/091-tod-e-13a.webp"
 									},
 									"width": 1483,
 									"height": 1000
@@ -13077,7 +13160,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/092-tod-e-13d.jpg"
+										"path": "adventure/RoT/092-tod-e-13d.webp"
 									},
 									"title": "Drizzt Do'Urden",
 									"width": 1223,
@@ -13089,7 +13172,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/093-tod-e-13c.jpg"
+										"path": "adventure/RoT/093-tod-e-13c.webp"
 									},
 									"title": "The Savage North",
 									"width": 1500,
@@ -13108,7 +13191,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/094-tod-e-13b.jpg"
+										"path": "adventure/RoT/094-tod-e-13b.webp"
 									},
 									"width": 1500,
 									"height": 730
@@ -13128,7 +13211,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/095-tod-e-14a.png"
+												"path": "adventure/RoT/095-tod-e-14a.webp"
 											},
 											"title": "Remi Haventree, Military Commander Uniform",
 											"width": 1211,
@@ -13138,7 +13221,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/096-tod-e-14b.png"
+												"path": "adventure/RoT/096-tod-e-14b.webp"
 											},
 											"title": "Remi Haventree, Waterdhavian Formal Wear",
 											"width": 483,
@@ -13148,7 +13231,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/097-tod-e-14c.png"
+												"path": "adventure/RoT/097-tod-e-14c.webp"
 											},
 											"title": "Mei, Female Human Rogue",
 											"width": 1500,
@@ -13158,7 +13241,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/098-tod-e-14d.png"
+												"path": "adventure/RoT/098-tod-e-14d.webp"
 											},
 											"title": "Calia, Female Human Ranger",
 											"width": 1001,
@@ -13168,7 +13251,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/099-tod-e-14e.png"
+												"path": "adventure/RoT/099-tod-e-14e.webp"
 											},
 											"title": "Tilo, Male Human Wizard",
 											"width": 571,
@@ -13178,7 +13261,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/100-tod-e-14f.png"
+												"path": "adventure/RoT/100-tod-e-14f.webp"
 											},
 											"title": "Finan, Male Human Cleric",
 											"width": 982,
@@ -13208,7 +13291,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/101-tod-e-15b.jpg"
+										"path": "adventure/RoT/101-tod-e-15b.webp"
 									},
 									"title": "Red Dragon Identifiers",
 									"width": 1500,
@@ -13223,7 +13306,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/102-tod-e-15a.jpg"
+										"path": "adventure/RoT/102-tod-e-15a.webp"
 									},
 									"width": 1600,
 									"height": 1107
@@ -13240,7 +13323,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/103-tod-e-15d.jpg"
+										"path": "adventure/RoT/103-tod-e-15d.webp"
 									},
 									"title": "Blue Dragon Identifiers",
 									"width": 1600,
@@ -13254,7 +13337,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/104-tod-e-15c.jpg"
+										"path": "adventure/RoT/104-tod-e-15c.webp"
 									},
 									"width": 1600,
 									"height": 1230
@@ -13274,7 +13357,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/105-tod-e-16a.jpg"
+												"path": "adventure/RoT/105-tod-e-16a.webp"
 											},
 											"title": "Green Dragons at various ages",
 											"width": 1500,
@@ -13284,7 +13367,7 @@
 											"type": "image",
 											"href": {
 												"type": "internal",
-												"path": "adventure/RoT/106-tod-e-16b.jpg"
+												"path": "adventure/RoT/106-tod-e-16b.webp"
 											},
 											"width": 1500,
 											"height": 1141
@@ -13303,7 +13386,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/107-tod-e-16c.jpg"
+										"path": "adventure/RoT/107-tod-e-16c.webp"
 									},
 									"title": "Black Dragons at various ages",
 									"width": 1500,
@@ -13315,7 +13398,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/108-tod-e-16d.jpg"
+										"path": "adventure/RoT/108-tod-e-16d.webp"
 									},
 									"title": "Black Dragon Identifiers",
 									"width": 1500,
@@ -13333,7 +13416,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/109-tod-e-17b.jpg"
+										"path": "adventure/RoT/109-tod-e-17b.webp"
 									},
 									"title": "White Dragon (old)",
 									"width": 1500,
@@ -13347,7 +13430,7 @@
 									"type": "image",
 									"href": {
 										"type": "internal",
-										"path": "adventure/RoT/110-tod-e-17a.jpg"
+										"path": "adventure/RoT/110-tod-e-17a.webp"
 									},
 									"title": "White Dragon Identifiers",
 									"width": 1500,

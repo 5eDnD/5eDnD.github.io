@@ -14,122 +14,177 @@ class Omnisearch {
 		return Number(isNonStandardA) - Number(isNonStandardB);
 	}
 
+	/* -------------------------------------------- */
+
+	static _TYPE_TIMEOUT_MS = 100; // auto-search after 100ms
+
+	static _iptSearch = null;
+	static _wrpSearchInput = null;
+	static _wrpSearchOutput = null;
+	static _dispSearchOutput = null;
+
 	static init () {
 		if (IS_VTT) return;
 
-		const $nav = $(`#navbar`);
+		this._init_elements();
 
-		this._$iptSearch = $(`<input class="form-control search omni__input" placeholder="${this._PLACEHOLDER_TEXT}" title="Hotkey: F. Disclaimer: unlikely to search everywhere. Use with caution." type="search">`)
-			.disableSpellcheck();
-		const $btnClearSearch = $(`<span class="absolute glyphicon glyphicon-remove omni__btn-clear"></span>`)
-			.mousedown(evt => {
-				evt.stopPropagation();
-				evt.preventDefault();
-				this._$iptSearch.val("").focus();
-			});
-		const $searchSubmit = $(`<button class="btn btn-default omni__submit" tabindex="-1"><span class="glyphicon glyphicon-search"></span></button>`);
-
-		this._$searchInputWrapper = $$`
-			<div class="input-group omni__wrp-input">
-				${this._$iptSearch}
-				${$btnClearSearch}
-				<div class="input-group-btn">
-					${$searchSubmit}
-				</div>
-			</div>
-		`.appendTo($nav);
-
-		this._$searchOutWrapper = $(`<div class="omni__wrp-output ve-flex"/>`).hideVe().insertAfter($nav);
-		this._$searchOut = $(`<div class="omni__output"/>`).appendTo(this._$searchOutWrapper);
-
-		$(window).on("click", () => this._$searchOutWrapper.hideVe());
-
-		this._$searchOut.on("click", evt => {
+		this._dispSearchOutput.onClick(evt => {
 			evt.stopPropagation();
 			Renderer.hover.cleanTempWindows();
 		});
 
-		this._$iptSearch.on("keydown", (evt) => {
+		this._iptSearch.onKeydown((evt) => {
 			evt.stopPropagation();
 			Renderer.hover.cleanTempWindows();
 			switch (evt.key) {
 				case "Enter":
-					if (evt.ctrlKey) {
-						window.location = `${Renderer.get().baseUrl}${UrlUtil.PG_SEARCH}?${this._$iptSearch.val()}`;
+					if (EventUtil.isCtrlMetaKey(evt)) {
+						window.location = `${Renderer.get().baseUrl}${UrlUtil.PG_SEARCH}?${this._iptSearch.val()}`;
 						break;
 					}
 
 					this._clickFirst = true;
-					$searchSubmit.click();
+					this._handleClickSubmit(evt);
 					break;
 				case "ArrowUp":
 					evt.preventDefault();
 					break;
 				case "ArrowDown":
 					evt.preventDefault();
-					this._$searchOut.find(`a.omni__lnk-name`).first().focus();
+					$(this._dispSearchOutput).find(`.omni__lnk-name`).first().focus();
 					break;
 				case "Escape":
-					this._$iptSearch.val("");
-					this._$iptSearch.blur();
+					this._iptSearch.val("");
+					this._iptSearch.blur();
 			}
 		});
 
-		// auto-search after 100ms
-		const TYPE_TIMEOUT_MS = 100;
-
-		const handleSubmitClick = (evt) => {
-			if (evt) evt.stopPropagation();
-			Renderer.hover.cleanTempWindows();
-			this._pDoSearch();
-		};
-
 		let typeTimer;
-		this._$iptSearch.on("keyup", (evt) => {
+		this._iptSearch.onKeyup((evt) => {
 			this._clickFirst = false;
 			if (evt.which >= 37 && evt.which <= 40) return;
 			clearTimeout(typeTimer);
-			typeTimer = setTimeout(() => handleSubmitClick(), TYPE_TIMEOUT_MS);
+			typeTimer = setTimeout(() => this._handleClickSubmit(), this._TYPE_TIMEOUT_MS);
 		});
-		this._$iptSearch.on("keydown", () => clearTimeout(typeTimer));
-		this._$iptSearch.on("click", evt => {
+		this._iptSearch.onKeydown(() => clearTimeout(typeTimer));
+		this._iptSearch.onClick(evt => {
 			evt.stopPropagation();
 			Renderer.hover.cleanTempWindows();
-			if (this._$iptSearch.val() && this._$iptSearch.val().trim().length) handleSubmitClick();
+			if (this._iptSearch.val() && this._iptSearch.val().trim().length) this._handleClickSubmit();
 		});
 
-		$searchSubmit.on("click", evt => handleSubmitClick(evt));
-
-		this._init_initScrollHandler();
-
-		$(document.body).on("keypress", (evt) => {
-			if (!EventUtil.noModifierKeys(evt) || EventUtil.isInInput(evt)) return;
-			if (EventUtil.getKeyIgnoreCapsLock(evt) !== "F") return;
-			evt.preventDefault();
-			this._$iptSearch.select().focus();
-		});
+		this._init_scrollHandler();
+		this._init_bindBodyListeners();
 	}
 
-	static _init_initScrollHandler () {
-		const $window = $(window);
-		$window.on("scroll", evt => {
+	static _handleClickSubmit (evt) {
+		if (evt) evt.stopPropagation();
+		Renderer.hover.cleanTempWindows();
+		return this._pDoSearch();
+	}
+
+	static _init_elements () {
+		const eleNavbar = document.getElementById("navbar");
+
+		this._iptSearch = e_({
+			tag: "input",
+			clazz: "form-control search omni__input",
+			placeholder: this._PLACEHOLDER_TEXT,
+			title: `Hotkey: F. Disclaimer: unlikely to search everywhere. Use with caution.`,
+			type: "search",
+		})
+			.disableSpellcheck();
+
+		const btnClearSearch = e_({
+			tag: "span",
+			clazz: "absolute glyphicon glyphicon-remove omni__btn-clear",
+			mousedown: evt => {
+				evt.stopPropagation();
+				evt.preventDefault();
+				this._iptSearch.val("").focus();
+			},
+		});
+
+		const btnSearchSubmit = e_({
+			tag: "button",
+			clazz: "btn btn-default omni__submit",
+			tabindex: -1,
+			html: `<span class="glyphicon glyphicon-search"></span>`,
+			click: evt => this._handleClickSubmit(evt),
+		});
+
+		this._wrpSearchInput = e_({
+			tag: "div",
+			clazz: "input-group omni__wrp-input",
+			children: [
+				this._iptSearch,
+				btnClearSearch,
+				e_({
+					tag: "div",
+					clazz: "input-group-btn",
+					children: [
+						btnSearchSubmit,
+					],
+				}),
+			],
+		})
+			.appendTo(eleNavbar);
+
+		this._dispSearchOutput = e_({
+			tag: "div",
+			clazz: "omni__output",
+		});
+
+		this._wrpSearchOutput = e_({
+			tag: "div",
+			clazz: "omni__wrp-output ve-flex",
+			children: [
+				this._dispSearchOutput,
+			],
+		})
+			.hideVe()
+			.insertAfter(eleNavbar);
+	}
+
+	static _init_scrollHandler () {
+		window.addEventListener("scroll", evt => {
 			if (Renderer.hover.isSmallScreen(evt)) {
-				this._$iptSearch.attr("placeholder", this._PLACEHOLDER_TEXT);
-				this._$searchInputWrapper.removeClass("omni__wrp-input--scrolled");
-				this._$searchOut.removeClass("omni__output--scrolled");
+				this._iptSearch.attr("placeholder", this._PLACEHOLDER_TEXT);
+				this._wrpSearchInput.removeClass("omni__wrp-input--scrolled");
+				this._dispSearchOutput.removeClass("omni__output--scrolled");
 			} else {
-				if ($window.scrollTop() > 50) {
-					this._$iptSearch.attr("placeholder", " ");
-					this._$searchInputWrapper.addClass("omni__wrp-input--scrolled");
-					this._$searchOut.addClass("omni__output--scrolled");
+				if (window.scrollY > 50) {
+					this._iptSearch.attr("placeholder", " ");
+					this._wrpSearchInput.addClass("omni__wrp-input--scrolled");
+					this._dispSearchOutput.addClass("omni__output--scrolled");
 				} else {
-					this._$iptSearch.attr("placeholder", this._PLACEHOLDER_TEXT);
-					this._$searchInputWrapper.removeClass("omni__wrp-input--scrolled");
-					this._$searchOut.removeClass("omni__output--scrolled");
+					this._iptSearch.attr("placeholder", this._PLACEHOLDER_TEXT);
+					this._wrpSearchInput.removeClass("omni__wrp-input--scrolled");
+					this._dispSearchOutput.removeClass("omni__output--scrolled");
 				}
 			}
 		});
 	}
+
+	static _init_bindBodyListeners () {
+		document.body.addEventListener(
+			"click",
+			() => this._wrpSearchOutput.hideVe(),
+		);
+
+		document.body.addEventListener(
+			"keypress",
+			(evt) => {
+				if (!EventUtil.noModifierKeys(evt) || EventUtil.isInInput(evt)) return;
+				if (EventUtil.getKeyIgnoreCapsLock(evt) !== "F") return;
+				evt.preventDefault();
+				this._iptSearch.focus();
+				this._iptSearch.select();
+			},
+		);
+	}
+
+	/* -------------------------------------------- */
 
 	static async pGetResults (searchTerm) {
 		searchTerm = (searchTerm || "").toAscii();
@@ -223,19 +278,31 @@ class Omnisearch {
 		}
 
 		if (!this._state.isShowBrew) {
-			results = results.filter(r => !r.doc.s || SourceUtil.isSiteSource(r.doc.s));
+			results = results.filter(r => !r.doc.s || !BrewUtil2.hasSourceJson(r.doc.s));
 		}
 
 		if (!this._state.isShowUa) {
 			results = results.filter(r => !r.doc.s || !SourceUtil.isNonstandardSourceWotc(r.doc.s));
 		}
 
-		if (!this._state.isShowBlacklisted && ExcludeUtil.getList().length) {
-			results = results.filter(r => {
-				if (r.doc.c === Parser.CAT_ID_QUICKREF || r.doc.c === Parser.CAT_ID_PAGE) return true;
+		if (!this._state.isShowBlocklisted && ExcludeUtil.getList().length) {
+			const resultsNxt = [];
+			for (const r of results) {
+				if (r.doc.c === Parser.CAT_ID_QUICKREF || r.doc.c === Parser.CAT_ID_PAGE) {
+					resultsNxt.push(r);
+					continue;
+				}
+
 				const bCat = Parser.pageCategoryToProp(r.doc.c);
-				return !ExcludeUtil.isExcluded(r.doc.u, bCat, r.doc.s, {isNoCount: true});
-			});
+				if (bCat !== "item") {
+					if (!ExcludeUtil.isExcluded(r.doc.u, bCat, r.doc.s, {isNoCount: true})) resultsNxt.push(r);
+					continue;
+				}
+
+				const item = await DataLoader.pCacheAndGetHash(UrlUtil.PG_ITEMS, r.doc.u);
+				if (!Renderer.item.isExcluded(item, {hash: r.doc.u})) resultsNxt.push(r);
+			}
+			results = resultsNxt;
 		}
 
 		results.sort(this._sortResults);
@@ -245,7 +312,7 @@ class Omnisearch {
 
 	// region Search
 	static async _pDoSearch () {
-		const results = await this.pGetResults(this._$iptSearch.val());
+		const results = await this.pGetResults(CleanUtil.getCleanString(this._iptSearch.val()));
 		this._pDoSearch_renderLinks(results);
 	}
 
@@ -256,16 +323,16 @@ class Omnisearch {
 	static $getResultLink (r) {
 		const isFauxPage = !!r.hx;
 
-		if (isFauxPage) return $(`<span ${r.h ? this._renderLink_getHoverString(r.c, r.u, r.s, {isFauxPage}) : ""} class="omni__lnk-name help-subtle">${r.cf}: ${r.n}</span>`);
+		if (isFauxPage) return $(`<span tabindex="0" ${r.h ? this._renderLink_getHoverString(r.c, r.u, r.s, {isFauxPage}) : ""} class="omni__lnk-name help">${r.cf}: ${r.n}</span>`);
 
 		const href = r.c === Parser.CAT_ID_PAGE ? r.u : `${Renderer.get().baseUrl}${UrlUtil.categoryToPage(r.c)}#${r.uh || r.u}`;
 		return $(`<a href="${href}" ${r.h ? this._renderLink_getHoverString(r.c, r.u, r.s, {isFauxPage}) : ""} class="omni__lnk-name">${r.cf}: ${r.n}</a>`);
 	}
 
-	static _$btnToggleBrew = null;
-	static _$btnToggleUa = null;
-	static _$btnToggleBlacklisted = null;
-	static _$btnToggleSrd = null;
+	static _btnToggleBrew = null;
+	static _btnToggleUa = null;
+	static _btnToggleBlocklisted = null;
+	static _btnToggleSrd = null;
 
 	static _doInitBtnToggleFilter (
 		{
@@ -277,8 +344,14 @@ class Omnisearch {
 	) {
 		if (this[propBtn]) this[propBtn].detach();
 		else {
-			this[propBtn] = $(`<button class="btn btn-default btn-xs" title="${title.qq()}" tabindex="-1">${text.qq()}</button>`)
-				.on("click", () => this._state[propState] = !this._state[propState]);
+			this[propBtn] = e_({
+				tag: "button",
+				clazz: "btn btn-default btn-xs",
+				title,
+				tabindex: -1,
+				text,
+				click: () => this._state[propState] = !this._state[propState],
+			});
 
 			const hk = (val) => {
 				this[propBtn].toggleClass("active", this._state[propState]);
@@ -292,42 +365,60 @@ class Omnisearch {
 	static _pDoSearch_renderLinks (results, page = 0) {
 		this._doInitBtnToggleFilter({
 			propState: "isShowBrew",
-			propBtn: "_$btnToggleBrew",
+			propBtn: "_btnToggleBrew",
 			title: "Include homebrew content results",
 			text: "Include Homebrew",
 		});
 
 		this._doInitBtnToggleFilter({
 			propState: "isShowUa",
-			propBtn: "_$btnToggleUa",
+			propBtn: "_btnToggleUa",
 			title: "Include Unearthed Arcana and other unofficial source results",
 			text: "Include UA/etc.",
 		});
 
 		this._doInitBtnToggleFilter({
-			propState: "isShowBlacklisted",
-			propBtn: "_$btnToggleBlacklisted",
-			title: "Include blacklisted content results",
-			text: "Include Blacklisted",
+			propState: "isShowBlocklisted",
+			propBtn: "_btnToggleBlocklisted",
+			title: "Include blocklisted content results",
+			text: "Include Blocklisted",
 		});
 
 		this._doInitBtnToggleFilter({
 			propState: "isSrdOnly",
-			propBtn: "_$btnToggleSrd",
+			propBtn: "_btnToggleSrd",
 			title: "Only show Systems Reference Document content results",
 			text: "SRD Only",
 		});
 
-		this._$searchOut.empty();
+		this._dispSearchOutput.empty();
 
-		const $btnHelp = $(`<button class="btn btn-default btn-xs ml-2" title="Help"><span class="glyphicon glyphicon-info-sign"></span></button>`)
-			.click(() => this.doShowHelp());
+		this._dispSearchOutput.appends(
+			e_({
+				tag: "div",
+				clazz: "ve-flex-h-right ve-flex-v-center mb-2",
+				children: [
+					e_({
+						tag: "div",
+						clazz: "btn-group ve-flex-v-center",
+						children: [
+							this._btnToggleBrew,
+							this._btnToggleUa,
+							this._btnToggleBlocklisted,
+							this._btnToggleSrd,
+						],
+					}),
+					e_({
+						tag: "button",
+						clazz: "btn btn-default btn-xs ml-2",
+						title: "Help",
+						html: `<span class="glyphicon glyphicon-info-sign"></span>`,
+						click: () => this.doShowHelp(),
+					}),
+				],
+			}),
+		);
 
-		this._$searchOut.append($(`<div class="ve-flex-h-right ve-flex-v-center mb-2"/>`)
-			.append([
-				$$`<div class="btn-group ve-flex-v-center">${this._$btnToggleBrew}${this._$btnToggleUa}${this._$btnToggleBlacklisted}${this._$btnToggleSrd}</div>`,
-				$btnHelp,
-			]));
 		const base = page * this._MAX_RESULTS;
 		for (let i = base; i < Math.max(Math.min(results.length, this._MAX_RESULTS + base), base); ++i) {
 			const r = results[i].doc;
@@ -342,21 +433,24 @@ class Omnisearch {
 				? `<a href="${adventureBookSourceHref}">${ptPageInner}</a>`
 				: ptPageInner;
 
-			const ptSourceInner = source ? `<span class="${Parser.sourceJsonToColor(source)}" ${BrewUtil2.sourceJsonToStyle(source)} title="${Parser.sourceJsonToFull(source)}">${Parser.sourceJsonToAbv(source)}</span>` : `<span></span>`;
+			const ptSourceInner = source
+				? `<span class="${Parser.sourceJsonToColor(source)}" ${Parser.sourceJsonToStyle(source)} title="${Parser.sourceJsonToFull(source)}">${Parser.sourceJsonToAbv(source)}</span>`
+				: `<span></span>`;
 			const ptSource = ptPage || !adventureBookSourceHref
 				? ptSourceInner
 				: `<a href="${adventureBookSourceHref}">${ptSourceInner}</a>`;
 
 			$$`<div class="omni__row-result split-v-center stripe-odd">
 				${$link}
-				<div class="inline-block">
+				<div class="ve-flex-v-center">
 					${ptSource}
 					${isSrd ? `<span class="ve-muted omni__disp-srd help-subtle relative" title="Available in the Systems Reference Document">[SRD]</span>` : ""}
-					${ptPage}
+					${Parser.sourceJsonToMarkerHtml(source, {isList: false, additionalStyles: "omni__disp-source-marker"})}
+					${ptPage ? `<span class="omni__wrp-page small-caps">${ptPage}</span>` : ""}
 				</div>
-			</div>`.appendTo(this._$searchOut);
+			</div>`.appendTo(this._dispSearchOutput);
 		}
-		this._$searchOutWrapper.showVe();
+		this._wrpSearchOutput.showVe();
 
 		// add pagination if there are many results
 		if (results.length > this._MAX_RESULTS) {
@@ -376,15 +470,15 @@ class Omnisearch {
 				});
 				$pgControls.append($nxt);
 			} else ($pgControls.append(`<span class="omni__paginate-right omni__paginate-ctrl">`));
-			this._$searchOut.append($pgControls);
+			$pgControls.appendTo(this._dispSearchOutput);
 		}
 
 		if (this._clickFirst && results.length) {
-			this._$searchOut.find(`a.omni__lnk-name`).first()[0].click();
+			$(this._dispSearchOutput).find(`.omni__lnk-name`).first()[0].click();
 		}
 
 		if (!results.length) {
-			this._$searchOut.append(`<div class="ve-muted"><i>No results found.</i></div>`);
+			$(this._dispSearchOutput).append(`<div class="ve-muted"><i>No results found.</i></div>`);
 		}
 	}
 	// endregion
@@ -408,18 +502,18 @@ class Omnisearch {
 			|| {
 				isShowBrew: true,
 				isShowUa: true,
-				isShowBlacklisted: false,
+				isShowBlocklisted: false,
 				isSrdOnly: false,
 			};
 
 		class SearchState extends BaseComponent {
 			get isShowBrew () { return this._state.isShowBrew; }
 			get isShowUa () { return this._state.isShowUa; }
-			get isShowBlacklisted () { return this._state.isShowBlacklisted; }
+			get isShowBlocklisted () { return this._state.isShowBlocklisted; }
 			get isSrdOnly () { return this._state.isSrdOnly; }
 			set isShowBrew (val) { this._state.isShowBrew = !!val; }
 			set isShowUa (val) { this._state.isShowUa = !!val; }
-			set isShowBlacklisted (val) { this._state.isShowBlacklisted = !!val; }
+			set isShowBlocklisted (val) { this._state.isShowBlocklisted = !!val; }
 			set isSrdOnly (val) { this._state.isSrdOnly = !!val; }
 		}
 		this._state = SearchState.fromObject(saved);
@@ -430,15 +524,15 @@ class Omnisearch {
 
 	static addHookBrew (hk) { this._state._addHookBase("isShowBrew", hk); }
 	static addHookUa (hk) { this._state._addHookBase("isShowUa", hk); }
-	static addHookBlacklisted (hk) { this._state._addHookBase("isShowBlacklisted", hk); }
+	static addHookBlocklisted (hk) { this._state._addHookBase("isShowBlocklisted", hk); }
 	static addHookSrdOnly (hk) { this._state._addHookBase("isSrdOnly", hk); }
 	static doToggleBrew () { this._state.isShowBrew = !this._state.isShowBrew; }
 	static doToggleUa () { this._state.isShowUa = !this._state.isShowUa; }
-	static doToggleBlacklisted () { this._state.isShowBlacklisted = !this._state.isShowBlacklisted; }
+	static doToggleBlocklisted () { this._state.isShowBlocklisted = !this._state.isShowBlocklisted; }
 	static doToggleSrdOnly () { this._state.isSrdOnly = !this._state.isSrdOnly; }
 	static get isShowBrew () { return this._state.isShowBrew; }
 	static get isShowUa () { return this._state.isShowUa; }
-	static get isShowBlacklisted () { return this._state.isShowBlacklisted; }
+	static get isShowBlocklisted () { return this._state.isShowBlocklisted; }
 	static get isSrdOnly () { return this._state.isSrdOnly; }
 
 	static async _pDoSearchLoad () {
@@ -454,6 +548,9 @@ class Omnisearch {
 		SearchUtil.removeStemmer(this._searchIndex);
 
 		data.forEach(it => this._addToIndex(it));
+
+		const prereleaseIndex = await PrereleaseUtil.pGetSearchIndex({id: this._maxId + 1});
+		prereleaseIndex.forEach(it => this._addToIndex(it));
 
 		const brewIndex = await BrewUtil2.pGetSearchIndex({id: this._maxId + 1});
 		brewIndex.forEach(it => this._addToIndex(it));
@@ -483,20 +580,20 @@ class Omnisearch {
 				if ($(`.has-results-left`).length) {
 					const ix = $ele.parent().index() - 1; // offset as the control bar is at position 0
 					$(`.omni__paginate-left`).click();
-					const $psNext = this._$searchOut.find(`.omni__row-result`);
-					$($psNext[ix] || $psNext[$psNext.length - 1]).find(`a.omni__lnk-name`).focus();
+					const $psNext = $(this._dispSearchOutput).find(`.omni__row-result`);
+					$($psNext[ix] || $psNext[$psNext.length - 1]).find(`.omni__lnk-name`).focus();
 				}
 				break;
 			}
 			case "ArrowUp": {
 				evt.preventDefault();
-				if ($ele.parent().prev().find(`a.omni__lnk-name`).length) {
-					$ele.parent().prev().find(`a.omni__lnk-name`).focus();
+				if ($ele.parent().prev().find(`.omni__lnk-name`).length) {
+					$ele.parent().prev().find(`.omni__lnk-name`).focus();
 				} else if ($(`.has-results-left`).length) {
 					$(`.omni__paginate-left`).click();
-					this._$searchOut.find(`a.omni__lnk-name`).last().focus();
+					$(this._dispSearchOutput).find(`.omni__lnk-name`).last().focus();
 				} else {
-					this._$iptSearch.focus();
+					this._iptSearch.focus();
 				}
 				break;
 			}
@@ -505,18 +602,18 @@ class Omnisearch {
 				if ($(`.has-results-right`).length) {
 					const ix = $ele.parent().index() - 1; // offset as the control bar is at position 0
 					$(`.omni__paginate-right`).click();
-					const $psNext = this._$searchOut.find(`.omni__row-result`);
-					$($psNext[ix] || $psNext[$psNext.length - 1]).find(`a.omni__lnk-name`).focus();
+					const $psNext = $(this._dispSearchOutput).find(`.omni__row-result`);
+					$($psNext[ix] || $psNext[$psNext.length - 1]).find(`.omni__lnk-name`).focus();
 				}
 				break;
 			}
 			case "ArrowDown": {
 				evt.preventDefault();
-				if ($ele.parent().next().find(`a.omni__lnk-name`).length) {
-					$ele.parent().next().find(`a.omni__lnk-name`).focus();
+				if ($ele.parent().next().find(`.omni__lnk-name`).length) {
+					$ele.parent().next().find(`.omni__lnk-name`).focus();
 				} else if ($(`.has-results-right`).length) {
 					$(`.omni__paginate-right`).click();
-					this._$searchOut.find(`a.omni__lnk-name`).first().focus();
+					$(this._dispSearchOutput).find(`.omni__lnk-name`).first().focus();
 				}
 				break;
 			}
@@ -562,15 +659,10 @@ Omnisearch._adventureBookLookup = null; // A map of `<sourceLower>: (adventureCa
 Omnisearch._pLoadSearch = null;
 Omnisearch._CATEGORY_COUNTS = {};
 
-Omnisearch._$searchOut = null;
-Omnisearch._$searchOutWrapper = null;
-Omnisearch._$searchInputWrapper = null;
-Omnisearch._$wrpNoResultsFound = null;
-
 Omnisearch._clickFirst = false;
 Omnisearch._MAX_RESULTS = 15;
 Omnisearch._showUaEtc = false;
-Omnisearch._hideBlacklisted = false;
+Omnisearch._hideBlocklisted = false;
 
 Omnisearch._STORAGE_NAME = "search";
 

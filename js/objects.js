@@ -7,13 +7,28 @@ class ObjectsSublistManager extends SublistManager {
 		});
 	}
 
+	static get _ROW_TEMPLATE () {
+		return [
+			new SublistCellTemplate({
+				name: "Name",
+				css: "bold col-9 pl-0",
+				colStyle: "",
+			}),
+			new SublistCellTemplate({
+				name: "Size",
+				css: "col-3 pr-0 ve-text-center",
+				colStyle: "text-center",
+			}),
+		];
+	}
+
 	pGetSublistItem (it, hash) {
-		const size = Parser.sizeAbvToFull(it.size);
+		const size = Renderer.utils.getRenderedSize(it.size);
+		const cellsText = [it.name, size];
 
 		const $ele = $(`<div class="lst__row lst__row--sublist ve-flex-col">
 			<a href="#${hash}" class="lst--border lst__row-inner">
-				<span class="bold col-9 pl-0">${it.name}</span>
-				<span class="col-3 pr-0 text-center">${size}</span>
+				${this.constructor._getRowCellsHtml({values: cellsText})}
 			</a>
 		</div>`)
 			.contextmenu(evt => this._handleSublistItemContextMenu(evt, listItem))
@@ -29,6 +44,7 @@ class ObjectsSublistManager extends SublistManager {
 			},
 			{
 				entity: it,
+				mdRow: [...cellsText],
 			},
 		);
 		return listItem;
@@ -38,14 +54,23 @@ class ObjectsSublistManager extends SublistManager {
 class ObjectsPage extends ListPage {
 	constructor () {
 		const pageFilter = new PageFilterObjects();
+		const pFnGetFluff = Renderer.object.pGetFluff.bind(Renderer.object);
+
 		super({
-			dataSource: "data/objects.json",
+			dataSource: DataUtil.object.loadJSON.bind(DataUtil.object),
+			dataSourceFluff: DataUtil.objectFluff.loadJSON.bind(DataUtil.objectFluff),
+
+			pFnGetFluff,
 
 			pageFilter,
 
 			listClass: "objects",
 
 			dataProps: ["object"],
+
+			listSyntax: new ListSyntaxObjects({fnGetDataList: () => this._dataList, pFnGetFluff}),
+
+			isMarkdownPopout: true,
 		});
 
 		this._$dispToken = null;
@@ -55,16 +80,16 @@ class ObjectsPage extends ListPage {
 		this._pageFilter.mutateAndAddToFilters(obj, isExcluded);
 
 		const eleLi = document.createElement("div");
-		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blacklisted" : ""}`;
+		eleLi.className = `lst__row ve-flex-col ${isExcluded ? "lst__row--blocklisted" : ""}`;
 
 		const source = Parser.sourceJsonToAbv(obj.source);
 		const hash = UrlUtil.autoEncodeHash(obj);
-		const size = Parser.sizeAbvToFull(obj.size);
+		const size = Renderer.utils.getRenderedSize(obj.size);
 
 		eleLi.innerHTML = `<a href="#${hash}" class="lst--border lst__row-inner">
 			<span class="bold col-8 pl-0">${obj.name}</span>
-			<span class="col-2 text-center">${size}</span>
-			<span class="col-2 text-center ${Parser.sourceJsonToColor(obj.source)} pr-0" title="${Parser.sourceJsonToFull(obj.source)}" ${BrewUtil2.sourceJsonToStyle(obj.source)}>${source}</span>
+			<span class="col-2 ve-text-center">${size}</span>
+			<span class="col-2 ve-text-center ${Parser.sourceJsonToColor(obj.source)} pr-0" title="${Parser.sourceJsonToFull(obj.source)}" ${Parser.sourceJsonToStyle(obj.source)}>${source}</span>
 		</a>`;
 
 		const listItem = new ListItem(
@@ -87,39 +112,31 @@ class ObjectsPage extends ListPage {
 		return listItem;
 	}
 
-	handleFilterChange () {
-		const f = this._filterBox.getValues();
-		this._list.filter(item => this._pageFilter.toDisplay(f, this._dataList[item.ix]));
-		FilterBox.selectFirstVisible(this._dataList);
-	}
+	_tabTitleStats = "Stats";
 
-	_doLoadHash (id) {
-		const obj = this._dataList[id];
-
+	_renderStats_doBuildStatsTab ({ent}) {
 		const renderStack = [];
 
-		if (obj.entries) this._renderer.recursiveRender({entries: obj.entries}, renderStack, {depth: 2});
-		if (obj.actionEntries) this._renderer.recursiveRender({entries: obj.actionEntries}, renderStack, {depth: 2});
+		if (ent.entries) this._renderer.recursiveRender({entries: ent.entries}, renderStack, {depth: 2});
+		if (ent.actionEntries) this._renderer.recursiveRender({entries: ent.actionEntries}, renderStack, {depth: 2});
 
-		this._$pgContent.empty().append(RenderObjects.$getRenderedObject(obj));
+		this._$pgContent.empty().append(RenderObjects.$getRenderedObject(ent));
 
 		(this._$dispToken = this._$dispToken || $(`#float-token`)).empty();
 
-		const hasToken = obj.tokenUrl || obj.hasToken;
+		const hasToken = ent.tokenUrl || ent.hasToken;
 		if (hasToken) {
-			const imgLink = Renderer.object.getTokenUrl(obj);
-			this._$dispToken.append(`<a href="${imgLink}" target="_blank" rel="noopener noreferrer"><img src="${imgLink}" id="token_image" class="token" alt="Token Image: ${(obj.name || "").qq()}" loading="lazy"></a>`);
+			const imgLink = Renderer.object.getTokenUrl(ent);
+			this._$dispToken.append(`<a href="${imgLink}" target="_blank" rel="noopener noreferrer"><img src="${imgLink}" id="token_image" class="token" alt="Token Image: ${(ent.name || "").qq()}" ${ent.tokenCredit ? `title="Credit: ${ent.tokenCredit.qq()}"` : ""} loading="lazy"></a>`);
 		}
-
-		this._updateSelected();
 	}
 
-	_getSearchCache (entity) {
-		if (!entity.entries && !entity.actionEntries) return "";
-		const ptrOut = {_: ""};
-		this._getSearchCache_handleEntryProp(entity, "entries", ptrOut);
-		this._getSearchCache_handleEntryProp(entity, "actionEntries", ptrOut);
-		return ptrOut._;
+	_renderStats_onTabChangeStats () {
+		this._$dispToken.showVe();
+	}
+
+	_renderStats_onTabChangeFluff () {
+		this._$dispToken.hideVe();
 	}
 }
 
